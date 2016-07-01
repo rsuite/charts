@@ -5,9 +5,7 @@ const marked = require('marked');
 const hl = require('highlight.js');
 
 const isPublish = process.env.NODE_ENV === 'publish';
-const plugins = [
-    new ExtractTextPlugin('styles.css')
-];
+const plugins = [];
 
 const codeRenderer = function(code, lang) {
     lang = lang === 'js' ? 'javascript' : lang;
@@ -34,7 +32,7 @@ if (isPublish) {
 
 module.exports = {
     entry: {
-        index: path.join(__dirname, 'docs')
+        'rsuite-echarts': path.join(__dirname, 'docs')
     },
     output: {
         path: path.join(__dirname, 'docs/assets'),
