@@ -46,7 +46,7 @@ registerTheme('myTheme', {
 ECharts 中支持的图表行为，[参考](http://echarts.baidu.com/api.html#action)
 
 ```js
-import registerTheme from 'rsuite-echarts/lib/dispatchAction';
+import dispatchAction from 'rsuite-echarts/lib/dispatchAction';
 
 /**
  * (chartId: String, payload: Object)
