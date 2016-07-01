@@ -1,6 +1,3 @@
-# RSuite ECharts
-
-ECharts for React
 
 ## Props
 

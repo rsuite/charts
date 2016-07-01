@@ -2,8 +2,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ECharts, {dispatchAction} from '../src';
+import Markdown from './Markdown';
 
 import './style.less';
+import './highlight.less';
 
 
 import baseBarOptions from './data/bar-base';
@@ -21,24 +23,21 @@ const App = React.createClass({
         return (
             <div className="doc-page">
                 <div className="doc-container">
+
                     <div style={styles}>
-                        <ECharts id="myEcharts" option={baseBarOptions}  theme='pagurian' />
+                        <h1>RSuite ECharts</h1>
+                        <p>ECharts for React</p>
+                        <ECharts  option={baseBarOptions}  theme='pagurian' />
+                        <Markdown>
+                            {require('./README.md') }
+                        </Markdown>
+
                     </div>
                 </div>
             </div>
         );
     }
 });
-
-setTimeout(function(){
-
-    dispatchAction('myEcharts',{
-        type: 'dataZoom',
-        start: 20,
-        end: 30
-    });
-
-},3000);
 
 
 const rootElement = document.getElementById('app');

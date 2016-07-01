@@ -1,11 +1,26 @@
 const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const marked = require('marked');
+const hl = require('highlight.js');
 
 const isPublish = process.env.NODE_ENV === 'publish';
 const plugins = [
     new ExtractTextPlugin('styles.css')
 ];
+
+const codeRenderer = function(code, lang) {
+    lang = lang === 'js' ? 'javascript' : lang;
+    if (lang === 'html') {
+        lang = 'xml';
+    }
+    var hlCode = lang ? hl.highlight(lang, code).value : hl.highlightAuto(code).value;
+    return `<div class="doc-highlight"><pre><code class="${lang || ''}">${hlCode}</code></pre></div>`;
+};
+
+var renderer = new marked.Renderer();
+
+renderer.code = codeRenderer;
 
 
 if (isPublish) {
@@ -34,8 +49,21 @@ module.exports = {
             ],
             exclude: /node_modules/
         }, {
-            test:/\.less$/,
-            loader: ExtractTextPlugin.extract('style-loader', 'css-loader','less-loader')
+            test: /\.less$/,
+            loaders: [
+                'style',
+                'css?minimize',
+                'less'
+            ],
+            include: [
+                path.join(__dirname, 'docs')
+            ]
+        }, {
+            test: /\.md$/,
+            loader: 'html!markdown'
         }]
+    },
+    markdownLoader: {
+        renderer: renderer
     }
 };
