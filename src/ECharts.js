@@ -2,8 +2,6 @@ import React from 'react';
 import echarts from 'echarts';
 import onResize from 'element-resize-event';
 
-
-
 const ECharts = React.createClass({
     propTypes: {
         style: React.PropTypes.object,
@@ -90,5 +88,16 @@ const ECharts = React.createClass({
         );
     }
 });
+
+const APIS = ['getMap', 'connect', 'disConnect', 'getInstanceByDom', 'registerMap', 'registerTheme'];
+APIS.forEach((api) => {
+    ECharts[api] = echarts[api];
+});
+
+ECharts.dispatchAction = function (echartsId, payload) {
+    const chartInstance = echarts.getInstanceByDom(document.getElementById(echartsId));
+    return chartInstance.dispatchAction(payload);
+};
+
 
 export default ECharts;

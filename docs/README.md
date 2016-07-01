@@ -25,9 +25,9 @@ onEvents              | object            | {}    | 可以配置多个事件，[
 ### 自定义主题
 
 ```js
-import registerTheme from 'rsuite-echarts/lib/registerTheme';
+import ECharts from 'rsuite-echarts';
 
-registerTheme('myTheme', {
+ECharts.registerTheme('myTheme', {
     backgroundColor: '#f5f5f5',
     color: ['#fe8463', '#9bca63', '#fad860'],
     ...
@@ -43,19 +43,21 @@ registerTheme('myTheme', {
 ECharts 中支持的图表行为，[参考](http://echarts.baidu.com/api.html#action)
 
 ```js
-import dispatchAction from 'rsuite-echarts/lib/dispatchAction';
+import ECharts from 'rsuite-echarts';
+
+//jsx
+<ECharts id='myChart' option={options} />
 
 /**
  * (chartId: String, payload: Object)
  */
-dispatchAction('myChart',{
+ECharts.dispatchAction('myChart',{
     type: 'dataZoom',
     start: 20,
     end: 30
 });
 
-//jsx
-<ECharts id='myChart' option={options} />
+
 
 ```
 

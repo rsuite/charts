@@ -27,7 +27,7 @@ const App = React.createClass({
                     <div style={styles}>
                         <h1>RSuite ECharts</h1>
                         <p>ECharts for React</p>
-                        <ECharts  option={baseBarOptions}  theme='pagurian' />
+                        <ECharts  option={baseBarOptions}  />
                         <Markdown>
                             {require('./README.md') }
                         </Markdown>
