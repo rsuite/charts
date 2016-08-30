@@ -4,8 +4,11 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const marked = require('marked');
 const hl = require('highlight.js');
 
-const isPublish = process.env.NODE_ENV === 'publish';
-const plugins = [];
+const plugins = [
+    new webpack.DefinePlugin({
+        'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+    }),
+];
 
 const codeRenderer = function(code, lang) {
     lang = lang === 'js' ? 'javascript' : lang;
@@ -21,7 +24,7 @@ var renderer = new marked.Renderer();
 renderer.code = codeRenderer;
 
 
-if (isPublish) {
+if (process.env.NODE_ENV === 'production') {
     plugins.push(new webpack.optimize.UglifyJsPlugin({
         compress: {
             warnings: false
