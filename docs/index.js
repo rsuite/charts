@@ -11,6 +11,11 @@ import './highlight.less';
 import baseBarOptions from './data/bar-base';
 
 
+const events = {
+    click:function(params){
+        console.log(params);
+    }
+};
 
 const App = React.createClass({
 
@@ -27,7 +32,7 @@ const App = React.createClass({
                     <div style={styles}>
                         <h1>RSuite ECharts</h1>
                         <p>ECharts for React</p>
-                        <ECharts  option={baseBarOptions}  />
+                        <ECharts  option={baseBarOptions}  onEvents={events} />
                         <Markdown>
                             {require('./README.md') }
                         </Markdown>

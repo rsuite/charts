@@ -38,6 +38,7 @@ const ECharts = React.createClass({
     init() {
         this.chart = echarts.init(this.refs.container, this.props.theme);
         this.renderEcharts();
+        this.initEvents();
     },
     initEvents() {
         let onEvents = this.props.onEvents;
