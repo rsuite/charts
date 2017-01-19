@@ -19,7 +19,7 @@ const ECharts = React.createClass({
     },
     getDefaultProps() {
         return {
-            notMerge: false,
+            notMerge: true,
             notRefreshImmediately: false,
             onEvents: {},
             style: {},
