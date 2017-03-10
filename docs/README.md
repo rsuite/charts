@@ -77,3 +77,16 @@ const events = {
 <ECharts onEvents={events} />
 
 ```
+
+### 地图
+
+地图注意的是，需要通过 `registerMap` 注册一个 `Map`
+
+```js
+ECharts.registerMap('china',chinaJson);
+```
+下载地图的 json 文件 http://echarts.baidu.com/download-map.html
+
+registerMap 方法的详细说明:
+
+http://echarts.baidu.com/api.html#echarts.registerMap

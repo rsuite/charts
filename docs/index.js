@@ -2,13 +2,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ECharts, {dispatchAction} from '../src';
-import Markdown from './Markdown';
+import { Markdown } from 'markdownloader';
 
 import './style.less';
 import './highlight.less';
 
 
 import baseBarOptions from './data/bar-base';
+import mapOptions from './data/map.js';
+import chinaJson from './data/china.json';
 
 
 const events = {
@@ -16,6 +18,8 @@ const events = {
         console.log(params);
     }
 };
+
+ECharts.registerMap('china',chinaJson);
 
 const App = React.createClass({
 
@@ -33,10 +37,14 @@ const App = React.createClass({
                         <h1>RSuite ECharts</h1>
                         <p>ECharts for React</p>
                         <ECharts  option={baseBarOptions}  onEvents={events} />
+
+
+                        <h4>Map</h4>
+                        <ECharts  option={mapOptions}  onEvents={events} />
+
                         <Markdown>
                             {require('./README.md') }
                         </Markdown>
-
                     </div>
                 </div>
             </div>

@@ -38,3 +38,6 @@ jspm_packages
 
 lib/
 .DS_Store
+
+.vscode/
+assets/

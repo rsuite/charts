@@ -2,43 +2,40 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlwebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const marked = require('marked');
-const hl = require('highlight.js');
+const markdownLoader = require('markdownloader').renderer;
 
-const plugins = [
-    new webpack.DefinePlugin({
-        'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
-    }),
-];
 
-const codeRenderer = function (code, lang) {
-    lang = lang === 'js' ? 'javascript' : lang;
-    if (lang === 'html') {
-        lang = 'xml';
-    }
-    var hlCode = lang ? hl.highlight(lang, code).value : hl.highlightAuto(code).value;
-    return `<div class="doc-highlight"><pre><code class="${lang || ''}">${hlCode}</code></pre></div>`;
+const  output = {
+    path: path.resolve(__dirname, 'assets'),
+    filename: 'bundle.js'
 };
 
-var renderer = new marked.Renderer();
+const entry=[
+     path.join(__dirname, 'docs/index'),
+]
 
-renderer.code = codeRenderer;
+const jsloaders=[
+     'babel?babelrc'
+];
+
+if (process.env.NODE_ENV === 'development') {
+    output.publicPath = '/assets/';
+    entry.push('webpack/hot/dev-server');
+    jsloaders.push('react-hot');
+}
 
 
-module.exports = {
-
-    entry: [
-        'webpack/hot/dev-server',
-        path.join(__dirname, 'docs/index')
-    ],
-    output: {
-        publicPath: 'http://127.0.0.1:3000/',
-        path: path.resolve(__dirname, 'build'),
-        filename: 'bundle.js',
-    },
+const config = {
+    entry,
+    output,
     plugins: [
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+        }),
+        new webpack.optimize.UglifyJsPlugin({
+            compress: {
+                warnings: false
+            }
         }),
         new ExtractTextPlugin('[name].css'),
         new HtmlwebpackPlugin({
@@ -53,10 +50,7 @@ module.exports = {
         loaders: [
             {
                 test: /\.js$/,
-                loaders: [
-                    'react-hot',
-                    'babel?babelrc'
-                ],
+                loaders: jsloaders,
                 exclude: /node_modules/
             }, {
                 test: /\.less$/,
@@ -64,10 +58,14 @@ module.exports = {
             }, {
                 test: /\.md$/,
                 loader: 'html!markdown'
+            }, {
+                test: /\.json$/,
+                loader: 'json-loader'
             }
         ]
     },
-    markdownLoader: {
-        renderer: renderer
-    }
+    markdownLoader
 };
+
+
+module.exports = config;
