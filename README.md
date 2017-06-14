@@ -1,7 +1,10 @@
 # RSuite ECharts
 
 ECharts for React
-
+## 安装
+```bash
+npm install rsuite-echarts --save
+```
 ## Props
 
 属性名称                  | 类型                | 默认值   | 描述
