@@ -4,17 +4,18 @@
   "description": "ECharts for React",
   "main": "lib/index.js",
   "scripts": {
-    "build": "rm -rf lib && babel src --out-dir lib",
-    "dev": "NODE_ENV=development webpack-dev-server --hot --inline --progress --colors --port 3100",
-    "docs": "NODE_ENV=production webpack --progress -colors ",
-    "cp:docs": "cp -rf ./assets/* ../rsuite.github.io/rsuite-echarts/"
+    "dev": "NODE_ENV=development webpack-dev-server  --inline --progress --colors --port 3000 --host 0.0.0.0 --devtool source-map ",
+    "docs": "rm -rf assets &&  NODE_ENV=production webpack ",
+    "build": "rm -rf lib  && babel src --out-dir lib && cp -R src/less lib",
+    "publish-docs": "node docs/gh-pages.js"
   },
   "dependencies": {
     "echarts": "^3.1.10",
     "element-resize-event": "^2.0.5"
   },
   "peerDependencies": {
-    "react": ">=0.14.0"
+    "react": "^0.14.9 || >=15.3.0",
+    "react-dom": ">=0.14.0"
   },
   "author": "simonguo.2009@gmail.com",
   "license": "MIT",
@@ -22,33 +23,39 @@
     "type": "git",
     "url": "git@github.com:rsuite/rsuite-echarts.git"
   },
+  "homepage": "https://github.com/rsuite/rsuite-echarts",
   "devDependencies": {
-    "react": "^0.14.2",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "prop-types": "^15.5.10",
     "babel-core": "^6.7.6",
     "babel-loader": "^6.2.4",
+    "babel-eslint": "^6.1.2",
     "babel-preset-es2015": "^6.6.0",
     "babel-preset-react": "^6.3.13",
     "babel-preset-stage-0": "^6.5.0",
     "babel-standalone": "^6.7.7",
     "css-loader": "^0.23.1",
     "es5-shim": "^4.1.14",
-    "eslint": "^2.8.0",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^15.0.1",
     "eslint-plugin-babel": "^3.2.0",
-    "eslint-plugin-react": "^5.0.1",
-    "extract-text-webpack-plugin": "^1.0.1",
+    "eslint-plugin-jsx-a11y": "^5.0.1",
+    "eslint-plugin-import": "^2.6.1",
+    "eslint-plugin-react": "^7.0.1",
+    "extract-text-webpack-plugin": "^2.0.0",
     "highlight.js": "^9.5.0",
     "html-loader": "^0.4.3",
     "html-webpack-plugin": "^2.22.0",
     "json-loader": "^0.5.4",
     "less": "^2.7.1",
     "less-loader": "^2.2.3",
-    "markdown-loader": "^0.1.7",
+    "markdown-loader": "^2.0.0",
+    "markdownloader": "^1.0.5",
     "marked": "^0.3.5",
-    "react-dom": "^0.14.2",
     "react-hot-loader": "^1.3.0",
     "style-loader": "^0.13.1",
-    "webpack": "^1.13.1",
-    "webpack-dev-server": "^1.14.1",
-    "markdownloader": "1.0.5"
+    "webpack": "^3.0.0",
+    "webpack-dev-server": "^2.2.0"
   }
 }

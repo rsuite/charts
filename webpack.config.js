@@ -4,68 +4,103 @@ const HtmlwebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const markdownLoader = require('markdownloader').renderer;
 
+const { NODE_ENV } = process.env;
+const extractLess = new ExtractTextPlugin({
+  filename: '[name].[contenthash].css',
+  disable: NODE_ENV === 'development'
+});
 
-const  output = {
-    path: path.resolve(__dirname, 'assets'),
-    filename: 'bundle.js'
-};
-
-const entry=[
-     path.join(__dirname, 'docs/index'),
-]
-
-const jsloaders=[
-     'babel?babelrc'
+const docsPath = NODE_ENV === 'development' ? './assets' : './';
+const plugins = [
+  new webpack.HotModuleReplacementPlugin(),
+  new webpack.NamedModulesPlugin(),
+  new webpack.DefinePlugin({
+    'NODE_ENV': JSON.stringify(NODE_ENV)
+  }),
+  extractLess,
+  new HtmlwebpackPlugin({
+    title: 'RSUITE Echarts',
+    filename: 'index.html',
+    template: 'docs/index.html',
+    inject: true,
+    hash: true,
+    path: docsPath
+  })
 ];
 
-if (process.env.NODE_ENV === 'development') {
-    output.publicPath = '/assets/';
-    entry.push('webpack/hot/dev-server');
-    jsloaders.push('react-hot');
+if (process.env.NODE_ENV === 'production') {
+  plugins.push(new webpack.optimize.UglifyJsPlugin());
+  plugins.push(new webpack.BannerPlugin({ banner: `Last update: ${new Date().toString()}` }));
 }
 
-
-const config = {
-    entry,
-    output,
-    plugins: [
-        new webpack.DefinePlugin({
-            'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
-        }),
-        new webpack.optimize.UglifyJsPlugin({
-            compress: {
-                warnings: false
-            }
-        }),
-        new ExtractTextPlugin('[name].css'),
-        new HtmlwebpackPlugin({
-            title: 'RSuite-ECharts',
-            filename: 'index.html',
-            template: 'docs/index.html',
-            inject: true,
-            hash: true
-        }),
-    ],
-    module: {
-        loaders: [
-            {
-                test: /\.js$/,
-                loaders: jsloaders,
-                exclude: /node_modules/
-            }, {
-                test: /\.less$/,
-                loader: ExtractTextPlugin.extract('style-loader', 'css-loader!less-loader')
-            }, {
-                test: /\.md$/,
-                loader: 'html!markdown'
-            }, {
-                test: /\.json$/,
-                loader: 'json-loader'
-            }
-        ]
+const common = {
+  entry: path.resolve(__dirname, 'src/'),
+  devServer: {
+    hot: true,
+    contentBase: path.resolve(__dirname, ''),
+    publicPath: '/'
+  },
+  output: {
+    path: path.resolve(__dirname, 'assets'),
+    filename: 'bundle.js',
+    publicPath: './'
+  },
+  plugins,
+  module: {
+    rules: [{
+      test: /\.jsx?$/,
+      use: [
+        'babel-loader'
+      ],
+      exclude: /node_modules/
     },
-    markdownLoader
+    {
+      test: /\.less$/,
+      loader: extractLess.extract({
+        // use style-loader in development
+        fallback: 'style-loader',
+        use: [
+          'css-loader',
+          'less-loader'
+        ],
+      })
+    },
+    {
+      test: /\.css$/,
+      loader: ExtractTextPlugin.extract({
+        // use style-loader in development
+        fallback: 'style-loader',
+        use: [
+          'css-loader',
+        ],
+      })
+    },
+    {
+      test: /\.md$/,
+      use: [{
+        loader: 'html-loader'
+      }, {
+        loader: 'markdown-loader',
+        options: {
+          pedantic: true,
+          renderer: markdownLoader.renderer
+        }
+      }
+      ]
+    }, {
+      test: /\.(woff|woff2|eot|ttf|svg)($|\?)/,
+      use: [{
+        loader: 'url-loader?limit=1&hash=sha512&digest=hex&size=16&name=resources/[hash].[ext]'
+      }]
+
+    }]
+  }
 };
 
-
-module.exports = config;
+module.exports = (env = {}) => {
+  return Object.assign({}, common, {
+    entry: [
+      path.resolve(__dirname, 'docs/index')
+    ]
+  });
+};
