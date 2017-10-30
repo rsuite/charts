@@ -31,6 +31,13 @@ const plugins = [
 if (process.env.NODE_ENV === 'production') {
   plugins.push(new webpack.optimize.UglifyJsPlugin());
   plugins.push(new webpack.BannerPlugin({ banner: `Last update: ${new Date().toString()}` }));
+  plugins.push(new CompressionPlugin({
+    asset: "[path].gz[query]",
+    algorithm: "gzip",
+    test: /\.(js|html)$/,
+    threshold: 10240,
+    minRatio: 0.8
+  }));
 }
 
 const common = {
