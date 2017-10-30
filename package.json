@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "NODE_ENV=development webpack-dev-server  --inline --progress --colors --port 3000 --host 0.0.0.0 --devtool source-map ",
     "docs": "rm -rf assets &&  NODE_ENV=production webpack ",
-    "build": "rm -rf lib  && babel src --out-dir lib && cp -R src/less lib",
+    "build": "rm -rf lib  && babel src --out-dir lib",
     "publish-docs": "node docs/gh-pages.js",
     "prepages": "npm run docs",
     "pages": "npm run publish-docs",
@@ -46,6 +46,7 @@
     "eslint-plugin-jsx-a11y": "^5.0.1",
     "eslint-plugin-react": "^7.0.1",
     "extract-text-webpack-plugin": "^2.0.0",
+    "gh-pages": "^1.0.0",
     "highlight.js": "^9.5.0",
     "html-loader": "^0.4.3",
     "html-webpack-plugin": "^2.22.0",
