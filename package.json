@@ -1,13 +1,17 @@
 {
   "name": "rsuite-echarts",
-  "version": "0.0.5",
+  "version": "1.0.0",
   "description": "ECharts for React",
   "main": "lib/index.js",
   "scripts": {
     "dev": "NODE_ENV=development webpack-dev-server  --inline --progress --colors --port 3000 --host 0.0.0.0 --devtool source-map ",
     "docs": "rm -rf assets &&  NODE_ENV=production webpack ",
     "build": "rm -rf lib  && babel src --out-dir lib && cp -R src/less lib",
-    "publish-docs": "node docs/gh-pages.js"
+    "publish-docs": "node docs/gh-pages.js",
+    "prepages": "npm run docs",
+    "pages": "npm run publish-docs",
+    "prerelease": "npm run build",
+    "release": "npm publish"
   },
   "dependencies": {
     "echarts": "^3.1.10",
