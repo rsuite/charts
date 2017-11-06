@@ -2,8 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import echarts from 'echarts';
 import onResize from 'element-resize-event';
+import omit from 'lodash/omit';
+import get from 'lodash/get';
 
 const propTypes = {
+  /*eslint-disable */
   style: PropTypes.object,
   theme: PropTypes.oneOfType([
     PropTypes.string,
@@ -11,10 +14,11 @@ const propTypes = {
   ]),
   group: PropTypes.string,
   option: PropTypes.object.isRequired,
-  // 是否不跟之前设置的option进行合并，默认为false，即合并
+  // 是否不跟之前设置的option进行合并，默认为true，不合并
   notMerge: PropTypes.bool,
   // 在设置完option后是否不立即刷新画布，默认为false，即立即刷新
   notRefreshImmediately: PropTypes.bool,
+  /*eslint-disable */
   onEvents: PropTypes.object
 };
 
@@ -74,27 +78,29 @@ class ECharts extends Component {
   }
 
   render() {
-    let {
+    const {
       id,
       option,
       style,
-      className,
       ...props,
-        } = this.props;
+    } = this.props;
 
-    let styles = Object.assign({
+    const styles = Object.assign({
       width: '100%',
       height: '100%'
     }, style);
 
+    const elementProps = omit(props, Object.keys(propTypes));
+
+
     return (
       <div
+        {...elementProps}
         id={id}
         ref={(ref) => {
           this.container = ref;
         }}
         style={styles}
-        {...props}
       />
     );
   }
@@ -102,14 +108,18 @@ class ECharts extends Component {
 
 ECharts.propTypes = propTypes;
 ECharts.defaultProps = defaultProps;
+ECharts.displayName = 'ECharts';
+
 
 const APIS = ['getMap', 'connect', 'disConnect', 'getInstanceByDom', 'registerMap', 'registerTheme'];
 APIS.forEach((api) => {
   ECharts[api] = echarts[api];
 });
 
-ECharts.dispatchAction = function (echartsId, payload) {
-  const chartInstance = echarts.getInstanceByDom(document.getElementById(echartsId));
+ECharts.dispatchAction = function (instance, payload) {
+
+  const container = get(instance, 'container') || document.getElementById(instance);
+  const chartInstance = echarts.getInstanceByDom(container);
   return chartInstance.dispatchAction(payload);
 };
 
