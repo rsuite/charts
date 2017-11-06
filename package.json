@@ -1,6 +1,6 @@
 {
   "name": "rsuite-echarts",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "ECharts for React",
   "main": "lib/index.js",
   "scripts": {
@@ -14,7 +14,8 @@
     "release": "npm publish",
     "lint": "eslint src  *.js",
     "tdd": "karma start",
-    "test": "npm run lint && NODE_ENV=test  karma start --single-run"
+    "test": "npm run lint && NODE_ENV=test  karma start --single-run",
+    "coveralls": "cat ./coverage/lcov/lcov.info | ./node_modules/.bin/coveralls"
   },
   "dependencies": {
     "babel-plugin-istanbul": "^4.1.5",
