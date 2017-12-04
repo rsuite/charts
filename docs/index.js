@@ -1,53 +1,57 @@
 
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
-import { Markdown } from 'markdownloader';
+import { PageContainer } from 'rsuite-docs';
+import { Markdown } from 'react-markdown-reader';
+import CodeView from 'react-code-view';
 
 import ECharts from '../src';
-import './style.less';
-import './highlight.less';
+import './less/index.less';
+
 
 import baseBarOptions from './data/bar-base';
 import mapOptions from './data/map';
 import chinaJson from './data/china.json';
 
 
-const events = {
-  click(params) {
-    console.log(params);
-  }
-};
-
-ECharts.registerMap('china', chinaJson);
-
 class App extends Component {
-
   render() {
-    let styles = Object.assign({
-      width: '100%',
-      height: '400px'
-    }, this.props.style);
 
     return (
-      <div className="doc-page">
-        <div className="doc-container">
+      <PageContainer
+        githubURL="https://github.com/rsuite/rsuite-echarts"
+        activeKey="ECharts"
+      >
 
-          <div style={styles}>
-            <h1>RSuite ECharts</h1>
-            <p>ECharts for React</p>
-            <ECharts option={baseBarOptions} onEvents={events} />
+        <Markdown>
+          {require('../README.md')}
+        </Markdown>
 
+        <h2>示例</h2>
+        <CodeView
+          dependencies={{
+            baseBarOptions,
+            ECharts
+          }}
+        >
+          {require('./md/DefaultChart.md')}
+        </CodeView>
 
-            <h4>Map</h4>
-            <ECharts option={mapOptions} onEvents={events} />
+        <CodeView
+          dependencies={{
+            mapOptions,
+            chinaJson,
+            ECharts
+          }}
+        >
+          {require('./md/MapChart.md')}
+        </CodeView>
 
-            <Markdown>
-              {require('./README.md')}
-            </Markdown>
-          </div>
-        </div>
-      </div>
+        <Markdown>
+          {require('./md/props.md')}
+        </Markdown>
+
+      </PageContainer>
     );
   }
 }

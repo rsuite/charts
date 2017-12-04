@@ -3,7 +3,7 @@ const webpack = require('webpack');
 const HtmlwebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
-const markdownLoader = require('markdownloader').renderer;
+const markdownRenderer = require('react-markdown-reader').renderer;
 
 const { NODE_ENV } = process.env;
 const extractLess = new ExtractTextPlugin({
@@ -61,26 +61,16 @@ const common = {
         'babel-loader'
       ],
       exclude: /node_modules/
-    },
-    {
+    }, {
       test: /\.less$/,
       loader: extractLess.extract({
+        use: [{
+          loader: 'css-loader'
+        }, {
+          loader: 'less-loader'
+        }],
         // use style-loader in development
-        fallback: 'style-loader',
-        use: [
-          'css-loader',
-          'less-loader'
-        ],
-      })
-    },
-    {
-      test: /\.css$/,
-      loader: ExtractTextPlugin.extract({
-        // use style-loader in development
-        fallback: 'style-loader',
-        use: [
-          'css-loader',
-        ],
+        fallback: 'style-loader'
       })
     },
     {
@@ -91,7 +81,7 @@ const common = {
         loader: 'markdown-loader',
         options: {
           pedantic: true,
-          renderer: markdownLoader.renderer
+          renderer: markdownRenderer
         }
       }
       ]
