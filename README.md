@@ -2,6 +2,12 @@
 
 ECharts for React
 
+
+版本与状态
+
+[![npm][npm-badge]][npm] [![Travis][build-badge]][build]
+
+
 ## 快速开始
 
 ### 安装
@@ -63,3 +69,11 @@ const events = {
 <ECharts onEvents={events} />
 
 ```
+
+
+[npm-badge]: https://img.shields.io/npm/v/rsuite-echarts/version2.x.svg?style=flat-square
+[npm]: https://www.npmjs.com/package/rsuite-echarts
+
+
+[build-badge]: https://img.shields.io/badge/build-passing-green.svg?style=flat-square
+[build]: https://travis-ci.org/rsuite/rsuite-echarts

@@ -1,6 +1,6 @@
 {
   "name": "rsuite-echarts",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "description": "ECharts for React",
   "main": "lib/index.js",
   "scripts": {
@@ -85,7 +85,7 @@
     "react-markdown-reader": "^1.0.1",
     "react-test-renderer": "^16.0.0",
     "rsuite": "^2.0.12",
-    "rsuite-docs": "^0.1.11",
+    "rsuite-docs": "^0.2.2",
     "rsuite-theme": "^2.0.16",
     "sinon": "^4.1.1",
     "sinon-chai": "^2.8.0",
