@@ -1,14 +1,14 @@
 
-### 地图
+### 矩形树图
 
 
 <!--start-code-->
 ```js
 
 ReactDOM.render(
-  <MapChart
-    name="覆盖率"
-    map="china"
+  <TreemapChart
+    height={400}
+    name="配置项"
     data={data}
   />
 );

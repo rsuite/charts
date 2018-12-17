@@ -1,0 +1,26 @@
+import React from 'react';
+import PieChart from '@/charts/PieChart';
+import CodeView from 'react-code-view';
+
+const data = [
+  ['搜索引擎', 40],
+  ['外部链接', 6],
+  ['站内来源', 6],
+  ['其他', 1],
+  ['直接访问', 47],
+];
+
+function BasicPieChartShowcase() {
+  return (
+    <CodeView
+      dependencies={{
+        data,
+        PieChart,
+      }}
+    >
+      {require('../md/BasicPieChart.md')}
+    </CodeView>
+  );
+}
+
+export default BasicPieChartShowcase;

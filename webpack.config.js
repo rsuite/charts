@@ -53,6 +53,11 @@ const common = {
     filename: 'bundle.js',
     publicPath: './'
   },
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, 'src')
+    }
+  },
   plugins,
   module: {
     rules: [{
@@ -81,7 +86,7 @@ const common = {
         loader: 'markdown-loader',
         options: {
           pedantic: true,
-          renderer: markdownRenderer
+          renderer: markdownRenderer()
         }
       }
       ]

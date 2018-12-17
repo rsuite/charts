@@ -1,17 +1,17 @@
 
-### 地图
+### 饼图
 
 
 <!--start-code-->
 ```js
 
 ReactDOM.render(
-  <MapChart
-    name="覆盖率"
-    map="china"
+  <PieChart
+    name="访问来源"
     data={data}
+    legend={false}
+    startAngle={210}
   />
 );
 ```
 <!--end-code-->
-

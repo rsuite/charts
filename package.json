@@ -1,6 +1,6 @@
 {
   "name": "rsuite-echarts",
-  "version": "2.0.1",
+  "version": "3.0.0",
   "description": "ECharts for React",
   "main": "lib/index.js",
   "scripts": {
@@ -18,14 +18,16 @@
     "coveralls": "cat ./coverage/lcov/lcov.info | ./node_modules/.bin/coveralls"
   },
   "dependencies": {
+    "echarts-for-react": "^2.0.15-beta.0",
     "element-resize-event": "^2.0.5",
     "lodash": "^4.17.4",
+    "lodash.merge": "^4.6.1",
     "prop-types": "^15.5.10"
   },
   "peerDependencies": {
     "react": "^0.14.9 || >=15.3.0",
     "react-dom": ">=0.14.0",
-    "echarts": "^4.1.0"
+    "echarts": "^3.0.0 || ^4.0.0"
   },
   "author": "simonguo.2009@gmail.com",
   "license": "MIT",

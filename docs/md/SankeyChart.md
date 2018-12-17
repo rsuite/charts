@@ -1,14 +1,14 @@
 
-### 地图
+### 桑基图
 
 
 <!--start-code-->
 ```js
 
 ReactDOM.render(
-  <MapChart
-    name="覆盖率"
-    map="china"
+  <SankeyChart
+    height={800}
+    name="能量"
     data={data}
   />
 );
