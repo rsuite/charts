@@ -10,12 +10,30 @@ class EChartsSeriesOption extends EChartsComponentOption {
 
     const seriesOption = this.getSeriesOption(option);
 
+    if (!option.series) {
+      return {
+        ...option,
+        series: [seriesOption]
+      };
+    }
+
+    const thisSeries = option.series.find(serie => serie.name === this.props.name);
+
+    if (!thisSeries) {
+      return {
+        ...option,
+        series: [...option.series, seriesOption]
+      };
+    }
+
+    const thisSeriesIndex = option.series.indexOf(thisSeries);
+    const newSeriesArray = [...option.series];
+    newSeriesArray[thisSeriesIndex] = seriesOption;
     return {
       ...option,
-      series: option.series ?
-        [...option.series, seriesOption] : [seriesOption],
+      series: newSeriesArray
     };
-  };
+  }
 
 }
 
