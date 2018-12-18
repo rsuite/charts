@@ -19,8 +19,6 @@
   },
   "dependencies": {
     "echarts-for-react": "^2.0.15-beta.0",
-    "element-resize-event": "^2.0.5",
-    "lodash": "^4.17.4",
     "lodash.merge": "^4.6.1",
     "prop-types": "^15.5.10"
   },

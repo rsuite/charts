@@ -14,8 +14,8 @@ class Scatter extends EChartsSeriesOption {
 
   getSeriesOption(option) {
     const {
-      name,
-      data,
+      type,
+
       ...props
     } = this.props;
 
@@ -23,15 +23,13 @@ class Scatter extends EChartsSeriesOption {
 
     return _merge({
       type: 'scatter',
-      name,
-      data,
       symbol: chartType === 'bar' ? 'emptyCircle' : 'circle',
       symbolSize: 9,
       itemStyle: {
         opacity: 1
       }
     }, props);
-  };
+  }
 
 }
 

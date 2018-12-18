@@ -47,14 +47,6 @@ class LineChart extends Component {
       );
     }
 
-    function renderDefaultLegend() {
-      const series = components.filter(isSeriesOption);
-      const dataNames = series.length ? series.map(serie => serie.name) : [name];
-      return (
-        <Legend data={dataNames} />
-      );
-    }
-
     return (
       <ECharts {...props}>
         {
@@ -75,7 +67,7 @@ class LineChart extends Component {
         }
         {
           !components.find(comp => comp.type === Legend) &&
-          renderDefaultLegend()
+          <Legend />
         }
         {
           components.map(child => {

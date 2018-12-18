@@ -19,10 +19,10 @@ class Pie extends EChartsSeriesOption {
 
   getSeriesOption() {
     const {
+      type,
+
       radius,
       donut,
-      name,
-      data,
       label,
       ...props
     } = this.props;
@@ -34,8 +34,6 @@ class Pie extends EChartsSeriesOption {
       type: 'pie',
       radius: donut ? [`${innerRadius}%`, `${outerRadius}%`] : `${outerRadius}%`,
       center: ['50%', '50%'],
-      name,
-      data,
     }, props);
 
     if (label !== undefined) {
@@ -44,7 +42,7 @@ class Pie extends EChartsSeriesOption {
 
     return pieOption;
 
-  };
+  }
 
 }
 

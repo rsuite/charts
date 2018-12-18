@@ -1,50 +1,45 @@
 import 'echarts/lib/component/legend';
 import PropTypes from 'prop-types';
+import _merge from 'lodash.merge';
 import EChartsComponentOption from '../EChartsComponentOption';
 
 class Legend extends EChartsComponentOption {
 
   static displayName = 'Legend';
 
-  static defaultProps = {
-    data: [],
-  };
-
   static contextTypes = {
     ...EChartsComponentOption.contextTypes,
     chartType: PropTypes.string,
-    series: PropTypes.array
+    series: PropTypes.array,
+    chartData: PropTypes.array,
   };
 
   updateChartOption(option) {
-    const { props } = this;
-    const { chartType, series } = this.context;
+    const {
+      ...props
+    } = this.props;
+    const { chartType, series, chartData } = this.context;
     let legendOption = {
       show: true,
-      // icon: chartType === 'pie' ? 'circle' : 'roundRect',
-      // borderRadius: 2,
+      data: chartType === 'pie' ? chartData.map(([name, value]) => name) : series.map(comp => comp.props.name),
       bottom: 0,
       textStyle: {
-        color: '#8e8e93'
-      }
+        color: '#8e8e93',
+      },
     };
 
     if (chartType === 'pie') {
       legendOption.icon = 'circle';
     }
 
-    // if (chartType === 'line') {
-    //   legendOption.itemHeight = 4;
-    // }
-
-    // if (series.length > 0) {
-    //   legendOption.data = ser
-    // }
-
     return {
       ...option,
-      legend: legendOption,
-    }
+      legend: _merge(legendOption, props),
+    };
+  }
+
+  resetChartOption({ legend, ...option }) {
+    return option;
   }
 }
 

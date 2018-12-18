@@ -18,11 +18,13 @@ class PieChart extends Component {
   };
   static childContextTypes = {
     chartType: PropTypes.string,
+    chartData: PropTypes.array
   };
 
   getChildContext() {
     return {
       chartType: 'pie',
+      chartData: this.props.data
     };
   }
 
