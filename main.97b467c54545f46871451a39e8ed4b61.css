@@ -1,4 +1,4 @@
-/*! Last update: Mon Dec 04 2017 15:21:41 GMT+0800 (CST) */
+/*! Last update: Mon Dec 24 2018 21:24:12 GMT+0800 (CST) */
 /* BASICS */
 
 .CodeMirror {
@@ -271,7 +271,7 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {color: #a22;}
 .CodeMirror-linewidget {
   position: relative;
   z-index: 2;
-  overflow: auto;
+  padding: 0.1px; /* Force widget margins to stay inside of the container */
 }
 
 .CodeMirror-widget {}
@@ -1060,8 +1060,8 @@ th {
 }
 @font-face {
   font-family: 'RSuiteIconFont';
-  src: url(./resources/bca584d7aedf4d93db06bc80145d97b6.eot);
-  src: url(./resources/bca584d7aedf4d93db06bc80145d97b6.eot?#iefix) format('eot'), url(./resources/0627979eff650bc5f603d3e5cbbfc44d.ttf) format('truetype'), url(./resources/c896dd280c3eba8848dc412a659c94ae.woff) format('woff'), url(./resources/6841eb8163763d4e25df56558db64b6d.svg#RSuiteIconFont) format('svg');
+  src: url(./resources/88d9808152576a4433bf81f6dc4aca91.eot);
+  src: url(./resources/88d9808152576a4433bf81f6dc4aca91.eot?#iefix) format('eot'), url(./resources/4c468ac8b28c33410d6e4ea5a31e8d77.ttf) format('truetype'), url(./resources/28903d66134c661f874f6ebc3bb42e74.woff) format('woff'), url(./resources/56f000af620128fc2f9e3e03afa51033.svg#RSuiteIconFont) format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -1116,6 +1116,9 @@ th {
 }
 .icon-align-right:before {
   content: "\F038";
+}
+.icon-alipay:before {
+  content: "\EA06";
 }
 .icon-amazon:before {
   content: "\F270";
@@ -1272,6 +1275,9 @@ th {
 }
 .icon-university:before {
   content: "\F19C";
+}
+.icon-bar-chart-ranking:before {
+  content: "\EA04";
 }
 .icon-bar-chart:before {
   content: "\F080";
@@ -2344,6 +2350,9 @@ th {
 .icon-heartbeat:before {
   content: "\F21E";
 }
+.icon-histogram:before {
+  content: "\EA08";
+}
 .icon-history:before {
   content: "\F1DA";
 }
@@ -2715,6 +2724,9 @@ th {
 }
 .icon-mouse-pointer:before {
   content: "\F245";
+}
+.icon-multiple-lines-chart:before {
+  content: "\EA05";
 }
 .icon-music:before {
   content: "\F001";
@@ -3378,6 +3390,9 @@ th {
 }
 .icon-tint:before {
   content: "\F043";
+}
+.icon-tmall:before {
+  content: "\EA07";
 }
 .icon-toggle-off:before {
   content: "\F204";
@@ -10747,6 +10762,9 @@ code {
 https://github.com/rsuite/rsuite-theme/blob/next/src/less/commonly-variables.less
 注意：不要在自己的组件中声明颜色变量
 **/
+.page-nav {
+  overflow: hidden;
+}
 .nav-item {
   position: relative;
 }
@@ -10837,6 +10855,9 @@ blockquote {
 .code-view-wrapper .code-view-toolbar .btn {
   border-style: dashed;
 }
+.code-view-wrapper .code-view-toolbar .btn .icon-code {
+  font-size: 20px;
+}
 .code-view-wrapper .doc-code {
   height: 0;
   overflow: hidden;
@@ -10857,4 +10878,29 @@ blockquote {
   color: #959595;
   text-transform: uppercase;
   letter-spacing: 1px;
+}
+.code-view-wrapper .code-view-error {
+  color: red;
+}
+* {
+  box-sizing: border-box;
+}
+.App {
+  width: 100%;
+  padding: 30px;
+}
+[class^="rs-col-"] {
+  margin-bottom: 30px;
+}
+.showcase {
+  border-radius: 15px;
+  background-color: #fff;
+  overflow: hidden;
+  padding: 30px;
+}
+.switch-nav-menu {
+  pointer-events: none;
+}
+.switch-nav-menu .caret {
+  display: none;
 }
