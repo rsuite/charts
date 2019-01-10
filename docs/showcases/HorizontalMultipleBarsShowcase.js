@@ -1,0 +1,34 @@
+import React from 'react';
+import BarChart from '@/charts/BarChart';
+import Bars from '@/series/Bars';
+import XAxis from '@/components/XAxis';
+import CodeView from 'react-code-view';
+
+const data = [
+  ['<15岁', 1, 2],
+  ['16-25岁', 16, 18],
+  ['26-35岁', 29, 30],
+  ['36-45岁', 23, 20],
+  ['46-55岁', 4, 3],
+  ['>55岁', 4, 3],
+  ['未知', 8, 10],
+];
+
+function HorizontalMultipleBarsShowcase() {
+
+  return (
+
+    <CodeView
+      dependencies={{
+        data,
+        BarChart,
+        XAxis,
+        Bars,
+      }}
+    >
+      {require('../md/HorizontalBars.md')}
+    </CodeView>
+  );
+}
+
+export default HorizontalMultipleBarsShowcase;

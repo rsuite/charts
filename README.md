@@ -1,65 +1,15 @@
-# rsuite-echarts
+# Charts for React Suite
 
-ECharts for React
-
-## 快速开始
+:bar_chart: A set of charts based on rsuite and ECharts
 
 ### 安装
 ```bash
-npm i rsuite-echarts --save
+npm i --save @rsuite/charts echarts
 ```
 
+### 文档
+[https://charts.rsuitejs.com/](https://charts.rsuitejs.com/)
 
-### 自定义主题
+### 许可
 
-```js
-import ECharts from 'rsuite-echarts';
-
-ECharts.registerTheme('myTheme', {
-    backgroundColor: '#f5f5f5',
-    color: ['#fe8463', '#9bca63', '#fad860'],
-    ...
-});
-
-//jsx
-<ECharts theme='myTheme' option={options} />
-
-```
-
-### 触发图表行为
-
-ECharts 中支持的图表行为，[参考](http://echarts.baidu.com/api.html#action)
-
-```js
-import ECharts from 'rsuite-echarts';
-
-/**
- * (chartId: String, payload: Object)
- */
-ECharts.dispatchAction('myChart',{
-    type: 'dataZoom',
-    start: 20,
-    end: 30
-});
-
-//jsx
-<ECharts id='myChart' option={options} />
-
-```
-
-### 自定义事件
-
-```js
-const events = {
-    click:function(params){
-        console.log(params);
-    },
-    mousedown:function(params){
-        console.log(params);
-    }
-    ...
-}
-//jsx
-<ECharts onEvents={events} />
-
-```
+MIT.

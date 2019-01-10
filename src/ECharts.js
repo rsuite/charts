@@ -1,127 +1,104 @@
-import React, { Component } from 'react';
+import React, { Children, Component } from 'react';
 import PropTypes from 'prop-types';
-import echarts from 'echarts';
-import onResize from 'element-resize-event';
-import omit from 'lodash/omit';
-import get from 'lodash/get';
+import classnames from 'classnames';
 
-const propTypes = {
-  /*eslint-disable */
-  style: PropTypes.object,
-  theme: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.object
-  ]),
-  group: PropTypes.string,
-  option: PropTypes.object.isRequired,
-  // 是否不跟之前设置的option进行合并，默认为true，不合并
-  notMerge: PropTypes.bool,
-  // 在设置完option后是否不立即刷新画布，默认为false，即立即刷新
-  notRefreshImmediately: PropTypes.bool,
-  /*eslint-disable */
-  onEvents: PropTypes.object
+import ReactEchartsCore from 'echarts-for-react/lib/core';
+import echarts from 'echarts/lib/echarts';
+
+import 'echarts/lib/component/graphic';
+
+import { isSeriesOption } from './utils';
+
+const defaultOption = {
+  grid: {
+    containLabel: true,
+  },
+  color: [
+    '#34c3ff',
+    '#a873e6',
+    '#7ed321',
+    '#13ba9e',
+    '#1464ac',
+    '#32a4d4',
+    '#f5a623',
+  ],
 };
 
-const defaultProps = {
-  notMerge: true,
-  notRefreshImmediately: false,
-  onEvents: {},
-  style: {},
-  theme: {}
-};
 
+// ECharts with empty message and loading
 class ECharts extends Component {
 
-  componentDidMount() {
-    this.init();
+
+  static childContextTypes = {
+    setChartOption: PropTypes.func,
+    series: PropTypes.array,
+  };
+
+  state = {
+    option: {
+      ...defaultOption,
+      color: this.props.color || defaultOption.color,
+    },
+  };
+
+  getChildContext() {
+    return {
+      setChartOption: this.setOption,
+      series: Children.toArray(this.props.children).filter(comp => isSeriesOption(comp)),
+    };
   }
 
-  componentDidUpdate() {
-    this.renderEcharts();
-  }
-
-  componentWillUnmount() {
-    this.dispose();
-  }
-
-  init() {
-    this.chart = echarts.init(this.container, this.props.theme);
-    this.renderEcharts();
-    this.initEvents();
-  }
-
-  initEvents() {
-    let onEvents = this.props.onEvents;
-    for (let eventName in onEvents) {
-      this.chart.on(eventName, onEvents[eventName]);
-    }
-
-    onResize(this.container, () => {
-      this.chart.resize();
-    });
-  }
-
-  dispose() {
-    if (this.chart) {
-      this.chart.dispose();
-      this.chart = null;
-    }
-  }
-
-  renderEcharts() {
-
-    let { option, notMerge, notRefreshImmediately } = this.props;
-    this.chart.showLoading();
-    this.chart.setOption(option, notMerge, notRefreshImmediately);
-    this.chart.hideLoading();
-
-  }
+  setOption = func => this.setState(({ option }) => ({ option: func(option) }));
 
   render() {
     const {
-      id,
-      option,
+      height = 300,
+      locale = {
+        emptyMessage: 'No data found',
+        loading: 'Loading...',
+      },
+      className,
       style,
-      ...props,
+      children,
     } = this.props;
+    const { option } = this.state;
+    const dataEmpty = !option.series || option.series.reduce((empty, serie) => empty && (!serie.data || serie.data.length < 1), true);
 
-    const styles = Object.assign({
-      width: '100%',
-      height: '100%'
-    }, style);
-
-    const elementProps = omit(props, Object.keys(propTypes));
-
+    function renderEmptyMessage() {
+      return (
+        <div
+          className="rs-echarts-body-info"
+          style={{
+            width: '100%',
+            height: '100%',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          {locale.emptyMessage}
+        </div>
+      );
+    }
 
     return (
-      <div
-        {...elementProps}
-        id={id}
-        ref={(ref) => {
-          this.container = ref;
-        }}
-        style={styles}
-      />
+      <div className={classnames('rs-echarts', className)} style={{ height, ...style }}>
+        {
+          dataEmpty ?
+            renderEmptyMessage() :
+            <ReactEchartsCore
+              echarts={echarts}
+              option={option}
+              style={{ height: '100%' }}
+              ref={e => {
+                this.echarts = e && e.getEchartsInstance()
+              }}
+            />
+        }
+        {children}
+      </div>
     );
   }
 }
-
-ECharts.propTypes = propTypes;
-ECharts.defaultProps = defaultProps;
-ECharts.displayName = 'ECharts';
-
-
-const APIS = ['getMap', 'connect', 'disConnect', 'getInstanceByDom', 'registerMap', 'registerTheme'];
-APIS.forEach((api) => {
-  ECharts[api] = echarts[api];
-});
-
-ECharts.dispatchAction = function (instance, payload) {
-
-  const container = get(instance, 'container') || document.getElementById(instance);
-  const chartInstance = echarts.getInstanceByDom(container);
-  return chartInstance.dispatchAction(payload);
-};
-
 
 export default ECharts;
