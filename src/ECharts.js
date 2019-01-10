@@ -90,6 +90,9 @@ class ECharts extends Component {
               echarts={echarts}
               option={option}
               style={{ height: '100%' }}
+              ref={e => {
+                this.echarts = e && e.getEchartsInstance()
+              }}
             />
         }
         {children}

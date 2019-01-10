@@ -1,5 +1,5 @@
 {
-  "name": "rsuite-echarts",
+  "name": "@rsuite/charts",
   "version": "3.0.0",
   "description": "ECharts for React",
   "main": "lib/index.js",
@@ -31,10 +31,11 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git@github.com:rsuite/rsuite-echarts.git"
+    "url": "git@github.com:rsuite/charts.git"
   },
-  "homepage": "https://github.com/rsuite/rsuite-echarts",
+  "homepage": "https://github.com/rsuite/charts",
   "devDependencies": {
+    "babel-cli": "^6.26.0",
     "babel-core": "^6.7.6",
     "babel-eslint": "^7.0.0",
     "babel-loader": "^6.2.4",

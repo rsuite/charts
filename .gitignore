@@ -42,3 +42,5 @@ lib/
 .vscode/
 assets/
 yarn.lock
+
+.idea
