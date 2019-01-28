@@ -49,38 +49,38 @@ describe('ECharts', () => {
 
   });
 
-  it('Should have click event in instance', () => {
-    const instance = ReactTestUtils.renderIntoDocument(
-      <ECharts
-        onEvents={{
-          click: (params) => { }
-        }}
-        option={option}
-      />
-    );
+  // it('Should have click event in instance', () => {
+  //   const instance = ReactTestUtils.renderIntoDocument(
+  //     <ECharts
+  //       onEvents={{
+  //         click: (params) => { }
+  //       }}
+  //       option={option}
+  //     />
+  //   );
+  //
+  //   assert.ok(instance.chart._$handlers.click);
+  // })
 
-    assert.ok(instance.chart._$handlers.click);
-  })
-
-  it('Should call `legendunselected` callback', (done) => {
-    const instance = ReactTestUtils.renderIntoDocument(
-      <ECharts
-        id="myECharts"
-        onEvents={{
-          legendunselected: (params) => {
-            done();
-          }
-        }}
-        option={option}
-      />
-    );
-
-    ECharts.dispatchAction(instance, {
-      type: 'legendUnSelect',
-      name: '邮件营销'
-    });
-
-  })
+  // it('Should call `legendunselected` callback', (done) => {
+  //   const instance = ReactTestUtils.renderIntoDocument(
+  //     <ECharts
+  //       id="myECharts"
+  //       onEvents={{
+  //         legendunselected: (params) => {
+  //           done();
+  //         }
+  //       }}
+  //       option={option}
+  //     />
+  //   );
+  //
+  //   ECharts.dispatchAction(instance, {
+  //     type: 'legendUnSelect',
+  //     name: '邮件营销'
+  //   });
+  //
+  // })
 
 
   it('Should have a custom className', () => {
