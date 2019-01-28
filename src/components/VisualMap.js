@@ -54,7 +54,7 @@ class VisualMap extends EChartsComponentOption {
     }, props);
 
     if (chartData && !visualMapOption.max) {
-      visualMapOption.max = chartData.reduce((max, [_, value]) => Math.max(max, value), -Infinity);
+      visualMapOption.max = chartData.reduce((max, d) => Math.max(max, d[1]), -Infinity);
     }
 
     return {

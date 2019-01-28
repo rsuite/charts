@@ -12,7 +12,7 @@ class Scatter extends EChartsSeriesOption {
     chartType: PropTypes.string
   };
 
-  getSeriesOption(option) {
+  getSeriesOption() {
     const {
       type,
 

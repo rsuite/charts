@@ -16,7 +16,7 @@ class Bars extends EChartsSeriesOption {
     series: PropTypes.array,
   };
 
-  getSeriesOption(option) {
+  getSeriesOption() {
     const {
       type,
 
@@ -28,9 +28,22 @@ class Bars extends EChartsSeriesOption {
     const { chartType, horizontal, series } = this.context;
 
     const barsSeriesCount = series.filter(comp => comp.type === Bars).length;
-    const stackedBars = stack ? series.filter(comp => comp.type === Bars && comp.props.stack === stack) : [];
+    const stackedBars = stack ?
+      series.filter(comp => comp.type === Bars && comp.props.stack === stack) :
+      [];
     const stacked = stackedBars.length > 1;
-    const stackTop = stackedBars.indexOf(stackedBars.find(comp => comp.type === Bars && comp.props.name === props.name)) === stackedBars.length - 1;
+    const stackTop = stackedBars.indexOf(
+      stackedBars.find(comp => comp.type === Bars && comp.props.name === props.name),
+    ) === stackedBars.length - 1;
+
+    let barBorderRadius;
+    if (stacked && !stackTop) {
+      barBorderRadius = 0;
+    } else {
+      barBorderRadius = (chartType === 'bar' && horizontal) ?
+        [0, 5, 5, 0] :
+        [5, 5, 0, 0];
+    }
 
     return _merge({
       type: 'bar',
@@ -38,13 +51,7 @@ class Bars extends EChartsSeriesOption {
       stack: stack === true ? stackKey : stack,
       itemStyle: {
         color: Array.isArray(color) ? (({ dataIndex }) => color[dataIndex]) : color,
-        barBorderRadius:
-          (stacked && !stackTop) ? 0 :
-            (
-              (chartType === 'bar' && horizontal) ?
-                [0, 5, 5, 0] :
-                [5, 5, 0, 0]
-            ),
+        barBorderRadius,
       },
       // 默认 label
       // 颜色：#575757

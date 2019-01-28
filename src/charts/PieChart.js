@@ -18,13 +18,13 @@ class PieChart extends Component {
   };
   static childContextTypes = {
     chartType: PropTypes.string,
-    chartData: PropTypes.array
+    chartData: PropTypes.array,
   };
 
   getChildContext() {
     return {
       chartType: 'pie',
-      chartData: this.props.data
+      chartData: this.props.data,
     };
   }
 
@@ -46,12 +46,6 @@ class PieChart extends Component {
     );
   }
 
-  renderDefaultTooltip() {
-    return (
-      <Tooltip />
-    );
-  }
-
   render() {
     const {
       name,
@@ -68,7 +62,7 @@ class PieChart extends Component {
     return (
       <ECharts {...props}>
         {legend === true && <Legend />}
-        {!tooltip && this.renderDefaultTooltip()}
+        {!tooltip && <Tooltip />}
         {!pie && this.renderDefaultPie()}
         {children}
       </ECharts>

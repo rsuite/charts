@@ -1,6 +1,5 @@
 import React, { Children, Component } from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
 
 import ReactEchartsCore from 'echarts-for-react/lib/core';
 import echarts from 'echarts/lib/echarts';
@@ -28,6 +27,20 @@ const defaultOption = {
 // ECharts with empty message and loading
 class ECharts extends Component {
 
+  static propTypes = {
+    height: PropTypes.number,
+    color: PropTypes.arrayOf(PropTypes.string),
+    locale: PropTypes.shape({
+      emptyMessage: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.node,
+      ]),
+      loading: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.node,
+      ]),
+    }),
+  };
 
   static childContextTypes = {
     setChartOption: PropTypes.func,
@@ -62,7 +75,8 @@ class ECharts extends Component {
       children,
     } = this.props;
     const { option } = this.state;
-    const dataEmpty = !option.series || option.series.reduce((empty, serie) => empty && (!serie.data || serie.data.length < 1), true);
+    const dataEmpty = !option.series ||
+      option.series.reduce((empty, serie) => empty && (!serie.data || serie.data.length < 1), true);
 
     function renderEmptyMessage() {
       return (
@@ -82,7 +96,7 @@ class ECharts extends Component {
     }
 
     return (
-      <div className={classnames('rs-echarts', className)} style={{ height, ...style }}>
+      <div className={`rs-echarts ${className}`} style={{ height, ...style }}>
         {
           dataEmpty ?
             renderEmptyMessage() :
@@ -90,8 +104,8 @@ class ECharts extends Component {
               echarts={echarts}
               option={option}
               style={{ height: '100%' }}
-              ref={e => {
-                this.echarts = e && e.getEchartsInstance()
+              ref={(e) => {
+                this.echarts = e && e.getEchartsInstance();
               }}
             />
         }

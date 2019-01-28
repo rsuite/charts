@@ -32,7 +32,7 @@ class LineChart extends Component {
     const series = components.filter(isSeriesOption);
 
     function renderDefaultLine() {
-      const values = data.map(([category, value]) => value);
+      const values = data.map(d => d[1]);
 
       return (
         <Line name={name} data={values} />
@@ -70,10 +70,10 @@ class LineChart extends Component {
           <Legend />
         }
         {
-          components.map(child => {
+          components.map((child) => {
             if (data.length && isSeriesOption(child) && !child.props.data) {
               const serieIndex = series.indexOf(child);
-              return cloneElement(child, { data: data.map(([category, ...values]) => values[serieIndex]) });
+              return cloneElement(child, { data: data.map(d => d[serieIndex + 1]) });
             }
             return child;
           })

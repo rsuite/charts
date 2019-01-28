@@ -23,16 +23,19 @@ class DataZoom extends EChartsComponentOption {
   updateChartOption(option) {
     const dataZoomOption = this.getOption();
 
+    if (!option.dataZoom) {
+      return {
+        ...option,
+        dataZoom: dataZoomOption,
+      };
+    }
+
     return {
       ...option,
-      dataZoom: option.dataZoom ?
-        (
-          Array.isArray(option.dataZoom) ?
-            [...option.dataZoom, dataZoomOption] :
-            [option.dataZoom, dataZoomOption]
-        ) :
-        dataZoomOption,
-    }
+      dataZoom: Array.isArray(option.dataZoom) ?
+        [...option.dataZoom, dataZoomOption] :
+        [option.dataZoom, dataZoomOption],
+    };
   }
 }
 

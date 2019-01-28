@@ -44,15 +44,19 @@ class YAxis extends EChartsComponentOption {
   updateChartOption(option) {
     const yAxisOption = this.getOption();
 
+    if (!option.yAxis) {
+      return {
+        ...option,
+        yAxis: yAxisOption,
+      };
+    }
+
     return {
       ...option,
-      yAxis: option.yAxis ?
-        (
-          Array.isArray(option.yAxis) ?
-            [...option.yAxis, yAxisOption] :
-            [option.yAxis, yAxisOption]
-        ) :
-        yAxisOption,
+      yAxis:
+        Array.isArray(option.yAxis) ?
+          [...option.yAxis, yAxisOption] :
+          [option.yAxis, yAxisOption],
     };
   }
 }

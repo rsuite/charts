@@ -17,15 +17,15 @@ class XAxis extends EChartsComponentOption {
     ...EChartsComponentOption.contextTypes,
     chartType: PropTypes.string,
     horizontal: PropTypes.bool,
-    series: PropTypes.array
+    series: PropTypes.array,
   };
 
-  getOption(option) {
+  getOption() {
     const {
       axisLabel,
       ...props
     } = this.props;
-    const { chartType, horizontal, series } = this.context;
+    const { series } = this.context;
 
     return _merge({
       boundaryGap: !!series.find(comp => comp.type === Bars),
@@ -52,16 +52,19 @@ class XAxis extends EChartsComponentOption {
   updateChartOption(option) {
     const xAxisOption = this.getOption();
 
+    if (!option.xAxis) {
+      return {
+        ...option,
+        xAxis: xAxisOption,
+      };
+    }
+
     return {
       ...option,
-      xAxis: option.xAxis ?
-        (
-          Array.isArray(option.xAxis) ?
-            [...option.xAxis, xAxisOption] :
-            [option.xAxis, xAxisOption]
-        ) :
-        xAxisOption,
-    }
+      xAxis: Array.isArray(option.xAxis) ?
+        [...option.xAxis, xAxisOption] :
+        [option.xAxis, xAxisOption],
+    };
   }
 }
 

@@ -17,18 +17,18 @@ const treemapColors = [
 class TreemapChart extends Component {
 
   static defaultProps = {
-    data: []
+    data: [],
   };
 
   static childContextTypes = {
     chartType: PropTypes.string,
-    dataName: PropTypes.string
+    dataName: PropTypes.string,
   };
 
   getChildContext() {
     return {
       chartType: 'treemap',
-      dataName: this.props.name
+      dataName: this.props.name,
     };
   }
 
@@ -61,7 +61,7 @@ class TreemapChart extends Component {
     return (
       <ECharts {...props}>
         <Tooltip />
-        <VisualMap type="continuous" color={treemapColors} controller={null}/>
+        <VisualMap type="continuous" color={treemapColors} controller={null} />
         {!treemap && this.renderDefaultTreemap()}
         {children}
       </ECharts>

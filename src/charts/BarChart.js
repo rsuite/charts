@@ -40,18 +40,11 @@ class BarChart extends Component {
 
     const components = Children.toArray(children);
     const series = components.filter(isSeriesOption);
-    const barSeriesCount = series.filter(comp => comp.type === Bars).length;
-
 
     const data = horizontal ? [...inputData].reverse() : inputData;
 
-    let barWidth;
-    if (barSeriesCount > 1) {
-      barWidth = 6;
-    }
-
     function renderDefaultSeries() {
-      const values = data.map(([category, value]) => value);
+      const values = data.map(d => d[1]);
 
       return (
         <Bars
@@ -112,7 +105,7 @@ class BarChart extends Component {
         {!components.find(comp => comp.type === Legend) && renderDefaultLegend()}
         {tooltip && <Tooltip />}
         {
-          components.map(child => {
+          components.map((child) => {
             if (child.type === (horizontal ? YAxis : XAxis)) {
               return cloneElement(child, {
                 ...categoryAxisProps,
@@ -124,7 +117,7 @@ class BarChart extends Component {
             }
             if (data.length && isSeriesOption(child) && !child.props.data) {
               const serieIndex = series.indexOf(child);
-              return cloneElement(child, { data: data.map(([category, ...values]) => values[serieIndex]) });
+              return cloneElement(child, { data: data.map(d => d[serieIndex + 1]) });
             }
             return child;
           })
