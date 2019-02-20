@@ -55,7 +55,7 @@
     "@babel/preset-env": "^7.0.0",
     "@babel/preset-react": "^7.0.0",
     "@babel/standalone": "^7.0.0",
-    "@rsuite/document-nav": "1.0.0-beta",
+    "@rsuite/document-nav": "^1.0.0",
     "babel-eslint": "^9.0.0",
     "babel-loader": "^8.0.0",
     "babel-plugin-istanbul": "^5.1.1",

@@ -30,7 +30,7 @@ class App extends Component {
         <Grid className="page">
           <Row>
             <Col md={6} xsHidden>
-              <Nav width={240} showOrderNumber={false} />
+              <Nav width={210} showOrderNumber={false} />
             </Col>
             <Col md={18}>
               <PageContent>
