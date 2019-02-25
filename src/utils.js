@@ -1,17 +1,9 @@
 import _merge from 'lodash.merge';
-import Line from './series/Line';
-import Bars from './series/Bars';
-import Map from './series/Map';
-import Pie from './series/Pie';
-import Sankey from './series/Sankey';
-import Scatter from './series/Scatter';
-import Tree from './series/Tree';
-import Treemap from './series/Treemap';
 
-const series = [Line, Bars, Map, Pie, Sankey, Scatter, Tree, Treemap];
+const series = ['Line', 'Bars', 'Map', 'Pie', 'Sankey', 'Scatter', 'Tree', 'Treemap'];
 
 export function isSeriesOption(reactComp) {
-  return series.includes(reactComp.type);
+  return series.includes(reactComp.type.name);
 }
 
 export function transformTextOption(option, defaultOption) {
@@ -52,12 +44,4 @@ export function randstr(length = 16) {
   }
 
   return text;
-}
-
-export function parsePercent(str) {
-  const parsed = parseFloat(str);
-  if (!Number.isNaN(parsed)) {
-    return parsed / 100;
-  }
-  return parsed;
 }

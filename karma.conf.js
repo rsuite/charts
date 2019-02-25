@@ -1,4 +1,5 @@
 const webpackConfig = {
+  mode: 'production',
   output: {
     pathinfo: true
   },
