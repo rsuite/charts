@@ -104,6 +104,7 @@ class ECharts extends Component {
               echarts={echarts}
               option={option}
               style={{ height: '100%' }}
+              notMerge
               ref={(e) => {
                 this.echarts = e && e.getEchartsInstance();
               }}
