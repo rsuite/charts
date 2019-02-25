@@ -10,7 +10,7 @@ const data = [
   ['2018-05', 750 * 1000, 730 * 1000, 0, 180 * 1000, 0, 0],
   ['2018-06', 730 * 1000, 680 * 1000, 80 * 1000, 180 * 1000, 270 * 1000, 180 * 1000],
   ['2018-07', 730 * 1000, 680 * 1000, 80 * 1000, 180 * 1000, 270 * 1000, 180 * 1000],
-  ['2018-08', 730 * 1000, 680 * 1000, 80 * 1000, 180 * 1000, 270 * 1000, 180 * 1000],
+  ['2018-08', 730 * 1000, 680 * 1000, 80 * 1000, 180 * 1000, 270 * 1000, 180 * 1000]
 ];
 
 
@@ -18,11 +18,13 @@ function VerticalMultipleBarsShowcase() {
 
   return (
     <CodeView
+      classPrefix="rs-"
+      buttonClassName="rs-btn-subtle rs-btn-icon-circle"
       dependencies={{
         data,
         BarChart,
         YAxis,
-        Bars,
+        Bars
       }}
     >
       {require('../md/MultipleBars.md')}

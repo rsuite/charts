@@ -13,6 +13,8 @@ for (let i = 1; i <= 31; i++) {
 function LineAndBarsShowcase() {
   return (
     <CodeView
+      classPrefix="rs-"
+      buttonClassName="rs-btn-subtle rs-btn-icon-circle"
       dependencies={{
         data,
         BarChart,

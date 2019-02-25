@@ -28,7 +28,7 @@ const data = [
   ['20:00'],
   ['21:00'],
   ['22:00'],
-  ['23:00'],
+  ['23:00']
 ];
 
 for (let i = 0; i < data.length; i++) {
@@ -40,6 +40,8 @@ for (let i = 0; i < data.length; i++) {
 function DoubleValueAxisShowcase() {
   return (
     <CodeView
+      classPrefix="rs-"
+      buttonClassName="rs-btn-subtle rs-btn-icon-circle"
       dependencies={{
         data,
         LineChart,

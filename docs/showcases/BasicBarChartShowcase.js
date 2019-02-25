@@ -15,13 +15,15 @@ const data = [
   ['8次', 0.2 * 1000000],
   ['9次', 0.15 * 1000000],
   ['10次', 0.1 * 1000000],
-  ['10次+', 0.15 * 1000000],
+  ['10次+', 0.15 * 1000000]
 ];
 
 function BasicBarChartShowcase() {
   const sum = data.reduce((acc, [category, value]) => acc + value, 0);
   return (
     <CodeView
+      classPrefix="rs-"
+      buttonClassName="rs-btn-subtle rs-btn-icon-circle"
       dependencies={{
         data,
         BarChart,

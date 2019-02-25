@@ -51,7 +51,7 @@ const data = {
     { name: 'Tidal' },
     { name: 'UK land based bioenergy' },
     { name: 'Wave' },
-    { name: 'Wind' },
+    { name: 'Wind' }
   ],
   links: [
     { source: 'Agricultural \'waste\'', target: 'Bio-conversion', value: 124.729 },
@@ -121,16 +121,18 @@ const data = {
     { source: 'Tidal', target: 'Electricity grid', value: 9.452 },
     { source: 'UK land based bioenergy', target: 'Bio-conversion', value: 182.01 },
     { source: 'Wave', target: 'Electricity grid', value: 19.013 },
-    { source: 'Wind', target: 'Electricity grid', value: 289.366 },
-  ],
+    { source: 'Wind', target: 'Electricity grid', value: 289.366 }
+  ]
 };
 
 function SankeyChartShowcase() {
   return (
     <CodeView
+      classPrefix="rs-"
+      buttonClassName="rs-btn-subtle rs-btn-icon-circle"
       dependencies={{
         data,
-        SankeyChart,
+        SankeyChart
       }}
     >
       {require('../md/SankeyChart.md')}

@@ -12,7 +12,7 @@ const data = [
   ['40-44岁', 650, 650, 1300, 100, 100, 150],
   ['45-49岁', 650, 650, 1300],
   ['50-54岁', 650, 650, 1250],
-  ['55岁+', 400, 450, 900],
+  ['55岁+', 400, 450, 900]
 ];
 
 const colors = [
@@ -21,13 +21,15 @@ const colors = [
   '#34C3FF',
   '#AB005B',
   '#EA3797',
-  '#FF8FCB',
+  '#FF8FCB'
 ];
 
 function MultipleStackedBarsShowcase() {
 
   return (
     <CodeView
+      classPrefix="rs-"
+      buttonClassName="rs-btn-subtle rs-btn-icon-circle"
       dependencies={{
         data,
         BarChart,

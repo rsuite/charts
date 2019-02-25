@@ -47,6 +47,8 @@ const data = [
 function ChinaMapChartShowcase() {
   return (
     <CodeView
+  classPrefix="rs-"
+  buttonClassName="rs-btn-subtle rs-btn-icon-circle"
       dependencies={{
         data,
         MapChart,
