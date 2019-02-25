@@ -17,7 +17,7 @@ class XAxis extends EChartsComponentOption {
     ...EChartsComponentOption.contextTypes,
     chartType: PropTypes.string,
     horizontal: PropTypes.bool,
-    series: PropTypes.array,
+    series: PropTypes.arrayOf(PropTypes.object),
   };
 
   key = randstr();

@@ -9,6 +9,18 @@ import { isSeriesOption } from '../utils';
 import Tooltip from '../components/Tooltip';
 
 class LineChart extends Component {
+
+  static propTypes = {
+    name: PropTypes.string,
+    data: PropTypes.arrayOf(PropTypes.any),
+    tooltip: PropTypes.bool
+  };
+
+  static defaultProps = {
+    data: [],
+    tooltip: true
+  };
+
   static childContextTypes = {
     chartType: PropTypes.string,
   };
@@ -22,8 +34,8 @@ class LineChart extends Component {
   render() {
     const {
       name,
-      data = [],
-      tooltip = true,
+      data,
+      tooltip,
       children,
       ...props
     } = this.props;
@@ -50,24 +62,24 @@ class LineChart extends Component {
     return (
       <ECharts {...props}>
         {
-          !components.find(comp => comp.type === XAxis) &&
-          renderDefaultXAxis()
+          !components.find(comp => comp.type === XAxis)
+          && renderDefaultXAxis()
         }
         {
-          !components.find(comp => comp.type === YAxis) &&
-          <YAxis />
+          !components.find(comp => comp.type === YAxis)
+          && <YAxis />
         }
         {
-          !components.find(comp => comp.type === Line) &&
-          renderDefaultLine()
+          !components.find(comp => comp.type === Line)
+          && renderDefaultLine()
         }
         {
-          tooltip &&
-          <Tooltip />
+          tooltip
+          && <Tooltip />
         }
         {
-          !components.find(comp => comp.type === Legend) &&
-          <Legend />
+          !components.find(comp => comp.type === Legend)
+          && <Legend />
         }
         {
           components.map((child) => {

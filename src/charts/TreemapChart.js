@@ -16,6 +16,11 @@ const treemapColors = [
 
 class TreemapChart extends Component {
 
+  static propTypes = {
+    name: PropTypes.string,
+    data: PropTypes.arrayOf(PropTypes.any)
+  };
+
   static defaultProps = {
     data: [],
   };
@@ -26,9 +31,10 @@ class TreemapChart extends Component {
   };
 
   getChildContext() {
+    const { name } = this.props;
     return {
       chartType: 'treemap',
-      dataName: this.props.name,
+      dataName: name,
     };
   }
 

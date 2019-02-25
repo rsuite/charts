@@ -32,12 +32,11 @@ class DataZoom extends EChartsComponentOption {
 
     return {
       ...option,
-      dataZoom: Array.isArray(option.dataZoom) ?
-        [...option.dataZoom, dataZoomOption] :
-        [option.dataZoom, dataZoomOption],
+      dataZoom: Array.isArray(option.dataZoom)
+        ? [...option.dataZoom, dataZoomOption]
+        : [option.dataZoom, dataZoomOption],
     };
   }
 }
 
 export default DataZoom;
-

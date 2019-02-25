@@ -6,6 +6,11 @@ import Tree from '../series/Tree';
 
 class TreeChart extends Component {
 
+  static propTypes = {
+    name: PropTypes.string,
+    data: PropTypes.arrayOf(PropTypes.object)
+  };
+
   static defaultProps = {
     data: []
   };
@@ -16,9 +21,10 @@ class TreeChart extends Component {
   };
 
   getChildContext() {
+    const { name } = this.props;
     return {
       chartType: 'tree',
-      dataName: this.props.name
+      dataName: name
     };
   }
 

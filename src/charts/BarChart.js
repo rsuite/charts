@@ -10,17 +10,34 @@ import { isSeriesOption } from '../utils';
 
 class BarChart extends Component {
 
+  static propTypes = {
+    name: PropTypes.string,
+    horizontal: PropTypes.bool,
+    data: PropTypes.arrayOf(PropTypes.any),
+    tooltip: PropTypes.bool,
+    xAxis: PropTypes.bool,
+    yAxis: PropTypes.bool,
+  };
+
+  static defaultProps = {
+    data: [],
+    tooltip: true,
+    xAxis: true,
+    yAxis: true,
+  };
+
   static childContextTypes = {
     chartType: PropTypes.string,
     horizontal: PropTypes.bool,
-    series: PropTypes.array,
+    series: PropTypes.arrayOf(PropTypes.object),
   };
 
   getChildContext() {
+    const { horizontal, children } = this.props;
     return {
       chartType: 'bar',
-      horizontal: this.props.horizontal,
-      series: Children.toArray(this.props.children).filter(comp => isSeriesOption(comp)),
+      horizontal,
+      series: Children.toArray(children).filter(comp => isSeriesOption(comp)),
     };
   }
 
@@ -30,10 +47,10 @@ class BarChart extends Component {
       {
         name,
         horizontal = false,
-        data: inputData = [],
-        tooltip = true,
-        xAxis = true,
-        yAxis = true,
+        data: inputData,
+        tooltip,
+        xAxis,
+        yAxis,
         children,
         ...props
       } = this.props;
@@ -89,13 +106,13 @@ class BarChart extends Component {
       );
     }
 
-    const categoryAxis = horizontal ?
-      components.find(comp => comp.type === YAxis) :
-      components.find(comp => comp.type === XAxis);
+    const categoryAxis = horizontal
+      ? components.find(comp => comp.type === YAxis)
+      : components.find(comp => comp.type === XAxis);
 
-    const valueAxis = horizontal ?
-      components.find(comp => comp.type === XAxis) :
-      components.find(comp => comp.type === YAxis);
+    const valueAxis = horizontal
+      ? components.find(comp => comp.type === XAxis)
+      : components.find(comp => comp.type === YAxis);
 
     return (
       <ECharts {...props}>

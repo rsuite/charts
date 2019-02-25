@@ -8,7 +8,10 @@ import Legend from '../components/Legend';
 class PieChart extends Component {
 
   static propTypes = {
+    name: PropTypes.string,
     donut: PropTypes.bool,
+    data: PropTypes.arrayOf(PropTypes.any),
+    legend: PropTypes.bool
   };
 
   static defaultProps = {
@@ -16,15 +19,17 @@ class PieChart extends Component {
     donut: false,
     legend: true,
   };
+
   static childContextTypes = {
     chartType: PropTypes.string,
-    chartData: PropTypes.array,
+    chartData: PropTypes.arrayOf(PropTypes.any),
   };
 
   getChildContext() {
+    const { data } = this.props;
     return {
       chartType: 'pie',
-      chartData: this.props.data,
+      chartData: data,
     };
   }
 

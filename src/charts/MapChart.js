@@ -7,17 +7,29 @@ import VisualMap from '../components/VisualMap';
 
 class MapChart extends Component {
 
+  static propTypes = {
+    name: PropTypes.string,
+    data: PropTypes.arrayOf(PropTypes.any),
+    visualMap: PropTypes.bool,
+  };
+
+  static defaultProps = {
+    data: [],
+    visualMap: true,
+  };
+
   static childContextTypes = {
     chartType: PropTypes.string,
     dataName: PropTypes.string,
-    chartData: PropTypes.array
+    chartData: PropTypes.arrayOf(PropTypes.any),
   };
 
   getChildContext() {
+    const { name, data } = this.props;
     return {
       chartType: 'map',
-      dataName: this.props.name,
-      chartData: this.props.data
+      dataName: name,
+      chartData: data,
     };
   }
 
@@ -39,7 +51,7 @@ class MapChart extends Component {
       {
         name,
         data,
-        visualMap = true,
+        visualMap,
         children,
         ...props
       } = this.props;

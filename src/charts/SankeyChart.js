@@ -6,6 +6,11 @@ import Sankey from '../series/Sankey';
 
 class SankeyChart extends Component {
 
+  static propTypes = {
+    name: PropTypes.string,
+    data: PropTypes.arrayOf(PropTypes.any)
+  };
+
   static defaultProps = {
     data: [],
   };
@@ -16,9 +21,10 @@ class SankeyChart extends Component {
   };
 
   getChildContext() {
+    const { name } = this.props;
     return {
       chartType: 'sankey',
-      dataName: this.props.name,
+      dataName: name,
     };
   }
 

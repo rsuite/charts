@@ -44,20 +44,26 @@ class ECharts extends Component {
 
   static childContextTypes = {
     setChartOption: PropTypes.func,
-    series: PropTypes.array,
+    series: PropTypes.arrayOf(PropTypes.object),
   };
 
-  state = {
-    option: {
-      ...defaultOption,
-      color: this.props.color || defaultOption.color,
-    },
-  };
+  constructor(props) {
+    super(props);
+
+    const { color } = this.props;
+    this.state = {
+      option: {
+        ...defaultOption,
+        color: color || defaultOption.color,
+      },
+    };
+  }
 
   getChildContext() {
+    const { children } = this.props;
     return {
       setChartOption: this.setOption,
-      series: Children.toArray(this.props.children).filter(comp => isSeriesOption(comp)),
+      series: Children.toArray(children).filter(comp => isSeriesOption(comp)),
     };
   }
 
@@ -75,8 +81,10 @@ class ECharts extends Component {
       children,
     } = this.props;
     const { option } = this.state;
-    const dataEmpty = !option.series ||
-      option.series.reduce((empty, serie) => empty && (!serie.data || serie.data.length < 1), true);
+    const dataEmpty = !option.series
+      || option.series.reduce(
+        (empty, serie) => empty && (!serie.data || serie.data.length < 1), true
+      );
 
     function renderEmptyMessage() {
       return (
@@ -98,17 +106,19 @@ class ECharts extends Component {
     return (
       <div className={`rs-echarts ${className}`} style={{ height, ...style }}>
         {
-          dataEmpty ?
-            renderEmptyMessage() :
-            <ReactEchartsCore
-              echarts={echarts}
-              option={option}
-              style={{ height: '100%' }}
-              notMerge
-              ref={(e) => {
-                this.echarts = e && e.getEchartsInstance();
-              }}
-            />
+          dataEmpty
+            ? renderEmptyMessage()
+            : (
+              <ReactEchartsCore
+                echarts={echarts}
+                option={option}
+                style={{ height: '100%' }}
+                notMerge
+                ref={(e) => {
+                  this.echarts = e && e.getEchartsInstance();
+                }}
+              />
+            )
         }
         {children}
       </div>

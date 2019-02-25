@@ -20,7 +20,7 @@ class VisualMap extends EChartsComponentOption {
   static contextTypes = {
     ...EChartsComponentOption.contextTypes,
     dataName: PropTypes.string,
-    chartData: PropTypes.array
+    chartData: PropTypes.arrayOf(PropTypes.any),
   };
 
   updateChartOption(option) {
@@ -65,4 +65,3 @@ class VisualMap extends EChartsComponentOption {
 }
 
 export default VisualMap;
-

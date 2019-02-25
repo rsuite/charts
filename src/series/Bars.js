@@ -13,7 +13,7 @@ class Bars extends EChartsSeriesOption {
     ...EChartsSeriesOption.contextTypes,
     chartType: PropTypes.string,
     horizontal: PropTypes.bool,
-    series: PropTypes.array,
+    series: PropTypes.arrayOf(PropTypes.object),
   };
 
   getSeriesOption() {
@@ -28,9 +28,9 @@ class Bars extends EChartsSeriesOption {
     const { chartType, horizontal, series } = this.context;
 
     const barsSeriesCount = series.filter(comp => comp.type === Bars).length;
-    const stackedBars = stack ?
-      series.filter(comp => comp.type === Bars && comp.props.stack === stack) :
-      [];
+    const stackedBars = stack
+      ? series.filter(comp => comp.type === Bars && comp.props.stack === stack)
+      : [];
     const stacked = stackedBars.length > 1;
     const stackTop = stackedBars.indexOf(
       stackedBars.find(comp => comp.type === Bars && comp.props.name === props.name),
@@ -40,9 +40,9 @@ class Bars extends EChartsSeriesOption {
     if (stacked && !stackTop) {
       barBorderRadius = 0;
     } else {
-      barBorderRadius = (chartType === 'bar' && horizontal) ?
-        [0, 5, 5, 0] :
-        [5, 5, 0, 0];
+      barBorderRadius = (chartType === 'bar' && horizontal)
+        ? [0, 5, 5, 0]
+        : [5, 5, 0, 0];
     }
 
     return _merge({

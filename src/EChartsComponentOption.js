@@ -13,13 +13,15 @@ class EChartsComponentOption extends Component {
   }
 
   componentDidUpdate(prevProps) {
+    const { setChartOption } = this.context;
     if (prevProps !== this.props) {
-      this.context.setChartOption(option => this.updateChartOption(option));
+      setChartOption(option => this.updateChartOption(option));
     }
   }
 
   componentWillUnmount() {
-    this.context.setChartOption(option => this.resetChartOption(option));
+    const { setChartOption } = this.context;
+    setChartOption(option => this.resetChartOption(option));
   }
 
   updateChartOption(option) {
@@ -31,7 +33,8 @@ class EChartsComponentOption extends Component {
   }
 
   render() {
-    return this.props.children || null;
+    const { children } = this.props;
+    return children || null;
   }
 }
 

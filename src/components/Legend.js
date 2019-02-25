@@ -10,8 +10,8 @@ class Legend extends EChartsComponentOption {
   static contextTypes = {
     ...EChartsComponentOption.contextTypes,
     chartType: PropTypes.string,
-    series: PropTypes.array,
-    chartData: PropTypes.array,
+    series: PropTypes.arrayOf(PropTypes.object),
+    chartData: PropTypes.arrayOf(PropTypes.any),
   };
 
   updateChartOption(option) {

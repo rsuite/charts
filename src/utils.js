@@ -56,7 +56,7 @@ export function randstr(length = 16) {
 
 export function parsePercent(str) {
   const parsed = parseFloat(str);
-  if (!isNaN(parsed)) {
+  if (!Number.isNaN(parsed)) {
     return parsed / 100;
   }
   return parsed;
