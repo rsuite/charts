@@ -1,7 +1,7 @@
 
 ## API
 
-`rsuite-echarts` 中的 React 组件对应 ECharts 配置项中的各个部分。
+`@rsuite/charts` 中的 React 组件对应 ECharts 配置项中的各个部分。
 除特殊说明的 props 外，它们会将接收的所有 props 直接转换为相应的 ECharts　配置项。
 
 如：
@@ -20,7 +20,7 @@ xAxis: {
 
 ### `<ECharts>`
 
-`<ECharts>` 是 `rsuite-echarts` 中最基础的组件，
+`<ECharts>` 是 `@rsuite/charts` 中最基础的组件，
 接收 option 参数，
 生成一个 ECharts 图表。
 
@@ -30,7 +30,7 @@ xAxis: {
 | height | `number` | 300 | 图表高度 |
 | locale | `object<{emptyMessage, loading}>` | `{emptyMessage: 'No data found', loading: 'Loading...'}` | 数据为空/loading 时显示的信息|
 
-### rsuite-charts/series
+### charts/series
 
 `series` 是展示数据的主要组件，
 包括 `<Line>` `<Bars>` `<Scatter>` `<Pie>` `<Map>` `<Tree>` `<Treemap>` `<Sankey>`，
@@ -59,14 +59,14 @@ xAxis: {
 | ---- | ---- | ------- | ----------- |
 | donut | `boolean` | `false` | 是否为环形图。默认 `innerRadius` 比 `outerRadius` 小 15%。 |
 
-### rsuite-echarts/components
+### charts/components
 
 `components` 是图表的其他组成部分，包括 `<XAxis>` `<YAxis>` `<Legend>` `<Tooltip>` `<DataZoom>` `<VisualMap>`。
 
 
-### rsuite-echarts/charts
+### charts/charts
 
-`charts` 是 `rsuite-echarts` 预先封装的一些常用图表，通常包括一个默认 `series` 和一些默认 `components`。
+`charts` 是 `@rsuite/charts` 预先封装的一些常用图表，通常包括一个默认 `series` 和一些默认 `components`。
 
 `charts` 都接收 `name` 和 `data` 两个 props，并传递给其内部的 `series`。大多时候，其他的 props 也会被传递下去。
 
@@ -84,11 +84,11 @@ data: [
 
 ### 特殊 props
 
-`rsuite-echarts` 对一些常用的配置项进行了处理，使用更加简便。
+`@rsuite/charts` 对一些常用的配置项进行了处理，使用更加简便。
 
 #### `textOption.formatter()`
 
-如果对 `label` `axisLabel` `tooltip` 等 props 传入一个函数，`rsuite-echarts` 会自动将它用作该项配置的 `formatter` 字段。
+如果对 `label` `axisLabel` `tooltip` 等 props 传入一个函数，`@rsuite/charts` 会自动将它用作该项配置的 `formatter` 字段。
 
 如：
 ```
