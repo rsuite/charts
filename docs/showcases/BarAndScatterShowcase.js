@@ -10,12 +10,14 @@ const data = [
   ['流失至竞品', 25, 11],
   ['老客', 49, 11],
   ['来自竞品', 5, 5],
-  ['非品牌客户', 78, 12],
+  ['非品牌客户', 78, 12]
 ];
 
 function BarAndScatterShowcase() {
   return (
     <CodeView
+      classPrefix="rs-"
+      buttonClassName="rs-btn-subtle rs-btn-icon-circle"
       dependencies={{
         data,
         BarChart,

@@ -96,9 +96,9 @@
     "mini-css-extract-plugin": "^0.5.0",
     "mocha": "^5.2.0",
     "react": "^16.8.2",
-    "react-code-view": "^1.0.12",
+    "react-code-view": "^1.1.13",
     "react-dom": "^16.8.2",
-    "react-hot-loader": "^1.3.0",5
+    "react-hot-loader": "^1.3.0",
     "react-markdown-reader": "^1.0.1",
     "react-test-renderer": "^16.0.0",
     "rsuite": "^3.7.5",
