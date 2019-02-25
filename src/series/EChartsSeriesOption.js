@@ -35,6 +35,23 @@ class EChartsSeriesOption extends EChartsComponentOption {
     };
   }
 
+  resetChartOption(option) {
+    if (!option.series || !Array.isArray(option.series)) {
+      return option;
+    }
+
+    const thisSeries = option.series.find(serie => serie.name === this.props.name);
+
+    if (!thisSeries) {
+      return option;
+    }
+
+    return {
+      ...option,
+      series: option.series.filter(serie => serie !== thisSeries)
+    };
+  }
+
 }
 
 export default EChartsSeriesOption;

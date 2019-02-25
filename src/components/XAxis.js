@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import _merge from 'lodash.merge';
 import EChartsComponentOption from '../EChartsComponentOption';
-import { transformTextOption } from '../utils';
+import { randstr, transformTextOption } from '../utils';
 import Bars from '../series/Bars';
 
 class XAxis extends EChartsComponentOption {
@@ -20,6 +20,8 @@ class XAxis extends EChartsComponentOption {
     series: PropTypes.array,
   };
 
+  key = randstr();
+
   getOption() {
     const {
       axisLabel,
@@ -28,6 +30,7 @@ class XAxis extends EChartsComponentOption {
     const { series } = this.context;
 
     return _merge({
+      key: this.key,
       boundaryGap: !!series.find(comp => comp.type === Bars),
       axisLine: {
         lineStyle: {
@@ -52,6 +55,7 @@ class XAxis extends EChartsComponentOption {
   updateChartOption(option) {
     const xAxisOption = this.getOption();
 
+    // 没有 xAxis，则设置 xAxis
     if (!option.xAxis) {
       return {
         ...option,
@@ -59,11 +63,54 @@ class XAxis extends EChartsComponentOption {
       };
     }
 
+    // 有 xAxis 对象
+    if (!Array.isArray(option.xAxis)) {
+      //  是自己，则更新对象
+      if (option.xAxis.key === this.key) {
+        return {
+          ...option,
+          xAxis: xAxisOption,
+        };
+      }
+      //   不是自己，则更新为 xAxis 数组
+      return {
+        ...option,
+        xAxis: [
+          option.xAxis,
+          xAxisOption,
+        ],
+      };
+    }
+
+    // 有 xAxis 数组
+    const thisXAxis = option.xAxis.find(xAxis => xAxis.key === this.key);
+    // 如果有自己，则更新自己
+    if (thisXAxis) {
+      option.xAxis[option.xAxis.indexOf(thisXAxis)] = xAxisOption;
+      return option;
+    }
+    // 没有自己，则增加自己
     return {
       ...option,
-      xAxis: Array.isArray(option.xAxis) ?
-        [...option.xAxis, xAxisOption] :
-        [option.xAxis, xAxisOption],
+      xAxis: [...option.xAxis, xAxisOption],
+    };
+  }
+
+  resetChartOption(option) {
+    if (!option.xAxis) {
+      return option;
+    }
+
+    if (!Array.isArray(option.xAxis)) {
+      if (option.xAxis.key === this.key) {
+        delete option.xAxis;
+      }
+      return option;
+    }
+
+    return {
+      ...option,
+      xAxis: option.xAxis.filter(xAxis => xAxis.key !== this.key),
     };
   }
 }
