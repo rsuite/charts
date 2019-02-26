@@ -3,7 +3,9 @@ import _merge from 'lodash.merge';
 import EChartsSeriesOption from './EChartsSeriesOption';
 
 function transformData(node) {
-  if (!node) return node;
+  if (!node) {
+    return node;
+  }
   if (!Array.isArray(node)) {
     return node;
   }
