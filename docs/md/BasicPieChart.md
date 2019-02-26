@@ -4,6 +4,11 @@
 
 <!--start-code-->
 ```js
+// const data = [
+//   ['直接访问', 47],
+//   ['搜索引擎', 40],
+//   ...
+// ];
 
 ReactDOM.render(
   <PieChart

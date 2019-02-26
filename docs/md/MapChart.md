@@ -4,6 +4,11 @@
 
 <!--start-code-->
 ```js
+// const data = [
+//   ['北京', random()],
+//   ['天津', random()],
+//   ...
+// ];
 
 ReactDOM.render(
   <MapChart
