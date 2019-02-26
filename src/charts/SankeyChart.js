@@ -7,7 +7,10 @@ import Sankey from '../series/Sankey';
 class SankeyChart extends Component {
   static propTypes = {
     name: PropTypes.string,
-    data: PropTypes.arrayOf(PropTypes.any)
+    data: PropTypes.shape({
+      nodes: PropTypes.arrayOf(PropTypes.object),
+      links: PropTypes.arrayOf(PropTypes.object)
+    })
   };
 
   static defaultProps = {
