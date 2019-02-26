@@ -19,7 +19,7 @@ const defaultOption = {
 class ECharts extends Component {
   static propTypes = {
     height: PropTypes.number,
-    color: PropTypes.arrayOf(PropTypes.string),
+    option: PropTypes.object,
     locale: PropTypes.shape({
       emptyMessage: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
       loading: PropTypes.oneOfType([PropTypes.string, PropTypes.node])
@@ -31,7 +31,8 @@ class ECharts extends Component {
     locale: {
       emptyMessage: 'No data found',
       loading: 'Loading...'
-    }
+    },
+    option: {}
   };
 
   static childContextTypes = {
@@ -42,11 +43,15 @@ class ECharts extends Component {
   constructor(props) {
     super(props);
 
-    const { color } = this.props;
+    const { option } = this.props;
     this.state = {
       option: {
-        ...defaultOption,
-        color: color || defaultOption.color
+        ...option,
+        grid: {
+          ...defaultOption.grid,
+          ...option.grid
+        },
+        color: option.color || defaultOption.color
       }
     };
   }
