@@ -4,9 +4,8 @@ import CodeView from 'react-code-view';
 
 function convert(source, target, basePath) {
   for (var key in source) {
-    var path = basePath ? (`${basePath}.${key}`) : key;
+    var path = basePath ? `${basePath}.${key}` : key;
     if (key.match(/^\$/)) {
-
     } else {
       target.children = target.children || [];
       var child = {

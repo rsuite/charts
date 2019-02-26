@@ -13,7 +13,7 @@ class Bars extends EChartsSeriesOption {
     ...EChartsSeriesOption.contextTypes,
     chartType: PropTypes.string,
     horizontal: PropTypes.bool,
-    series: PropTypes.arrayOf(PropTypes.object),
+    series: PropTypes.arrayOf(PropTypes.object)
   };
 
   getSeriesOption() {
@@ -32,34 +32,39 @@ class Bars extends EChartsSeriesOption {
       ? series.filter(comp => comp.type === Bars && comp.props.stack === stack)
       : [];
     const stacked = stackedBars.length > 1;
-    const stackTop = stackedBars.indexOf(
-      stackedBars.find(comp => comp.type === Bars && comp.props.name === props.name),
-    ) === stackedBars.length - 1;
+    const stackTop =
+      stackedBars.indexOf(
+        stackedBars.find(comp => comp.type === Bars && comp.props.name === props.name)
+      ) ===
+      stackedBars.length - 1;
 
     let barBorderRadius;
     if (stacked && !stackTop) {
       barBorderRadius = 0;
     } else {
-      barBorderRadius = (chartType === 'bar' && horizontal)
-        ? [0, 5, 5, 0]
-        : [5, 5, 0, 0];
+      barBorderRadius = chartType === 'bar' && horizontal ? [0, 5, 5, 0] : [5, 5, 0, 0];
     }
 
-    return _merge({
-      type: 'bar',
-      barWidth: (!stack && barsSeriesCount) > 1 ? 6 : 20,
-      stack: stack === true ? stackKey : stack,
-      itemStyle: {
-        color: Array.isArray(color) ? (({ dataIndex }) => color[dataIndex]) : color,
-        barBorderRadius,
+    return _merge(
+      {
+        type: 'bar',
+        barWidth: (!stack && barsSeriesCount) > 1 ? 6 : 20,
+        stack: stack === true ? stackKey : stack,
+        itemStyle: {
+          color: Array.isArray(color) ? ({ dataIndex }) => color[dataIndex] : color,
+          barBorderRadius
+        },
+        // 默认 label
+        // 颜色：#575757
+        // 位置：top，水平则 right
+        label: transformTextOption(label, {
+          position: horizontal ? 'right' : 'top',
+          textStyle: { color: '#575757' }
+        })
       },
-      // 默认 label
-      // 颜色：#575757
-      // 位置：top，水平则 right
-      label: transformTextOption(label, { position: horizontal ? 'right' : 'top', textStyle: { color: '#575757' } }),
-    }, props);
+      props
+    );
   }
-
 }
 
 export default Bars;

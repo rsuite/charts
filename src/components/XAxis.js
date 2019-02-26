@@ -10,46 +10,46 @@ class XAxis extends EChartsComponentOption {
   static defaultProps = {
     show: true,
     type: 'category',
-    data: [],
+    data: []
   };
 
   static contextTypes = {
     ...EChartsComponentOption.contextTypes,
     chartType: PropTypes.string,
     horizontal: PropTypes.bool,
-    series: PropTypes.arrayOf(PropTypes.object),
+    series: PropTypes.arrayOf(PropTypes.object)
   };
 
   key = randstr();
 
   getOption() {
-    const {
-      axisLabel,
-      ...props
-    } = this.props;
+    const { axisLabel, ...props } = this.props;
     const { series } = this.context;
 
-    return _merge({
-      key: this.key,
-      boundaryGap: !!series.find(comp => comp.type === Bars),
-      axisLine: {
-        lineStyle: {
-          color: '#e5e5ea',
+    return _merge(
+      {
+        key: this.key,
+        boundaryGap: !!series.find(comp => comp.type === Bars),
+        axisLine: {
+          lineStyle: {
+            color: '#e5e5ea'
+          }
         },
-      },
-      axisTick: {
-        show: false,
-      },
-      axisLabel: transformTextOption(axisLabel, {
-        show: true,
-        textStyle: {
-          color: '#8e8e93',
+        axisTick: {
+          show: false
         },
-      }),
-      splitLine: {
-        show: false,
+        axisLabel: transformTextOption(axisLabel, {
+          show: true,
+          textStyle: {
+            color: '#8e8e93'
+          }
+        }),
+        splitLine: {
+          show: false
+        }
       },
-    }, props);
+      props
+    );
   }
 
   updateChartOption(option) {
@@ -59,7 +59,7 @@ class XAxis extends EChartsComponentOption {
     if (!option.xAxis) {
       return {
         ...option,
-        xAxis: xAxisOption,
+        xAxis: xAxisOption
       };
     }
 
@@ -69,16 +69,13 @@ class XAxis extends EChartsComponentOption {
       if (option.xAxis.key === this.key) {
         return {
           ...option,
-          xAxis: xAxisOption,
+          xAxis: xAxisOption
         };
       }
       //   不是自己，则更新为 xAxis 数组
       return {
         ...option,
-        xAxis: [
-          option.xAxis,
-          xAxisOption,
-        ],
+        xAxis: [option.xAxis, xAxisOption]
       };
     }
 
@@ -92,7 +89,7 @@ class XAxis extends EChartsComponentOption {
     // 没有自己，则增加自己
     return {
       ...option,
-      xAxis: [...option.xAxis, xAxisOption],
+      xAxis: [...option.xAxis, xAxisOption]
     };
   }
 
@@ -110,7 +107,7 @@ class XAxis extends EChartsComponentOption {
 
     return {
       ...option,
-      xAxis: option.xAxis.filter(xAxis => xAxis.key !== this.key),
+      xAxis: option.xAxis.filter(xAxis => xAxis.key !== this.key)
     };
   }
 }

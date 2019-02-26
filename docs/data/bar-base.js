@@ -1,14 +1,36 @@
 export default {
-  color: ['#60c0dd', '#fe8463', '#9bca63', '#fad860', '#29D3D3', '#d7504b', '#c6e579', '#26c0c0', '#f0805a', '#f4e001'],
+  color: [
+    '#60c0dd',
+    '#fe8463',
+    '#9bca63',
+    '#fad860',
+    '#29D3D3',
+    '#d7504b',
+    '#c6e579',
+    '#26c0c0',
+    '#f0805a',
+    '#f4e001'
+  ],
   tooltip: {
     trigger: 'axis',
-    axisPointer: {            // 坐标轴指示器，坐标轴触发有效
-      type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+    axisPointer: {
+      // 坐标轴指示器，坐标轴触发有效
+      type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
     }
   },
   legend: {
     top: '20',
-    data: ['直接访问', '邮件营销', '联盟广告', '视频广告', '搜索引擎', '百度', '谷歌', '必应', '其他']
+    data: [
+      '直接访问',
+      '邮件营销',
+      '联盟广告',
+      '视频广告',
+      '搜索引擎',
+      '百度',
+      '谷歌',
+      '必应',
+      '其他'
+    ]
   },
   grid: {
     left: '3%',
@@ -84,9 +106,7 @@ export default {
             type: 'dashed'
           }
         },
-        data: [
-          [{ type: 'min' }, { type: 'max' }]
-        ]
+        data: [[{ type: 'min' }, { type: 'max' }]]
       }
     },
     {

@@ -15,9 +15,7 @@ const data = [
 ];
 
 function HorizontalMultipleBarsShowcase() {
-
   return (
-
     <CodeView
       classPrefix="rs-"
       buttonClassName="rs-btn-subtle rs-btn-icon-circle"

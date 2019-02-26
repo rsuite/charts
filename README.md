@@ -2,6 +2,7 @@
 
 :bar_chart: A set of charts based on rsuite and ECharts
 
+
 ## Install
 
 ```bash
@@ -18,6 +19,9 @@ const App = () => <LineChart name="浏览量(PV)" data={data} />;
 
 ReactDOM.render(<App />, mountNode);
 ```
+
+![](https://user-images.githubusercontent.com/1203827/53387646-c00c9700-39c2-11e9-9dab-5d62caeb3186.png)
+
 
 ## Documents
 

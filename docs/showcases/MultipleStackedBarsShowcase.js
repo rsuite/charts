@@ -15,17 +15,9 @@ const data = [
   ['55岁+', 400, 450, 900]
 ];
 
-const colors = [
-  '#2485C1',
-  '#32A4D4',
-  '#34C3FF',
-  '#AB005B',
-  '#EA3797',
-  '#FF8FCB'
-];
+const colors = ['#2485C1', '#32A4D4', '#34C3FF', '#AB005B', '#EA3797', '#FF8FCB'];
 
 function MultipleStackedBarsShowcase() {
-
   return (
     <CodeView
       classPrefix="rs-"

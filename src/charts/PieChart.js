@@ -6,7 +6,6 @@ import Tooltip from '../components/Tooltip';
 import Legend from '../components/Legend';
 
 class PieChart extends Component {
-
   static propTypes = {
     name: PropTypes.string,
     donut: PropTypes.bool,
@@ -17,19 +16,19 @@ class PieChart extends Component {
   static defaultProps = {
     data: [],
     donut: false,
-    legend: true,
+    legend: true
   };
 
   static childContextTypes = {
     chartType: PropTypes.string,
-    chartData: PropTypes.arrayOf(PropTypes.any),
+    chartData: PropTypes.arrayOf(PropTypes.any)
   };
 
   getChildContext() {
     const { data } = this.props;
     return {
       chartType: 'pie',
-      chartData: data,
+      chartData: data
     };
   }
 
@@ -39,26 +38,12 @@ class PieChart extends Component {
   }
 
   renderDefaultPie() {
-    const {
-      data,
-      ...props
-    } = this.props;
-    return (
-      <Pie
-        data={this.getPieData()}
-        {...props}
-      />
-    );
+    const { data, ...props } = this.props;
+    return <Pie data={this.getPieData()} {...props} />;
   }
 
   render() {
-    const {
-      name,
-      children,
-      donut,
-      legend,
-      ...props
-    } = this.props;
+    const { name, children, donut, legend, ...props } = this.props;
 
     const components = Children.toArray(children);
     const pie = components.find(comp => comp.type === Pie);

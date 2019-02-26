@@ -14,7 +14,7 @@ const data = [
   ['办公达人', 31],
   ['对战游戏', 28],
   ['时尚达人', 28],
-  ['脱口秀达人', 20],
+  ['脱口秀达人', 20]
 ];
 
 const colors = [
@@ -27,11 +27,10 @@ const colors = [
   '#13BA9E',
   '#50E3C2',
   '#7ED321',
-  '#B8E986',
+  '#B8E986'
 ];
 
 function VerticalBarChartShowcase() {
-
   return (
     <div className="showcase">
       <BarChart data={data}>

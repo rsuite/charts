@@ -7,11 +7,8 @@ import { mount } from 'enzyme';
 import ECharts from '../src/ECharts';
 import option from '../docs/data/bar-base';
 
-
 describe('ECharts', () => {
-
   it('Test lifecycle', () => {
-
     const willMount = sinon.spy();
     const didMount = sinon.spy();
     const willUnmount = sinon.spy();
@@ -26,12 +23,7 @@ describe('ECharts', () => {
         this.componentDidUpdate = diduMount;
       }
       render() {
-
-        return (
-          <ECharts
-            option={option}
-          />
-        );
+        return <ECharts option={option} />;
       }
     }
     const wrapper = mount(<Foo />);
@@ -40,13 +32,12 @@ describe('ECharts', () => {
     expect(willUnmount.callCount).to.equal(0);
 
     wrapper.setProps({
-      'theme': 'abc'
-    })
+      theme: 'abc'
+    });
     expect(diduMount.callCount).to.equal(1);
 
     wrapper.unmount();
     expect(willUnmount.callCount).to.equal(1);
-
   });
 
   // it('Should have click event in instance', () => {
@@ -82,7 +73,6 @@ describe('ECharts', () => {
   //
   // })
 
-
   it('Should have a custom className', () => {
     const instance = ReactTestUtils.renderIntoDocument(
       <ECharts className="custom" option={option} />
@@ -97,5 +87,4 @@ describe('ECharts', () => {
     );
     assert.equal(findDOMNode(instance).style.fontSize, fontSize);
   });
-
 });

@@ -7,7 +7,11 @@ import CodeView from 'react-code-view';
 
 const data = [];
 for (let i = 1; i <= 31; i++) {
-  data.push([`2018-8-${i}`, Math.round(Math.random() * 2000000), Math.round(Math.random() * 2000000) + 1000000]);
+  data.push([
+    `2018-8-${i}`,
+    Math.round(Math.random() * 2000000),
+    Math.round(Math.random() * 2000000) + 1000000
+  ]);
 }
 
 function LineAndBarsShowcase() {

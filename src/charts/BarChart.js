@@ -9,27 +9,26 @@ import Bars from '../series/Bars';
 import { isSeriesOption } from '../utils';
 
 class BarChart extends Component {
-
   static propTypes = {
     name: PropTypes.string,
     horizontal: PropTypes.bool,
     data: PropTypes.arrayOf(PropTypes.any),
     tooltip: PropTypes.bool,
     xAxis: PropTypes.bool,
-    yAxis: PropTypes.bool,
+    yAxis: PropTypes.bool
   };
 
   static defaultProps = {
     data: [],
     tooltip: true,
     xAxis: true,
-    yAxis: true,
+    yAxis: true
   };
 
   static childContextTypes = {
     chartType: PropTypes.string,
     horizontal: PropTypes.bool,
-    series: PropTypes.arrayOf(PropTypes.object),
+    series: PropTypes.arrayOf(PropTypes.object)
   };
 
   getChildContext() {
@@ -37,23 +36,21 @@ class BarChart extends Component {
     return {
       chartType: 'bar',
       horizontal,
-      series: Children.toArray(children).filter(comp => isSeriesOption(comp)),
+      series: Children.toArray(children).filter(comp => isSeriesOption(comp))
     };
   }
 
-
   render() {
-    const
-      {
-        name,
-        horizontal = false,
-        data: inputData,
-        tooltip,
-        xAxis,
-        yAxis,
-        children,
-        ...props
-      } = this.props;
+    const {
+      name,
+      horizontal = false,
+      data: inputData,
+      tooltip,
+      xAxis,
+      yAxis,
+      children,
+      ...props
+    } = this.props;
 
     const components = Children.toArray(children);
     const series = components.filter(isSeriesOption);
@@ -63,27 +60,19 @@ class BarChart extends Component {
     function renderDefaultSeries() {
       const values = data.map(d => d[1]);
 
-      return (
-        <Bars
-          name={name}
-          data={horizontal ? values.reverse() : values}
-        />
-      );
+      return <Bars name={name} data={horizontal ? values.reverse() : values} />;
     }
 
     function renderDefaultLegend() {
       const dataNames = series.length ? series.map(serie => serie.name) : [name];
-      return (
-        <Legend data={dataNames} />
-      );
+      return <Legend data={dataNames} />;
     }
 
     const categories = data.map(([category]) => category);
 
-
     const categoryAxisProps = {
       type: 'category',
-      splitLine: false,
+      splitLine: false
     };
 
     function renderDefaultCategoryAxis() {
@@ -95,7 +84,7 @@ class BarChart extends Component {
     }
 
     const valueAxisProps = {
-      type: 'value',
+      type: 'value'
     };
 
     function renderDefaultValueAxis() {
@@ -121,28 +110,25 @@ class BarChart extends Component {
         {!components.find(comp => comp.type === Bars) && renderDefaultSeries()}
         {!components.find(comp => comp.type === Legend) && renderDefaultLegend()}
         {tooltip && <Tooltip />}
-        {
-          components.map((child) => {
-            if (child.type === (horizontal ? YAxis : XAxis)) {
-              return cloneElement(child, {
-                ...categoryAxisProps,
-                data: child.props.data || data.map(([category]) => category),
-              });
-            }
-            if (child.type === (horizontal ? XAxis : YAxis)) {
-              return cloneElement(child, valueAxisProps);
-            }
-            if (data.length && isSeriesOption(child) && !child.props.data) {
-              const serieIndex = series.indexOf(child);
-              return cloneElement(child, { data: data.map(d => d[serieIndex + 1]) });
-            }
-            return child;
-          })
-        }
+        {components.map(child => {
+          if (child.type === (horizontal ? YAxis : XAxis)) {
+            return cloneElement(child, {
+              ...categoryAxisProps,
+              data: child.props.data || data.map(([category]) => category)
+            });
+          }
+          if (child.type === (horizontal ? XAxis : YAxis)) {
+            return cloneElement(child, valueAxisProps);
+          }
+          if (data.length && isSeriesOption(child) && !child.props.data) {
+            const serieIndex = series.indexOf(child);
+            return cloneElement(child, { data: data.map(d => d[serieIndex + 1]) });
+          }
+          return child;
+        })}
       </ECharts>
     );
   }
-
 }
 
 export default BarChart;

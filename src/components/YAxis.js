@@ -3,45 +3,43 @@ import EChartsComponentOption from '../EChartsComponentOption';
 import { randstr, transformTextOption } from '../utils';
 
 class YAxis extends EChartsComponentOption {
-
   static displayName = 'YAxis';
 
   static defaultProps = {
     show: true,
     type: 'value',
-    splitLine: true,
+    splitLine: true
   };
 
   key = randstr();
 
   getOption() {
-    const {
-      axisLabel,
-      splitLine,
-      ...props
-    } = this.props;
+    const { axisLabel, splitLine, ...props } = this.props;
 
-    return _merge({
-      key: this.key,
-      axisLine: {
-        show: false,
-      },
-      axisTick: {
-        show: false,
-      },
-      axisLabel: transformTextOption(axisLabel, {
-        show: true,
-        textStyle: {
-          color: '#8e8e93',
+    return _merge(
+      {
+        key: this.key,
+        axisLine: {
+          show: false
         },
-      }),
-      splitLine: {
-        show: !!splitLine,
-        lineStyle: {
-          color: '#efefef',
+        axisTick: {
+          show: false
         },
+        axisLabel: transformTextOption(axisLabel, {
+          show: true,
+          textStyle: {
+            color: '#8e8e93'
+          }
+        }),
+        splitLine: {
+          show: !!splitLine,
+          lineStyle: {
+            color: '#efefef'
+          }
+        }
       },
-    }, props);
+      props
+    );
   }
 
   updateChartOption(option) {
@@ -51,7 +49,7 @@ class YAxis extends EChartsComponentOption {
     if (!option.yAxis) {
       return {
         ...option,
-        yAxis: yAxisOption,
+        yAxis: yAxisOption
       };
     }
 
@@ -61,16 +59,13 @@ class YAxis extends EChartsComponentOption {
       if (option.yAxis.key === this.key) {
         return {
           ...option,
-          yAxis: yAxisOption,
+          yAxis: yAxisOption
         };
       }
       //   不是自己，则更新为 yAxis 数组
       return {
         ...option,
-        yAxis: [
-          option.yAxis,
-          yAxisOption,
-        ],
+        yAxis: [option.yAxis, yAxisOption]
       };
     }
 
@@ -84,7 +79,7 @@ class YAxis extends EChartsComponentOption {
     // 没有自己，则增加自己
     return {
       ...option,
-      yAxis: [...option.yAxis, yAxisOption],
+      yAxis: [...option.yAxis, yAxisOption]
     };
   }
 
@@ -102,7 +97,7 @@ class YAxis extends EChartsComponentOption {
 
     return {
       ...option,
-      yAxis: option.yAxis.filter(yAxis => yAxis.key !== this.key),
+      yAxis: option.yAxis.filter(yAxis => yAxis.key !== this.key)
     };
   }
 }

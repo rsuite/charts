@@ -5,7 +5,6 @@ import Tooltip from '../components/Tooltip';
 import Tree from '../series/Tree';
 
 class TreeChart extends Component {
-
   static propTypes = {
     name: PropTypes.string,
     data: PropTypes.arrayOf(PropTypes.object)
@@ -31,28 +30,15 @@ class TreeChart extends Component {
   renderDefaultTree() {
     const { props } = this;
 
-    return (
-      <Tree
-        name={props.name}
-        data={props.data}
-      />
-    );
+    return <Tree name={props.name} data={props.data} />;
   }
 
-
   render() {
-    const
-      {
-        name,
-        data,
-        children,
-        ...props
-      } = this.props;
+    const { name, data, children, ...props } = this.props;
 
     const components = Children.toArray(children);
 
     const tree = components.find(comp => comp.type === Tree);
-
 
     return (
       <ECharts {...props}>
@@ -62,7 +48,6 @@ class TreeChart extends Component {
       </ECharts>
     );
   }
-
 }
 
 export default TreeChart;

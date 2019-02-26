@@ -4,28 +4,26 @@ import _merge from 'lodash.merge';
 import EChartsComponentOption from '../EChartsComponentOption';
 
 class Legend extends EChartsComponentOption {
-
   static displayName = 'Legend';
 
   static contextTypes = {
     ...EChartsComponentOption.contextTypes,
     chartType: PropTypes.string,
     series: PropTypes.arrayOf(PropTypes.object),
-    chartData: PropTypes.arrayOf(PropTypes.any),
+    chartData: PropTypes.arrayOf(PropTypes.any)
   };
 
   updateChartOption(option) {
-    const {
-      ...props
-    } = this.props;
+    const { ...props } = this.props;
     const { chartType, series, chartData } = this.context;
     let legendOption = {
       show: true,
-      data: chartType === 'pie' ? chartData.map(([name]) => name) : series.map(comp => comp.props.name),
+      data:
+        chartType === 'pie' ? chartData.map(([name]) => name) : series.map(comp => comp.props.name),
       bottom: 0,
       textStyle: {
-        color: '#8e8e93',
-      },
+        color: '#8e8e93'
+      }
     };
 
     if (chartType === 'pie') {
@@ -34,7 +32,7 @@ class Legend extends EChartsComponentOption {
 
     return {
       ...option,
-      legend: _merge(legendOption, props),
+      legend: _merge(legendOption, props)
     };
   }
 

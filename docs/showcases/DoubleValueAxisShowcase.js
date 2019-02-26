@@ -36,7 +36,6 @@ for (let i = 0; i < data.length; i++) {
   data[i].push(Math.round(Math.random() * 6));
 }
 
-
 function DoubleValueAxisShowcase() {
   return (
     <CodeView

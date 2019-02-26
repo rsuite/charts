@@ -4,7 +4,6 @@ import _merge from 'lodash.merge';
 import EChartsSeriesOption from './EChartsSeriesOption';
 
 class Scatter extends EChartsSeriesOption {
-
   static displayName = 'Scatter';
 
   static contextTypes = {
@@ -21,16 +20,18 @@ class Scatter extends EChartsSeriesOption {
 
     const { chartType } = this.context;
 
-    return _merge({
-      type: 'scatter',
-      symbol: chartType === 'bar' ? 'emptyCircle' : 'circle',
-      symbolSize: 9,
-      itemStyle: {
-        opacity: 1
-      }
-    }, props);
+    return _merge(
+      {
+        type: 'scatter',
+        symbol: chartType === 'bar' ? 'emptyCircle' : 'circle',
+        symbolSize: 9,
+        itemStyle: {
+          opacity: 1
+        }
+      },
+      props
+    );
   }
-
 }
 
 export default Scatter;

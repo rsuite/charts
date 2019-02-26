@@ -2,9 +2,8 @@ import { Component } from 'react';
 import PropTypes from 'prop-types';
 
 class EChartsComponentOption extends Component {
-
   static contextTypes = {
-    setChartOption: PropTypes.func,
+    setChartOption: PropTypes.func
   };
 
   constructor(props, context) {
