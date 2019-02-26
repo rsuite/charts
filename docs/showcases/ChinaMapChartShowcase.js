@@ -41,17 +41,17 @@ const data = [
   { name: '台湾', value: randomData() },
   { name: '香港', value: randomData() },
   { name: '澳门', value: randomData() },
-  { name: '南海诸岛', value: randomData() },
+  { name: '南海诸岛', value: randomData() }
 ].map(({ name, value }) => [name, value]);
 
 function ChinaMapChartShowcase() {
   return (
     <CodeView
-  classPrefix="rs-"
-  buttonClassName="rs-btn-subtle rs-btn-icon-circle"
+      classPrefix="rs-"
+      buttonClassName="rs-btn-subtle rs-btn-icon-circle"
       dependencies={{
         data,
-        MapChart,
+        MapChart
       }}
     >
       {require('../md/MapChart.md')}

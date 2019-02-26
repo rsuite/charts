@@ -5,54 +5,40 @@ import Tooltip from '../components/Tooltip';
 import Sankey from '../series/Sankey';
 
 class SankeyChart extends Component {
-
   static propTypes = {
     name: PropTypes.string,
     data: PropTypes.arrayOf(PropTypes.any)
   };
 
   static defaultProps = {
-    data: [],
+    data: []
   };
 
   static childContextTypes = {
     chartType: PropTypes.string,
-    dataName: PropTypes.string,
+    dataName: PropTypes.string
   };
 
   getChildContext() {
     const { name } = this.props;
     return {
       chartType: 'sankey',
-      dataName: name,
+      dataName: name
     };
   }
 
   renderDefaultSankey() {
     const { props } = this;
 
-    return (
-      <Sankey
-        name={props.name}
-        data={props.data}
-      />
-    );
+    return <Sankey name={props.name} data={props.data} />;
   }
 
-
   render() {
-    const
-      {
-        name,
-        data,
-        children,
-        ...props
-      } = this.props;
+    const { name, data, children, ...props } = this.props;
 
     const components = Children.toArray(children);
 
     const sankey = components.find(comp => comp.type === Sankey);
-
 
     return (
       <ECharts {...props}>
@@ -62,7 +48,6 @@ class SankeyChart extends Component {
       </ECharts>
     );
   }
-
 }
 
 export default SankeyChart;

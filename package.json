@@ -4,8 +4,8 @@
   "description": "ECharts for React",
   "main": "lib/index.js",
   "scripts": {
-    "format": "prettier --write \"{src,test}/**/*.js\"",
-    "format:check": "prettier --list-different \"{src,test}/**/*.js\"",
+    "format": "prettier --write \"{src,test,docs}/**/*.js\"",
+    "format:check": "prettier --list-different \"{src,test,docs}/**/*.js\"",
     "dev": "NODE_ENV=development webpack-dev-server --mode development  --inline --progress --colors --port 3100 --host 0.0.0.0 --devtool source-map ",
     "docs": "rm -rf assets &&  NODE_ENV=production webpack  --mode production  --progress",
     "build": "rm -rf lib  && babel src --out-dir lib",

@@ -6,22 +6,21 @@ import Map from '../series/Map';
 import VisualMap from '../components/VisualMap';
 
 class MapChart extends Component {
-
   static propTypes = {
     name: PropTypes.string,
     data: PropTypes.arrayOf(PropTypes.any),
-    visualMap: PropTypes.bool,
+    visualMap: PropTypes.bool
   };
 
   static defaultProps = {
     data: [],
-    visualMap: true,
+    visualMap: true
   };
 
   static childContextTypes = {
     chartType: PropTypes.string,
     dataName: PropTypes.string,
-    chartData: PropTypes.arrayOf(PropTypes.any),
+    chartData: PropTypes.arrayOf(PropTypes.any)
   };
 
   getChildContext() {
@@ -29,37 +28,22 @@ class MapChart extends Component {
     return {
       chartType: 'map',
       dataName: name,
-      chartData: data,
+      chartData: data
     };
   }
 
   renderDefaultMap() {
     const { props } = this;
 
-    return (
-      <Map
-        name={props.name}
-        map={props.map}
-        data={props.data}
-      />
-    );
+    return <Map name={props.name} map={props.map} data={props.data} />;
   }
 
-
   render() {
-    const
-      {
-        name,
-        data,
-        visualMap,
-        children,
-        ...props
-      } = this.props;
+    const { name, data, visualMap, children, ...props } = this.props;
 
     const components = Children.toArray(children);
 
     const map = components.find(comp => comp.type === Map);
-
 
     return (
       <ECharts {...props}>
@@ -70,7 +54,6 @@ class MapChart extends Component {
       </ECharts>
     );
   }
-
 }
 
 export default MapChart;

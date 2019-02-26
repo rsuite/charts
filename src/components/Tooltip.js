@@ -6,33 +6,36 @@ import XAxis from './XAxis';
 import YAxis from './YAxis';
 
 class Tooltip extends EChartsComponentOption {
-
   static contextTypes = {
     ...EChartsComponentOption.contextTypes,
     chartType: PropTypes.string,
-    series: PropTypes.arrayOf(PropTypes.object),
+    series: PropTypes.arrayOf(PropTypes.object)
   };
 
   getOption() {
     const { chartType, series } = this.context;
 
-    const hasAxis = chartType === 'bar'
-      || chartType === 'line'
-      || !!series.find(comp => comp.type === XAxis || comp.type === YAxis);
+    const hasAxis =
+      chartType === 'bar' ||
+      chartType === 'line' ||
+      !!series.find(comp => comp.type === XAxis || comp.type === YAxis);
 
-    return _merge({
-      show: true,
-      trigger: hasAxis ? 'axis' : 'item',
-      axisPointer: {
-        type: 'none',
+    return _merge(
+      {
+        show: true,
+        trigger: hasAxis ? 'axis' : 'item',
+        axisPointer: {
+          type: 'none'
+        }
       },
-    }, this.props);
+      this.props
+    );
   }
 
   updateChartOption(option) {
     return {
       ...option,
-      tooltip: this.getOption(),
+      tooltip: this.getOption()
     };
   }
 }

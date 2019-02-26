@@ -17,21 +17,24 @@ export function transformTextOption(option, defaultOption) {
     return {
       ...defaultOption,
       show: true,
-      formatter: option,
+      formatter: option
     };
   }
   if (typeof option === 'object') {
-    return _merge({
-      ...defaultOption,
-      show: true,
-    }, option);
+    return _merge(
+      {
+        ...defaultOption,
+        show: true
+      },
+      option
+    );
   }
   return {
     ...defaultOption,
     show: true,
     formatter() {
       return option;
-    },
+    }
   };
 }
 

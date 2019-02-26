@@ -4,7 +4,7 @@ import CodeView from 'react-code-view';
 
 const data = {
   nodes: [
-    { name: 'Agricultural \'waste\'' },
+    { name: "Agricultural 'waste'" },
     { name: 'Bio-conversion' },
     { name: 'Liquid' },
     { name: 'Losses' },
@@ -54,7 +54,7 @@ const data = {
     { name: 'Wind' }
   ],
   links: [
-    { source: 'Agricultural \'waste\'', target: 'Bio-conversion', value: 124.729 },
+    { source: "Agricultural 'waste'", target: 'Bio-conversion', value: 124.729 },
     { source: 'Bio-conversion', target: 'Liquid', value: 0.597 },
     { source: 'Bio-conversion', target: 'Losses', value: 26.862 },
     { source: 'Bio-conversion', target: 'Solid', value: 280.322 },

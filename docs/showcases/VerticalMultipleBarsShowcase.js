@@ -13,9 +13,7 @@ const data = [
   ['2018-08', 730 * 1000, 680 * 1000, 80 * 1000, 180 * 1000, 270 * 1000, 180 * 1000]
 ];
 
-
 function VerticalMultipleBarsShowcase() {
-
   return (
     <CodeView
       classPrefix="rs-"

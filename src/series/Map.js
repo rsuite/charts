@@ -3,11 +3,10 @@ import 'echarts/map/js/china';
 import EChartsSeriesOption from './EChartsSeriesOption';
 
 class Map extends EChartsSeriesOption {
-
   static displayName = 'Map';
 
   static defaultProps = {
-    data: [],
+    data: []
   };
 
   getSeriesOption() {
@@ -22,7 +21,7 @@ class Map extends EChartsSeriesOption {
         areaColor: '#BEDBED',
         borderColor: '#ffffff',
         borderWidth: 1
-      },
+      }
     };
   }
 }

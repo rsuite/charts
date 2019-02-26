@@ -4,20 +4,22 @@ import _merge from 'lodash.merge';
 import EChartsComponentOption from '../EChartsComponentOption';
 
 class DataZoom extends EChartsComponentOption {
-
   static displayName = 'DataZoom';
 
   static contextTypes = {
     ...EChartsComponentOption.contextTypes,
-    dataName: PropTypes.string,
+    dataName: PropTypes.string
   };
 
   getOption() {
     const { props } = this;
 
-    return _merge({
-      type: 'slider',
-    }, props);
+    return _merge(
+      {
+        type: 'slider'
+      },
+      props
+    );
   }
 
   updateChartOption(option) {
@@ -26,7 +28,7 @@ class DataZoom extends EChartsComponentOption {
     if (!option.dataZoom) {
       return {
         ...option,
-        dataZoom: dataZoomOption,
+        dataZoom: dataZoomOption
       };
     }
 
@@ -34,7 +36,7 @@ class DataZoom extends EChartsComponentOption {
       ...option,
       dataZoom: Array.isArray(option.dataZoom)
         ? [...option.dataZoom, dataZoomOption]
-        : [option.dataZoom, dataZoomOption],
+        : [option.dataZoom, dataZoomOption]
     };
   }
 }

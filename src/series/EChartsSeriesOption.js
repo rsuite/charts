@@ -1,13 +1,11 @@
 import EChartsComponentOption from '../EChartsComponentOption';
 
 class EChartsSeriesOption extends EChartsComponentOption {
-
   getSeriesOption() {
     return {};
   }
 
   updateChartOption(option) {
-
     const seriesOption = this.getSeriesOption(option);
 
     if (!option.series) {
@@ -51,7 +49,6 @@ class EChartsSeriesOption extends EChartsComponentOption {
       series: option.series.filter(serie => serie !== thisSeries)
     };
   }
-
 }
 
 export default EChartsSeriesOption;
