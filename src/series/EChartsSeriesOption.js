@@ -1,6 +1,8 @@
 import EChartsComponentOption from '../EChartsComponentOption';
 
 class EChartsSeriesOption extends EChartsComponentOption {
+  static isSeriesOption = true;
+
   getSeriesOption() {
     return {};
   }

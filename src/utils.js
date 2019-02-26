@@ -1,9 +1,7 @@
 import _merge from 'lodash.merge';
 
-const series = ['Line', 'Bars', 'Map', 'Pie', 'Sankey', 'Scatter', 'Tree', 'Treemap'];
-
 export function isSeriesOption(reactComp) {
-  return series.includes(reactComp.type.name);
+  return !!reactComp.type.isSeriesOption;
 }
 
 export function transformTextOption(option, defaultOption) {
