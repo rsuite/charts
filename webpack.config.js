@@ -1,111 +1,97 @@
-const path = require("path");
-const webpack = require("webpack");
-const HtmlwebpackPlugin = require("html-webpack-plugin");
+const path = require('path');
+const webpack = require('webpack');
+const HtmlwebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const CompressionPlugin = require("compression-webpack-plugin");
-const markdownRenderer = require("react-markdown-reader").renderer;
+const markdownRenderer = require('react-markdown-reader').renderer;
 
 const { NODE_ENV } = process.env;
 const extractLess = new MiniCssExtractPlugin({
-  filename: "[name].[contenthash].css",
-  disable: NODE_ENV === "development",
+  filename: '[name].[contenthash].css',
+  disable: NODE_ENV === 'development'
 });
 
-const docsPath = NODE_ENV === "development" ? "./assets" : "./";
+const docsPath = NODE_ENV === 'development' ? './assets' : './';
 const plugins = [
   new webpack.HotModuleReplacementPlugin(),
   new webpack.NamedModulesPlugin(),
   new webpack.DefinePlugin({
-    NODE_ENV: JSON.stringify(NODE_ENV),
+    NODE_ENV: JSON.stringify(NODE_ENV)
   }),
   extractLess,
   new HtmlwebpackPlugin({
-    title: "Charts for React Suite",
-    filename: "index.html",
-    template: "docs/index.html",
+    title: 'Charts for React Suite',
+    filename: 'index.html',
+    template: 'docs/index.html',
     inject: true,
     hash: true,
-    path: docsPath,
-  }),
+    path: docsPath
+  })
 ];
 
-if (process.env.NODE_ENV === "production") {
-  plugins.push(new webpack.optimize.UglifyJsPlugin());
-  plugins.push(
-    new webpack.BannerPlugin({
-      banner: `Last update: ${new Date().toString()}`,
-    }),
-  );
-  plugins.push(
-    new CompressionPlugin({
-      asset: "[path].gz[query]",
-      algorithm: "gzip",
-      test: /\.(js|html)$/,
-      threshold: 10240,
-      minRatio: 0.8,
-    }),
-  );
-}
-
 const common = {
-  entry: path.resolve(__dirname, "src/"),
+  entry: path.resolve(__dirname, 'src/'),
   devServer: {
     hot: true,
-    contentBase: path.resolve(__dirname, ""),
-    publicPath: "/",
+    contentBase: path.resolve(__dirname, ''),
+    publicPath: '/'
   },
   output: {
-    path: path.resolve(__dirname, "assets"),
-    filename: "bundle.js",
-    publicPath: "./",
+    path: path.resolve(__dirname, 'assets'),
+    filename: 'bundle.js',
+    publicPath: './'
   },
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "src"),
-    },
+      '@': path.resolve(__dirname, 'src')
+    }
+  },
+  optimization: {
+    splitChunks: {
+      maxSize: 2097152
+    }
   },
   plugins,
   module: {
     rules: [
       {
         test: /\.jsx?$/,
-        use: ["babel-loader?babelrc"],
-        exclude: /node_modules/,
+        use: ['babel-loader?babelrc'],
+        exclude: /node_modules/
       },
       {
         test: /\.(less|css)$/,
         use: [
           MiniCssExtractPlugin.loader,
-          { loader: "css-loader" },
+          { loader: 'css-loader' },
           {
-            loader: "less-loader",
+            loader: 'less-loader',
             options: {
-              javascriptEnabled: true,
-            },
-          },
-        ],
+              javascriptEnabled: true
+            }
+          }
+        ]
       },
       {
         test: /\.md$/,
         use: [
           {
-            loader: "html-loader",
+            loader: 'html-loader'
           },
           {
-            loader: "markdown-loader",
+            loader: 'markdown-loader',
             options: {
               pedantic: true,
-              renderer: markdownRenderer(),
-            },
-          },
-        ],
-      },
-    ],
-  },
+              renderer: markdownRenderer()
+            }
+          }
+        ]
+      }
+    ]
+  }
 };
 
 module.exports = (env = {}) => {
   return Object.assign({}, common, {
-    entry: [path.resolve(__dirname, "docs/index")],
+    entry: [path.resolve(__dirname, 'docs/index')]
   });
 };
