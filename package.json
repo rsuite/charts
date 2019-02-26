@@ -1,6 +1,6 @@
 {
   "name": "@rsuite/charts",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "ECharts for React",
   "main": "lib/index.js",
   "scripts": {
@@ -10,7 +10,7 @@
     "publish-docs": "node docs/gh-pages.js",
     "prepages": "npm run docs",
     "pages": "npm run publish-docs",
-    "prerelease": "npm run build",
+    "prepublishOnly": "npm run build",
     "release": "npm publish --access public",
     "lint": "eslint src  *.js",
     "tdd": "karma start",
