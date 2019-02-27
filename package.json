@@ -3,6 +3,10 @@
   "version": "3.0.2",
   "description": "ECharts for React",
   "main": "lib/index.js",
+  "files": [
+    "src",
+    "lib"
+  ],
   "scripts": {
     "format": "prettier --write \"{src,test,docs}/**/*.js\"",
     "format:check": "prettier --list-different \"{src,test,docs}/**/*.js\"",

@@ -4,8 +4,6 @@ import PropTypes from 'prop-types';
 import ReactEchartsCore from 'echarts-for-react/lib/core';
 import echarts from 'echarts/lib/echarts';
 
-import 'echarts/lib/component/graphic';
-
 import { isSeriesOption } from './utils';
 
 const defaultOption = {

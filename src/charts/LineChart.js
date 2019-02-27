@@ -8,6 +8,15 @@ import Legend from '../components/Legend';
 import { isSeriesOption } from '../utils';
 import Tooltip from '../components/Tooltip';
 
+/**
+ * <ECharts>
+ *   <XAxis />
+ *   <YAxis />
+ *   <Line />
+ *   <Tooltip />
+ *   <Legend />
+ * </ECharts>
+ */
 class LineChart extends Component {
   static propTypes = {
     name: PropTypes.string,
@@ -30,29 +39,27 @@ class LineChart extends Component {
     };
   }
 
+  renderDefaultXAxis() {
+    const { data } = this.props;
+    return <XAxis data={data.map(([category]) => category)} />;
+  }
+
+  renderDefaultLine() {
+    const { name, data } = this.props;
+    return <Line name={name} data={data.map(d => d[1])} />;
+  }
+
   render() {
     const { name, data, tooltip, children, ...props } = this.props;
 
     const components = Children.toArray(children);
     const series = components.filter(isSeriesOption);
 
-    function renderDefaultLine() {
-      const values = data.map(d => d[1]);
-
-      return <Line name={name} data={values} />;
-    }
-
-    function renderDefaultXAxis() {
-      const categories = data.map(([category]) => category);
-
-      return <XAxis data={categories} />;
-    }
-
     return (
       <ECharts {...props}>
-        {!components.find(comp => comp.type === XAxis) && renderDefaultXAxis()}
+        {!components.find(comp => comp.type === XAxis) && this.renderDefaultXAxis()}
         {!components.find(comp => comp.type === YAxis) && <YAxis />}
-        {!components.find(comp => comp.type === Line) && renderDefaultLine()}
+        {!components.find(comp => comp.type === Line) && this.renderDefaultLine()}
         {tooltip && <Tooltip />}
         {!components.find(comp => comp.type === Legend) && <Legend />}
         {components.map(child => {

@@ -8,6 +8,24 @@ import Tooltip from '../components/Tooltip';
 import Bars from '../series/Bars';
 import { isSeriesOption } from '../utils';
 
+const categoryAxisProps = {
+  type: 'category',
+  splitLine: false
+};
+
+const valueAxisProps = {
+  type: 'value'
+};
+
+/**
+ * <ECharts>
+ *   <XAxis />
+ *   <YAxis />
+ *   <Bars />
+ *   <Tooltip />
+ *   <Legend />
+ * </ECharts>
+ */
 class BarChart extends Component {
   static propTypes = {
     name: PropTypes.string,
@@ -22,7 +40,8 @@ class BarChart extends Component {
     data: [],
     tooltip: true,
     xAxis: true,
-    yAxis: true
+    yAxis: true,
+    horizontal: false
   };
 
   static childContextTypes = {
@@ -36,14 +55,55 @@ class BarChart extends Component {
     return {
       chartType: 'bar',
       horizontal,
-      series: Children.toArray(children).filter(comp => isSeriesOption(comp))
+      series: Children.toArray(children).filter(isSeriesOption)
     };
+  }
+
+  renderDefaultCategoryAxis() {
+    const { horizontal, data: inputData } = this.props;
+
+    const data = horizontal ? [...inputData].reverse() : inputData;
+    const categories = data.map(([category]) => category);
+
+    return horizontal ? (
+      <YAxis {...categoryAxisProps} data={categories} />
+    ) : (
+      <XAxis {...categoryAxisProps} data={categories} />
+    );
+  }
+
+  renderDefaultValueAxis() {
+    const { horizontal, xAxis, yAxis } = this.props;
+
+    return horizontal ? (
+      <XAxis {...valueAxisProps} show={xAxis} />
+    ) : (
+      <YAxis {...valueAxisProps} show={yAxis} />
+    );
+  }
+
+  renderDefaultSeries() {
+    const { name, data: inputData, horizontal } = this.props;
+
+    // 水平图表从上往下阅读则需将 data 翻转过来
+    const data = horizontal ? [...inputData].reverse() : inputData;
+    const values = data.map(d => d[1]);
+
+    return <Bars name={name} data={horizontal ? values.reverse() : values} />;
+  }
+
+  renderDefaultLegend() {
+    const { name, children } = this.props;
+    const components = Children.toArray(children);
+    const series = components.filter(isSeriesOption);
+    const dataNames = series.length ? series.map(serie => serie.name) : [name];
+    return <Legend data={dataNames} />;
   }
 
   render() {
     const {
       name,
-      horizontal = false,
+      horizontal,
       data: inputData,
       tooltip,
       xAxis,
@@ -57,44 +117,6 @@ class BarChart extends Component {
 
     const data = horizontal ? [...inputData].reverse() : inputData;
 
-    function renderDefaultSeries() {
-      const values = data.map(d => d[1]);
-
-      return <Bars name={name} data={horizontal ? values.reverse() : values} />;
-    }
-
-    function renderDefaultLegend() {
-      const dataNames = series.length ? series.map(serie => serie.name) : [name];
-      return <Legend data={dataNames} />;
-    }
-
-    const categories = data.map(([category]) => category);
-
-    const categoryAxisProps = {
-      type: 'category',
-      splitLine: false
-    };
-
-    function renderDefaultCategoryAxis() {
-      return horizontal ? (
-        <YAxis {...categoryAxisProps} data={categories} />
-      ) : (
-        <XAxis {...categoryAxisProps} data={categories} />
-      );
-    }
-
-    const valueAxisProps = {
-      type: 'value'
-    };
-
-    function renderDefaultValueAxis() {
-      return horizontal ? (
-        <XAxis {...valueAxisProps} show={xAxis} />
-      ) : (
-        <YAxis {...valueAxisProps} show={yAxis} />
-      );
-    }
-
     const categoryAxis = horizontal
       ? components.find(comp => comp.type === YAxis)
       : components.find(comp => comp.type === XAxis);
@@ -105,10 +127,10 @@ class BarChart extends Component {
 
     return (
       <ECharts {...props}>
-        {!categoryAxis && renderDefaultCategoryAxis()}
-        {!valueAxis && renderDefaultValueAxis()}
-        {!components.find(comp => comp.type === Bars) && renderDefaultSeries()}
-        {!components.find(comp => comp.type === Legend) && renderDefaultLegend()}
+        {!categoryAxis && this.renderDefaultCategoryAxis()}
+        {!valueAxis && this.renderDefaultValueAxis()}
+        {!components.find(comp => comp.type === Bars) && this.renderDefaultSeries()}
+        {!components.find(comp => comp.type === Legend) && this.renderDefaultLegend()}
         {tooltip && <Tooltip />}
         {components.map(child => {
           if (child.type === (horizontal ? YAxis : XAxis)) {
