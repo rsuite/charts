@@ -1,3 +1,5 @@
+import 'echarts/lib/chart/bar';
+
 export default {
   color: [
     '#60c0dd',
