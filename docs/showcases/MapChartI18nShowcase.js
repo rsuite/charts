@@ -2,6 +2,7 @@ import React from 'react';
 import MapChart from '@/charts/MapChart';
 import CodeView from 'react-code-view';
 import 'echarts/map/js/china';
+import nameMap from '@/locales/en-US/china-provinces';
 
 function randomData() {
   return Math.round(Math.random() * 1000);
@@ -45,19 +46,20 @@ const data = [
   { name: '南海诸岛', value: randomData() }
 ].map(({ name, value }) => [name, value]);
 
-function ChinaMapChartShowcase() {
+function MapChartI18nShowcase() {
   return (
     <CodeView
       classPrefix="rs-"
       buttonClassName="rs-btn-subtle rs-btn-icon-circle"
       dependencies={{
         data,
-        MapChart
+        MapChart,
+        chinaProvinces: nameMap
       }}
     >
-      {require('../md/MapChart.md')}
+      {require('../md/MapChartI18n.md')}
     </CodeView>
   );
 }
 
-export default ChinaMapChartShowcase;
+export default MapChartI18nShowcase;

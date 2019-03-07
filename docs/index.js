@@ -22,6 +22,7 @@ import ChinaMapChartShowcase from './showcases/ChinaMapChartShowcase';
 import TreeChartShowcase from './showcases/TreeChartShowcase';
 import TreemapChartShowcase from './showcases/TreemapChartShowcase';
 import SankeyChartShowcase from './showcases/SankeyChartShowcase';
+import MapChartI18nShowcase from './showcases/MapChartI18nShowcase';
 
 class App extends Component {
   render() {
@@ -65,6 +66,9 @@ class App extends Component {
 
                 <h3>{'<PieChart>'}</h3>
                 <DonutChartShowcase />
+
+                <h3>{'<MapChart>'}</h3>
+                <MapChartI18nShowcase />
 
                 <Markdown>{require('./md/props.md')}</Markdown>
               </PageContent>

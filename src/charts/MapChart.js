@@ -33,9 +33,9 @@ class MapChart extends Component {
   }
 
   renderDefaultMap() {
-    const { props } = this;
+    const { visualMap, children, ...props } = this.props;
 
-    return <Map name={props.name} map={props.map} data={props.data} />;
+    return <Map {...props} />;
   }
 
   render() {

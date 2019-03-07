@@ -1,5 +1,4 @@
 import 'echarts/lib/chart/map';
-import 'echarts/map/js/china';
 import EChartsSeriesOption from './EChartsSeriesOption';
 
 class Map extends EChartsSeriesOption {
@@ -10,18 +9,20 @@ class Map extends EChartsSeriesOption {
   };
 
   getSeriesOption() {
-    const { props } = this;
+    const { map, name, data, nameMap, ...props } = this.props;
 
     return {
       type: 'map',
-      map: props.map,
-      name: props.name,
-      data: props.data.map(([name, value]) => ({ name, value })),
+      map,
+      name,
+      data: data.map(([name, value]) => ({ name: (nameMap && nameMap[name]) || name, value })),
       itemStyle: {
         areaColor: '#BEDBED',
         borderColor: '#ffffff',
         borderWidth: 1
-      }
+      },
+      nameMap,
+      ...props
     };
   }
 }
