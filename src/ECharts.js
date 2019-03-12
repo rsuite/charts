@@ -3,14 +3,13 @@ import PropTypes from 'prop-types';
 
 import ReactEchartsCore from 'echarts-for-react/lib/core';
 import echarts from 'echarts/lib/echarts';
-
 import { isSeriesOption } from './utils';
+import './theme/rsuite_light';
 
 const defaultOption = {
   grid: {
     containLabel: true
-  },
-  color: ['#34c3ff', '#a873e6', '#7ed321', '#13ba9e', '#1464ac', '#32a4d4', '#f5a623']
+  }
 };
 
 // ECharts with empty message and loading
@@ -48,8 +47,7 @@ class ECharts extends Component {
         grid: {
           ...defaultOption.grid,
           ...option.grid
-        },
-        color: option.color || defaultOption.color
+        }
       }
     };
   }
@@ -87,7 +85,14 @@ class ECharts extends Component {
   }
 
   render() {
-    const { height, className, style, children } = this.props;
+    const {
+      height,
+      className,
+      style,
+      children,
+      option: optionFromProps,
+      ...echartsForReactProps
+    } = this.props;
     const { option } = this.state;
     const dataEmpty =
       !option.series ||
@@ -104,6 +109,8 @@ class ECharts extends Component {
             style={{ height: '100%' }}
             ref={this.bindEChartsRef}
             notMerge
+            theme="rsuite_light"
+            {...echartsForReactProps}
           />
         )}
         {children}

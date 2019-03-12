@@ -5,7 +5,8 @@ import Tooltip from '../components/Tooltip';
 import VisualMap from '../components/VisualMap';
 import Treemap from '../series/Treemap';
 
-const treemapColors = ['#34C3FF', '#54CCFF', '#62D1FF', '#79D7FF', '#99E1FF', '#C6EEFF'];
+const treemapTooltipFormatter = ({ seriesName, name, value }) =>
+  `${name}<br>${seriesName}: ${value}`;
 
 class TreemapChart extends Component {
   static propTypes = {
@@ -45,8 +46,8 @@ class TreemapChart extends Component {
 
     return (
       <ECharts {...props}>
-        <Tooltip />
-        <VisualMap type="continuous" color={treemapColors} controller={null} />
+        <Tooltip formatter={treemapTooltipFormatter} />
+        <VisualMap />
         {!treemap && this.renderDefaultTreemap()}
         {children}
       </ECharts>

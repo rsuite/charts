@@ -22,7 +22,7 @@ class Line extends EChartsSeriesOption {
         type: 'line',
         symbol: 'none',
         stack: stack === true ? stackKey : stack,
-        areaStyle: area && { opacity: 0.2 }
+        areaStyle: area && { opacity: stack ? 0.6 : 0.2 }
       },
       props
     );

@@ -1,3 +1,4 @@
+import _merge from 'lodash.merge';
 import 'echarts/lib/chart/map';
 import EChartsSeriesOption from './EChartsSeriesOption';
 
@@ -9,21 +10,35 @@ class Map extends EChartsSeriesOption {
   };
 
   getSeriesOption() {
-    const { map, name, data, nameMap, ...props } = this.props;
+    const { type, map, name, data, nameMap, ...props } = this.props;
 
-    return {
-      type: 'map',
-      map,
-      name,
-      data: data.map(([name, value]) => ({ name: (nameMap && nameMap[name]) || name, value })),
-      itemStyle: {
-        areaColor: '#BEDBED',
-        borderColor: '#ffffff',
-        borderWidth: 1
+    return _merge(
+      {
+        type: 'map',
+        map,
+        name,
+        data: data.map(([name, value]) => ({ name: (nameMap && nameMap[name]) || name, value })),
+        itemStyle: {
+          areaColor: '#E5E5EA',
+          borderColor: '#ffffff',
+          borderWidth: 1
+        },
+        label: {
+          fontSize: 10
+        },
+        emphasis: {
+          label: {
+            color: 'rgb(131, 56, 236)'
+          },
+          itemStyle: {
+            areaColor: 'rgba(131, 56, 236, .3)',
+            borderColor: 'rgb(131, 56, 236)'
+          }
+        },
+        nameMap
       },
-      nameMap,
-      ...props
-    };
+      props
+    );
   }
 }
 

@@ -4,6 +4,7 @@ import CodeView from 'react-code-view';
 
 const data = {
   nodes: [
+    // eslint-disable-next-line quotes
     { name: "Agricultural 'waste'" },
     { name: 'Bio-conversion' },
     { name: 'Liquid' },

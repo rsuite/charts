@@ -5,6 +5,14 @@ import Tooltip from '../components/Tooltip';
 import Map from '../series/Map';
 import VisualMap from '../components/VisualMap';
 
+const mapVisualMapColors = [
+  'rgb(8, 132, 204)',
+  'rgba(8, 132, 204, .8)',
+  'rgba(8, 132, 204, .6)',
+  'rgba(8, 132, 204, .4)',
+  'rgba(8, 132, 204, .3)'
+];
+
 class MapChart extends Component {
   static propTypes = {
     name: PropTypes.string,
@@ -48,7 +56,17 @@ class MapChart extends Component {
     return (
       <ECharts {...props}>
         <Tooltip />
-        {visualMap === true && <VisualMap />}
+        {visualMap === true && (
+          <VisualMap
+            type="piecewise"
+            inRange={{
+              color: [...mapVisualMapColors].reverse()
+            }}
+            controller={{
+              symbol: 'rect'
+            }}
+          />
+        )}
         {!map && this.renderDefaultMap()}
         {children}
       </ECharts>

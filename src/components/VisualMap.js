@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import _merge from 'lodash.merge';
 import EChartsComponentOption from '../EChartsComponentOption';
 
-const colors = ['#2485C1', '#3991C7', '#7BB6DA', '#91C1DF', '#A7CEE6', '#BEDBED'];
-
 class VisualMap extends EChartsComponentOption {
   static displayName = 'VisualMap';
 
@@ -15,31 +13,38 @@ class VisualMap extends EChartsComponentOption {
   };
 
   updateChartOption(option) {
-    const { color = colors, ...props } = this.props;
+    const { type = 'continuous', ...props } = this.props;
     const { dataName, chartData } = this.context;
+
+    let inRange = {
+      colorHue: [198, 199],
+      colorSaturation: [1, 1],
+      colorLightness: [0.88, 0.451]
+    };
+
+    if (type === 'piecewise') {
+      inRange = {
+        symbol: 'rect'
+      };
+    }
 
     const visualMapOption = _merge(
       {
-        type: 'piecewise',
-        left: 50,
-        bottom: 30,
-        text: [dataName],
+        type,
+        left: 0,
+        bottom: 0,
+        text: ['最大值', '最小值'],
+        textGap: 5,
         orient: 'horizontal',
         inverse: true,
-        // splitNumber: Math.min(5, data.length),
         min: 0,
-        color,
-        itemGap: 30,
-        symbolSize: 4,
+
+        itemGap: 1,
+        symbolSize: [18, 14],
         textStyle: {
           color: '#8e8e93'
         },
-        controller: {
-          inRange: {
-            symbol: 'circle',
-            color: [...color].reverse()
-          }
-        }
+        inRange
       },
       props
     );

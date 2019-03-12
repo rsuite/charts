@@ -37,10 +37,23 @@ class Treemap extends EChartsSeriesOption {
           borderWidth: 1
         },
         visibleMin: 300,
-        leafDepth: 2,
+        leafDepth: 1,
+        drillDownIcon: null,
         label: {
           position: 'insideTopLeft',
-          color: '#575757'
+          color: '#ffffff',
+          fontSize: 12,
+          lineHeight: 17,
+          formatter({ name, value }) {
+            return `{a|${name}\n${value}}`;
+          },
+          rich: {
+            a: {
+              color: '#ffffff',
+              fontSize: 12,
+              lineHeight: 17
+            }
+          }
         },
         levels: [
           {
