@@ -23,6 +23,7 @@ import TreeChartShowcase from './showcases/TreeChartShowcase';
 import TreemapChartShowcase from './showcases/TreemapChartShowcase';
 import SankeyChartShowcase from './showcases/SankeyChartShowcase';
 import MapChartI18nShowcase from './showcases/MapChartI18nShowcase';
+import RadarShowcase from './showcases/RadarShowcase';
 
 class App extends Component {
   render() {
@@ -49,6 +50,7 @@ class App extends Component {
                 <TreeChartShowcase />
                 <TreemapChartShowcase />
                 <SankeyChartShowcase />
+                <RadarShowcase />
 
                 <h2>高级示例</h2>
                 <h3>{'<LineChart>'}</h3>
