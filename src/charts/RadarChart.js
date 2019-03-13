@@ -2,12 +2,9 @@ import React, { Children, cloneElement, Component } from 'react';
 import PropTypes from 'prop-types';
 import ECharts from '../ECharts';
 import Tooltip from '../components/Tooltip';
-import VisualMap from '../components/VisualMap';
-import Treemap from '../series/Treemap';
 import Legend from '@/components/Legend';
 import Radar from '@/components/Radar';
 import RadarLine from '@/series/RadarLine';
-import XAxis from '@/components/XAxis';
 import { isSeriesOption } from '@/utils';
 
 class RadarChart extends Component {
@@ -32,7 +29,7 @@ class RadarChart extends Component {
   getChildContext() {
     const { name } = this.props;
     return {
-      chartType: 'treemap',
+      chartType: 'radar',
       dataName: name
     };
   }

@@ -7,12 +7,6 @@ import Bars from '../series/Bars';
 class XAxis extends EChartsComponentOption {
   static displayName = 'XAxis';
 
-  static defaultProps = {
-    show: true,
-    type: 'category',
-    data: []
-  };
-
   static contextTypes = {
     ...EChartsComponentOption.contextTypes,
     chartType: PropTypes.string,
@@ -46,6 +40,10 @@ class XAxis extends EChartsComponentOption {
         }),
         splitLine: {
           show: false
+        },
+        nameTextStyle: {
+          fontSize: 12,
+          color: '#575757'
         }
       },
       props

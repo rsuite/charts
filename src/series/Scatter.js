@@ -26,7 +26,12 @@ class Scatter extends EChartsSeriesOption {
         symbol: chartType === 'bar' ? 'emptyCircle' : 'circle',
         symbolSize: 9,
         itemStyle: {
-          opacity: 1
+          opacity: chartType === 'bar' ? 1 : 0.7
+        },
+        emphasis: {
+          itemStyle: {
+            opacity: 1
+          }
         }
       },
       props

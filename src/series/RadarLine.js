@@ -55,7 +55,6 @@ class RadarLine extends EChartsSeriesOption {
     const thisDataOption = radarSerie.data.find(
       dataOption => dataOption.name === radarDataOption.name
     );
-    console.log(thisDataOption);
     if (!thisDataOption) {
       radarSerie.data.push(radarDataOption);
     } else {

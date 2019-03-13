@@ -14,13 +14,16 @@ class YAxis extends EChartsComponentOption {
   key = randstr();
 
   getOption() {
-    const { axisLabel, splitLine, ...props } = this.props;
+    const { name, axisLabel, splitLine, ...props } = this.props;
 
     return _merge(
       {
         key: this.key,
         axisLine: {
-          show: false
+          show: false,
+          lineStyle: {
+            color: '#e5e5ea'
+          }
         },
         axisTick: {
           show: false
@@ -36,6 +39,12 @@ class YAxis extends EChartsComponentOption {
           lineStyle: {
             color: '#efefef'
           }
+        },
+        nameRotate: 0,
+        name: name && props.nameLocation === 'middle' ? name.split('').join('\n') : name,
+        nameTextStyle: {
+          fontSize: 12,
+          color: '#575757'
         }
       },
       props
