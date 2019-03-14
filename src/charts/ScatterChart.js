@@ -79,7 +79,7 @@ class ScatterChart extends Component {
         {!components.find(comp => comp.type === YAxis) && <YAxis {...yAxisProps} />}
         {!components.find(comp => comp.type === Scatter) && this.renderDefaultScatter()}
         {tooltip && <Tooltip />}
-        {legend && <Legend icon="circle" itemHeight={10} itemWidth={10} />}
+        {legend && <Legend icon="circle" itemHeight={10} itemWidth={10} itemGap={30} />}
         {components.map(child => {
           if (child.type === XAxis) {
             return cloneElement(child, xAxisProps);
