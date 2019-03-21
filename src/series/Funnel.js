@@ -2,7 +2,7 @@ import 'echarts/lib/chart/line';
 import PropTypes from 'prop-types';
 import _merge from 'lodash.merge';
 import EChartsSeriesOption from './EChartsSeriesOption';
-import { transformTextOption } from '@/utils';
+import { transformTextOption } from '../utils';
 
 class Funnel extends EChartsSeriesOption {
   static displayName = 'Funnel';

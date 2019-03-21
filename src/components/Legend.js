@@ -2,7 +2,7 @@ import 'echarts/lib/component/legend';
 import PropTypes from 'prop-types';
 import _merge from 'lodash.merge';
 import EChartsComponentOption from '../EChartsComponentOption';
-import { randstr } from '@/utils';
+import { randstr } from '../utils';
 
 class Legend extends EChartsComponentOption {
   static displayName = 'Legend';

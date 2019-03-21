@@ -2,10 +2,10 @@ import React, { Children, cloneElement, Component } from 'react';
 import PropTypes from 'prop-types';
 import ECharts from '../ECharts';
 import Tooltip from '../components/Tooltip';
-import Legend from '@/components/Legend';
-import Radar from '@/components/Radar';
-import RadarLine from '@/series/RadarLine';
-import { isSeriesOption } from '@/utils';
+import Legend from '../components/Legend';
+import Radar from '../components/Radar';
+import RadarLine from '../series/RadarLine';
+import { isSeriesOption } from '../utils';
 
 class RadarChart extends Component {
   static propTypes = {

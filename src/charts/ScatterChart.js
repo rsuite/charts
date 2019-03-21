@@ -2,10 +2,10 @@ import React, { Children, cloneElement, Component } from 'react';
 import PropTypes from 'prop-types';
 import ECharts from '../ECharts';
 import Tooltip from '../components/Tooltip';
-import Legend from '@/components/Legend';
-import XAxis from '@/components/XAxis';
-import YAxis from '@/components/YAxis';
-import Scatter from '@/series/Scatter';
+import Legend from '../components/Legend';
+import XAxis from '../components/XAxis';
+import YAxis from '../components/YAxis';
+import Scatter from '../series/Scatter';
 
 const xAxisProps = {
   axisLine: {

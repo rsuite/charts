@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import _merge from 'lodash.merge';
 import ECharts from '../ECharts';
 import Tooltip from '../components/Tooltip';
-import Funnel from '@/series/Funnel';
-import Legend from '@/components/Legend';
+import Funnel from '../series/Funnel';
+import Legend from '../components/Legend';
 
 const funnelDefaultWidth = 40;
 
