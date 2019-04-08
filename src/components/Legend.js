@@ -1,4 +1,5 @@
 import 'echarts/lib/component/legend';
+import 'echarts/lib/component/legendScroll';
 import PropTypes from 'prop-types';
 import _merge from 'lodash.merge';
 import EChartsComponentOption from '../EChartsComponentOption';
