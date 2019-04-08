@@ -1,8 +1,11 @@
 
 ### 地图
 
+使用地图时需要手动引入 `echarts` 中对应的地图组件。详见代码示例。
+
 <!--start-code-->
 ```js
+// 手动引入 echarts 中的地图
 // import 'echarts/map/js/china';
 
 // const data = [
