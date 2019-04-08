@@ -33,7 +33,8 @@ class BarChart extends Component {
     data: PropTypes.arrayOf(PropTypes.any),
     tooltip: PropTypes.bool,
     xAxis: PropTypes.bool,
-    yAxis: PropTypes.bool
+    yAxis: PropTypes.bool,
+    legend: PropTypes.bool
   };
 
   static defaultProps = {
@@ -41,7 +42,8 @@ class BarChart extends Component {
     tooltip: true,
     xAxis: true,
     yAxis: true,
-    horizontal: false
+    horizontal: false,
+    legend: true
   };
 
   static childContextTypes = {
@@ -109,6 +111,7 @@ class BarChart extends Component {
       xAxis,
       yAxis,
       children,
+      legend,
       ...props
     } = this.props;
 
@@ -130,7 +133,7 @@ class BarChart extends Component {
         {!categoryAxis && this.renderDefaultCategoryAxis()}
         {!valueAxis && this.renderDefaultValueAxis()}
         {!components.find(comp => comp.type === Bars) && this.renderDefaultSeries()}
-        {!components.find(comp => comp.type === Legend) && this.renderDefaultLegend()}
+        {legend && !components.find(comp => comp.type === Legend) && this.renderDefaultLegend()}
         {tooltip && <Tooltip />}
         {components.map(child => {
           if (child.type === (horizontal ? YAxis : XAxis)) {
