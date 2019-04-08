@@ -56,17 +56,16 @@ class MapChart extends Component {
     return (
       <ECharts {...props}>
         <Tooltip />
-        {visualMap === true && (
-          <VisualMap
-            type="piecewise"
-            inRange={{
-              color: [...mapVisualMapColors].reverse()
-            }}
-            controller={{
-              symbol: 'rect'
-            }}
-          />
-        )}
+        <VisualMap
+          show={visualMap !== false}
+          type="piecewise"
+          inRange={{
+            color: [...mapVisualMapColors].reverse()
+          }}
+          controller={{
+            symbol: 'rect'
+          }}
+        />
         {!map && this.renderDefaultMap()}
         {children}
       </ECharts>
