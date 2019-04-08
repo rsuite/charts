@@ -20,6 +20,7 @@ class Legend extends EChartsComponentOption {
     const { ...props } = this.props;
     const { chartType, series, chartData } = this.context;
     let legendOption = {
+      key: this.key,
       show: true,
       data:
         chartType === 'pie' ? chartData.map(([name]) => name) : series.map(comp => comp.props.name),
