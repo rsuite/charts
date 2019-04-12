@@ -38,7 +38,7 @@ class PieChart extends Component {
   }
 
   renderDefaultPie() {
-    const { data, ...props } = this.props;
+    const { data, children, ...props } = this.props;
     return <Pie data={this.getPieData()} {...props} />;
   }
 
