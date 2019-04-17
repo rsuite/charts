@@ -27,6 +27,7 @@ xAxis: {
 | prop | type | default | description |
 | ---- | ---- | ------- | ----------- |
 | option | `object`  |  | ECharts 配置项，详见　[ECharts 配置项手册](http://echarts.baidu.com/option.html)|
+| loading | `boolean` | `false` | 显示 loading 状态 |
 | height | `number` | 300 | 图表高度 |
 | locale | `object<{emptyMessage, loading}>` | `{emptyMessage: 'No data found', loading: 'Loading...'}` | 数据为空/loading 时显示的信息|
 

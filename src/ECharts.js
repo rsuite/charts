@@ -1,10 +1,25 @@
 import React, { Children, Component } from 'react';
 import PropTypes from 'prop-types';
-
 import ReactEchartsCore from 'echarts-for-react/lib/core';
 import echarts from 'echarts/lib/echarts';
 import { isSeriesOption } from './utils';
 import './theme/rsuite_light';
+
+const styles = {
+  blockCenter: {
+    width: '100%',
+    height: '100%',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  loaderWrap: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    backgroundColor: 'rgba(255, 255, 255, 0.9)'
+  }
+};
 
 const defaultOption = {
   grid: {
@@ -16,6 +31,7 @@ const defaultOption = {
 class ECharts extends Component {
   static propTypes = {
     height: PropTypes.number,
+    loading: PropTypes.bool,
     option: PropTypes.object,
     locale: PropTypes.shape({
       emptyMessage: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
@@ -69,17 +85,20 @@ class ECharts extends Component {
   renderEmptyMessage() {
     const { locale } = this.props;
     return (
-      <div
-        className="rs-echarts-body-info"
-        style={{
-          width: '100%',
-          height: '100%',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center'
-        }}
-      >
+      <div className="rs-echarts-body-info" style={styles.blockCenter}>
         {locale.emptyMessage}
+      </div>
+    );
+  }
+
+  renderLoader() {
+    const { locale } = this.props;
+    return (
+      <div
+        className="rs-echarts-loader-wrap"
+        style={{ ...styles.blockCenter, ...styles.loaderWrap }}
+      >
+        {locale.loading}
       </div>
     );
   }
@@ -90,6 +109,7 @@ class ECharts extends Component {
       className,
       style,
       children,
+      loading,
       option: optionFromProps,
       ...echartsForReactProps
     } = this.props;
@@ -99,7 +119,10 @@ class ECharts extends Component {
       option.series.reduce((empty, serie) => empty && (!serie.data || serie.data.length < 1), true);
 
     return (
-      <div className={`rs-echarts ${className || ''}`} style={{ height, ...style }}>
+      <div
+        className={`rs-echarts ${className || ''}`}
+        style={{ position: 'relative', height, ...style }}
+      >
         {dataEmpty ? (
           this.renderEmptyMessage()
         ) : (
@@ -114,6 +137,7 @@ class ECharts extends Component {
           />
         )}
         {children}
+        {loading && this.renderLoader()}
       </div>
     );
   }
