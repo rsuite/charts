@@ -5,12 +5,15 @@ import Pie from '../series/Pie';
 import Tooltip from '../components/Tooltip';
 import Legend from '../components/Legend';
 
+const { option, ...EChartsPropTypes } = ECharts.propTypes;
+
 class PieChart extends Component {
   static propTypes = {
     name: PropTypes.string,
     donut: PropTypes.bool,
     data: PropTypes.arrayOf(PropTypes.any),
-    legend: PropTypes.bool
+    legend: PropTypes.bool,
+    ...EChartsPropTypes
   };
 
   static defaultProps = {
@@ -38,7 +41,7 @@ class PieChart extends Component {
   }
 
   renderDefaultPie() {
-    const { data, children, ...props } = this.props;
+    const { data, children, loading, locale, ...props } = this.props;
     return <Pie data={this.getPieData()} {...props} />;
   }
 
