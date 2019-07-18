@@ -113,7 +113,7 @@ class ECharts extends Component {
       option: optionFromProps,
       ...echartsForReactProps
     } = this.props;
-    const { option } = this.state;
+    const option = children ? this.state.option : optionFromProps;
     const dataEmpty =
       !option.series ||
       option.series.reduce((empty, serie) => empty && (!serie.data || serie.data.length < 1), true);
