@@ -7,12 +7,13 @@
 
 ```bash
 npm i --save @rsuite/charts echarts
+npm i --save echarts #可选择安装需要的 echarts 版本
 ```
 
 ## Usage
 
 ```js
-import { LineChart } from "@rsuite/charts";
+import LineChart from "@rsuite/charts/lib/charts/LineChart";
 
 const data = [["00:00", random()], ["01:00", random()]];
 const App = () => <LineChart name="Page View" data={data} />;
