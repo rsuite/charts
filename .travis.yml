@@ -11,7 +11,7 @@ env:
 
 cache:
   directories:
-    - node_modules
+    - "$HOME/.npm"
 
 after_script:
     - npm run coveralls
