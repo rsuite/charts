@@ -1,5 +1,6 @@
 import React from 'react';
 import MapChart from '@/charts/MapChart';
+import VisualMap from '@/components/VisualMap';
 import CodeView from 'react-code-view';
 import 'echarts/map/js/china';
 import nameMap from '@/locales/en-US/china-provinces';
@@ -54,6 +55,7 @@ function MapChartI18nShowcase() {
       dependencies={{
         data,
         MapChart,
+        VisualMap,
         chinaProvinces: nameMap
       }}
     >

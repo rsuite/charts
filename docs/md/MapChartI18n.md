@@ -26,7 +26,9 @@ ReactDOM.render(
     map="china"
     data={data}
     nameMap={chinaProvinces}
-  />
+  >
+    <VisualMap text={['Max', 'Min']} />
+  </MapChart>
 );
 ```
 <!--end-code-->

@@ -1,5 +1,6 @@
 import React, { Children, Component } from 'react';
 import PropTypes from 'prop-types';
+import _merge from 'lodash.merge';
 import ECharts from '../ECharts';
 import Tooltip from '../components/Tooltip';
 import Map from '../series/Map';
@@ -47,27 +48,36 @@ class MapChart extends Component {
   }
 
   render() {
-    const { name, data, visualMap, children, ...props } = this.props;
+    const { name, data, visualMap: shouldShowVisualMap, children, ...props } = this.props;
 
     const components = Children.toArray(children);
+
+    const compVisualMap = components.find(comp => comp.type === VisualMap);
+
+    const visualMapProps = {
+      show: shouldShowVisualMap !== false,
+      type: 'piecewise',
+      inRange: {
+        color: [...mapVisualMapColors].reverse()
+      },
+      controller: {
+        symbol: 'rect'
+      }
+    };
 
     const map = components.find(comp => comp.type === Map);
 
     return (
       <ECharts {...props}>
         <Tooltip />
-        <VisualMap
-          show={visualMap !== false}
-          type="piecewise"
-          inRange={{
-            color: [...mapVisualMapColors].reverse()
-          }}
-          controller={{
-            symbol: 'rect'
-          }}
-        />
+        {!compVisualMap && <VisualMap {...visualMapProps} />}
         {!map && this.renderDefaultMap()}
-        {children}
+        {components.map(child => {
+          if (child.type === VisualMap) {
+            return React.cloneElement(child, _merge(visualMapProps, child.props));
+          }
+          return child;
+        })}
       </ECharts>
     );
   }
