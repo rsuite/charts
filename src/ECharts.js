@@ -30,7 +30,7 @@ const defaultOption = {
 // ECharts with empty message and loading
 class ECharts extends Component {
   static propTypes = {
-    height: PropTypes.number,
+    height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     loading: PropTypes.bool,
     option: PropTypes.object,
     locale: PropTypes.shape({
