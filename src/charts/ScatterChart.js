@@ -1,5 +1,6 @@
 import React, { Children, cloneElement, Component } from 'react';
 import PropTypes from 'prop-types';
+import _merge from 'lodash.merge';
 import ECharts from '../ECharts';
 import Tooltip from '../components/Tooltip';
 import Legend from '../components/Legend';
@@ -82,10 +83,10 @@ class ScatterChart extends Component {
         {legend && <Legend icon="circle" itemHeight={10} itemWidth={10} itemGap={30} />}
         {components.map(child => {
           if (child.type === XAxis) {
-            return cloneElement(child, xAxisProps);
+            return cloneElement(child, _merge(xAxisProps, child.props));
           }
           if (child.type === YAxis) {
-            return cloneElement(child, yAxisProps);
+            return cloneElement(child, _merge(yAxisProps, child.props));
           }
           return child;
         })}
