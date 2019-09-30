@@ -49,12 +49,13 @@ class PieChart extends Component {
     const { name, children, donut, legend, ...props } = this.props;
 
     const components = Children.toArray(children);
+    const legendInChildren = components.find(comp => comp.type === Legend);
     const pie = components.find(comp => comp.type === Pie);
     const tooltip = components.find(comp => comp.type === Tooltip);
 
     return (
       <ECharts {...props}>
-        {legend === true && <Legend />}
+        {legend === true && !legendInChildren && <Legend />}
         {!tooltip && <Tooltip />}
         {!pie && this.renderDefaultPie()}
         {children}
