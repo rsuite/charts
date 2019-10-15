@@ -30,6 +30,10 @@ class SankeyChart extends Component {
     };
   }
 
+  bindEChartsRef = ref => {
+    this.echarts = ref && ref.echarts;
+  };
+
   renderDefaultSankey() {
     const { props } = this;
 
@@ -44,7 +48,7 @@ class SankeyChart extends Component {
     const sankey = components.find(comp => comp.type === Sankey);
 
     return (
-      <ECharts {...props}>
+      <ECharts ref={this.bindEChartsRef} {...props}>
         <Tooltip />
         {!sankey && this.renderDefaultSankey()}
         {children}

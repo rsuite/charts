@@ -36,6 +36,10 @@ class FunnelChart extends Component {
     };
   }
 
+  bindEChartsRef = ref => {
+    this.echarts = ref && ref.echarts;
+  };
+
   renderDefaultFunnel() {
     const { name, data, asc } = this.props;
     const funnelPosition = {
@@ -133,7 +137,7 @@ class FunnelChart extends Component {
     }
 
     return (
-      <ECharts option={_merge(titleOption, option)} {...props}>
+      <ECharts ref={this.bindEChartsRef} option={_merge(titleOption, option)} {...props}>
         {!funnels.length && this.renderDefaultFunnel()}
         {funnels.length > 0 && this.renderFunnels(funnels)}
         {tooltip && <Tooltip />}

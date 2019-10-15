@@ -34,6 +34,10 @@ class RadarChart extends Component {
     };
   }
 
+  bindEChartsRef = ref => {
+    this.echarts = ref && ref.echarts;
+  };
+
   renderDefaultRadar() {
     const { data } = this.props;
     const indicator = data.map(([name, max]) => ({ name, max }));
@@ -53,7 +57,7 @@ class RadarChart extends Component {
     const series = components.filter(isSeriesOption);
 
     return (
-      <ECharts {...props}>
+      <ECharts ref={this.bindEChartsRef} {...props}>
         {!components.find(comp => comp.type === Radar) && this.renderDefaultRadar()}
         {!components.find(comp => comp.type === RadarLine) && this.renderDefaultRadarLine()}
         {tooltip && <Tooltip />}

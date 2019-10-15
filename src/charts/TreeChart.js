@@ -27,6 +27,10 @@ class TreeChart extends Component {
     };
   }
 
+  bindEChartsRef = ref => {
+    this.echarts = ref && ref.echarts;
+  };
+
   renderDefaultTree() {
     const { props } = this;
 
@@ -41,7 +45,7 @@ class TreeChart extends Component {
     const tree = components.find(comp => comp.type === Tree);
 
     return (
-      <ECharts {...props}>
+      <ECharts ref={this.bindEChartsRef} {...props}>
         <Tooltip />
         {!tree && this.renderDefaultTree()}
         {children}

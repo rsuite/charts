@@ -61,6 +61,10 @@ class BarChart extends Component {
     };
   }
 
+  bindEChartsRef = ref => {
+    this.echarts = ref && ref.echarts;
+  };
+
   renderDefaultCategoryAxis() {
     const { horizontal, data: inputData } = this.props;
 
@@ -129,7 +133,7 @@ class BarChart extends Component {
       : components.find(comp => comp.type === YAxis);
 
     return (
-      <ECharts {...props}>
+      <ECharts ref={this.bindEChartsRef} {...props}>
         {!categoryAxis && this.renderDefaultCategoryAxis()}
         {!valueAxis && this.renderDefaultValueAxis()}
         {!components.find(comp => comp.type === Bars) && this.renderDefaultSeries()}

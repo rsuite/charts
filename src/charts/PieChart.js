@@ -35,6 +35,10 @@ class PieChart extends Component {
     };
   }
 
+  bindEChartsRef = ref => {
+    this.echarts = ref && ref.echarts;
+  };
+
   getPieData() {
     const { data } = this.props;
     return data.map(([name, value]) => ({ name, value }));
@@ -54,7 +58,7 @@ class PieChart extends Component {
     const tooltip = components.find(comp => comp.type === Tooltip);
 
     return (
-      <ECharts {...props}>
+      <ECharts ref={this.bindEChartsRef} {...props}>
         {legend === true && !legendInChildren && <Legend />}
         {!tooltip && <Tooltip />}
         {!pie && this.renderDefaultPie()}

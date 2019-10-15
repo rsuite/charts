@@ -31,6 +31,10 @@ class TreemapChart extends Component {
     };
   }
 
+  bindEChartsRef = ref => {
+    this.echarts = ref && ref.echarts;
+  };
+
   renderDefaultTreemap() {
     const { props } = this;
 
@@ -45,7 +49,7 @@ class TreemapChart extends Component {
     const treemap = components.find(comp => comp.type === Treemap);
 
     return (
-      <ECharts {...props}>
+      <ECharts ref={this.bindEChartsRef} {...props}>
         <Tooltip formatter={treemapTooltipFormatter} />
         <VisualMap />
         {!treemap && this.renderDefaultTreemap()}

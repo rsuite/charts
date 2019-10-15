@@ -123,19 +123,16 @@ class ECharts extends Component {
         className={`rs-echarts ${className || ''}`}
         style={{ position: 'relative', height, ...style }}
       >
-        {dataEmpty ? (
-          this.renderEmptyMessage()
-        ) : (
-          <ReactEchartsCore
-            echarts={echarts}
-            option={option}
-            style={{ height: '100%' }}
-            ref={this.bindEChartsRef}
-            notMerge
-            theme="rsuite_light"
-            {...echartsForReactProps}
-          />
-        )}
+        {dataEmpty && this.renderEmptyMessage()}
+        <ReactEchartsCore
+          echarts={echarts}
+          option={option}
+          style={{ height: '100%', visibility: dataEmpty ? 'hidden' : 'visible' }}
+          ref={this.bindEChartsRef}
+          notMerge
+          theme="rsuite_light"
+          {...echartsForReactProps}
+        />
         {children}
         {loading && this.renderLoader()}
       </div>

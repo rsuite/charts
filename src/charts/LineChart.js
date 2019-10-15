@@ -39,6 +39,10 @@ class LineChart extends Component {
     };
   }
 
+  bindEChartsRef = ref => {
+    this.echarts = ref && ref.echarts;
+  };
+
   renderDefaultXAxis() {
     const { data } = this.props;
     return <XAxis data={data.map(([category]) => category)} />;
@@ -56,7 +60,7 @@ class LineChart extends Component {
     const series = components.filter(isSeriesOption);
 
     return (
-      <ECharts {...props}>
+      <ECharts ref={this.bindEChartsRef} {...props}>
         {!components.find(comp => comp.type === XAxis) && this.renderDefaultXAxis()}
         {!components.find(comp => comp.type === YAxis) && <YAxis />}
         {!components.find(comp => comp.type === Line) && this.renderDefaultLine()}

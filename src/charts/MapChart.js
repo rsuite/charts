@@ -41,6 +41,10 @@ class MapChart extends Component {
     };
   }
 
+  bindEChartsRef = ref => {
+    this.echarts = ref && ref.echarts;
+  };
+
   renderDefaultMap() {
     const { visualMap, children, ...props } = this.props;
 
@@ -68,7 +72,7 @@ class MapChart extends Component {
     const map = components.find(comp => comp.type === Map);
 
     return (
-      <ECharts {...props}>
+      <ECharts ref={this.bindEChartsRef} {...props}>
         <Tooltip />
         {!compVisualMap && <VisualMap {...visualMapProps} />}
         {!map && this.renderDefaultMap()}

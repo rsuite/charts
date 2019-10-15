@@ -64,6 +64,10 @@ class ScatterChart extends Component {
     };
   }
 
+  bindEChartsRef = ref => {
+    this.echarts = ref && ref.echarts;
+  };
+
   renderDefaultScatter() {
     const { name, data } = this.props;
 
@@ -75,7 +79,7 @@ class ScatterChart extends Component {
     const components = Children.toArray(children);
 
     return (
-      <ECharts {...props}>
+      <ECharts ref={this.bindEChartsRef} {...props}>
         {!components.find(comp => comp.type === XAxis) && <XAxis {...xAxisProps} />}
         {!components.find(comp => comp.type === YAxis) && <YAxis {...yAxisProps} />}
         {!components.find(comp => comp.type === Scatter) && this.renderDefaultScatter()}
