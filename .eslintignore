@@ -2,3 +2,4 @@
 /build/**
 webpack.config.js
 karma.conf.js
+*.d.ts
