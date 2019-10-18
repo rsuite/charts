@@ -95,7 +95,7 @@ class BarChart extends Component {
     const data = horizontal ? [...inputData].reverse() : inputData;
     const values = data.map(d => d[1]);
 
-    return <Bars name={name} data={horizontal ? values.reverse() : values} />;
+    return <Bars name={name} data={values} />;
   }
 
   renderDefaultLegend() {
