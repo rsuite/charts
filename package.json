@@ -1,12 +1,13 @@
 {
   "name": "@rsuite/charts",
-  "version": "3.1.9",
+  "version": "3.2.0",
   "description": "ECharts for React",
   "main": "lib/index.js",
   "types": "index.d.ts",
   "files": [
     "src",
-    "lib"
+    "lib",
+    "index.d.ts"
   ],
   "scripts": {
     "format": "prettier --write \"{src,test,docs}/**/*.js\"",
