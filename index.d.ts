@@ -43,11 +43,13 @@ declare module '@rsuite/charts/lib/components/VisualMap' {
   }
 }
 
+type AxisLabelFormatter = (value: string | number) => string;
+
 declare module '@rsuite/charts/lib/components/XAxis' {
 
   type XAxisProps = echarts.EChartOption.XAxis & {
     axisLine?: echarts.EChartOption.XAxis['axisLine'] | boolean;
-    axisLabel?: echarts.EChartOption.XAxis['axisLabel'] | boolean;
+    axisLabel?: echarts.EChartOption.XAxis['axisLabel'] | boolean | AxisLabelFormatter;
     splitLine?: echarts.EChartOption.XAxis['splitLine'] | boolean;
   };
 
@@ -60,7 +62,7 @@ declare module '@rsuite/charts/lib/components/YAxis' {
 
   type YAxisProps = echarts.EChartOption.YAxis & {
     axisLine?: echarts.EChartOption.YAxis['axisLine'] | boolean;
-    axisLabel?: echarts.EChartOption.YAxis['axisLabel'] | boolean;
+    axisLabel?: echarts.EChartOption.YAxis['axisLabel'] | boolean | AxisLabelFormatter;
     splitLine?: echarts.EChartOption.YAxis['splitLine'] | boolean;
   };
 
