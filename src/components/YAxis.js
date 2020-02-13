@@ -34,12 +34,15 @@ class YAxis extends EChartsComponentOption {
             color: '#8e8e93'
           }
         }),
-        splitLine: {
-          show: !!splitLine,
-          lineStyle: {
-            color: '#efefef'
-          }
-        },
+        splitLine: _merge(
+          {
+            show: !!splitLine,
+            lineStyle: {
+              color: '#efefef'
+            }
+          },
+          typeof splitLine !== 'boolean' && splitLine
+        ),
         nameRotate: 0,
         name: name && props.nameLocation === 'middle' ? name.split('').join('\n') : name,
         nameTextStyle: {
