@@ -1,5 +1,6 @@
 import React, { Children, Component } from 'react';
 import PropTypes from 'prop-types';
+import _merge from 'lodash.merge';
 import ReactEchartsCore from 'echarts-for-react/lib/core';
 import echarts from 'echarts/lib/echarts';
 import { isSeriesOption } from './utils';
@@ -55,16 +56,8 @@ class ECharts extends Component {
 
   constructor(props) {
     super(props);
-
-    const { option } = this.props;
     this.state = {
-      option: {
-        ...option,
-        grid: {
-          ...defaultOption.grid,
-          ...option.grid
-        }
-      }
+      option: {}
     };
   }
 
@@ -81,6 +74,21 @@ class ECharts extends Component {
   bindEChartsRef = ref => {
     this.echarts = ref && ref.getEchartsInstance();
   };
+
+  /**
+   * option 覆盖优先级
+   * 1. defaultOption 为底
+   * 2. props.option
+   * 3. state.option (components 的 props)
+   */
+  buildOption() {
+    return _merge(
+      {},
+      defaultOption,
+      this.props.option,
+      this.state.option
+    );
+  }
 
   renderEmptyMessage() {
     const { locale } = this.props;
@@ -113,7 +121,7 @@ class ECharts extends Component {
       option: optionFromProps,
       ...echartsForReactProps
     } = this.props;
-    const option = children ? this.state.option : optionFromProps;
+    const option = children ? this.buildOption() : optionFromProps;
     const dataEmpty =
       !option.series ||
       option.series.reduce((empty, serie) => empty && (!serie.data || serie.data.length < 1), true);
