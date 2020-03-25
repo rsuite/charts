@@ -82,12 +82,7 @@ class ECharts extends Component {
    * 3. state.option (components 的 props)
    */
   buildOption() {
-    return _merge(
-      {},
-      defaultOption,
-      this.props.option,
-      this.state.option
-    );
+    return _merge({}, defaultOption, this.props.option, this.state.option);
   }
 
   renderEmptyMessage() {
