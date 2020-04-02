@@ -28,6 +28,13 @@ ReactDOM.render(<App />, mountNode);
 
 [https://charts.rsuitejs.com/](https://charts.rsuitejs.com/)
 
+## Known issues
+
+### Usage with `react-hot-loader` is broken
+
+Inside `@rsuite/charts`, components' type reference is used for checking whether a component is a `Bars` instance, etc.
+However, `react-hot-loader` wraps components up in purpose of hot reloading, thus importing `react-hot-loader` breaks stacked bars and some other features.
+
 ## License
 
 MIT licensed
