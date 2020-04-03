@@ -81,8 +81,40 @@ class ECharts extends Component {
    * 2. props.option
    * 3. state.option (components 的 props)
    */
-  buildOption() {
+  getEChartsOption() {
     return _merge({}, defaultOption, this.props.option, this.state.option);
+  }
+
+  /**
+   * 判断 option 是否没有数据，
+   * 用于显示数据为空的 placeholder
+   */
+  isDataEmpty(option) {
+    if (option.dataset) {
+      return this.isDatasetEmpty(option);
+    }
+
+    return this.isSeriesEmpty(option);
+  }
+
+  /**
+   * 进入此方法时一定存在 option.dataset
+   */
+  isDatasetEmpty(option) {
+    if (!option.dataset.source) {
+      return true;
+    }
+
+    if (Array.isArray(option.dataset.source)) {
+      return option.dataset.source.length < 1;
+    }
+
+    return Object.getOwnPropertyNames(option.dataset.source).length < 1;
+  }
+
+  isSeriesEmpty(option) {
+    return !option.series ||
+      option.series.reduce((empty, serie) => empty && (!serie.data || serie.data.length < 1), true);
   }
 
   renderEmptyMessage() {
@@ -116,10 +148,8 @@ class ECharts extends Component {
       option: optionFromProps,
       ...echartsForReactProps
     } = this.props;
-    const option = children ? this.buildOption() : optionFromProps;
-    const dataEmpty =
-      !option.series ||
-      option.series.reduce((empty, serie) => empty && (!serie.data || serie.data.length < 1), true);
+    const option = children ? this.getEChartsOption() : optionFromProps;
+    const dataEmpty = this.isDataEmpty(option);
 
     return (
       <div
