@@ -1,6 +1,6 @@
 {
   "name": "@rsuite/charts",
-  "version": "3.2.2",
+  "version": "3.2.3",
   "description": "ECharts for React",
   "main": "lib/index.js",
   "types": "index.d.ts",
@@ -74,7 +74,7 @@
     "compression-webpack-plugin": "^2.0.0",
     "coveralls": "^3.0.2",
     "css-loader": "^2.1.0",
-    "echarts": "^4.1.0",
+    "echarts": "^4.7.0",
     "enzyme": "^3.1.0",
     "enzyme-adapter-react-16": "^1.9.1",
     "es5-shim": "^4.1.14",
