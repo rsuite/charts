@@ -33,7 +33,7 @@ const colors = [
 function VerticalBarChartShowcase() {
   return (
     <div className="showcase">
-      <BarChart data={data}>
+      <BarChart inputData={data}>
         <YAxis axisLabel={value => `${value}%`} minInterval={20} />
         <Bars colors={colors} />
       </BarChart>

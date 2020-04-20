@@ -4,7 +4,7 @@ import { findDOMNode } from 'react-dom';
 import sinon from 'sinon';
 import { mount } from 'enzyme';
 
-import ECharts from '../src/ECharts';
+import ECharts from '@/ECharts';
 import option from '../docs/data/bar-base';
 
 describe('ECharts', () => {

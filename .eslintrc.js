@@ -13,9 +13,10 @@ module.exports = {
     mocha: true
   },
   globals: {
-    assert: true
+    assert: true,
+    __DEV__: true
   },
-  parser: 'babel-eslint',
+  parser: '@typescript-eslint/parser',
   plugins: ['react', 'babel', 'prettier'],
   parserOptions: {
     ecmaVersion: 6,

@@ -27,7 +27,7 @@ function StackedBarsShowcase() {
   const sum = data.reduce((acc, [category, value1, value2]) => acc + value1 + value2, 0);
   return (
     <div className="showcase">
-      <BarChart height={400} color={colors} data={data}>
+      <BarChart height={400} color={colors} inputData={data}>
         <YAxis minInterval={200} axisLabel={value => `${value}K`} />
         <Bars name="触达品类用户数" stack />
         <Bars

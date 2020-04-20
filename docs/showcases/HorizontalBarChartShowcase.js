@@ -9,7 +9,7 @@ const colors = ['#51E8FF', '#41C5E9', '#32A4D4', '#2485C1', '#1464AC'];
 function HorizontalBarChartShowcase() {
   return (
     <div className="showcase">
-      <BarChart horizontal data={data} xAxis={false}>
+      <BarChart horizontal inputData={data} xAxis={false}>
         <Bars
           colors={colors.reverse()}
           itemStyle={{ barBorderRadius: 5 }}

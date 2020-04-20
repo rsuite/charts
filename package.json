@@ -28,11 +28,12 @@
   "dependencies": {
     "echarts-for-react": "^2.0.15-beta.0",
     "lodash.merge": "^4.6.2",
-    "prop-types": "^15.5.10"
+    "prop-types": "^15.5.10",
+    "react-keyed-flatten-children": "^1.2.0"
   },
   "peerDependencies": {
     "echarts": "^3.0.0 || ^4.0.0",
-    "react": "^0.14.9 || >=15.3.0"
+    "react": "^16.8.0"
   },
   "author": "simonguo.2009@gmail.com",
   "license": "MIT",
@@ -64,8 +65,10 @@
     "@babel/preset-react": "^7.0.0",
     "@babel/standalone": "^7.0.0",
     "@rsuite/document-nav": "^1.0.0",
-    "@types/echarts": "^4.1.15",
+    "@types/echarts": "^4.4.6",
+    "@types/lodash.merge": "^4.6.6",
     "@types/react": "^16.9.6",
+    "@typescript-eslint/parser": "^2.28.0",
     "babel-eslint": "^10.0.1",
     "babel-loader": "^8.0.0",
     "babel-plugin-istanbul": "^5.1.1",
@@ -121,6 +124,8 @@
     "sinon": "^4.1.1",
     "sinon-chai": "^2.8.0",
     "style-loader": "^0.23.1",
+    "ts-loader": "^7.0.0",
+    "typescript": "^3.8.3",
     "url-loader": "^0.6.2",
     "webpack": "^4.28.4",
     "webpack-cli": "^3.2.3",

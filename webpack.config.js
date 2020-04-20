@@ -15,7 +15,8 @@ const plugins = [
   new webpack.HotModuleReplacementPlugin(),
   new webpack.NamedModulesPlugin(),
   new webpack.DefinePlugin({
-    NODE_ENV: JSON.stringify(NODE_ENV)
+    NODE_ENV: JSON.stringify(NODE_ENV),
+    __DEV__: JSON.stringify(NODE_ENV !== 'production')
   }),
   extractLess,
   new HtmlwebpackPlugin({
@@ -41,6 +42,7 @@ const common = {
     publicPath: './'
   },
   resolve: {
+    extensions: ['.ts', '.tsx', '.js', '.json'],
     alias: {
       '@': path.resolve(__dirname, 'src')
     }
@@ -53,6 +55,14 @@ const common = {
   plugins,
   module: {
     rules: [
+      {
+        test: /\.tsx?$/,
+        use: [
+          'babel-loader?babelrc',
+          'ts-loader'
+        ],
+        exclude: /node_modules/
+      },
       {
         test: /\.jsx?$/,
         use: ['babel-loader?babelrc'],

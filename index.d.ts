@@ -179,7 +179,8 @@ interface EChartsProps {
   locale?: {
     emptyMessage?: React.ReactNode;
     loading?: React.ReactNode;
-  }
+  };
+  children?: React.ReactNode;
 }
 
 declare module '@rsuite/charts/lib/ECharts' {
@@ -312,3 +313,5 @@ declare module '@rsuite/charts/lib/charts/TreemapChart' {
 
   }
 }
+
+declare const __DEV__: boolean;
