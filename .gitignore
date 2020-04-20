@@ -44,3 +44,5 @@ assets/
 yarn.lock
 
 .idea
+es/
+*.tgz
