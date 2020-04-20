@@ -2,6 +2,8 @@
 
 :bar_chart: A set of charts based on rsuite and ECharts
 
+## v4.x
+This `master` branch is for latest `v4.x` version which is under development. For stable `v3` versions, check the [`v3`](https://github.com/rsuite/charts/tree/v3) branch.
 
 ## Install
 
