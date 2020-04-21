@@ -124,15 +124,14 @@
     "react-test-renderer": "^16.0.0",
     "rsuite": "^3.7.5",
     "rsuite-docs": "^0.1.11",
-    "rsuite-theme": "^2.0.20",
     "sinon": "^4.1.1",
     "sinon-chai": "^2.8.0",
     "style-loader": "^0.23.1",
     "ts-loader": "^7.0.0",
     "typescript": "^3.8.3",
     "url-loader": "^0.6.2",
-    "webpack": "^4.28.4",
+    "webpack": "^4.42.1",
     "webpack-cli": "^3.2.3",
-    "webpack-dev-server": "^3.1.14"
+    "webpack-dev-server": "^3.10.3"
   }
 }
