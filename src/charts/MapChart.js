@@ -18,7 +18,8 @@ class MapChart extends Component {
   static propTypes = {
     name: PropTypes.string,
     data: PropTypes.arrayOf(PropTypes.any),
-    visualMap: PropTypes.bool
+    visualMap: PropTypes.bool,
+    ...ECharts.propTypes
   };
 
   static defaultProps = {
@@ -46,7 +47,7 @@ class MapChart extends Component {
   };
 
   renderDefaultMap() {
-    const { visualMap, children, ...props } = this.props;
+    const { visualMap, children, height, loading, option, locale, ...props } = this.props;
 
     return <Map {...props} />;
   }
