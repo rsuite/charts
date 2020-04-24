@@ -1,6 +1,6 @@
 {
   "name": "@rsuite/charts",
-  "version": "3.2.3",
+  "version": "3.2.4",
   "description": "ECharts for React",
   "main": "lib/index.js",
   "types": "index.d.ts",
