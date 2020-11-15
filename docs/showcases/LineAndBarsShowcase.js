@@ -3,6 +3,7 @@ import Line from '@/series/Line';
 import YAxis from '@/components/YAxis';
 import Bars from '@/series/Bars';
 import BarChart from '@/charts/BarChart';
+import DataZoom from '@/components/DataZoom';
 import CodeView from 'react-code-view';
 
 const data = [];
@@ -24,7 +25,8 @@ function LineAndBarsShowcase() {
         BarChart,
         YAxis,
         Bars,
-        Line
+        Line,
+        DataZoom
       }}
     >
       {require('../md/BarsWithLine.md')}
