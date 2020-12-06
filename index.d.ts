@@ -1,3 +1,6 @@
+/// <reference types="react" />
+/// <reference types="echarts" />
+
 type DataZoomProps = echarts.EChartOption.DataZoom;
 
 export class DataZoom extends React.Component<DataZoomProps, any> {}

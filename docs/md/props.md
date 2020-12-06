@@ -31,10 +31,14 @@ xAxis: {
 | height | `number` | 300 | 图表高度 |
 | locale | `object<{emptyMessage, loading}>` | `{emptyMessage: 'No data found', loading: 'Loading...'}` | 数据为空/loading 时显示的信息|
 
-### charts/series
+### Series
 
-`series` 是展示数据的主要组件，
-包括 `<Line>` `<Bars>` `<Scatter>` `<Pie>` `<Map>` `<Tree>` `<Treemap>` `<Sankey>`，
+`series` 是展示数据的主要组件
+
+```
+import { Line, Bars, Scatter, Pie, Map, Tree, Treemap, Sankey } from '@rsuite/echarts';
+```
+
 分别对应 [ECharts 配置项中各个 type 的 series](http://echarts.baidu.com/option.html#series)。
 
 除了 `<Line>` `<Bars>` `<Scatter>` 外，其他的 `series` 通常不会单独使用，而是继承相应的 `charts` 接收的 props。如 `<Pie>` 会从 `<PieChart>` 继承 `donut` 等 props。
@@ -60,14 +64,32 @@ xAxis: {
 | ---- | ---- | ------- | ----------- |
 | donut | `boolean` | `false` | 是否为环形图。默认 `innerRadius` 比 `outerRadius` 小 15%。 |
 
-### charts/components
+### Components
 
-`components` 是图表的其他组成部分，包括 `<XAxis>` `<YAxis>` `<Legend>` `<Tooltip>` `<DataZoom>` `<VisualMap>`。
+`components` 是图表的其他组成部分，
 
+```
+import { XAxis, YAxis, Legend, Tooltip, DataZoom, VisualMap } from '@rsuite/echarts';
+```
 
-### charts/charts
+### Charts
 
 `charts` 是 `@rsuite/charts` 预先封装的一些常用图表，通常包括一个默认 `series` 和一些默认 `components`。
+
+```
+import {
+  BarChart,
+  FunnelChart,
+  LineChart,
+  MapChart,
+  PieChart,
+  RadarChart,
+  SankeyChart,
+  ScatterChart,
+  TreeChart,
+  TreemapChart
+} from '@rsuite/echarts';
+```
 
 `charts` 都接收 `name` 和 `data` 两个 props，并传递给其内部的 `series`。大多时候，其他的 props 也会被传递下去。
 

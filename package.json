@@ -9,8 +9,12 @@
     "src",
     "lib",
     "es",
-    "index.d.ts"
+    "index.d.ts",
+    "package.json"
   ],
+  "directories": {
+    "lib": "lib"
+  },
   "scripts": {
     "format": "prettier --write \"{src,test,docs}/**/*.js\"",
     "format:check": "prettier --list-different \"{src,test,docs}/**/*.js\"",
