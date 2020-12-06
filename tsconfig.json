@@ -4,7 +4,7 @@
     "module": "commonjs",
     "target": "es2015",
     "sourceMap": true,
-    "allowJs": false,
+    "allowJs": true,
     "jsx": "react",
     "declaration": true,
     "moduleResolution": "node",

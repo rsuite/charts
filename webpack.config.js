@@ -56,14 +56,6 @@ const common = {
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
-        use: [
-          'babel-loader?babelrc',
-          'ts-loader'
-        ],
-        exclude: /node_modules/
-      },
-      {
         test: /\.jsx?$/,
         use: ['babel-loader?babelrc'],
         exclude: /node_modules/
