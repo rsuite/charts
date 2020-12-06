@@ -1,8 +1,6 @@
 import React from 'react';
-import BarChart from '@/charts/BarChart';
-import YAxis from '@/components/YAxis';
-import Bars from '@/series/Bars';
 import CodeView from 'react-code-view';
+import { BarChart, Bars, YAxis } from '../..';
 
 const data = [
   ['2018-03', 0, 980 * 1000, 0, 0, 0, 0],

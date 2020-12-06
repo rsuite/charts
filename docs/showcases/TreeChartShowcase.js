@@ -1,6 +1,6 @@
 import React from 'react';
-import TreeChart from '@/charts/TreeChart';
 import CodeView from 'react-code-view';
+import { TreeChart } from '../..';
 
 const data = [
   {

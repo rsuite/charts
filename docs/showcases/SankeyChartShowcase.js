@@ -1,6 +1,6 @@
 import React from 'react';
-import SankeyChart from '@/charts/SankeyChart';
 import CodeView from 'react-code-view';
+import { SankeyChart } from '../..';
 
 const data = {
   nodes: [

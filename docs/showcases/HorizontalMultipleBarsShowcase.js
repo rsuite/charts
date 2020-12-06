@@ -1,8 +1,6 @@
 import React from 'react';
-import BarChart from '@/charts/BarChart';
-import Bars from '@/series/Bars';
-import XAxis from '@/components/XAxis';
 import CodeView from 'react-code-view';
+import { BarChart, Bars, XAxis } from '../..';
 
 const data = [
   ['<15岁', 1, 2],

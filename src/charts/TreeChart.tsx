@@ -5,6 +5,7 @@ import Tree from '../series/Tree';
 import { EChartsContext } from '../constants';
 import { is } from '../utils';
 
+type TreeProps = echarts.EChartOption.SeriesTree;
 export interface TreeChartProps extends ChartComponentProps<TreeProps['data']> {
 
 }

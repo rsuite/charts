@@ -1,9 +1,8 @@
 import React from 'react';
-import MapChart from '@/charts/MapChart';
-import VisualMap from '@/components/VisualMap';
 import CodeView from 'react-code-view';
+import { MapChart, VisualMap } from '../..';
 import 'echarts/map/js/china';
-import nameMap from '@/locales/en-US/china-provinces';
+import nameMap from '@/locales/en-US/china-provinces'; // todo improve import
 
 function randomData() {
   return Math.round(Math.random() * 1000);

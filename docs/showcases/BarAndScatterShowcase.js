@@ -1,9 +1,6 @@
 import React from 'react';
-import BarChart from '@/charts/BarChart';
-import Bars from '@/series/Bars';
-import Scatter from '@/series/Scatter';
 import CodeView from 'react-code-view';
-import YAxis from '@/components/YAxis';
+import { BarChart, Bars, Scatter, YAxis } from '../..';
 
 const data = [
   ['新客', 26, 10],

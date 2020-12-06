@@ -1,7 +1,6 @@
 import React from 'react';
 import CodeView from 'react-code-view';
-import Funnel from '@/series/Funnel';
-import FunnelChart from '@/charts/FunnelChart';
+import { FunnelChart, Funnel } from '../..';
 
 function FunnelChartShowcase() {
   return (

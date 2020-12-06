@@ -1,7 +1,6 @@
 import React from 'react';
 import CodeView from 'react-code-view';
-import RadarChart from '@/charts/RadarChart';
-import RadarLine from '@/series/RadarLine';
+import { RadarChart, RadarLine } from '../..';
 
 const data = [
   ['广告的内容清晰易懂', 100, 62, 53],

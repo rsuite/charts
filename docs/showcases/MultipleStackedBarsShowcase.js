@@ -1,8 +1,6 @@
 import React from 'react';
-import BarChart from '@/charts/BarChart';
-import Bars from '@/series/Bars';
-import YAxis from '@/components/YAxis';
 import CodeView from 'react-code-view';
+import { BarChart, Bars, YAxis } from '../..';
 
 const data = [
   ['18-24岁', 650, 650, 750, 100, 100, 150],

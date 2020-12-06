@@ -1,6 +1,6 @@
 import React from 'react';
-import TreemapChart from '@/charts/TreemapChart';
 import CodeView from 'react-code-view';
+import { TreemapChart } from '../..';
 
 function convert(source, target, basePath) {
   for (var key in source) {

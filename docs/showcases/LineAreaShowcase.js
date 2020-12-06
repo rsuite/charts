@@ -1,7 +1,6 @@
 import React from 'react';
-import LineChart from '@/charts/LineChart';
-import Line from '@/series/Line';
 import CodeView from 'react-code-view';
+import { LineChart, Line } from '../..';
 
 const data = [
   ['00:00'],

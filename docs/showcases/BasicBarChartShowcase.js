@@ -1,8 +1,6 @@
 import React from 'react';
 import CodeView from 'react-code-view';
-import BarChart from '@/charts/BarChart';
-import YAxis from '@/components/YAxis';
-import Bars from '@/series/Bars';
+import { BarChart, YAxis, Bars } from '../..';
 
 const data = [
   ['1次', 4.8 * 1000000],

@@ -1,9 +1,6 @@
 import React from 'react';
-import Line from '@/series/Line';
-import YAxis from '@/components/YAxis';
-import Bars from '@/series/Bars';
-import BarChart from '@/charts/BarChart';
 import CodeView from 'react-code-view';
+import { BarChart, Bars, Line, YAxis } from '../..';
 
 const data = [];
 for (let i = 1; i <= 31; i++) {

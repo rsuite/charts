@@ -1,9 +1,6 @@
 import React from 'react';
 import CodeView from 'react-code-view';
-import Scatter from '@/series/Scatter';
-import XAxis from '@/components/XAxis';
-import YAxis from '@/components/YAxis';
-import ScatterChart from '@/charts/ScatterChart';
+import { ScatterChart, Scatter, YAxis, XAxis } from '../..';
 
 const data1 = [[26, 7, 18], [53, 9, 35], [61, 18, 22], [62, 17, 22], [67, 5, 50]];
 

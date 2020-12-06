@@ -1,7 +1,7 @@
 import React from 'react';
-import MapChart from '@/charts/MapChart';
 import CodeView from 'react-code-view';
 import 'echarts/map/js/china';
+import { MapChart } from '../..';
 
 function randomData() {
   return Math.round(Math.random() * 1000);

@@ -1,8 +1,6 @@
 import React from 'react';
 import CodeView from 'react-code-view';
-import LineChart from '@/charts/LineChart';
-import Line from '@/series/Line';
-import YAxis from '@/components/YAxis';
+import { LineChart, Line, YAxis } from '../..';
 
 const data = [
   ['00:00'],

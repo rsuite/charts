@@ -1,176 +1,89 @@
-declare module '@rsuite/charts/lib/components/DataZoom' {
+type DataZoomProps = echarts.EChartOption.DataZoom;
 
-  type DataZoomProps = echarts.EChartOption.DataZoom;
+export class DataZoom extends React.Component<DataZoomProps, any> {}
 
-  export default class DataZoom extends React.Component<DataZoomProps, any> {
+type LegendProps = echarts.EChartOption.Legend;
 
-  }
-}
+export class Legend extends React.Component<LegendProps, any> {}
 
-declare module '@rsuite/charts/lib/components/Legend' {
+type RadarProps = echarts.EChartOption['radar'];
 
-  type LegendProps = echarts.EChartOption.Legend;
+export class Radar extends React.Component<RadarProps, any> {}
 
-  export default class Legend extends React.Component<LegendProps, any> {
+type TooltipProps = echarts.EChartOption.Tooltip;
 
-  }
-}
+export class Tooltip extends React.Component<TooltipProps, any> {}
 
-declare module '@rsuite/charts/lib/components/Radar' {
+type VisualMapProps = echarts.EChartOption.VisualMap;
 
-  type RadarProps = echarts.EChartOption['radar'];
-
-  export default class Radar extends React.Component<RadarProps, any> {
-
-  }
-}
-
-declare module '@rsuite/charts/lib/components/Tooltip' {
-
-  type TooltipProps = echarts.EChartOption.Tooltip;
-
-  export default class Tooltip extends React.Component<TooltipProps, any> {
-
-  }
-}
-
-declare module '@rsuite/charts/lib/components/VisualMap' {
-
-  type VisualMapProps = echarts.EChartOption.VisualMap;
-
-  export default class VisualMap extends React.Component<VisualMapProps, any> {
-
-  }
-}
+export class VisualMap extends React.Component<VisualMapProps, any> {}
 
 type AxisLabelFormatter = (value: string | number) => string;
 
-declare module '@rsuite/charts/lib/components/XAxis' {
+type XAxisProps = echarts.EChartOption.XAxis & {
+  axisLine?: echarts.EChartOption.XAxis['axisLine'] | boolean;
+  axisLabel?: echarts.EChartOption.XAxis['axisLabel'] | boolean | AxisLabelFormatter;
+  splitLine?: echarts.EChartOption.XAxis['splitLine'] | boolean;
+};
 
-  type XAxisProps = echarts.EChartOption.XAxis & {
-    axisLine?: echarts.EChartOption.XAxis['axisLine'] | boolean;
-    axisLabel?: echarts.EChartOption.XAxis['axisLabel'] | boolean | AxisLabelFormatter;
-    splitLine?: echarts.EChartOption.XAxis['splitLine'] | boolean;
-  };
+export class XAxis extends React.Component<XAxisProps, any> {}
 
-  export default class XAxis extends React.Component<XAxisProps, any> {
+type YAxisProps = echarts.EChartOption.YAxis & {
+  axisLine?: echarts.EChartOption.YAxis['axisLine'] | boolean;
+  axisLabel?: echarts.EChartOption.YAxis['axisLabel'] | boolean | AxisLabelFormatter;
+  splitLine?: echarts.EChartOption.YAxis['splitLine'] | boolean;
+};
 
-  }
-}
-
-declare module '@rsuite/charts/lib/components/YAxis' {
-
-  type YAxisProps = echarts.EChartOption.YAxis & {
-    axisLine?: echarts.EChartOption.YAxis['axisLine'] | boolean;
-    axisLabel?: echarts.EChartOption.YAxis['axisLabel'] | boolean | AxisLabelFormatter;
-    splitLine?: echarts.EChartOption.YAxis['splitLine'] | boolean;
-  };
-
-  export default class YAxis extends React.Component<YAxisProps, any> {
-
-  }
-}
+export class YAxis extends React.Component<YAxisProps, any> {}
 
 type BarsProps = echarts.EChartOption.SeriesBar & {
   color?: string | string[];
 };
 
-
-declare module '@rsuite/charts/lib/series/Bars' {
-
-  export default class Bars extends React.Component<BarsProps, any> {
-
-  }
-}
+export class Bars extends React.Component<BarsProps, any> {}
 
 interface FunnelProps extends echarts.EChartOption.SeriesFunnel {
   asc?: boolean;
 }
 
-declare module '@rsuite/charts/lib/series/Funnel' {
-
-  export default class Funnel extends React.Component<FunnelProps, any> {
-
-  }
-}
+export class Funnel extends React.Component<FunnelProps, any> {}
 
 type LineProps = echarts.EChartOption.SeriesLine & {
   stack?: string | boolean;
   area?: boolean;
-}
+};
 
-declare module '@rsuite/charts/lib/series/Line' {
-
-  export default class Line extends React.Component<LineProps, any> {
-
-  }
-}
+export class Line extends React.Component<LineProps, any> {}
 
 type MapProps = echarts.EChartOption.SeriesMap;
 
-declare module '@rsuite/charts/lib/series/Map' {
-
-
-  export default class Map extends React.Component<MapProps, any> {
-
-  }
-}
+export class Map extends React.Component<MapProps, any> {}
 
 interface PieProps extends echarts.EChartOption.SeriesPie {
   donut?: boolean;
 }
 
-declare module '@rsuite/charts/lib/series/Pie' {
+export class Pie extends React.Component<PieProps, any> {}
 
-  export default class Pie extends React.Component<PieProps, any> {
+type RadarLineProps = echarts.EChartOption.SeriesRadar;
 
-  }
-}
-
-declare module '@rsuite/charts/lib/series/RadarLine' {
-
-  type RadarLineProps = echarts.EChartOption.SeriesRadar;
-
-  export default class RadarLine extends React.Component<RadarLineProps, any> {
-
-  }
-}
+export class RadarLine extends React.Component<RadarLineProps, any> {}
 
 type SankeyProps = echarts.EChartOption.SeriesSankey;
 
-declare module '@rsuite/charts/lib/series/Sankey' {
-
-  export default class Sankey extends React.Component<SankeyProps, any> {
-
-  }
-}
+export class Sankey extends React.Component<SankeyProps, any> {}
 
 type ScatterProps = echarts.EChartOption.SeriesScatter;
 
-declare module '@rsuite/charts/lib/series/Scatter' {
-
-  export default class Scatter extends React.Component<ScatterProps, any> {
-
-  }
-}
+export class Scatter extends React.Component<ScatterProps, any> {}
 
 type TreeProps = echarts.EChartOption.SeriesTree;
 
-declare module '@rsuite/charts/lib/series/Tree' {
-
-  export default class Tree extends React.Component<TreeProps, any> {
-
-  }
-}
+export class Tree extends React.Component<TreeProps, any> {}
 
 type TreemapProps = echarts.EChartOption.SeriesTreemap;
 
-declare module '@rsiute/charts/lib/series/Treemap' {
-
-  export default class Treemap extends React.Component<TreemapProps, any> {
-
-  }
-}
+export class Treemap extends React.Component<TreemapProps, any> {}
 
 interface EChartsProps {
   height?: number;
@@ -183,10 +96,8 @@ interface EChartsProps {
   children?: React.ReactNode;
 }
 
-declare module '@rsuite/charts/lib/ECharts' {
-  export default class ECharts extends React.Component<EChartsProps, any> {
-    echarts: echarts.ECharts;
-  }
+export class ECharts extends React.Component<EChartsProps, any> {
+  echarts: echarts.ECharts;
 }
 
 interface ChartComponentProps<DataType = any[]> extends EChartsProps {
@@ -198,120 +109,61 @@ declare class ChartComponent<P extends ChartComponentProps, S = any> extends Rea
   echarts: echarts.ECharts;
 }
 
-declare module '@rsuite/charts/lib/charts/BarChart' {
-
-  interface BarChartProps extends ChartComponentProps {
-    horizontal?: boolean;
-    tooltip?: boolean;
-    xAxis?: boolean;
-    yAis?: boolean;
-    legend?: boolean;
-  }
-
-  export default class BarChart extends ChartComponent<BarChartProps> {
-
-  }
+interface BarChartProps extends ChartComponentProps {
+  horizontal?: boolean;
+  tooltip?: boolean;
+  xAxis?: boolean;
+  yAis?: boolean;
+  legend?: boolean;
 }
 
-declare module '@rsuite/charts/lib/charts/FunnelChart' {
+export class BarChart extends ChartComponent<BarChartProps> {}
 
-  interface FunnelChartProps extends ChartComponentProps {
-    asc?: boolean;
-    tooltip?: boolean;
-  }
-
-  export default class FunnelChart extends ChartComponent<FunnelChartProps> {
-
-  }
+interface FunnelChartProps extends ChartComponentProps {
+  asc?: boolean;
+  tooltip?: boolean;
 }
 
-declare module '@rsuite/charts/lib/charts/LineChart' {
+export class FunnelChart extends ChartComponent<FunnelChartProps> {}
 
-  interface LineChartProps extends ChartComponentProps {
-    tooltip?: boolean;
-  }
-
-  export default class LineChart extends ChartComponent<LineChartProps> {
-
-  }
+interface LineChartProps extends ChartComponentProps {
+  tooltip?: boolean;
 }
 
-declare module '@rsuite/charts/lib/charts/MapChart' {
+export class LineChart extends ChartComponent<LineChartProps> {}
 
-  interface MapChartProps extends ChartComponentProps<MapProps['data']>, MapProps {
-    visualMap?: boolean;
-  }
-
-  export default class MapChart extends ChartComponent<MapChartProps> {
-
-  }
+interface MapChartProps extends ChartComponentProps<MapProps['data']>, MapProps {
+  visualMap?: boolean;
 }
 
-declare module '@rsuite/charts/lib/charts/PieChart' {
+export class MapChart extends ChartComponent<MapChartProps> {}
 
-  interface PieChartProps extends ChartComponentProps<PieProps['data']>, PieProps {
-    legend?: boolean;
-  }
-
-  export default class PieChart extends ChartComponent<PieChartProps> {
-
-  }
+interface PieChartProps extends ChartComponentProps<PieProps['data']>, PieProps {
+  legend?: boolean;
 }
 
-declare module '@rsuite/charts/lib/charts/RadarChart' {
+export class PieChart extends ChartComponent<PieChartProps> {}
 
-  interface RadarChartProps extends ChartComponentProps {
-    tooltip?: boolean;
-    legend?: boolean;
-  }
-
-  export default class RadarChart extends ChartComponent<RadarChartProps> {
-
-  }
+interface RadarChartProps extends ChartComponentProps {
+  tooltip?: boolean;
+  legend?: boolean;
 }
 
-declare module '@rsuite/charts/lib/charts/SankeyChart' {
+export class RadarChart extends ChartComponent<RadarChartProps> {}
 
-  interface SankeyChartProps extends ChartComponentProps<SankeyProps['data']> {
+interface SankeyChartProps extends ChartComponentProps<SankeyProps['data']> {}
 
-  }
+export class SankeyChart extends ChartComponent<SankeyChartProps> {}
 
-  export default class SankeyChart extends ChartComponent<SankeyChartProps> {
+interface ScatterChartProps extends ChartComponentProps<ScatterProps['data']> {}
 
-  }
-}
+export class ScatterChart extends ChartComponent<ScatterChartProps> {}
 
-declare module '@rsuite/charts/lib/charts/ScatterChart' {
+interface TreeChartProps extends ChartComponentProps<TreeProps['data']> {}
 
-  interface ScatterChartProps extends ChartComponentProps<ScatterProps['data']> {
+export class TreeChart extends ChartComponent<TreeChartProps> {}
 
-  }
+interface TreemapChartProps extends ChartComponentProps<TreemapProps['data']> {}
 
-  export default class ScatterChart extends ChartComponent<ScatterChartProps> {
+export class TreemapChart extends ChartComponent<TreemapChartProps> {}
 
-  }
-}
-
-declare module '@rsuite/charts/lib/charts/TreeChart' {
-
-  interface TreeChartProps extends ChartComponentProps<TreeProps['data']> {
-
-  }
-
-  export default class TreeChart extends ChartComponent<TreeChartProps> {
-
-  }
-}
-
-declare module '@rsuite/charts/lib/charts/TreemapChart' {
-
-  interface TreemapChartProps extends ChartComponentProps<TreemapProps['data']> {
-
-  }
-
-  export default class TreemapChart extends ChartComponent<TreemapChartProps> {
-
-  }
-}
-
-declare const __DEV__: boolean;

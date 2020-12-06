@@ -1,6 +1,5 @@
 import React from 'react';
-import BarChart from '@/charts/BarChart';
-import Bars from '@/series/Bars';
+import { BarChart, Bars } from '../..';
 
 const data = [['>20k', 11], ['10k-20k', 17], ['5k-10k', 29], ['3k-5k', 19], ['<3k', 25]];
 
