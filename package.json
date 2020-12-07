@@ -25,7 +25,7 @@
     "prepages": "npm run docs",
     "pages": "npm run publish-docs",
     "prepublishOnly": "npm run build",
-    "release": "npm publish --access public",
+    "release": "npm publish --access public --tag next",
     "lint": "eslint src  *.js",
     "tdd": "karma start",
     "test": "npm run format:check && npm run lint && NODE_ENV=test  karma start --single-run",

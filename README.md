@@ -8,8 +8,8 @@ This `master` branch is for latest `v4.x` version which is under development. Fo
 ## Install
 
 ```bash
-npm i --save @rsuite/charts echarts
-npm i --save echarts #可选择安装需要的 echarts 版本
+npm i --save @rsuite/charts@next
+npm i --save echarts
 ```
 
 ## Usage
