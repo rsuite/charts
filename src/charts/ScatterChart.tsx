@@ -1,6 +1,6 @@
 import React, { Children, cloneElement } from 'react';
 import _merge from 'lodash.merge';
-import ECharts from '../ECharts';
+import ECharts, { ChartComponentProps } from '../ECharts';
 import Tooltip from '../components/Tooltip';
 import Legend from '../components/Legend';
 import XAxis from '../components/XAxis';

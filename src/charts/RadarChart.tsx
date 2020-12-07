@@ -1,5 +1,5 @@
 import React, { Children, cloneElement } from 'react';
-import ECharts from '../ECharts';
+import ECharts, { ChartComponentProps } from '../ECharts';
 import Tooltip from '../components/Tooltip';
 import Legend from '../components/Legend';
 import Radar from '../components/Radar';

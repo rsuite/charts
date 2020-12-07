@@ -1,6 +1,6 @@
 import React, { Children, Fragment, cloneElement } from 'react';
 import _merge from 'lodash.merge';
-import ECharts from '../ECharts';
+import ECharts, { ChartComponentProps } from '../ECharts';
 import Tooltip from '../components/Tooltip';
 import Funnel from '../series/Funnel';
 import Legend from '../components/Legend';
@@ -14,16 +14,10 @@ export interface FunnelChartProps extends ChartComponentProps {
   tooltip?: boolean;
 }
 
-function FunnelChart({
-  asc = false,
-  tooltip = true,
-  name,
-  data = [],
-  children,
-  option,
-  ...props
-}: FunnelChartProps, ref: any) {
-
+function FunnelChart(
+  { asc = false, tooltip = true, name, data = [], children, option, ...props }: FunnelChartProps,
+  ref: any
+) {
   function renderDefaultFunnel() {
     const funnelPosition = {
       width: `${funnelDefaultWidth}%`,
@@ -70,7 +64,10 @@ function FunnelChart({
                 funnel.props.color &&
                 new Array(occupiedColorsCount(index)).concat(funnel.props.color)
             })}
-            <Legend data={funnel.props.data.map(([name]: any) => name)} {...funnelPosition as any} />
+            <Legend
+              data={funnel.props.data.map(([name]: any) => name)}
+              {...(funnelPosition as any)}
+            />
           </Fragment>
         );
       });

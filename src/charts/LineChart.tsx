@@ -1,5 +1,5 @@
 import React, { Children, cloneElement } from 'react';
-import ECharts from '../ECharts';
+import ECharts, { ChartComponentProps } from '../ECharts';
 import Line from '../series/Line';
 import XAxis from '../components/XAxis';
 import YAxis from '../components/YAxis';
@@ -21,14 +21,10 @@ export interface LineChartProps extends ChartComponentProps {
  *   <Legend />
  * </ECharts>
  */
-function LineChart({
-  name,
-  data = [],
-  tooltip = true,
-  children,
-  ...props
-}: LineChartProps, ref: any) {
-
+function LineChart(
+  { name, data = [], tooltip = true, children, ...props }: LineChartProps,
+  ref: any
+) {
   function renderDefaultXAxis() {
     return <XAxis data={data!.map(([category]) => category)} />;
   }

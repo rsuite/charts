@@ -1,6 +1,6 @@
 import React, { Children } from 'react';
 import _merge from 'lodash.merge';
-import ECharts from '../ECharts';
+import ECharts, { ChartComponentProps } from '../ECharts';
 import Tooltip from '../components/Tooltip';
 import Map, { MapProps } from '../series/Map';
 import VisualMap from '../components/VisualMap';

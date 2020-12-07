@@ -1,5 +1,5 @@
 import React, { Children } from 'react';
-import ECharts from '../ECharts';
+import ECharts, { ChartComponentProps } from '../ECharts';
 import Tooltip from '../components/Tooltip';
 import Sankey, { SankeyProps } from '../series/Sankey';
 import { EChartsContext } from '../constants';

@@ -1,4 +1,5 @@
 import { symbols } from '../constants';
+import { AxisLabelFormatter } from '../types';
 
 export type XAxisProps = echarts.EChartOption.XAxis & {
   axisLine?: echarts.EChartOption.XAxis['axisLine'] | boolean;
