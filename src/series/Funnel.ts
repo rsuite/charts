@@ -15,7 +15,7 @@ Funnel.defaultProps = {
 
 Funnel[symbols.typeKey] = symbols.funnel;
 
-if (__DEV__) {
+if (process.env.NODE_ENV !== 'production') {
   Funnel.displayName = 'Funnel';
 }
 

@@ -9,7 +9,7 @@ function Map(_: MapProps) {
 
 Map[symbols.typeKey] = symbols.map;
 
-if (__DEV__) {
+if (process.env.NODE_ENV !== 'production') {
   Map.displayName = 'Map';
 }
 

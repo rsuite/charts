@@ -10,7 +10,7 @@ function Legend(_: LegendProps) {
 
 Legend[symbols.typeKey] = symbols.legend;
 
-if (__DEV__) {
+if (process.env.NODE_ENV !== 'production') {
   Legend.displayName = 'Legend';
 }
 

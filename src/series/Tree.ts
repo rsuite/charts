@@ -13,7 +13,7 @@ Tree.defaultProps = {
 
 Tree[symbols.typeKey] = symbols.tree;
 
-if (__DEV__) {
+if (process.env.NODE_ENV !== 'production') {
   Tree.displayName = 'Tree';
 }
 

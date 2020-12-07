@@ -53,7 +53,7 @@ function RadarChart({
   );
 }
 
-if (__DEV__) {
+if (process.env.NODE_ENV !== 'production') {
   RadarChart.displayName = 'RadarChart';
 }
 

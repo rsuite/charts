@@ -9,7 +9,7 @@ function Radar(_: RadarProps) {
 
 Radar[symbols.typeKey] = symbols.radar;
 
-if (__DEV__) {
+if (process.env.NODE_ENV !== 'production') {
   Radar.displayName = 'Radar';
 }
 

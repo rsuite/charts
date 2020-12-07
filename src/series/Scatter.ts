@@ -9,7 +9,7 @@ function Scatter (_: ScatterProps){
 
 Scatter[symbols.typeKey] = symbols.scatter;
 
-if (__DEV__) {
+if (process.env.NODE_ENV !== 'production') {
   Scatter.displayName = 'Scatter';
 }
 

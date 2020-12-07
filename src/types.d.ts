@@ -1,5 +1,3 @@
-declare const __DEV__: boolean;
-
 declare interface EChartsProps {
   height?: number;
   loading?: boolean;

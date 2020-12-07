@@ -17,7 +17,7 @@ YAxis.defaultProps = {
 };
 YAxis[symbols.typeKey] = symbols.yAxis;
 
-if (__DEV__) {
+if (process.env.NODE_ENV !== 'production') {
   YAxis.displayName = 'YAxis';
 }
 

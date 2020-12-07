@@ -163,7 +163,7 @@ function ECharts({
   );
 }
 
-if (__DEV__) {
+if (process.env.NODE_ENV !== 'production') {
   ECharts.displayName = 'ECharts';
 }
 

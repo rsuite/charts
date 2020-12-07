@@ -9,7 +9,7 @@ function VisualMap(_: VisualMapProps){
 
 VisualMap[symbols.typeKey] = symbols.visualMap;
 
-if (__DEV__) {
+if (process.env.NODE_ENV !== 'production') {
   VisualMap.displayName = 'VisualMap';
 }
 

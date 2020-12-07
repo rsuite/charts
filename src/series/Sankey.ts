@@ -15,7 +15,7 @@ Sankey.defaultProps = {
 };
 Sankey[symbols.typeKey] = symbols.sankey;
 
-if (__DEV__) {
+if (process.env.NODE_ENV !== 'production') {
   Sankey.displayName = 'Sankey';
 }
 

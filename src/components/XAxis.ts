@@ -12,7 +12,7 @@ function XAxis(_: XAxisProps) {
 
 XAxis[symbols.typeKey] = symbols.xAxis;
 
-if (__DEV__) {
+if (process.env.NODE_ENV !== 'production') {
   XAxis.displayName = 'XAxis';
 }
 

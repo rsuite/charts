@@ -16,7 +16,7 @@ Pie.defaultProps = {
 
 Pie[symbols.typeKey] = symbols.pie;
 
-if (__DEV__) {
+if (process.env.NODE_ENV !== 'production') {
   Pie.displayName = 'Pie';
 }
 

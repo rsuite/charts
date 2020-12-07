@@ -9,7 +9,7 @@ function Tooltip(_: TooltipProps) {
 
 Tooltip[symbols.typeKey] = symbols.tooltip;
 
-if (__DEV__) {
+if (process.env.NODE_ENV !== 'production') {
   Tooltip.displayName = 'Tooltip';
 }
 

@@ -12,7 +12,7 @@ Treemap.defaultProps = {
 };
 Treemap[symbols.typeKey] = symbols.treemap;
 
-if (__DEV__) {
+if (process.env.NODE_ENV !== 'production') {
   Treemap.displayName = 'Treemap';
 }
 

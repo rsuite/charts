@@ -9,7 +9,7 @@ function RadarLine(_: RadarLineProps) {
 
 RadarLine[symbols.typeKey] = symbols.radarLine;
 
-if (__DEV__) {
+if (process.env.NODE_ENV !== 'production') {
   RadarLine.displayName = 'RadarLine';
 }
 

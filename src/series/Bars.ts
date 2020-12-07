@@ -12,7 +12,7 @@ function Bars(_: BarsProps) {
 
 Bars[symbols.typeKey] = symbols.bars;
 
-if (__DEV__) {
+if (process.env.NODE_ENV !== 'production') {
   Bars.displayName = 'Bars';
 }
 

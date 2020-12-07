@@ -9,7 +9,7 @@ function DataZoom(_: DataZoomProps) {
 
 DataZoom[symbols.typeKey] = symbols.dataZoom;
 
-if (__DEV__) {
+if (process.env.NODE_ENV !== 'production') {
   DataZoom.displayName = 'DataZoom';
 }
 

@@ -12,7 +12,7 @@ function Line(_: LineProps) {
 
 Line[symbols.typeKey] = symbols.line;
 
-if (__DEV__) {
+if (process.env.NODE_ENV !== 'production') {
   Line.displayName = 'Line';
 }
 
