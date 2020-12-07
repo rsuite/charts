@@ -65,4 +65,4 @@ function MapChart({
   );
 }
 
-export default React.forwardRef(MapChart);
+export default React.forwardRef<echarts.ECharts, MapChartProps>(MapChart);

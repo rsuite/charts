@@ -35,4 +35,4 @@ function PieChart({
   );
 }
 
-export default React.forwardRef(PieChart);
+export default React.forwardRef<echarts.ECharts, PieChartProps>(PieChart);

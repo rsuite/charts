@@ -57,4 +57,4 @@ if (__DEV__) {
   RadarChart.displayName = 'RadarChart';
 }
 
-export default React.forwardRef(RadarChart);
+export default React.forwardRef<echarts.ECharts, RadarChartProps>(RadarChart);

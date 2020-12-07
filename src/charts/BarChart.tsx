@@ -122,4 +122,4 @@ function BarChart({
   );
 }
 
-export default React.forwardRef(BarChart);
+export default React.forwardRef<echarts.ECharts, BarChartProps>(BarChart);

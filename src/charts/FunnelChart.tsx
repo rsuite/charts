@@ -128,4 +128,4 @@ function FunnelChart({
   );
 }
 
-export default React.forwardRef(FunnelChart);
+export default React.forwardRef<echarts.ECharts, FunnelChartProps>(FunnelChart);

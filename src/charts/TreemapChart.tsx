@@ -40,4 +40,4 @@ function TreemapChart({
   );
 }
 
-export default React.forwardRef(TreemapChart);
+export default React.forwardRef<echarts.ECharts, TreemapChartProps>(TreemapChart);

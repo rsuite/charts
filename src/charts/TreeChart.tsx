@@ -35,4 +35,4 @@ function TreeChart({
   );
 }
 
-export default React.forwardRef(TreeChart);
+export default React.forwardRef<echarts.ECharts, TreeChartProps>(TreeChart);

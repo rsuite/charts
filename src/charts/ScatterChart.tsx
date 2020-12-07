@@ -80,4 +80,4 @@ function ScatterChart({
   );
 }
 
-export default React.forwardRef(ScatterChart);
+export default React.forwardRef<echarts.ECharts, ScatterChartProps>(ScatterChart);

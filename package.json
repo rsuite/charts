@@ -4,12 +4,11 @@
   "description": "ECharts for React",
   "main": "lib/index.js",
   "module": "es/index.js",
-  "types": "index.d.ts",
+  "types": "es/index.d.ts",
   "files": [
     "src",
     "lib",
     "es",
-    "index.d.ts",
     "package.json"
   ],
   "directories": {

@@ -35,4 +35,4 @@ function SankeyChart({
   );
 }
 
-export default React.forwardRef(SankeyChart);
+export default React.forwardRef<echarts.ECharts, SankeyChartProps>(SankeyChart);

@@ -60,4 +60,4 @@ function LineChart({
   );
 }
 
-export default React.forwardRef(LineChart);
+export default React.forwardRef<echarts.ECharts, LineChartProps>(LineChart);
