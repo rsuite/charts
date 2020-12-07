@@ -1,7 +1,10 @@
 import { symbols } from '../constants';
 import { AxisLabelFormatter } from '../types';
 
-export type XAxisProps = echarts.EChartOption.XAxis & {
+export type XAxisProps = Omit<
+  echarts.EChartOption.XAxis,
+  'axisLine' | 'axisLabel' | 'splitLine'
+> & {
   axisLine?: echarts.EChartOption.XAxis['axisLine'] | boolean;
   axisLabel?: echarts.EChartOption.XAxis['axisLabel'] | boolean | AxisLabelFormatter;
   splitLine?: echarts.EChartOption.XAxis['splitLine'] | boolean;

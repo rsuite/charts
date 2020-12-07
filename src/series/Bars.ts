@@ -1,7 +1,7 @@
 import 'echarts/lib/chart/bar';
 import { symbols } from '../constants';
 
-type BarsProps = echarts.EChartOption.SeriesBar & {
+type BarsProps = Omit<echarts.EChartOption.SeriesBar, 'stack'> & {
   color?: string | string[];
   stack?: string | true;
 };
