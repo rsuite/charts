@@ -147,7 +147,7 @@ function ECharts({
       className={`rs-echarts ${className || ''}`}
       style={{ position: 'relative', height, ...style }}
     >
-      {dataEmpty && renderEmptyMessage()}
+      {!loading && dataEmpty && renderEmptyMessage()}
       <ReactEchartsCore
         echarts={echarts}
         option={echartsOption}
