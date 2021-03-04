@@ -27,9 +27,9 @@ export const symbols = {
   pie: Symbol.for('$$pie'),
   radarLine: Symbol.for('$$radarLine'),
   sankey: Symbol.for('$$sankey'),
-  scatter: Symbol.for('$scatter'),
-  tree: Symbol.for('$tree'),
-  treemap: Symbol.for('$treemap')
+  scatter: Symbol.for('$$scatter'),
+  tree: Symbol.for('$$tree'),
+  treemap: Symbol.for('$$treemap')
 };
 
 (symbols as any).components = [
