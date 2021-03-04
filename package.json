@@ -27,8 +27,7 @@
     "prepublishOnly": "npm run build",
     "release": "npm publish --access public --tag next",
     "lint": "eslint src  *.js",
-    "test": "jest",
-    "coveralls": "cat ./coverage/lcov/lcov.info | ./node_modules/.bin/coveralls"
+    "test": "jest"
   },
   "dependencies": {
     "echarts-for-react": "^2.0.15-beta.0",
@@ -84,7 +83,6 @@
     "babel-preset-rsuite": "^0.1.1",
     "chai": "^3.5.0",
     "compression-webpack-plugin": "^3.1.0",
-    "coveralls": "^3.0.2",
     "css-loader": "^2.1.0",
     "echarts": "^4.9.0",
     "enzyme": "^3.1.0",
