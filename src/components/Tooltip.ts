@@ -1,7 +1,8 @@
+import { TooltipComponentOption } from 'echarts';
 import 'echarts/lib/component/tooltip';
 import { symbols } from '../constants';
 
-export type TooltipProps = echarts.EChartOption.Tooltip;
+export type TooltipProps = TooltipComponentOption;
 
 function Tooltip(_: TooltipProps) {
   return null;

@@ -1,22 +1,16 @@
 import React, { Children } from 'react';
-import ECharts, { ChartComponentProps } from '../ECharts';
+import ECharts, { SeriesChartComponentProps } from '../ECharts';
 import Pie, { PieProps } from '../series/Pie';
 import Tooltip from '../components/Tooltip';
 import Legend from '../components/Legend';
 import { EChartsContext } from '../constants';
 import { is } from '../utils';
 
-export interface PieChartProps extends ChartComponentProps<PieProps['data']>, PieProps {
+export interface PieChartProps extends SeriesChartComponentProps<PieProps> {
   legend?: boolean;
 }
 
-function PieChart({
-  data = [],
-  legend = true,
-  children,
-  ...props
-}: PieChartProps, ref: any) {
-
+function PieChart({ data = [], legend = true, children, ...props }: PieChartProps, ref: any) {
   const components = Children.toArray(children);
 
   function getPieData() {

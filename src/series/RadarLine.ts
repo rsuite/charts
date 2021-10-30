@@ -1,7 +1,8 @@
+import { RadarSeriesOption } from 'echarts';
 import 'echarts/lib/chart/line';
 import { symbols } from '../constants';
 
-export type RadarLineProps = echarts.EChartOption.SeriesRadar | any;
+export type RadarLineProps = RadarSeriesOption;
 
 function RadarLine(_: RadarLineProps) {
   return null;

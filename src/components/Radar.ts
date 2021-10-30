@@ -1,7 +1,8 @@
+import { EChartsOption } from 'echarts';
 import 'echarts/lib/component/radar';
 import { symbols } from '../constants';
 
-export type RadarProps = echarts.EChartOption['radar'] | any;
+export type RadarProps = EChartsOption['radar'];
 
 function Radar(_: RadarProps) {
   return null;

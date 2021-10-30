@@ -1,9 +1,10 @@
+import { VisualMapComponentOption } from 'echarts';
 import 'echarts/lib/component/visualMap';
 import { symbols } from '../constants';
 
-export type VisualMapProps = echarts.EChartOption.VisualMap;
+export type VisualMapProps = VisualMapComponentOption;
 
-function VisualMap(_: VisualMapProps){
+function VisualMap(_: VisualMapProps) {
   return null;
 }
 

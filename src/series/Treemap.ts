@@ -1,9 +1,10 @@
+import { TreemapSeriesOption } from 'echarts';
 import 'echarts/lib/chart/treemap';
 import { symbols } from '../constants';
 
-export type TreemapProps = echarts.EChartOption.SeriesTreemap;
+export type TreemapProps = TreemapSeriesOption;
 
-function Treemap(_: TreemapProps){
+function Treemap(_: TreemapProps) {
   return null;
 }
 

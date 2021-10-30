@@ -1,12 +1,12 @@
 import React, { Children } from 'react';
-import ECharts, { ChartComponentProps } from '../ECharts';
+import ECharts, { SeriesChartComponentProps } from '../ECharts';
 import Tooltip from '../components/Tooltip';
 import VisualMap from '../components/VisualMap';
 import Treemap, { TreemapProps } from '../series/Treemap';
 import { EChartsContext } from '../constants';
 import { is } from '../utils';
 
-export interface TreemapChartProps extends ChartComponentProps<TreemapProps['data']> {}
+export interface TreemapChartProps extends SeriesChartComponentProps<TreemapProps> {}
 
 const treemapTooltipFormatter = ({ seriesName, name, value }: any) =>
   `${name}<br>${seriesName}: ${value}`;

@@ -1,13 +1,11 @@
+import { YAXisComponentOption } from 'echarts';
 import { symbols } from '../constants';
 import { AxisLabelFormatter } from '../types';
 
-export type YAxisProps = Omit<
-  echarts.EChartOption.YAxis,
-  'axisLine' | 'axisLabel' | 'splitLine'
-> & {
-  axisLine?: echarts.EChartOption.YAxis['axisLine'] | boolean;
-  axisLabel?: echarts.EChartOption.YAxis['axisLabel'] | boolean | AxisLabelFormatter;
-  splitLine?: echarts.EChartOption.YAxis['splitLine'] | boolean;
+export type YAxisProps = Omit<YAXisComponentOption, 'axisLine' | 'axisLabel' | 'splitLine'> & {
+  axisLine?: YAXisComponentOption['axisLine'] | boolean;
+  axisLabel?: YAXisComponentOption['axisLabel'] | boolean | AxisLabelFormatter;
+  splitLine?: YAXisComponentOption['splitLine'] | boolean;
 };
 
 function YAxis(_: YAxisProps) {

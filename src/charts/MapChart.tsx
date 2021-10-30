@@ -1,6 +1,6 @@
 import React, { Children } from 'react';
 import _merge from 'lodash.merge';
-import ECharts, { ChartComponentProps } from '../ECharts';
+import ECharts, { SeriesChartComponentProps } from '../ECharts';
 import Tooltip from '../components/Tooltip';
 import Map, { MapProps } from '../series/Map';
 import VisualMap from '../components/VisualMap';
@@ -15,18 +15,14 @@ const mapVisualMapColors = [
   'rgba(8, 132, 204, .3)'
 ];
 
-interface MapChartProps extends ChartComponentProps<MapProps['data']>, MapProps {
+interface MapChartProps extends SeriesChartComponentProps<MapProps> {
   visualMap?: boolean;
 }
 
-function MapChart({
-  name,
-  data = [],
-  visualMap: shouldShowVisualMap = true,
-  children,
-  ...props
-}: MapChartProps, ref: any) {
-
+function MapChart(
+  { name, data = [], visualMap: shouldShowVisualMap = true, children, ...props }: MapChartProps,
+  ref: any
+) {
   function renderDefaultMap() {
     return <Map name={name} data={data} {...props} />;
   }

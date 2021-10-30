@@ -1,10 +1,11 @@
+import { LinesSeriesOption } from 'echarts';
 import 'echarts/lib/chart/line';
 import { symbols } from '../constants';
 
-export type LineProps = Omit<echarts.EChartOption.SeriesLine, 'stack'> & {
+export type LineProps = Omit<LinesSeriesOption, 'stack'> & {
   stack?: string | boolean;
   area?: boolean;
-}
+};
 
 function Line(_: LineProps) {
   return null;
