@@ -30,7 +30,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "echarts-for-react": "^2.0.15-beta.0",
+    "echarts-for-react": "^3.0.2",
     "lodash.merge": "^4.6.2",
     "react-keyed-flatten-children": "^1.2.0"
   },
@@ -71,7 +71,6 @@
     "@rsuite/document-nav": "^1.0.0",
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",
-    "@types/echarts": "^4.9.2",
     "@types/jest": "^26.0.20",
     "@types/lodash.merge": "^4.6.6",
     "@types/react": "^16.9.6",
@@ -119,7 +118,7 @@
     "rsuite-docs": "^0.1.11",
     "style-loader": "^0.23.1",
     "ts-jest": "^26.5.2",
-    "typescript": "^3.8.3",
+    "typescript": "^4.4.4",
     "url-loader": "^0.6.2",
     "webpack": "^4.42.1",
     "webpack-cli": "^3.2.3",
