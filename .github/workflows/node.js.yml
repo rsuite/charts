@@ -4,17 +4,19 @@ on:
   push:
     branches:
       - master
+      - next
       - 'ci/**'
   pull_request:
     branches:
       - master
+      - next
 
 jobs:
   test:
     runs-on: ubuntu-latest
-    container: node:latest
+    container: node:lts
     steps:
       - uses: actions/checkout@v2
       - run: npm ci
       - run: npm test -- --coverage
-      - uses: codecov/codecov-action@v1
+      - uses: codecov/codecov-action@v2
