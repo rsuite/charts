@@ -20,7 +20,7 @@
     "dev": "NODE_ENV=development webpack-dev-server --mode development  --inline --progress --colors --port 3100 --host 0.0.0.0 --devtool source-map ",
     "docs": "rm -rf assets &&  NODE_ENV=production webpack  --mode production  --progress",
     "prebuild": "rm -rf lib && rm -rf es",
-    "build": "tsc && tsc --outDir es --module es2015",
+    "build": "tsc -p tsconfig.build.json && tsc -p tsconfig.build.json --outDir es --module es2015",
     "publish-docs": "node docs/gh-pages.js",
     "prepages": "npm run docs",
     "pages": "npm run publish-docs",
