@@ -40,7 +40,6 @@ lib/
 .DS_Store
 
 .vscode/
-assets/
 yarn.lock
 
 .idea

@@ -27,7 +27,9 @@
     "prepublishOnly": "npm run build",
     "release": "npm publish --access public --tag next",
     "lint": "eslint src  *.js",
-    "test": "jest"
+    "test": "jest",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
     "echarts-for-react": "^3.0.2",
@@ -69,6 +71,10 @@
     "@babel/preset-typescript": "^7.9.0",
     "@babel/standalone": "^7.0.0",
     "@rsuite/document-nav": "^1.0.0",
+    "@storybook/addon-actions": "^6.3.12",
+    "@storybook/addon-essentials": "^6.3.12",
+    "@storybook/addon-links": "^6.3.12",
+    "@storybook/react": "^6.3.12",
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",
     "@types/echarts": "^4.9.2",
