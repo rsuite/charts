@@ -1,7 +1,9 @@
 import React from 'react';
 import _merge from 'lodash.merge';
+import _omit from 'lodash.omit';
 import flattenChildren from 'react-keyed-flatten-children';
 import { symbols } from './constants';
+import { ChartComponentProps } from './ECharts';
 
 export function is(element: any, name: string): boolean {
   return element.type[symbols.typeKey] === Symbol.for(`$$${name}`);
@@ -732,6 +734,9 @@ const createOptions = {
   }
 };
 
+export function excludeEchartsProps(props: ChartComponentProps) {
+  return _omit(props, ['option', 'locale', 'height', 'loading']);
+}
 
 export function createEChartsOptionFromChildren(children: any, _: any) {
   const option = {};
@@ -756,7 +761,11 @@ export function createEChartsOptionFromChildren(children: any, _: any) {
   validChildren.forEach(child => {
     // 处理 child 的 props
     // 根据 child 的 type 上的 symbol
-    (createOptions as any)[child.type[symbols.typeKey]]?.(option, child.props, context);
+    (createOptions as any)[child.type[symbols.typeKey]]?.(
+      option,
+      excludeEchartsProps(child.props),
+      context
+    );
   });
 
 
