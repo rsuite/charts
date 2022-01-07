@@ -1,4 +1,4 @@
-import 'echarts/lib/chart/line';
+import 'echarts/lib/chart/scatter';
 import { symbols } from '../constants';
 
 export type ScatterProps = echarts.EChartOption.SeriesScatter;
