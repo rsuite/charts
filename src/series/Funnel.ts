@@ -1,4 +1,4 @@
-import 'echarts/lib/chart/line';
+import 'echarts/lib/chart/funnel';
 import { symbols } from '../constants';
 
 export interface FunnelProps extends echarts.EChartOption.SeriesFunnel {
