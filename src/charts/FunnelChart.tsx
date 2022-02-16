@@ -46,7 +46,7 @@ function FunnelChart(
       };
       return funnels.map((funnel, index) => (
         <Fragment key={index}>
-          {cloneElement(funnel, funnelPosition)}
+          {cloneElement(funnel, { ...funnelPosition, ...funnel.props })}
           {withoutLegend && <Legend data={funnel.props.data.map(([name]: any) => name)} />}
         </Fragment>
       ));
@@ -67,7 +67,8 @@ function FunnelChart(
               ...funnelPosition,
               color:
                 funnel.props.color &&
-                new Array(occupiedColorsCount(index)).concat(funnel.props.color)
+                new Array(occupiedColorsCount(index)).concat(funnel.props.color),
+              ...funnel.props
             })}
             {withoutLegend && (
               <Legend
