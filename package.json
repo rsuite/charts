@@ -1,6 +1,6 @@
 {
   "name": "@rsuite/charts",
-  "version": "4.0.0",
+  "version": "0.0.0-development",
   "description": "ECharts for React",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -27,7 +27,8 @@
     "prepublishOnly": "npm run build",
     "release": "npm publish --access public --tag next",
     "lint": "eslint src  *.js",
-    "test": "jest"
+    "test": "jest",
+    "semantic-release": "semantic-release"
   },
   "dependencies": {
     "echarts-for-react": "^2.0.15-beta.0",
@@ -43,7 +44,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git@github.com:rsuite/charts.git"
+    "url": "https:git@github.com:rsuite/charts.git"
   },
   "homepage": "https://github.com/rsuite/charts",
   "devDependencies": {
@@ -119,6 +120,7 @@
     "react-test-renderer": "^16.0.0",
     "rsuite": "^3.7.5",
     "rsuite-docs": "^0.1.11",
+    "semantic-release": "^19.0.2",
     "style-loader": "^0.23.1",
     "ts-jest": "^26.5.2",
     "typescript": "^3.8.3",
