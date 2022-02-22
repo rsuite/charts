@@ -18,6 +18,11 @@ function FunnelChart(
   { asc = false, tooltip = true, name, data = [], children, option, ...props }: FunnelChartProps,
   ref: any
 ) {
+  const components = Children.toArray(children);
+  const funnels = components.filter(comp => is(comp, 'funnel'));
+  const legends = components.filter(comp => is(comp, 'legend'));
+  const withoutLegend = legends.length === 0;
+
   function renderDefaultFunnel() {
     const funnelPosition = {
       width: `${funnelDefaultWidth}%`,
@@ -27,7 +32,7 @@ function FunnelChart(
     return (
       <Fragment>
         <Funnel name={name} data={data} asc={asc} {...funnelPosition} />
-        <Legend data={(data as any).map(([name]: any) => name)} />
+        {withoutLegend && <Legend data={(data as any).map(([name]: any) => name)} />}
       </Fragment>
     );
   }
@@ -41,8 +46,8 @@ function FunnelChart(
       };
       return funnels.map((funnel, index) => (
         <Fragment key={index}>
-          {cloneElement(funnel, funnelPosition)}
-          <Legend data={funnel.props.data.map(([name]: any) => name)} />
+          {cloneElement(funnel, { ...funnelPosition, ...funnel.props })}
+          {withoutLegend && <Legend data={funnel.props.data.map(([name]: any) => name)} />}
         </Fragment>
       ));
     }
@@ -62,12 +67,15 @@ function FunnelChart(
               ...funnelPosition,
               color:
                 funnel.props.color &&
-                new Array(occupiedColorsCount(index)).concat(funnel.props.color)
+                new Array(occupiedColorsCount(index)).concat(funnel.props.color),
+              ...funnel.props
             })}
-            <Legend
-              data={funnel.props.data.map(([name]: any) => name)}
-              {...(funnelPosition as any)}
-            />
+            {withoutLegend && (
+              <Legend
+                data={funnel.props.data.map(([name]: any) => name)}
+                {...(funnelPosition as any)}
+              />
+            )}
           </Fragment>
         );
       });
@@ -79,13 +87,10 @@ function FunnelChart(
           color:
             funnel.props.color && new Array(occupiedColorsCount(index)).concat(funnel.props.color)
         })}
-        <Legend data={funnel.props.data.map(([name]: any) => name)} />
+        {withoutLegend && <Legend data={funnel.props.data.map(([name]: any) => name)} />}
       </Fragment>
     ));
   }
-
-  const components = Children.toArray(children);
-  const funnels = components.filter(comp => is(comp, 'funnel'));
 
   let titleOption = {};
   if (!funnels.length) {
