@@ -38,7 +38,7 @@
   },
   "peerDependencies": {
     "echarts": "^3.0.0 || ^4.0.0",
-    "react": "^16.8.0"
+    "react": "^16.8.0 || ^17.0.0"
   },
   "author": "Doma <leishenghao@126.com>",
   "license": "MIT",
