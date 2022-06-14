@@ -228,9 +228,6 @@ const createOptions = {
       return _merge(
         {
           boundaryGap: !!series.find((comp: any) => comp.type[symbols.typeKey] === symbols.bars),
-          axisLabel: transformTextOption(axisLabel, {
-            show: true
-          }),
           splitLine: {
             show: false
           },
@@ -239,6 +236,11 @@ const createOptions = {
             color: '#575757'
           }
         },
+        axisLabel
+          ? {
+              axisLabel: transformTextOption(axisLabel)
+            }
+          : {},
         rest
       );
     }
@@ -262,9 +264,6 @@ const createOptions = {
           axisLine: {
             show: false
           },
-          axisLabel: transformTextOption(axisLabel, {
-            show: true
-          }),
           splitLine: _merge(
             {
               show: !!splitLine
@@ -278,6 +277,11 @@ const createOptions = {
             color: '#575757'
           }
         },
+        axisLabel
+          ? {
+              axisLabel: transformTextOption(axisLabel)
+            }
+          : {},
         rest
       );
     }
