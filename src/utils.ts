@@ -244,9 +244,6 @@ const createOptions = {
           },
           axisLabel: transformTextOption(axisLabel, {
             show: true,
-            textStyle: {
-              color: '#8e8e93'
-            }
           }),
           splitLine: {
             show: false
@@ -287,9 +284,6 @@ const createOptions = {
           },
           axisLabel: transformTextOption(axisLabel, {
             show: true,
-            textStyle: {
-              color: '#8e8e93'
-            }
           }),
           splitLine: _merge(
             {
