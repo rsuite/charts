@@ -346,8 +346,7 @@ const createOptions = {
           // 颜色：#575757
           // 位置：top，水平则 right
           label: transformTextOption(label, {
-            position: horizontal ? 'right' : 'top',
-            textStyle: { color: '#575757' }
+            position: horizontal ? 'right' : 'top'
           })
         },
         rest

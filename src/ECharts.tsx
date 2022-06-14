@@ -4,6 +4,7 @@ import ReactEchartsCore from 'echarts-for-react/lib/core';
 import echarts from 'echarts/lib/echarts';
 import { createEChartsOptionFromChildren } from './utils';
 import './theme/rsuite_light';
+import './theme/rsuite_dark';
 import { EChartsContext } from './constants';
 
 const styles: {
