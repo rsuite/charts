@@ -199,7 +199,7 @@ const theme = {
       color: '#575757'
     },
     splitLine: {
-      show: true,
+      show: false,
       lineStyle: {
         color: ['#e5e5ea']
       }
@@ -213,7 +213,7 @@ const theme = {
   },
   valueAxis: {
     axisLine: {
-      show: true,
+      show: false,
       lineStyle: {
         color: '#e5e5ea'
       }
@@ -221,7 +221,7 @@ const theme = {
     axisTick: {
       show: false,
       lineStyle: {
-        color: '#333'
+        color: '#8e8e93'
       }
     },
     axisLabel: {
@@ -249,7 +249,7 @@ const theme = {
       }
     },
     axisTick: {
-      show: false,
+      show: true,
       lineStyle: {
         color: '#333'
       }
@@ -279,7 +279,7 @@ const theme = {
       }
     },
     axisTick: {
-      show: false,
+      show: true,
       lineStyle: {
         color: '#333'
       }

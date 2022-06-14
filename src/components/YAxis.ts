@@ -16,8 +16,7 @@ function YAxis(_: YAxisProps) {
 
 YAxis.defaultProps = {
   show: true,
-  type: 'value',
-  splitLine: true
+  type: 'value'
 };
 YAxis[symbols.typeKey] = symbols.yAxis;
 

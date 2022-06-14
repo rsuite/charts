@@ -228,9 +228,6 @@ const createOptions = {
       return _merge(
         {
           boundaryGap: !!series.find((comp: any) => comp.type[symbols.typeKey] === symbols.bars),
-          splitLine: {
-            show: false
-          },
           nameTextStyle: {
             fontSize: 12,
             color: '#575757'
@@ -261,15 +258,6 @@ const createOptions = {
 
       return _merge(
         {
-          axisLine: {
-            show: false
-          },
-          splitLine: _merge(
-            {
-              show: !!splitLine
-            },
-            typeof splitLine !== 'boolean' && splitLine
-          ),
           nameRotate: 0,
           name: name && rest.nameLocation === 'middle' ? name.split('').join('\n') : name,
           nameTextStyle: {
@@ -277,6 +265,16 @@ const createOptions = {
             color: '#575757'
           }
         },
+        typeof splitLine !== 'undefined'
+          ? {
+              splitLine: _merge(
+                {
+                  show: !!splitLine
+                },
+                typeof splitLine !== 'boolean' && splitLine
+              )
+            }
+          : {},
         axisLabel
           ? {
               axisLabel: transformTextOption(axisLabel)
