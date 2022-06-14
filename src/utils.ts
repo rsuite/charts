@@ -118,10 +118,7 @@ const createOptions = {
             : series.map((comp: any) => {
                 return comp.props.name;
               }),
-        bottom: 0,
-        textStyle: {
-          color: '#8e8e93'
-        }
+        bottom: 0
       };
 
       if (chartType === 'pie') {
