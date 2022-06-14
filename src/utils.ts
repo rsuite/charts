@@ -82,13 +82,16 @@ const createOptions = {
   },
   [symbols.tooltip](option: any, props: any, context: any) {
     function getOption() {
-
       const { chartType, series } = context;
 
       const hasAxis =
         chartType === 'bar' ||
         chartType === 'line' ||
-        !!series.find((comp: any) => comp.type[symbols.typeKey] === symbols.xAxis || comp.type[symbols.typeKey] === symbols.yAxis);
+        !!series.find(
+          (comp: any) =>
+            comp.type[symbols.typeKey] === symbols.xAxis ||
+            comp.type[symbols.typeKey] === symbols.yAxis
+        );
 
       return _merge(
         {
@@ -110,9 +113,11 @@ const createOptions = {
       let legendOption: any = {
         show: true,
         data:
-          chartType === 'pie' ? chartData.map(([name]: any) => name) : series.map((comp: any) => {
-            return comp.props.name;
-          }),
+          chartType === 'pie'
+            ? chartData.map(([name]: any) => name)
+            : series.map((comp: any) => {
+                return comp.props.name;
+              }),
         bottom: 0,
         textStyle: {
           color: '#8e8e93'
@@ -124,7 +129,6 @@ const createOptions = {
       }
       return _merge(legendOption, props);
     }
-
 
     const legendOption = getOption();
 
@@ -147,16 +151,7 @@ const createOptions = {
           },
           nameGap: 10,
           shape: circle ? 'circle' : 'polygon',
-          axisLine: {
-            lineStyle: {
-              color: '#E5E5EA'
-            }
-          },
-          splitLine: {
-            lineStyle: {
-              color: '#E5E5EA'
-            }
-          },
+
           splitArea: {
             areaStyle: {
               color: ['#FFFFFF', '#F7F7FA']
@@ -176,7 +171,6 @@ const createOptions = {
     } else {
       option.radar.push(radarOption);
     }
-
   },
 
   [symbols.visualMap](option: any, props: any, context: any) {
@@ -218,7 +212,10 @@ const createOptions = {
       );
 
       if (chartData && !visualMapOption.max) {
-        visualMapOption.max = chartData.reduce((max: any, d: any) => Math.max(max, d[1]), -Infinity);
+        visualMapOption.max = chartData.reduce(
+          (max: any, d: any) => Math.max(max, d[1]),
+          -Infinity
+        );
       }
 
       return visualMapOption;
@@ -234,16 +231,12 @@ const createOptions = {
       return _merge(
         {
           boundaryGap: !!series.find((comp: any) => comp.type[symbols.typeKey] === symbols.bars),
-          axisLine: {
-            lineStyle: {
-              color: '#e5e5ea'
-            }
-          },
+
           axisTick: {
             show: false
           },
           axisLabel: transformTextOption(axisLabel, {
-            show: true,
+            show: true
           }),
           splitLine: {
             show: false
@@ -274,23 +267,17 @@ const createOptions = {
       return _merge(
         {
           axisLine: {
-            show: false,
-            lineStyle: {
-              color: '#e5e5ea'
-            }
+            show: false
           },
           axisTick: {
             show: false
           },
           axisLabel: transformTextOption(axisLabel, {
-            show: true,
+            show: true
           }),
           splitLine: _merge(
             {
-              show: !!splitLine,
-              lineStyle: {
-                color: '#efefef'
-              }
+              show: !!splitLine
             },
             typeof splitLine !== 'boolean' && splitLine
           ),
@@ -329,14 +316,21 @@ const createOptions = {
       } = props;
       const { chartType, horizontal, series } = context;
 
-      const barsSeriesCount = series.filter((comp: any) => comp.type[symbols.typeKey] === symbols.bars).length;
+      const barsSeriesCount = series.filter(
+        (comp: any) => comp.type[symbols.typeKey] === symbols.bars
+      ).length;
       const stackedBars = stack
-        ? series.filter((comp: any) => comp.type[symbols.typeKey] === symbols.bars && comp.props.stack === stack)
+        ? series.filter(
+            (comp: any) => comp.type[symbols.typeKey] === symbols.bars && comp.props.stack === stack
+          )
         : [];
       const stacked = stackedBars.length > 1;
       const stackTop =
         stackedBars.indexOf(
-          stackedBars.find((comp: any) => comp.type[symbols.typeKey] === symbols.bars && comp.props.name === rest.name)
+          stackedBars.find(
+            (comp: any) =>
+              comp.type[symbols.typeKey] === symbols.bars && comp.props.name === rest.name
+          )
         ) ===
         stackedBars.length - 1;
 
@@ -376,22 +370,17 @@ const createOptions = {
   },
   [symbols.funnel](option: any, props: any, _: any) {
     function getSeriesOption() {
-      const {
-        type,
-        data,
-        asc,
-        sort = asc ? 'ascending' : 'descending',
-        label,
-        ...rest
-      } = props;
+      const { type, data, asc, sort = asc ? 'ascending' : 'descending', label, ...rest } = props;
 
       return _merge(
         {
           type: 'funnel',
-          data: data.map(([name, value]: any) => ({
-            name,
-            value
-          })).sort((d1: any, d2: any) => d2.value - d1.value),
+          data: data
+            .map(([name, value]: any) => ({
+              name,
+              value
+            }))
+            .sort((d1: any, d2: any) => d2.value - d1.value),
           sort,
           label: transformTextOption(label, {
             show: true,
@@ -448,7 +437,10 @@ const createOptions = {
           type: 'map',
           map,
           name,
-          data: data.map(([name, value]: any) => ({ name: (nameMap && nameMap[name]) || name, value })),
+          data: data.map(([name, value]: any) => ({
+            name: (nameMap && nameMap[name]) || name,
+            value
+          })),
           itemStyle: {
             areaColor: '#E5E5EA',
             borderColor: '#ffffff',
@@ -610,7 +602,6 @@ const createOptions = {
     }
 
     option.series.push(getSeriesOption());
-
   },
   [symbols.tree](option: any, props: any, _: any) {
     function getSeriesOption() {
@@ -654,7 +645,6 @@ const createOptions = {
     }
 
     option.series.push(getSeriesOption());
-
   },
 
   [symbols.treemap](option: any, props: any, _: any) {
@@ -743,7 +733,7 @@ export function createEChartsOptionFromChildren(children: any, _: any) {
 
   const validChildren = getValidChildren();
 
-  const series = validChildren.filter((child) => {
+  const series = validChildren.filter(child => {
     return (symbols as any).series.includes(child.type[symbols.typeKey]);
   });
 
@@ -761,7 +751,6 @@ export function createEChartsOptionFromChildren(children: any, _: any) {
       context
     );
   });
-
 
   return option;
 }

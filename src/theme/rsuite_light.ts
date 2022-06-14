@@ -9,6 +9,7 @@ import echarts from 'echarts/lib/echarts';
  * 3. Make changes in the theme builder GUI
  * 4. Download (not export) the edited theme
  * 5. Replace the theme object with the latest theme JSON
+ * 6. Export the edited theme and update rsuite_light.project.json
  */
 const theme = {
   color: [
@@ -188,7 +189,7 @@ const theme = {
       }
     },
     axisTick: {
-      show: false,
+      show: true,
       lineStyle: {
         color: '#333'
       }
@@ -198,9 +199,9 @@ const theme = {
       color: '#575757'
     },
     splitLine: {
-      show: false,
+      show: true,
       lineStyle: {
-        color: ['#ccc']
+        color: ['#e5e5ea']
       }
     },
     splitArea: {
@@ -212,15 +213,15 @@ const theme = {
   },
   valueAxis: {
     axisLine: {
-      show: false,
+      show: true,
       lineStyle: {
         color: '#e5e5ea'
       }
     },
     axisTick: {
-      show: false,
+      show: true,
       lineStyle: {
-        color: '#8e8e93'
+        color: '#333'
       }
     },
     axisLabel: {
@@ -230,7 +231,7 @@ const theme = {
     splitLine: {
       show: true,
       lineStyle: {
-        color: ['#efefef']
+        color: ['#e5e5ea']
       }
     },
     splitArea: {
@@ -260,7 +261,7 @@ const theme = {
     splitLine: {
       show: true,
       lineStyle: {
-        color: ['#ccc']
+        color: ['#e5e5ea']
       }
     },
     splitArea: {
@@ -290,7 +291,7 @@ const theme = {
     splitLine: {
       show: true,
       lineStyle: {
-        color: ['#ccc']
+        color: ['#e5e5ea']
       }
     },
     splitArea: {
