@@ -231,10 +231,6 @@ const createOptions = {
       return _merge(
         {
           boundaryGap: !!series.find((comp: any) => comp.type[symbols.typeKey] === symbols.bars),
-
-          axisTick: {
-            show: false
-          },
           axisLabel: transformTextOption(axisLabel, {
             show: true
           }),
@@ -267,9 +263,6 @@ const createOptions = {
       return _merge(
         {
           axisLine: {
-            show: false
-          },
-          axisTick: {
             show: false
           },
           axisLabel: transformTextOption(axisLabel, {

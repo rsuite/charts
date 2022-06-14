@@ -189,7 +189,7 @@ const theme = {
       }
     },
     axisTick: {
-      show: true,
+      show: false,
       lineStyle: {
         color: '#333'
       }
@@ -219,7 +219,7 @@ const theme = {
       }
     },
     axisTick: {
-      show: true,
+      show: false,
       lineStyle: {
         color: '#333'
       }
@@ -249,7 +249,7 @@ const theme = {
       }
     },
     axisTick: {
-      show: true,
+      show: false,
       lineStyle: {
         color: '#333'
       }
@@ -279,7 +279,7 @@ const theme = {
       }
     },
     axisTick: {
-      show: true,
+      show: false,
       lineStyle: {
         color: '#333'
       }

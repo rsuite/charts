@@ -51,7 +51,7 @@
         "name": "通用坐标轴",
         "axisLineShow": true,
         "axisLineColor": "#e5e5ea",
-        "axisTickShow": true,
+        "axisTickShow": false,
         "axisTickColor": "#333",
         "axisLabelShow": true,
         "axisLabelColor": "#575757",
