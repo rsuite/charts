@@ -31,7 +31,7 @@
     "semantic-release": "semantic-release"
   },
   "dependencies": {
-    "echarts-for-react": "^2.0.15-beta.0",
+    "echarts-for-react": "^3.0.2",
     "lodash.merge": "^4.6.2",
     "lodash.omit": "^4.5.0",
     "react-keyed-flatten-children": "^1.2.0"
