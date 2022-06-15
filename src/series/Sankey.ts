@@ -1,7 +1,8 @@
+import type { SankeySeriesOption } from 'echarts';
 import 'echarts/lib/chart/treemap';
 import { symbols } from '../constants';
 
-export type SankeyProps = echarts.EChartOption.SeriesSankey | any;
+export type SankeyProps = SankeySeriesOption;
 
 function Sankey(_: SankeyProps) {
   return null;

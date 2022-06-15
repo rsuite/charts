@@ -1,8 +1,9 @@
+import type { LegendComponentOption } from 'echarts';
 import 'echarts/lib/component/legend';
 import 'echarts/lib/component/legendScroll';
 import { symbols } from '../constants';
 
-export type LegendProps = echarts.EChartOption.Legend;
+export type LegendProps = LegendComponentOption;
 
 function Legend(_: LegendProps) {
   return null;

@@ -1,4 +1,4 @@
-import echarts from 'echarts/lib/echarts';
+import * as echarts from 'echarts/core';
 import _merge from 'lodash.merge';
 
 /**

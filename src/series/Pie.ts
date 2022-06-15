@@ -1,7 +1,8 @@
+import type { PieSeriesOption } from 'echarts';
 import 'echarts/lib/chart/pie';
 import { symbols } from '../constants';
 
-export interface PieProps extends echarts.EChartOption.SeriesPie {
+export interface PieProps extends PieSeriesOption {
   donut?: boolean;
 }
 

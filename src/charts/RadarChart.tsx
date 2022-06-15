@@ -12,15 +12,10 @@ export interface RadarChartProps extends ChartComponentProps {
   legend?: boolean;
 }
 
-function RadarChart({
-  name,
-  data = [],
-  tooltip = true,
-  legend = true,
-  children,
-  ...props
-}: RadarChartProps, ref: any) {
-
+function RadarChart(
+  { name, data = [], tooltip = true, legend = true, children, ...props }: RadarChartProps,
+  ref: any
+) {
   function renderDefaultRadar() {
     const indicator = (data as any).map(([name, max]: any) => ({ name, max }));
 
@@ -28,7 +23,7 @@ function RadarChart({
   }
 
   function renderDefaultRadarLine() {
-    return <RadarLine name={name} value={(data as any).map(([_, __, value]: any) => value)} />;
+    return <RadarLine name={name} data={(data as any).map(([_, __, value]: any) => value)} />;
   }
 
   const components = Children.toArray(children);

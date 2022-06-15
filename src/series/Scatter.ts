@@ -1,7 +1,8 @@
+import type { ScatterSeriesOption } from 'echarts';
 import 'echarts/lib/chart/scatter';
 import { symbols } from '../constants';
 
-export type ScatterProps = echarts.EChartOption.SeriesScatter;
+export type ScatterProps = ScatterSeriesOption;
 
 function Scatter (_: ScatterProps){
   return null;

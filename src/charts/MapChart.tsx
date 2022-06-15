@@ -15,18 +15,16 @@ const mapVisualMapColors = [
   'rgba(8, 132, 204, .3)'
 ];
 
-interface MapChartProps extends ChartComponentProps<MapProps['data']>, MapProps {
+interface MapChartProps
+  extends ChartComponentProps<MapProps['data']>,
+    Omit<MapProps, 'color' | 'height' | 'id'> {
   visualMap?: boolean;
 }
 
-function MapChart({
-  name,
-  data = [],
-  visualMap: shouldShowVisualMap = true,
-  children,
-  ...props
-}: MapChartProps, ref: any) {
-
+function MapChart(
+  { name, data = [], visualMap: shouldShowVisualMap = true, children, ...props }: MapChartProps,
+  ref: any
+) {
   function renderDefaultMap() {
     return <Map name={name} data={data} {...props} />;
   }

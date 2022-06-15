@@ -6,17 +6,13 @@ import Legend from '../components/Legend';
 import { EChartsContext } from '../constants';
 import { is } from '../utils';
 
-export interface PieChartProps extends ChartComponentProps<PieProps['data']>, PieProps {
+export interface PieChartProps
+  extends ChartComponentProps<PieProps['data']>,
+    Omit<PieProps, 'height' | 'id' | 'color'> {
   legend?: boolean;
 }
 
-function PieChart({
-  data = [],
-  legend = true,
-  children,
-  ...props
-}: PieChartProps, ref: any) {
-
+function PieChart({ data = [], legend = true, children, ...props }: PieChartProps, ref: any) {
   const components = Children.toArray(children);
 
   function getPieData() {

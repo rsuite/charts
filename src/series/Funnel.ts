@@ -1,7 +1,8 @@
+import type { FunnelSeriesOption } from 'echarts';
 import 'echarts/lib/chart/funnel';
 import { symbols } from '../constants';
 
-export interface FunnelProps extends echarts.EChartOption.SeriesFunnel {
+export interface FunnelProps extends FunnelSeriesOption {
   asc?: boolean;
 }
 

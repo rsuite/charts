@@ -26,7 +26,7 @@ function LineChart(
   ref: any
 ) {
   function renderDefaultXAxis() {
-    return <XAxis data={data!.map(([category]) => category)} />;
+    return <XAxis {...({ data: data!.map(([category]) => category) } as any)} />;
   }
 
   function renderDefaultLine() {

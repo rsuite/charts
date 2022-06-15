@@ -1,7 +1,8 @@
+import type { MapSeriesOption } from 'echarts';
 import 'echarts/lib/chart/map';
 import { symbols } from '../constants';
 
-export type MapProps = echarts.EChartOption.SeriesMap;
+export type MapProps = MapSeriesOption;
 
 function Map(_: MapProps) {
   return null;

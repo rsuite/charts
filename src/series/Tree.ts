@@ -1,7 +1,8 @@
+import type { TreeSeriesOption } from 'echarts'; 
 import 'echarts/lib/chart/tree';
 import { symbols } from '../constants';
 
-export type TreeProps = echarts.EChartOption.SeriesTree;
+export type TreeProps = TreeSeriesOption;
 
 function Tree(_: TreeProps) {
   return null;

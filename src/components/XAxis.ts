@@ -1,13 +1,14 @@
+import type { XAXisComponentOption } from 'echarts';
 import { symbols } from '../constants';
 import { AxisLabelFormatter } from '../types';
 
 export type XAxisProps = Omit<
-  echarts.EChartOption.XAxis,
+  XAXisComponentOption,
   'axisLine' | 'axisLabel' | 'splitLine'
 > & {
-  axisLine?: echarts.EChartOption.XAxis['axisLine'] | boolean;
-  axisLabel?: echarts.EChartOption.XAxis['axisLabel'] | boolean | AxisLabelFormatter;
-  splitLine?: echarts.EChartOption.XAxis['splitLine'] | boolean;
+  axisLine?: XAXisComponentOption['axisLine'] | boolean;
+  axisLabel?: XAXisComponentOption['axisLabel'] | boolean | AxisLabelFormatter;
+  splitLine?: XAXisComponentOption['splitLine'] | boolean;
 };
 
 function XAxis(_: XAxisProps) {
