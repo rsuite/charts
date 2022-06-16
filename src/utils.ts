@@ -548,10 +548,8 @@ const createOptions = {
           borderWidth: 0
         },
         lineStyle: {
-          normal: {
-            color: '#cfcfcf',
-            curveness: 0.5
-          }
+          color: '#cfcfcf',
+          curveness: 0.5
         }
       };
     }
