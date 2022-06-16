@@ -147,10 +147,10 @@ const createOptions = {
 
       return _merge(
         {
-          name: {
+          axisName: {
             color: '#575757'
           },
-          nameGap: 10,
+          axisNameGap: 10,
           shape: circle ? 'circle' : 'polygon',
 
           splitArea: {
