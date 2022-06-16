@@ -1,6 +1,7 @@
 import ECharts from './ECharts';
 
 // Components
+import Dataset from './components/Dataset';
 import DataZoom from './components/DataZoom';
 import Legend from './components/Legend';
 import Radar from './components/Radar';
@@ -35,7 +36,7 @@ import TreemapChart from './charts/TreemapChart';
 
 export default ECharts;
 
-export { DataZoom, Legend, Radar, Tooltip, VisualMap, XAxis, YAxis };
+export { Dataset, DataZoom, Legend, Radar, Tooltip, VisualMap, XAxis, YAxis };
 
 export { Bars, Funnel, Line, Map, Pie, RadarLine, Sankey, Scatter, Tree, Treemap };
 
@@ -49,5 +50,5 @@ export {
   SankeyChart,
   ScatterChart,
   TreeChart,
-  TreemapChart,
+  TreemapChart
 };

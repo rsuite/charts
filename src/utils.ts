@@ -7,6 +7,7 @@ import { TitleComponent } from 'echarts/components';
 import { symbols } from './constants';
 import { ChartComponentProps } from './ECharts';
 import type { YAxisProps } from './components/YAxis';
+import type { DatasetProps } from './components/Dataset';
 
 echarts.use([TitleComponent]);
 
@@ -65,6 +66,9 @@ const stackKey = randstr();
 
 const createOptions = {
   // components
+  [symbols.dataset](option: any, props: DatasetProps, _:any) {
+    option.dataset = _merge({}, props);
+  },
   [symbols.dataZoom](option: any, props: any, _: any) {
     function getOption() {
       return _merge(

@@ -9,6 +9,7 @@ export const EChartsContext = React.createContext<EChartsContext>({});
 export const symbols = {
   typeKey: Symbol.for('$$typeKey'),
   // components
+  dataset: Symbol.for('$$dataset'),
   dataZoom: Symbol.for('$$dataZoom'),
   legend: Symbol.for('$$legend'),
   radar: Symbol.for('$$radar'),
