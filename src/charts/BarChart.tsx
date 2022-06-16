@@ -10,11 +10,11 @@ import { EChartsContext } from '../constants';
 
 const categoryAxisProps: any = {
   type: 'category',
-  splitLine: false,
+  splitLine: false
 };
 
 const valueAxisProps: any = {
-  type: 'value',
+  type: 'value'
 };
 
 interface BarChartProps extends ChartComponentProps {
@@ -70,16 +70,9 @@ function BarChart(
   function renderDefaultSeries() {
     // 水平图表从上往下阅读则需将 data 翻转过来
     const data = horizontal ? [...inputData!].reverse() : inputData!;
-    const values = data.map((d) => d[1]);
+    const values = data.map(d => d[1]);
 
     return <Bars name={name} data={values} />;
-  }
-
-  function renderDefaultLegend() {
-    const components = Children.toArray(children);
-    const series = components.filter(isSeries);
-    const dataNames = series.length ? series.map((serie: any) => serie.name) : [name];
-    return <Legend data={dataNames} />;
   }
 
   const components = Children.toArray(children);
@@ -101,13 +94,13 @@ function BarChart(
         {!categoryAxis && renderDefaultCategoryAxis()}
         {!valueAxis && renderDefaultValueAxis()}
         {!components.find((comp: any) => is(comp, 'bars')) && renderDefaultSeries()}
-        {legend && !components.find((comp: any) => is(comp, 'legend')) && renderDefaultLegend()}
+        {legend && !components.find((comp: any) => is(comp, 'legend')) && <Legend />}
         {tooltip && <Tooltip />}
         {components.map((child: any) => {
           if (child.type === (horizontal ? YAxis : XAxis)) {
             return cloneElement(child, {
               ...categoryAxisProps,
-              data: child.props.data || data!.map(([category]) => category),
+              data: child.props.data || data!.map(([category]) => category)
             });
           }
           if (child.type === (horizontal ? XAxis : YAxis)) {
@@ -115,7 +108,7 @@ function BarChart(
           }
           if (data!.length && isSeries(child) && !child.props.data) {
             const serieIndex = series.indexOf(child);
-            return cloneElement(child, { data: data!.map((d) => d[serieIndex + 1]) });
+            return cloneElement(child, { data: data!.map(d => d[serieIndex + 1]) });
           }
           return child;
         })}
