@@ -1,6 +1,8 @@
-import type { SankeySeriesOption } from 'echarts';
-import 'echarts/lib/chart/treemap';
+import * as echarts from 'echarts/core';
+import { SankeyChart, type SankeySeriesOption } from 'echarts/charts';
 import { symbols } from '../constants';
+
+echarts.use([SankeyChart]);
 
 export type SankeyProps = SankeySeriesOption;
 
@@ -11,8 +13,8 @@ function Sankey(_: SankeyProps) {
 Sankey.defaultProps = {
   data: {
     nodes: [],
-    links: [],
-  },
+    links: []
+  }
 };
 Sankey[symbols.typeKey] = symbols.sankey;
 
