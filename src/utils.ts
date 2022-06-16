@@ -28,14 +28,14 @@ export function transformTextOption(option: any, defaultOption?: any) {
     return {
       ...defaultOption,
       show: true,
-      formatter: option,
+      formatter: option
     };
   }
   if (typeof option === 'object') {
     return _merge(
       {
         ...defaultOption,
-        show: true,
+        show: true
       },
       option
     );
@@ -45,7 +45,7 @@ export function transformTextOption(option: any, defaultOption?: any) {
     show: true,
     formatter() {
       return option;
-    },
+    }
   };
 }
 
@@ -68,7 +68,7 @@ const createOptions = {
     function getOption() {
       return _merge(
         {
-          type: 'slider',
+          type: 'slider'
         },
         props
       );
@@ -102,8 +102,8 @@ const createOptions = {
           show: true,
           trigger: hasAxis ? 'axis' : 'item',
           axisPointer: {
-            type: 'none',
-          },
+            type: 'none'
+          }
         },
         props
       );
@@ -122,7 +122,7 @@ const createOptions = {
             : series.map((comp: any) => {
                 return comp.props.name;
               }),
-        bottom: 0,
+        bottom: 0
       };
 
       if (chartType === 'pie') {
@@ -148,16 +148,16 @@ const createOptions = {
       return _merge(
         {
           name: {
-            color: '#575757',
+            color: '#575757'
           },
           nameGap: 10,
           shape: circle ? 'circle' : 'polygon',
 
           splitArea: {
             areaStyle: {
-              color: ['#FFFFFF', '#F7F7FA'],
-            },
-          },
+              color: ['#FFFFFF', '#F7F7FA']
+            }
+          }
         },
         rest
       );
@@ -182,12 +182,12 @@ const createOptions = {
       let inRange: any = {
         colorHue: [198, 199],
         colorSaturation: [1, 1],
-        colorLightness: [0.88, 0.451],
+        colorLightness: [0.88, 0.451]
       };
 
       if (type === 'piecewise') {
         inRange = {
-          symbol: 'rect',
+          symbol: 'rect'
         };
       }
 
@@ -205,9 +205,9 @@ const createOptions = {
           itemGap: 1,
           symbolSize: [18, 14],
           textStyle: {
-            color: '#8e8e93',
+            color: '#8e8e93'
           },
-          inRange,
+          inRange
         },
         rest
       );
@@ -234,12 +234,12 @@ const createOptions = {
           boundaryGap: !!series.find((comp: any) => comp.type[symbols.typeKey] === symbols.bars),
           nameTextStyle: {
             fontSize: 12,
-            color: '#575757',
-          },
+            color: '#575757'
+          }
         },
         axisLabel
           ? {
-              axisLabel: transformTextOption(axisLabel),
+              axisLabel: transformTextOption(axisLabel)
             }
           : {},
         rest
@@ -266,22 +266,22 @@ const createOptions = {
           name: name && rest.nameLocation === 'middle' ? name.split('').join('\n') : name,
           nameTextStyle: {
             fontSize: 12,
-            color: '#575757',
-          },
+            color: '#575757'
+          }
         },
         typeof splitLine !== 'undefined'
           ? {
               splitLine: _merge(
                 {
-                  show: !!splitLine,
+                  show: !!splitLine
                 },
                 typeof splitLine !== 'boolean' && splitLine
-              ),
+              )
             }
           : {},
         axisLabel
           ? {
-              axisLabel: transformTextOption(axisLabel),
+              axisLabel: transformTextOption(axisLabel)
             }
           : {},
         rest
@@ -330,11 +330,11 @@ const createOptions = {
         ) ===
         stackedBars.length - 1;
 
-      let barBorderRadius;
+      let borderRadius;
       if (stacked && !stackTop) {
-        barBorderRadius = 0;
+        borderRadius = 0;
       } else {
-        barBorderRadius = chartType === 'bar' && horizontal ? [0, 5, 5, 0] : [5, 5, 0, 0];
+        borderRadius = chartType === 'bar' && horizontal ? [0, 5, 5, 0] : [5, 5, 0, 0];
       }
 
       return _merge(
@@ -344,14 +344,14 @@ const createOptions = {
           stack: (stack as any) === true ? stackKey : stack,
           itemStyle: {
             color: Array.isArray(color) ? ({ dataIndex }: any) => color[dataIndex] : color,
-            barBorderRadius,
+            borderRadius
           },
           // 默认 label
           // 颜色：#575757
           // 位置：top，水平则 right
           label: transformTextOption(label, {
-            position: horizontal ? 'right' : 'top',
-          }),
+            position: horizontal ? 'right' : 'top'
+          })
         },
         rest
       );
@@ -373,7 +373,7 @@ const createOptions = {
           data: data
             .map(([name, value]: any) => ({
               name,
-              value,
+              value
             }))
             .sort((d1: any, d2: any) => d2.value - d1.value),
           sort,
@@ -382,9 +382,9 @@ const createOptions = {
             position: 'inside',
             formatter: ({ value }: any) => value,
             textStyle: {
-              fontSize: 14,
-            },
-          }),
+              fontSize: 14
+            }
+          })
         },
         rest
       );
@@ -411,7 +411,7 @@ const createOptions = {
           type: 'line',
           symbol: 'none',
           stack: stack === true ? stackKey : stack,
-          areaStyle: area && { opacity: stack ? 0.6 : 0.2 },
+          areaStyle: area && { opacity: stack ? 0.6 : 0.2 }
         },
         rest
       );
@@ -434,26 +434,26 @@ const createOptions = {
           name,
           data: data.map(([name, value]: any) => ({
             name: (nameMap && nameMap[name]) || name,
-            value,
+            value
           })),
           itemStyle: {
             areaColor: '#E5E5EA',
             borderColor: '#ffffff',
-            borderWidth: 1,
+            borderWidth: 1
           },
           label: {
-            fontSize: 10,
+            fontSize: 10
           },
           emphasis: {
             label: {
-              color: 'rgb(131, 56, 236)',
+              color: 'rgb(131, 56, 236)'
             },
             itemStyle: {
               areaColor: 'rgba(131, 56, 236, .3)',
-              borderColor: 'rgb(131, 56, 236)',
-            },
+              borderColor: 'rgb(131, 56, 236)'
+            }
           },
-          nameMap,
+          nameMap
         },
         rest
       );
@@ -483,7 +483,7 @@ const createOptions = {
         {
           type: 'pie',
           radius: donut ? [`${innerRadius}%`, `${outerRadius}%`] : `${outerRadius}%`,
-          center: ['50%', '50%'],
+          center: ['50%', '50%']
         },
         rest
       );
@@ -508,7 +508,7 @@ const createOptions = {
       return _merge(
         {
           name,
-          value,
+          value
         },
         rest
       );
@@ -518,17 +518,17 @@ const createOptions = {
       type: 'radar',
       symbol: 'none',
       lineStyle: {
-        width: 2,
+        width: 2
       },
       emphasis: {
         lineStyle: {
-          width: 3,
+          width: 3
         },
         areaStyle: {
-          opacity: 0.2,
-        },
+          opacity: 0.2
+        }
       },
-      data: [getSeriesOption()],
+      data: [getSeriesOption()]
     };
 
     if (!option.series) {
@@ -547,14 +547,14 @@ const createOptions = {
         nodeWidth: 30,
         nodeGap: 20,
         itemStyle: {
-          borderWidth: 0,
+          borderWidth: 0
         },
         lineStyle: {
           normal: {
             color: '#cfcfcf',
-            curveness: 0.5,
-          },
-        },
+            curveness: 0.5
+          }
+        }
       };
     }
 
@@ -580,13 +580,13 @@ const createOptions = {
           symbol: chartType === 'bar' ? 'emptyCircle' : 'circle',
           symbolSize: 9,
           itemStyle: {
-            opacity: chartType === 'bar' ? 1 : 0.7,
+            opacity: chartType === 'bar' ? 1 : 0.7
           },
           emphasis: {
             itemStyle: {
-              opacity: 1,
-            },
-          },
+              opacity: 1
+            }
+          }
         },
         rest
       );
@@ -611,14 +611,14 @@ const createOptions = {
           itemStyle: {
             color: '#34c3ff',
             borderColor: '#34c3ff',
-            borderWidth: 2,
+            borderWidth: 2
           },
           label: {
             normal: {
               position: 'left',
               verticalAlign: 'middle',
-              align: 'right',
-            },
+              align: 'right'
+            }
           },
 
           leaves: {
@@ -626,10 +626,10 @@ const createOptions = {
               normal: {
                 position: 'right',
                 verticalAlign: 'middle',
-                align: 'left',
-              },
-            },
-          },
+                align: 'left'
+              }
+            }
+          }
         },
         rest
       );
@@ -654,7 +654,7 @@ const createOptions = {
       return {
         name,
         value,
-        children: children && children.map(transformData),
+        children: children && children.map(transformData)
       };
     }
 
@@ -668,7 +668,7 @@ const createOptions = {
           itemStyle: {
             areaColor: '#BEDBED',
             borderColor: '#ffffff',
-            borderWidth: 1,
+            borderWidth: 1
           },
           visibleMin: 300,
           leafDepth: 1,
@@ -685,9 +685,9 @@ const createOptions = {
               a: {
                 color: '#ffffff',
                 fontSize: 12,
-                lineHeight: 17,
-              },
-            },
+                lineHeight: 17
+              }
+            }
           },
           levels: [
             {
@@ -695,11 +695,11 @@ const createOptions = {
                 normal: {
                   borderColor: '#fff',
                   borderWidth: 1,
-                  gapWidth: 1,
-                },
-              },
-            },
-          ],
+                  gapWidth: 1
+                }
+              }
+            }
+          ]
         },
         rest
       );
@@ -710,7 +710,7 @@ const createOptions = {
     }
 
     option.series.push(getSeriesOption());
-  },
+  }
 };
 
 export function excludeEchartsProps(props: ChartComponentProps) {
@@ -721,23 +721,23 @@ export function createEChartsOptionFromChildren(children: any, _: any) {
   const option = {};
 
   function getValidChildren(): React.ReactElement[] {
-    return flattenChildren(children).filter((child) => {
+    return flattenChildren(children).filter(child => {
       return React.isValidElement(child);
     }) as any;
   }
 
   const validChildren = getValidChildren();
 
-  const series = validChildren.filter((child) => {
+  const series = validChildren.filter(child => {
     return (symbols as any).series.includes(child.type[symbols.typeKey]);
   });
 
   const context = {
     ..._,
-    series,
+    series
   };
 
-  validChildren.forEach((child) => {
+  validChildren.forEach(child => {
     // 处理 child 的 props
     // 根据 child 的 type 上的 symbol
     (createOptions as any)[child.type[symbols.typeKey]]?.(
