@@ -2,8 +2,12 @@ import React from 'react';
 import _merge from 'lodash.merge';
 import _omit from 'lodash.omit';
 import flattenChildren from 'react-keyed-flatten-children';
+import * as echarts from 'echarts/core';
+import { TitleComponent } from 'echarts/components';
 import { symbols } from './constants';
 import { ChartComponentProps } from './ECharts';
+
+echarts.use([TitleComponent]);
 
 export function is(element: any, name: string): boolean {
   return element.type[symbols.typeKey] === Symbol.for(`$$${name}`);
