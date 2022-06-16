@@ -688,11 +688,9 @@ const createOptions = {
           levels: [
             {
               itemStyle: {
-                normal: {
-                  borderColor: '#fff',
-                  borderWidth: 1,
-                  gapWidth: 1
-                }
+                borderColor: '#fff',
+                borderWidth: 1,
+                gapWidth: 1
               }
             }
           ]
