@@ -1,6 +1,8 @@
-import { RadarSeriesOption } from 'echarts';
-import 'echarts/lib/chart/line';
+import * as echarts from 'echarts/core';
+import { RadarChart, type RadarSeriesOption } from 'echarts/charts';
 import { symbols } from '../constants';
+
+echarts.use([RadarChart]);
 
 export type RadarLineProps = RadarSeriesOption;
 
