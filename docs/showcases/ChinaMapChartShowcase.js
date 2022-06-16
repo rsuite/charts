@@ -1,6 +1,6 @@
 import React from 'react';
 import CodeView from 'react-code-view';
-import 'echarts/map/js/china';
+import 'echarts4/map/js/china';
 import { MapChart } from '../..';
 
 function randomData() {
