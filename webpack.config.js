@@ -56,7 +56,7 @@ const common = {
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
+        test: /\.m?jsx?$/,
         use: ['babel-loader?babelrc'],
         exclude: /node_modules/,
       },

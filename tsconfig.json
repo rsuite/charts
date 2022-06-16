@@ -1,29 +1,17 @@
 {
   "compilerOptions": {
-    "outDir": "lib",
-    "module": "commonjs",
-    "target": "es2015",
-    "sourceMap": true,
-    "allowJs": true,
-    "jsx": "react",
-    "declaration": true,
-    "moduleResolution": "node",
-    "forceConsistentCasingInFileNames": true,
-    "noImplicitReturns": true,
-    "noImplicitThis": true,
-    "noImplicitAny": true,
-    "strictNullChecks": true,
-    "suppressImplicitAnyIndexErrors": true,
-    "skipLibCheck": true,
-    "allowSyntheticDefaultImports": true,
+    "target": "es2020",
+    "module": "esnext",
+    "strict": true,
     "esModuleInterop": true,
+    "moduleResolution": "node",
+    "skipLibCheck": true,
     "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "baseUrl": ".",
-    "paths": {
-      "*": ["./typings/*"]
-    }
-  },
-  "include": ["src", "index.d.ts"],
-  "exclude": ["node_modules"]
+    "noImplicitAny": false,
+    "allowJs": true,
+    "noEmit": true,
+    "outDir": "dist",
+    "jsx": "react",
+    "resolveJsonModule": true
+  }
 }

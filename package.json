@@ -2,25 +2,23 @@
   "name": "@rsuite/charts",
   "version": "0.0.0-development",
   "description": "ECharts for React",
-  "main": "lib/index.js",
-  "module": "es/index.js",
-  "types": "es/index.d.ts",
   "files": [
-    "src",
-    "lib",
-    "es",
-    "package.json"
+    "dist"
   ],
-  "directories": {
-    "lib": "lib"
+  "main": "./dist/index.js",
+  "module": "./dist/esm/index.js",
+  "exports": {
+    "require": "./dist/index.js",
+    "import": "./dist/esm/index.js"
   },
+  "types": "./dist/index.d.ts",
   "scripts": {
     "format": "prettier --write \"{src,test,docs}/**/*.js\"",
     "format:check": "prettier --list-different \"{src,test,docs}/**/*.js\"",
     "dev": "NODE_ENV=development webpack-dev-server --mode development  --inline --progress --colors --port 3100 --host 0.0.0.0 --devtool source-map ",
     "docs": "rm -rf assets &&  NODE_ENV=production webpack  --mode production  --progress",
-    "prebuild": "rm -rf lib && rm -rf es",
-    "build": "tsc && tsc --outDir es --module es2015",
+    "build": "tsup src/index.ts --clean --format cjs,esm --legacy-output --dts",
+    "build:locales": "tsc src/locales/**/*.ts --outDir dist/locales",
     "publish-docs": "node docs/gh-pages.js",
     "prepages": "npm run docs",
     "pages": "npm run publish-docs",
@@ -123,6 +121,7 @@
     "semantic-release": "^19.0.2",
     "style-loader": "^0.23.1",
     "ts-jest": "^26.5.2",
+    "tsup": "^6.1.2",
     "typescript": "^4.7.3",
     "url-loader": "^0.6.2",
     "webpack": "^4.42.1",
