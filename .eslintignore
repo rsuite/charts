@@ -2,3 +2,4 @@
 /build/**
 webpack.config.js
 *.d.ts
+dist

@@ -119,15 +119,9 @@ const createOptions = {
   [symbols.legend](option: any, props: any, context: any) {
     function getOption() {
       const { chartType, } = context;
-      let legendOption: any = {
+      const legendOption: any = {
         show: true,
         bottom: 10,
-        // data:
-        //   chartType === 'pie'
-        //     ? chartData.map(([name]: any) => name)
-        //     : series.map((comp: any) => {
-        //         return comp.props.name;
-        //       }),
       };
 
       if (chartType === 'pie') {
