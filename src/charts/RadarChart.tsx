@@ -32,14 +32,14 @@ function RadarChart(
   return (
     <EChartsContext.Provider value={{ chartType: 'radar', dataName: name }}>
       <ECharts ref={ref} {...props}>
-        {!components.find(comp => is(comp, 'radar')) && renderDefaultRadar()}
-        {!components.find(comp => is(comp, 'radarLine')) && renderDefaultRadarLine()}
+        {!components.find((comp) => is(comp, 'radar')) && renderDefaultRadar()}
+        {!components.find((comp) => is(comp, 'radarLine')) && renderDefaultRadarLine()}
         {tooltip && <Tooltip />}
         {legend && <Legend icon="rect" itemWidth={14} />}
         {components.map((child: any) => {
           if (data.length && isSeries(child) && !child.props.data) {
             const serieIndex = series.indexOf(child);
-            return cloneElement(child, { data: data.map(d => d[serieIndex + 2]) });
+            return cloneElement(child, { data: data.map((d) => d[serieIndex + 2]) });
           }
           return child;
         })}

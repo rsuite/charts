@@ -2,10 +2,7 @@ import type { XAXisComponentOption } from 'echarts';
 import { symbols } from '../constants';
 import { AxisLabelFormatter } from '../types';
 
-export type XAxisProps = Omit<
-  XAXisComponentOption,
-  'axisLine' | 'axisLabel' | 'splitLine'
-> & {
+export type XAxisProps = Omit<XAXisComponentOption, 'axisLine' | 'axisLabel' | 'splitLine'> & {
   axisLine?: XAXisComponentOption['axisLine'] | boolean;
   axisLabel?: XAXisComponentOption['axisLabel'] | boolean | AxisLabelFormatter;
   splitLine?: XAXisComponentOption['splitLine'] | boolean;

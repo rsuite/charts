@@ -9,9 +9,7 @@ import './theme/rsuite_light';
 import './theme/rsuite_dark';
 import { EChartsContext } from './constants';
 
-echarts.use([
-  CanvasRenderer
-]);
+echarts.use([CanvasRenderer]);
 
 const styles: {
   [key: string]: React.CSSProperties;
@@ -21,20 +19,20 @@ const styles: {
     height: '100%',
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   loaderWrap: {
     position: 'absolute',
     top: 0,
     left: 0,
-    backgroundColor: 'rgba(255, 255, 255, 0.9)'
-  }
+    backgroundColor: 'rgba(255, 255, 255, 0.9)',
+  },
 };
 
 const defaultOption = {
   grid: {
-    containLabel: true
-  }
+    containLabel: true,
+  },
 };
 
 export interface EChartsProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -59,7 +57,7 @@ function ECharts(
     height = 300,
     locale = {
       emptyMessage: 'No data found',
-      loading: 'Loading...'
+      loading: 'Loading...',
     },
     option = {},
     children,

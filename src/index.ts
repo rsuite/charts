@@ -35,28 +35,9 @@ import TreemapChart from './charts/TreemapChart';
 
 export default ECharts;
 
-export {
-  DataZoom,
-  Legend,
-  Radar,
-  Tooltip,
-  VisualMap,
-  XAxis,
-  YAxis
-}
+export { DataZoom, Legend, Radar, Tooltip, VisualMap, XAxis, YAxis };
 
-export {
-  Bars,
-  Funnel,
-  Line,
-  Map,
-  Pie,
-  RadarLine,
-  Sankey,
-  Scatter,
-  Tree,
-  Treemap
-}
+export { Bars, Funnel, Line, Map, Pie, RadarLine, Sankey, Scatter, Tree, Treemap };
 
 export {
   BarChart,
@@ -68,5 +49,5 @@ export {
   SankeyChart,
   ScatterChart,
   TreeChart,
-  TreemapChart
-}
+  TreemapChart,
+};

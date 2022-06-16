@@ -13,7 +13,7 @@
 
 function Chart() {
   const [loading, setLoading] = useState(true);
-  const handleToggleLoading = loading => setLoading(loading);
+  const handleToggleLoading = (loading) => setLoading(loading);
   return (
     <div>
       <LineChart loading={loading} name="浏览量(PV)" data={data} />

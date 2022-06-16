@@ -18,7 +18,7 @@ function TreemapChart({ name, data = [], children, ...props }: TreemapChartProps
 
   const components = Children.toArray(children);
 
-  const treemap = components.find(comp => is(comp, 'treemap'));
+  const treemap = components.find((comp) => is(comp, 'treemap'));
 
   return (
     <EChartsContext.Provider value={{ chartType: 'treemap', dataName: name }}>

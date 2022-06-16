@@ -4,7 +4,7 @@ import { symbols } from '../constants';
 
 export type VisualMapProps = VisualMapComponentOption;
 
-function VisualMap(_: VisualMapProps){
+function VisualMap(_: VisualMapProps) {
   return null;
 }
 

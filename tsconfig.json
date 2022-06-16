@@ -24,9 +24,6 @@
       "*": ["./typings/*"]
     }
   },
-  "include": [
-    "src",
-    "index.d.ts"
-  ],
+  "include": ["src", "index.d.ts"],
   "exclude": ["node_modules"]
 }

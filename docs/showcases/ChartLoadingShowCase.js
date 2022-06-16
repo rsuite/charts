@@ -27,7 +27,7 @@ const data = [
   ['20:00'],
   ['21:00'],
   ['22:00'],
-  ['23:00']
+  ['23:00'],
 ];
 
 for (let i = 0; i < data.length; i++) {
@@ -44,7 +44,7 @@ function BasicLineChartShowcase() {
           data,
           useState,
           LineChart,
-          Toggle
+          Toggle,
         }}
       >
         {require('../md/ChartLoading.md')}

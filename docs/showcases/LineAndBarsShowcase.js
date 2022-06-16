@@ -7,7 +7,7 @@ for (let i = 1; i <= 31; i++) {
   data.push([
     `2018-8-${i}`,
     Math.round(Math.random() * 2000000),
-    Math.round(Math.random() * 2000000) + 1000000
+    Math.round(Math.random() * 2000000) + 1000000,
   ]);
 }
 
@@ -21,7 +21,7 @@ function LineAndBarsShowcase() {
         BarChart,
         YAxis,
         Bars,
-        Line
+        Line,
       }}
     >
       {require('../md/BarsWithLine.md')}

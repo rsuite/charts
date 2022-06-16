@@ -19,14 +19,14 @@ function FunnelChart(
   ref: any
 ) {
   const components = Children.toArray(children);
-  const funnels = components.filter(comp => is(comp, 'funnel'));
-  const legends = components.filter(comp => is(comp, 'legend'));
+  const funnels = components.filter((comp) => is(comp, 'funnel'));
+  const legends = components.filter((comp) => is(comp, 'legend'));
   const withoutLegend = legends.length === 0;
 
   function renderDefaultFunnel() {
     const funnelPosition = {
       width: `${funnelDefaultWidth}%`,
-      left: `${(100 - funnelDefaultWidth) / 2}%`
+      left: `${(100 - funnelDefaultWidth) / 2}%`,
     };
 
     return (
@@ -42,7 +42,7 @@ function FunnelChart(
     if (funnels.length === 1) {
       const funnelPosition = {
         width: `${funnelDefaultWidth}%`,
-        left: `${(100 - funnelDefaultWidth) / 2}%`
+        left: `${(100 - funnelDefaultWidth) / 2}%`,
       };
       return funnels.map((funnel, index) => (
         <Fragment key={index}>
@@ -59,7 +59,7 @@ function FunnelChart(
       return funnels.map((funnel: any, index: number) => {
         const funnelPosition = {
           width: `${funnelDefaultWidth}%`,
-          left: `${5 + 50 * index}%`
+          left: `${5 + 50 * index}%`,
         };
         return (
           <Fragment key={index}>
@@ -68,7 +68,7 @@ function FunnelChart(
               color:
                 funnel.props.color &&
                 new Array(occupiedColorsCount(index)).concat(funnel.props.color),
-              ...funnel.props
+              ...funnel.props,
             })}
             {withoutLegend && (
               <Legend
@@ -85,7 +85,7 @@ function FunnelChart(
       <Fragment key={index}>
         {cloneElement(funnel, {
           color:
-            funnel.props.color && new Array(occupiedColorsCount(index)).concat(funnel.props.color)
+            funnel.props.color && new Array(occupiedColorsCount(index)).concat(funnel.props.color),
         })}
         {withoutLegend && <Legend data={funnel.props.data.map(([name]: any) => name)} />}
       </Fragment>
@@ -101,8 +101,8 @@ function FunnelChart(
         top: '10%',
         textAlign: 'center',
         textVerticalAlign: 'bottom',
-        textStyle: { color: '#272c36', fontSize: 14, fontWeight: 'normal' }
-      }
+        textStyle: { color: '#272c36', fontSize: 14, fontWeight: 'normal' },
+      },
     };
   }
   if (funnels.length <= 2) {
@@ -113,8 +113,8 @@ function FunnelChart(
         top: '10%',
         textAlign: 'center',
         textVerticalAlign: 'bottom',
-        textStyle: { color: '#272c36', fontSize: 14, fontWeight: 'normal' }
-      }))
+        textStyle: { color: '#272c36', fontSize: 14, fontWeight: 'normal' },
+      })),
     };
   }
 
@@ -124,7 +124,7 @@ function FunnelChart(
         {!funnels.length && renderDefaultFunnel()}
         {funnels.length > 0 && renderFunnels(funnels)}
         {tooltip && <Tooltip />}
-        {components.filter(comp => !is(comp, 'funnel'))}
+        {components.filter((comp) => !is(comp, 'funnel'))}
       </ECharts>
     </EChartsContext.Provider>
   );

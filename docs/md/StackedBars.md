@@ -1,10 +1,8 @@
-
 #### 堆叠图柱
 
-
 <!--start-code-->
-```js
 
+```js
 ReactDOM.render(
   <BarChart data={data}>
     <YAxis minInterval={1000} />
@@ -16,6 +14,6 @@ ReactDOM.render(
     <Bars name="女-电脑曝光量" color="#FF8FCB" stack="女" />
   </BarChart>
 );
-
 ```
+
 <!--end-code-->

@@ -1,8 +1,7 @@
-
 ### 雷达图
 
-
 <!--start-code-->
+
 ```js
 // const data = [
 //   ['广告的内容清晰易懂', 100, 62, 53], // name, max, value1, value2, ...
@@ -18,6 +17,6 @@ ReactDOM.render(
     <RadarLine name="NORM" />
   </RadarChart>
 );
-
 ```
+
 <!--end-code-->

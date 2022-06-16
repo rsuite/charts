@@ -43,7 +43,7 @@ const data = [
   { name: '台湾', value: randomData() },
   { name: '香港', value: randomData() },
   { name: '澳门', value: randomData() },
-  { name: '南海诸岛', value: randomData() }
+  { name: '南海诸岛', value: randomData() },
 ].map(({ name, value }) => [name, value]);
 
 function MapChartI18nShowcase() {
@@ -55,7 +55,7 @@ function MapChartI18nShowcase() {
         data,
         MapChart,
         VisualMap,
-        chinaProvinces: nameMap
+        chinaProvinces: nameMap,
       }}
     >
       {require('../md/MapChartI18n.md')}

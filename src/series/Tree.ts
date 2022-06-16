@@ -1,4 +1,4 @@
-import type { TreeSeriesOption } from 'echarts'; 
+import type { TreeSeriesOption } from 'echarts';
 import 'echarts/lib/chart/tree';
 import { symbols } from '../constants';
 
@@ -9,7 +9,7 @@ function Tree(_: TreeProps) {
 }
 
 Tree.defaultProps = {
-  data: []
+  data: [],
 };
 
 Tree[symbols.typeKey] = symbols.tree;

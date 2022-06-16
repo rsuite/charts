@@ -33,7 +33,7 @@ export default {
   新疆: 'Xinjiang',
   西藏: 'Tibet',
   香港: 'Hong Kong',
-  澳门: 'Macao'
+  澳门: 'Macao',
   // ECharts 的 nameMap 南海诸岛有 bug
   // 南海诸岛: 'South China Sea Islands'
 };

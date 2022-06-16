@@ -370,5 +370,5 @@ export default {
   五指山市: 'Wuzhishan',
   省直辖县级行政区划: 'Directly under the county-level administrative division',
   自治区直辖县级行政区划: 'Autonomous regions directly under the county-level administrative',
-  那曲地区: 'Nagqu'
+  那曲地区: 'Nagqu',
 };

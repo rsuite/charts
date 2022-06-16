@@ -2,10 +2,7 @@ import type { YAXisComponentOption } from 'echarts';
 import { symbols } from '../constants';
 import { AxisLabelFormatter } from '../types';
 
-export type YAxisProps = Omit<
-YAXisComponentOption,
-  'axisLine' | 'axisLabel' | 'splitLine'
-> & {
+export type YAxisProps = Omit<YAXisComponentOption, 'axisLine' | 'axisLabel' | 'splitLine'> & {
   axisLine?: YAXisComponentOption['axisLine'] | boolean;
   axisLabel?: YAXisComponentOption['axisLabel'] | boolean | AxisLabelFormatter;
   splitLine?: YAXisComponentOption['splitLine'] | boolean;
@@ -17,7 +14,7 @@ function YAxis(_: YAxisProps) {
 
 YAxis.defaultProps = {
   show: true,
-  type: 'value'
+  type: 'value',
 };
 YAxis[symbols.typeKey] = symbols.yAxis;
 

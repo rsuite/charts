@@ -11,8 +11,8 @@ function Sankey(_: SankeyProps) {
 Sankey.defaultProps = {
   data: {
     nodes: [],
-    links: []
-  }
+    links: [],
+  },
 };
 Sankey[symbols.typeKey] = symbols.sankey;
 

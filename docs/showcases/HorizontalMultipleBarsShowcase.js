@@ -9,7 +9,7 @@ const data = [
   ['36-45岁', 23, 20],
   ['46-55岁', 4, 3],
   ['>55岁', 4, 3],
-  ['未知', 8, 10]
+  ['未知', 8, 10],
 ];
 
 function HorizontalMultipleBarsShowcase() {
@@ -21,7 +21,7 @@ function HorizontalMultipleBarsShowcase() {
         data,
         BarChart,
         XAxis,
-        Bars
+        Bars,
       }}
     >
       {require('../md/HorizontalBars.md')}

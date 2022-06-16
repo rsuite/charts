@@ -30,7 +30,7 @@ function LineChart(
   }
 
   function renderDefaultLine() {
-    return <Line name={name} data={data!.map(d => d[1])} />;
+    return <Line name={name} data={data!.map((d) => d[1])} />;
   }
 
   const components = Children.toArray(children);
@@ -39,15 +39,15 @@ function LineChart(
   return (
     <EChartsContext.Provider value={{ chartType: 'line' }}>
       <ECharts ref={ref} {...props}>
-        {!components.find(comp => is(comp, 'xAxis')) && renderDefaultXAxis()}
-        {!components.find(comp => is(comp, 'yAxis')) && <YAxis />}
-        {!components.find(comp => is(comp, 'line')) && renderDefaultLine()}
+        {!components.find((comp) => is(comp, 'xAxis')) && renderDefaultXAxis()}
+        {!components.find((comp) => is(comp, 'yAxis')) && <YAxis />}
+        {!components.find((comp) => is(comp, 'line')) && renderDefaultLine()}
         {tooltip && <Tooltip />}
-        {!components.find(comp => is(comp, 'legend')) && <Legend />}
+        {!components.find((comp) => is(comp, 'legend')) && <Legend />}
         {components.map((child: any) => {
           if (data.length && isSeries(child) && !child.props.data) {
             const serieIndex = series.indexOf(child);
-            return cloneElement(child, { data: data.map(d => d[serieIndex + 1]) });
+            return cloneElement(child, { data: data.map((d) => d[serieIndex + 1]) });
           }
           return child;
         })}

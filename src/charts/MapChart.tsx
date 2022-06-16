@@ -12,7 +12,7 @@ const mapVisualMapColors = [
   'rgba(8, 132, 204, .8)',
   'rgba(8, 132, 204, .6)',
   'rgba(8, 132, 204, .4)',
-  'rgba(8, 132, 204, .3)'
+  'rgba(8, 132, 204, .3)',
 ];
 
 interface MapChartProps
@@ -31,20 +31,20 @@ function MapChart(
 
   const components = Children.toArray(children);
 
-  const compVisualMap = components.find(comp => is(comp, 'visualMap'));
+  const compVisualMap = components.find((comp) => is(comp, 'visualMap'));
 
   const visualMapProps: any = {
     show: shouldShowVisualMap !== false,
     type: 'piecewise',
     inRange: {
-      color: [...mapVisualMapColors].reverse()
+      color: [...mapVisualMapColors].reverse(),
     },
     controller: {
-      symbol: 'rect'
-    }
+      symbol: 'rect',
+    },
   };
 
-  const map = components.find(comp => is(comp, 'map'));
+  const map = components.find((comp) => is(comp, 'map'));
 
   return (
     <EChartsContext.Provider value={{ chartType: 'map', dataName: name, chartData: data }}>

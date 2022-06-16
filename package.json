@@ -111,7 +111,7 @@
     "markdown-loader": "^5.1.0",
     "marked": "^4.0.10",
     "mini-css-extract-plugin": "^0.5.0",
-    "prettier": "^1.16.4",
+    "prettier": "^2.7.0",
     "react": "^16.8.2",
     "react-code-view": "^1.1.13",
     "react-dom": "^16.8.2",

@@ -249,5 +249,5 @@ export default {
   'Norfolk Island': '诺福克岛',
   Curacao: '库拉索',
   'Sint Maarten': '荷属圣马丁',
-  'St. Barthelemy': '圣巴泰勒米岛'
+  'St. Barthelemy': '圣巴泰勒米岛',
 };

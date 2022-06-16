@@ -7,7 +7,7 @@ const markdownRenderer = require('react-markdown-reader').renderer;
 const { NODE_ENV } = process.env;
 const extractLess = new MiniCssExtractPlugin({
   filename: '[name].[contenthash].css',
-  disable: NODE_ENV === 'development'
+  disable: NODE_ENV === 'development',
 });
 
 const docsPath = NODE_ENV === 'development' ? './assets' : './';
@@ -16,7 +16,7 @@ const plugins = [
   new webpack.NamedModulesPlugin(),
   new webpack.DefinePlugin({
     NODE_ENV: JSON.stringify(NODE_ENV),
-    __DEV__: JSON.stringify(NODE_ENV !== 'production')
+    __DEV__: JSON.stringify(NODE_ENV !== 'production'),
   }),
   extractLess,
   new HtmlwebpackPlugin({
@@ -25,8 +25,8 @@ const plugins = [
     template: 'docs/index.html',
     inject: true,
     hash: true,
-    path: docsPath
-  })
+    path: docsPath,
+  }),
 ];
 
 const common = {
@@ -34,23 +34,23 @@ const common = {
   devServer: {
     hot: true,
     contentBase: path.resolve(__dirname, ''),
-    publicPath: '/'
+    publicPath: '/',
   },
   output: {
     path: path.resolve(__dirname, 'assets'),
     filename: 'bundle.js',
-    publicPath: './'
+    publicPath: './',
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.json'],
     alias: {
-      '@': path.resolve(__dirname, 'src')
-    }
+      '@': path.resolve(__dirname, 'src'),
+    },
   },
   optimization: {
     splitChunks: {
-      maxSize: 2097152
-    }
+      maxSize: 2097152,
+    },
   },
   plugins,
   module: {
@@ -58,7 +58,7 @@ const common = {
       {
         test: /\.jsx?$/,
         use: ['babel-loader?babelrc'],
-        exclude: /node_modules/
+        exclude: /node_modules/,
       },
       {
         test: /\.(less|css)$/,
@@ -68,31 +68,31 @@ const common = {
           {
             loader: 'less-loader',
             options: {
-              javascriptEnabled: true
-            }
-          }
-        ]
+              javascriptEnabled: true,
+            },
+          },
+        ],
       },
       {
         test: /\.md$/,
         use: [
           {
-            loader: 'html-loader'
+            loader: 'html-loader',
           },
           {
             loader: 'markdown-loader',
             options: {
-              renderer: markdownRenderer()
-            }
-          }
-        ]
-      }
-    ]
-  }
+              renderer: markdownRenderer(),
+            },
+          },
+        ],
+      },
+    ],
+  },
 };
 
 module.exports = (env = {}) => {
   return Object.assign({}, common, {
-    entry: [path.resolve(__dirname, 'docs/index')]
+    entry: [path.resolve(__dirname, 'docs/index')],
   });
 };

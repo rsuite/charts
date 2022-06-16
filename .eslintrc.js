@@ -10,11 +10,11 @@ module.exports = {
     browser: true,
     node: true,
     es6: true,
-    mocha: true
+    mocha: true,
   },
   globals: {
     assert: true,
-    __DEV__: true
+    __DEV__: true,
   },
   parser: '@typescript-eslint/parser',
   plugins: ['react', 'babel', 'prettier'],
@@ -23,8 +23,8 @@ module.exports = {
     sourceType: 'module',
     ecmaFeatures: {
       jsx: true,
-      experimentalObjectRestSpread: true
-    }
+      experimentalObjectRestSpread: true,
+    },
   },
   rules: {
     indent: [ERROR, 2, { SwitchCase: 1 }], //规定代码的缩进方式：2个空格
@@ -64,6 +64,6 @@ module.exports = {
     'jsx-a11y/label-has-for': OFF,
     'react/jsx-filename-extension': OFF,
     'react/prefer-stateless-function': OFF,
-    'react/require-default-props': OFF
-  }
+    'react/require-default-props': OFF,
+  },
 };

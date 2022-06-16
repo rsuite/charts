@@ -9,7 +9,7 @@ function FunnelChartShowcase() {
       buttonClassName="rs-btn-subtle rs-btn-icon-circle"
       dependencies={{
         FunnelChart,
-        Funnel
+        Funnel,
       }}
     >
       {require('../md/FunnelChart.md')}

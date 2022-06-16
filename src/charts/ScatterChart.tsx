@@ -12,21 +12,21 @@ import { is } from '../utils';
 const xAxisProps: any = {
   axisLine: {
     symbol: ['none', 'arrow'],
-    symbolSize: [9, 9]
+    symbolSize: [9, 9],
   },
   nameLocation: 'center',
   nameGap: 25,
   nameTextStyle: {
     fontSize: 14,
-    color: '#272c36'
-  }
+    color: '#272c36',
+  },
 };
 
 const yAxisProps: any = {
   axisLine: {
     show: true,
     symbol: ['none', 'arrow'],
-    symbolSize: [9, 9]
+    symbolSize: [9, 9],
   },
   splitLine: false,
   nameLocation: 'middle',
@@ -34,8 +34,8 @@ const yAxisProps: any = {
   nameTextStyle: {
     fontSize: 14,
     lineHeight: 20,
-    color: '#272c36'
-  }
+    color: '#272c36',
+  },
 };
 
 export interface ScatterChartProps extends ChartComponentProps<ScatterProps['data']> {
@@ -43,15 +43,10 @@ export interface ScatterChartProps extends ChartComponentProps<ScatterProps['dat
   legend?: boolean;
 }
 
-function ScatterChart({
-  name,
-  data = [],
-  tooltip = true,
-  legend = true,
-  children,
-  ...props
-}: ScatterChartProps, ref: any) {
-
+function ScatterChart(
+  { name, data = [], tooltip = true, legend = true, children, ...props }: ScatterChartProps,
+  ref: any
+) {
   function renderDefaultScatter() {
     return <Scatter name={name} data={data} />;
   }
@@ -61,9 +56,9 @@ function ScatterChart({
   return (
     <EChartsContext.Provider value={{ chartType: 'scatter', dataName: name }}>
       <ECharts ref={ref} {...props}>
-        {!components.find(comp => is(comp, 'xAxis')) && <XAxis {...xAxisProps} />}
-        {!components.find(comp => is(comp, 'yAxis')) && <YAxis {...yAxisProps} />}
-        {!components.find(comp => is(comp, 'scatter')) && renderDefaultScatter()}
+        {!components.find((comp) => is(comp, 'xAxis')) && <XAxis {...xAxisProps} />}
+        {!components.find((comp) => is(comp, 'yAxis')) && <YAxis {...yAxisProps} />}
+        {!components.find((comp) => is(comp, 'scatter')) && renderDefaultScatter()}
         {tooltip && <Tooltip />}
         {legend && <Legend icon="circle" itemHeight={10} itemWidth={10} itemGap={30} />}
         {components.map((child: any) => {

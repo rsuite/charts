@@ -5,7 +5,7 @@ import { symbols } from '../constants';
 export type LineProps = Omit<LineSeriesOption, 'stack'> & {
   stack?: string | boolean;
   area?: boolean;
-}
+};
 
 function Line(_: LineProps) {
   return null;

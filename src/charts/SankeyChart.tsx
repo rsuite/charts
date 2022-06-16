@@ -5,24 +5,16 @@ import Sankey, { SankeyProps } from '../series/Sankey';
 import { EChartsContext } from '../constants';
 import { is } from '../utils';
 
-export interface SankeyChartProps extends ChartComponentProps<SankeyProps['data']> {
+export interface SankeyChartProps extends ChartComponentProps<SankeyProps['data']> {}
 
-}
-
-function SankeyChart({
-  name,
-  data = [],
-  children,
-  ...props
-}: SankeyChartProps, ref: any) {
-
+function SankeyChart({ name, data = [], children, ...props }: SankeyChartProps, ref: any) {
   function renderDefaultSankey() {
     return <Sankey name={name} data={data} />;
   }
 
   const components = Children.toArray(children);
 
-  const sankey = components.find(comp => is(comp, 'sankey'));
+  const sankey = components.find((comp) => is(comp, 'sankey'));
 
   return (
     <EChartsContext.Provider value={{ chartType: 'sankey', dataName: name }}>

@@ -7,15 +7,15 @@ export default {
   title: {
     text: '销量',
     subtext: '纯属虚构',
-    left: 'center'
+    left: 'center',
   },
   tooltip: {
-    trigger: 'item'
+    trigger: 'item',
   },
   legend: {
     orient: 'vertical',
     left: 'left',
-    data: ['iphone3', 'iphone4', 'iphone5']
+    data: ['iphone3', 'iphone4', 'iphone5'],
   },
   visualMap: {
     min: 0,
@@ -23,7 +23,7 @@ export default {
     left: 'left',
     top: 'bottom',
     text: ['高', '低'], // 文本，默认为数值文本
-    calculable: true
+    calculable: true,
   },
   toolbox: {
     show: true,
@@ -33,8 +33,8 @@ export default {
     feature: {
       dataView: { readOnly: false },
       restore: {},
-      saveAsImage: {}
-    }
+      saveAsImage: {},
+    },
   },
   series: [
     {
@@ -44,11 +44,11 @@ export default {
       roam: false,
       label: {
         normal: {
-          show: true
+          show: true,
         },
         emphasis: {
-          show: true
-        }
+          show: true,
+        },
       },
       data: [
         { name: '北京', value: randomData() },
@@ -84,8 +84,8 @@ export default {
         { name: '海南', value: randomData() },
         { name: '台湾', value: randomData() },
         { name: '香港', value: randomData() },
-        { name: '澳门', value: randomData() }
-      ]
+        { name: '澳门', value: randomData() },
+      ],
     },
     {
       name: 'iphone4',
@@ -93,11 +93,11 @@ export default {
       mapType: 'china',
       label: {
         normal: {
-          show: true
+          show: true,
         },
         emphasis: {
-          show: true
-        }
+          show: true,
+        },
       },
       data: [
         { name: '北京', value: randomData() },
@@ -118,8 +118,8 @@ export default {
         { name: '四川', value: randomData() },
         { name: '宁夏', value: randomData() },
         { name: '香港', value: randomData() },
-        { name: '澳门', value: randomData() }
-      ]
+        { name: '澳门', value: randomData() },
+      ],
     },
     {
       name: 'iphone5',
@@ -127,11 +127,11 @@ export default {
       mapType: 'china',
       label: {
         normal: {
-          show: true
+          show: true,
         },
         emphasis: {
-          show: true
-        }
+          show: true,
+        },
       },
       data: [
         { name: '北京', value: randomData() },
@@ -140,8 +140,8 @@ export default {
         { name: '广东', value: randomData() },
         { name: '台湾', value: randomData() },
         { name: '香港', value: randomData() },
-        { name: '澳门', value: randomData() }
-      ]
-    }
-  ]
+        { name: '澳门', value: randomData() },
+      ],
+    },
+  ],
 };

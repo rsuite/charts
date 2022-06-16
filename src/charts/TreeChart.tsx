@@ -16,7 +16,7 @@ function TreeChart({ data = [], children, ...props }: TreeChartProps, ref: any) 
 
   const components = Children.toArray(children);
 
-  const tree = components.find(comp => is(comp, 'tree'));
+  const tree = components.find((comp) => is(comp, 'tree'));
 
   return (
     <EChartsContext.Provider value={{ chartType: 'tree', dataName: name }}>

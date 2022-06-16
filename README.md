@@ -20,7 +20,7 @@ import { LineChart } from '@rsuite/charts';
 
 const data = [
   ['00:00', random()],
-  ['01:00', random()]
+  ['01:00', random()],
 ];
 const App = () => <LineChart name="Page View" data={data} />;
 

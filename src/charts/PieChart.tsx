@@ -22,9 +22,9 @@ function PieChart({ data = [], legend = true, children, ...props }: PieChartProp
   return (
     <EChartsContext.Provider value={{ chartType: 'pie' }}>
       <ECharts ref={ref} {...props}>
-        {legend === true && !components.some(comp => is(comp, 'legend')) && <Legend />}
-        {!components.some(comp => is(comp, 'tooltip')) && <Tooltip />}
-        {!components.some(comp => is(comp, 'pie')) && <Pie data={getPieData()} {...props} />}
+        {legend === true && !components.some((comp) => is(comp, 'legend')) && <Legend />}
+        {!components.some((comp) => is(comp, 'tooltip')) && <Tooltip />}
+        {!components.some((comp) => is(comp, 'pie')) && <Pie data={getPieData()} {...props} />}
         {children}
       </ECharts>
     </EChartsContext.Provider>

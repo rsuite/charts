@@ -10,7 +10,7 @@ const data = [
   ['40-44岁', 650, 650, 1300, 100, 100, 150],
   ['45-49岁', 650, 650, 1300],
   ['50-54岁', 650, 650, 1250],
-  ['55岁+', 400, 450, 900]
+  ['55岁+', 400, 450, 900],
 ];
 
 const colors = ['#2485C1', '#32A4D4', '#34C3FF', '#AB005B', '#EA3797', '#FF8FCB'];
@@ -24,7 +24,7 @@ function MultipleStackedBarsShowcase() {
         data,
         BarChart,
         YAxis,
-        Bars
+        Bars,
       }}
     >
       {require('../md/StackedBars.md')}

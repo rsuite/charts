@@ -13,7 +13,7 @@ const data = [
   ['8次', 0.2 * 1000000],
   ['9次', 0.15 * 1000000],
   ['10次', 0.1 * 1000000],
-  ['10次+', 0.15 * 1000000]
+  ['10次+', 0.15 * 1000000],
 ];
 
 function BasicBarChartShowcase() {
@@ -27,7 +27,7 @@ function BasicBarChartShowcase() {
         BarChart,
         YAxis,
         Bars,
-        sum
+        sum,
       }}
     >
       {require('../md/BasicBarChart.md')}

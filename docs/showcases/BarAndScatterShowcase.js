@@ -7,7 +7,7 @@ const data = [
   ['流失至竞品', 25, 11],
   ['老客', 49, 11],
   ['来自竞品', 5, 5],
-  ['非品牌客户', 78, 12]
+  ['非品牌客户', 78, 12],
 ];
 
 function BarAndScatterShowcase() {
@@ -20,7 +20,7 @@ function BarAndScatterShowcase() {
         BarChart,
         YAxis,
         Bars,
-        Scatter
+        Scatter,
       }}
     >
       {require('../md/BarsWithScatter.md')}

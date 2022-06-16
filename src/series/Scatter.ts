@@ -4,7 +4,7 @@ import { symbols } from '../constants';
 
 export type ScatterProps = ScatterSeriesOption;
 
-function Scatter (_: ScatterProps){
+function Scatter(_: ScatterProps) {
   return null;
 }
 

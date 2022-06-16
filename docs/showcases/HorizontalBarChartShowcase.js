@@ -1,7 +1,13 @@
 import React from 'react';
 import { BarChart, Bars } from '../..';
 
-const data = [['>20k', 11], ['10k-20k', 17], ['5k-10k', 29], ['3k-5k', 19], ['<3k', 25]];
+const data = [
+  ['>20k', 11],
+  ['10k-20k', 17],
+  ['5k-10k', 29],
+  ['3k-5k', 19],
+  ['<3k', 25],
+];
 
 const colors = ['#51E8FF', '#41C5E9', '#32A4D4', '#2485C1', '#1464AC'];
 
