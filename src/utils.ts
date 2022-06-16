@@ -610,20 +610,16 @@ const createOptions = {
             borderWidth: 2
           },
           label: {
-            normal: {
-              position: 'left',
-              verticalAlign: 'middle',
-              align: 'right'
-            }
+            position: 'left',
+            verticalAlign: 'middle',
+            align: 'right'
           },
 
           leaves: {
             label: {
-              normal: {
-                position: 'right',
-                verticalAlign: 'middle',
-                align: 'left'
-              }
+              position: 'right',
+              verticalAlign: 'middle',
+              align: 'left'
             }
           }
         },
