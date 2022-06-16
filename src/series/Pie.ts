@@ -1,6 +1,8 @@
-import type { PieSeriesOption } from 'echarts';
-import 'echarts/lib/chart/pie';
+import * as echarts from 'echarts/core';
+import { PieChart, type PieSeriesOption } from 'echarts/charts';
 import { symbols } from '../constants';
+
+echarts.use([PieChart]);
 
 export interface PieProps extends PieSeriesOption {
   donut?: boolean;

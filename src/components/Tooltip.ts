@@ -1,6 +1,8 @@
-import type { TooltipComponentOption } from 'echarts';
-import 'echarts/lib/component/tooltip';
+import * as echarts from 'echarts/core';
+import { TooltipComponent, type TooltipComponentOption } from 'echarts/components';
 import { symbols } from '../constants';
+
+echarts.use([TooltipComponent]);
 
 export type TooltipProps = TooltipComponentOption;
 

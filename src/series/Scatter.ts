@@ -1,6 +1,8 @@
-import type { ScatterSeriesOption } from 'echarts';
-import 'echarts/lib/chart/scatter';
+import * as echarts from 'echarts/core';
+import { ScatterChart, type ScatterSeriesOption } from 'echarts/charts';
 import { symbols } from '../constants';
+
+echarts.use([ScatterChart]);
 
 export type ScatterProps = ScatterSeriesOption;
 

@@ -1,6 +1,8 @@
-import type { LineSeriesOption } from 'echarts';
-import 'echarts/lib/chart/line';
+import * as echarts from 'echarts/core';
+import { LineChart, type LineSeriesOption } from 'echarts/charts';
 import { symbols } from '../constants';
+
+echarts.use([LineChart]);
 
 export type LineProps = Omit<LineSeriesOption, 'stack'> & {
   stack?: string | boolean;

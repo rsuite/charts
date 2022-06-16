@@ -1,6 +1,8 @@
-import type { VisualMapComponentOption } from 'echarts';
-import 'echarts/lib/component/visualMap';
+import * as echarts from 'echarts/core';
+import { VisualMapComponent, type VisualMapComponentOption } from 'echarts/components';
 import { symbols } from '../constants';
+
+echarts.use([VisualMapComponent]);
 
 export type VisualMapProps = VisualMapComponentOption;
 

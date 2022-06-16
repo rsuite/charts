@@ -1,6 +1,8 @@
-import type { RadarComponentOption } from 'echarts';
-import 'echarts/lib/component/radar';
+import * as echarts from 'echarts/core';
+import { RadarComponent, type RadarComponentOption } from 'echarts/components';
 import { symbols } from '../constants';
+
+echarts.use([RadarComponent]);
 
 export type RadarProps = RadarComponentOption;
 

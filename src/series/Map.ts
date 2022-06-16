@@ -1,6 +1,8 @@
-import type { MapSeriesOption } from 'echarts';
-import 'echarts/lib/chart/map';
+import * as echarts from 'echarts/core';
+import { MapChart, type MapSeriesOption } from 'echarts/charts';
 import { symbols } from '../constants';
+
+echarts.use([MapChart]);
 
 export type MapProps = MapSeriesOption;
 

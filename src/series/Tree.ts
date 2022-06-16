@@ -1,6 +1,8 @@
-import type { TreeSeriesOption } from 'echarts';
-import 'echarts/lib/chart/tree';
+import * as echarts from 'echarts/core';
+import { TreeChart, type TreeSeriesOption } from 'echarts/charts';
 import { symbols } from '../constants';
+
+echarts.use([TreeChart]);
 
 export type TreeProps = TreeSeriesOption;
 

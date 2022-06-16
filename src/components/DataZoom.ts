@@ -1,6 +1,8 @@
-import type { DataZoomComponentOption } from 'echarts';
-import 'echarts/lib/component/dataZoom';
+import * as echarts from 'echarts/core';
+import { DataZoomComponent, type DataZoomComponentOption } from 'echarts/components';
 import { symbols } from '../constants';
+
+echarts.use([DataZoomComponent]);
 
 export type DataZoomProps = DataZoomComponentOption;
 

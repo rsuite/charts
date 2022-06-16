@@ -1,6 +1,8 @@
-import type { TreemapSeriesOption } from 'echarts';
-import 'echarts/lib/chart/treemap';
+import * as echarts from 'echarts/core';
+import { TreemapChart, type TreemapSeriesOption } from 'echarts/charts';
 import { symbols } from '../constants';
+
+echarts.use([TreemapChart]);
 
 export type TreemapProps = TreemapSeriesOption;
 
