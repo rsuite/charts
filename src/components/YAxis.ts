@@ -6,6 +6,14 @@ export type YAxisProps = Omit<YAXisComponentOption, 'axisLine' | 'axisLabel' | '
   axisLine?: YAXisComponentOption['axisLine'] | boolean;
   axisLabel?: YAXisComponentOption['axisLabel'] | boolean | AxisLabelFormatter;
   splitLine?: YAXisComponentOption['splitLine'] | boolean;
+
+  /**
+   * When nameLocation="middle",
+   * whether to transpose the axis name text into vertical direction.
+   * 
+   * @default true
+   */
+  transposeNameText?: boolean;
 };
 
 function YAxis(_: YAxisProps) {

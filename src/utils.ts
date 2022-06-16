@@ -6,6 +6,7 @@ import * as echarts from 'echarts/core';
 import { TitleComponent } from 'echarts/components';
 import { symbols } from './constants';
 import { ChartComponentProps } from './ECharts';
+import type { YAxisProps } from './components/YAxis';
 
 echarts.use([TitleComponent]);
 
@@ -256,19 +257,22 @@ const createOptions = {
       option.xAxis.push(xAxisOption);
     }
   },
-  [symbols.yAxis](option: any, props: any, _: any) {
+  [symbols.yAxis](option: any, props: YAxisProps, _: any) {
     function getOption() {
-      const { name, axisLabel, splitLine, ...rest } = props;
+      const { name, axisLabel, splitLine, transposeNameText = true, ...rest } = props;
 
       return _merge(
         {
-          nameRotate: 0,
-          name: name && rest.nameLocation === 'middle' ? name.split('').join('\n') : name,
+          name,
           nameTextStyle: {
             fontSize: 12,
             color: '#575757'
           }
         },
+        (name && rest.nameLocation === 'middle' && transposeNameText) ? {
+          nameRotate: 0,
+          name: name.split('').join('\n') 
+        } : {},
         typeof splitLine !== 'undefined'
           ? {
               splitLine: _merge(
