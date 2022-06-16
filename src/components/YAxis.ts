@@ -11,7 +11,7 @@ export type YAxisProps = Omit<YAXisComponentOption, 'axisLine' | 'axisLabel' | '
    * When nameLocation="middle",
    * whether to transpose the axis name text into vertical direction.
    * 
-   * @default true
+   * @default false
    */
   transposeNameText?: boolean;
 };

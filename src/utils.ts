@@ -259,7 +259,7 @@ const createOptions = {
   },
   [symbols.yAxis](option: any, props: YAxisProps, _: any) {
     function getOption() {
-      const { name, axisLabel, splitLine, transposeNameText = true, ...rest } = props;
+      const { name, axisLabel, splitLine, transposeNameText = false, ...rest } = props;
 
       return _merge(
         {
