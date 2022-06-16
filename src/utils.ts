@@ -381,9 +381,7 @@ const createOptions = {
             show: true,
             position: 'inside',
             formatter: ({ value }: any) => value,
-            textStyle: {
-              fontSize: 14
-            }
+            fontSize: 14
           })
         },
         rest
