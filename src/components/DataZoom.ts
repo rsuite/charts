@@ -1,5 +1,5 @@
 import * as echarts from 'echarts/core';
-import { DataZoomComponent, type DataZoomComponentOption } from 'echarts/components';
+import { DataZoomComponent, DataZoomComponentOption } from 'echarts/components';
 import { symbols } from '../constants';
 
 echarts.use([DataZoomComponent]);

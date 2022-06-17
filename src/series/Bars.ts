@@ -1,5 +1,5 @@
 import * as echarts from 'echarts/core';
-import { BarChart, type BarSeriesOption } from 'echarts/charts';
+import { BarChart, BarSeriesOption } from 'echarts/charts';
 import { symbols } from '../constants';
 
 echarts.use([BarChart]);

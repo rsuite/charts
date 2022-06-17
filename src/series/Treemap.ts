@@ -1,5 +1,5 @@
 import * as echarts from 'echarts/core';
-import { TreemapChart, type TreemapSeriesOption } from 'echarts/charts';
+import { TreemapChart, TreemapSeriesOption } from 'echarts/charts';
 import { symbols } from '../constants';
 
 echarts.use([TreemapChart]);
@@ -11,7 +11,7 @@ function Treemap(_: TreemapProps) {
 }
 
 Treemap.defaultProps = {
-  data: [],
+  data: []
 };
 Treemap[symbols.typeKey] = symbols.treemap;
 

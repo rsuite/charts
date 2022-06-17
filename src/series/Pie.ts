@@ -1,5 +1,5 @@
 import * as echarts from 'echarts/core';
-import { PieChart, type PieSeriesOption } from 'echarts/charts';
+import { PieChart, PieSeriesOption } from 'echarts/charts';
 import { symbols } from '../constants';
 
 echarts.use([PieChart]);
@@ -14,7 +14,7 @@ function Pie(_: PieProps) {
 
 Pie.defaultProps = {
   data: [],
-  donut: false,
+  donut: false
 };
 
 Pie[symbols.typeKey] = symbols.pie;

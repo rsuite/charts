@@ -1,5 +1,5 @@
 import * as echarts from 'echarts/core';
-import { MapChart, type MapSeriesOption } from 'echarts/charts';
+import { MapChart, MapSeriesOption } from 'echarts/charts';
 import { symbols } from '../constants';
 
 echarts.use([MapChart]);

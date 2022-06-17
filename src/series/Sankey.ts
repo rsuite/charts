@@ -1,5 +1,5 @@
 import * as echarts from 'echarts/core';
-import { SankeyChart, type SankeySeriesOption } from 'echarts/charts';
+import { SankeyChart, SankeySeriesOption } from 'echarts/charts';
 import { symbols } from '../constants';
 
 echarts.use([SankeyChart]);
