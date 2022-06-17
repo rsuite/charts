@@ -1,5 +1,5 @@
 import * as echarts from 'echarts/core';
-import { TooltipComponent, type TooltipComponentOption } from 'echarts/components';
+import { TooltipComponent, TooltipComponentOption } from 'echarts/components';
 import { symbols } from '../constants';
 
 echarts.use([TooltipComponent]);

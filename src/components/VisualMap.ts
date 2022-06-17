@@ -1,5 +1,5 @@
 import * as echarts from 'echarts/core';
-import { VisualMapComponent, type VisualMapComponentOption } from 'echarts/components';
+import { VisualMapComponent, VisualMapComponentOption } from 'echarts/components';
 import { symbols } from '../constants';
 
 echarts.use([VisualMapComponent]);

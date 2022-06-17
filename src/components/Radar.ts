@@ -1,5 +1,5 @@
 import * as echarts from 'echarts/core';
-import { RadarComponent, type RadarComponentOption } from 'echarts/components';
+import { RadarComponent, RadarComponentOption } from 'echarts/components';
 import { symbols } from '../constants';
 
 echarts.use([RadarComponent]);

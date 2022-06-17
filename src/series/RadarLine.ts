@@ -1,5 +1,5 @@
 import * as echarts from 'echarts/core';
-import { RadarChart, type RadarSeriesOption } from 'echarts/charts';
+import { RadarChart, RadarSeriesOption } from 'echarts/charts';
 import { symbols } from '../constants';
 
 echarts.use([RadarChart]);

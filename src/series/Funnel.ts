@@ -1,5 +1,5 @@
 import * as echarts from 'echarts/core';
-import { FunnelChart, type FunnelSeriesOption } from 'echarts/charts';
+import { FunnelChart, FunnelSeriesOption } from 'echarts/charts';
 import { symbols } from '../constants';
 
 echarts.use([FunnelChart]);
@@ -13,7 +13,7 @@ function Funnel(_: FunnelProps) {
 }
 
 Funnel.defaultProps = {
-  asc: false,
+  asc: false
 };
 
 Funnel[symbols.typeKey] = symbols.funnel;

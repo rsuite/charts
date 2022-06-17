@@ -1,5 +1,5 @@
 import * as echarts from 'echarts/core';
-import { LineChart, type LineSeriesOption } from 'echarts/charts';
+import { LineChart, LineSeriesOption } from 'echarts/charts';
 import { symbols } from '../constants';
 
 echarts.use([LineChart]);

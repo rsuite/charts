@@ -1,5 +1,5 @@
 import * as echarts from 'echarts/core';
-import { DatasetComponent, type DatasetComponentOption } from 'echarts/components';
+import { DatasetComponent, DatasetComponentOption } from 'echarts/components';
 import { symbols } from '../constants';
 
 echarts.use([DatasetComponent]);

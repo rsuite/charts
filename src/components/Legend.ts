@@ -1,5 +1,5 @@
 import * as echarts from 'echarts/core';
-import { LegendComponent, type LegendComponentOption } from 'echarts/components';
+import { LegendComponent, LegendComponentOption } from 'echarts/components';
 import { symbols } from '../constants';
 
 echarts.use([LegendComponent]);

@@ -1,5 +1,5 @@
 import * as echarts from 'echarts/core';
-import { ScatterChart, type ScatterSeriesOption } from 'echarts/charts';
+import { ScatterChart, ScatterSeriesOption } from 'echarts/charts';
 import { symbols } from '../constants';
 
 echarts.use([ScatterChart]);
