@@ -379,42 +379,6 @@ const createOptions = {
 
     option.series.push(getSeriesOption());
   },
-  [symbols.pie](option: any, props: any, _: any) {
-    function getSeriesOption() {
-      const {
-        type,
-
-        radius,
-        donut,
-        label,
-        ...rest
-      } = props;
-
-      const outerRadius = parseFloat(radius) || 80;
-      const innerRadius = outerRadius - 15;
-
-      const pieOption = _merge(
-        {
-          type: 'pie',
-          radius: donut ? [`${innerRadius}%`, `${outerRadius}%`] : `${outerRadius}%`,
-          center: ['50%', '50%'],
-        },
-        rest
-      );
-
-      if (label !== undefined) {
-        pieOption.label = transformTextOption(label);
-      }
-
-      return pieOption;
-    }
-
-    if (!option.series) {
-      option.series = [];
-    }
-
-    option.series.push(getSeriesOption());
-  },
   [symbols.radarLine](option: any, props: any, _: any) {
     function getSeriesOption() {
       const { name, data, value = data, ...rest } = props;
