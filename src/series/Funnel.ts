@@ -13,7 +13,7 @@ function Funnel(_: FunnelProps) {
 }
 
 Funnel.defaultProps = {
-  asc: false
+  asc: false,
 };
 
 Funnel[symbols.typeKey] = symbols.funnel;

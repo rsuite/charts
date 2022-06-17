@@ -6,36 +6,36 @@ module.exports = {
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:react/recommended',
-    'prettier'
+    'prettier',
   ],
   rules: {
     '@typescript-eslint/no-empty-interface': [
       'error',
       {
-        allowSingleExtends: true
-      }
-    ]
+        allowSingleExtends: true,
+      },
+    ],
   },
   settings: {
     react: {
-      version: 'detect'
-    }
+      version: 'detect',
+    },
   },
   overrides: [
     {
       files: ['*.js', '*.cjs'],
       env: {
-        node: true
+        node: true,
       },
       rules: {
-        '@typescript-eslint/no-var-requires': 'off'
-      }
+        '@typescript-eslint/no-var-requires': 'off',
+      },
     },
     {
       files: ['docs/*.js'],
       env: {
-        browser: true
-      }
-    }
-  ]
+        browser: true,
+      },
+    },
+  ],
 };

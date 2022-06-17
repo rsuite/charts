@@ -11,7 +11,5 @@ import React from 'react';
 import { TreeChart } from '@rsuite/charts';
 import data from './basic.json';
 
-export default () => (
-  <TreeChart name="标签名称" data={data} />
-);
+export default () => <TreeChart name="标签名称" data={data} />;
 ```

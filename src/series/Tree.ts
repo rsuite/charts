@@ -11,7 +11,7 @@ function Tree(_: TreeProps) {
 }
 
 Tree.defaultProps = {
-  data: []
+  data: [],
 };
 
 Tree[symbols.typeKey] = symbols.tree;

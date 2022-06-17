@@ -13,7 +13,7 @@
   },
   "types": "./dist/index.d.ts",
   "scripts": {
-    "format": "prettier --write \"{src,test,docs}/**/*.js\"",
+    "format": "prettier --write .",
     "format:check": "prettier --list-different \"{src,test,docs}/**/*.js\"",
     "dev": "dumi dev",
     "docs": "dumi build",

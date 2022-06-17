@@ -2,7 +2,7 @@ import * as echarts from 'echarts/core';
 import { BarChart, BarSeriesOption } from 'echarts/charts';
 import _merge from 'lodash.merge';
 import { symbols } from '../constants';
-import { OptionComponent } from '../types';
+import type { OptionComponent } from '../types';
 import { randstr, transformTextOption } from '../utils';
 
 echarts.use([BarChart]);
@@ -54,13 +54,13 @@ Bars.tapEChartsOption = (option, props, context) => {
         stack: typeof stack === 'boolean' ? defaultBarsStackKey : stack,
         itemStyle: {
           color: Array.isArray(color) ? ({ dataIndex }: any) => color[dataIndex] : color,
-          borderRadius
+          borderRadius,
         },
         // 默认 label
         // 位置：top，水平则 right
         label: transformTextOption(label, {
-          position: horizontal ? 'right' : 'top'
-        })
+          position: horizontal ? 'right' : 'top',
+        }),
       } as const,
       rest
     );

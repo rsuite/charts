@@ -11,7 +11,7 @@ function Treemap(_: TreemapProps) {
 }
 
 Treemap.defaultProps = {
-  data: []
+  data: [],
 };
 Treemap[symbols.typeKey] = symbols.treemap;
 

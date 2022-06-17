@@ -14,7 +14,7 @@ function Pie(_: PieProps) {
 
 Pie.defaultProps = {
   data: [],
-  donut: false
+  donut: false,
 };
 
 Pie[symbols.typeKey] = symbols.pie;

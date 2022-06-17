@@ -28,7 +28,7 @@ export const symbols = {
   sankey: Symbol.for('$$sankey'),
   scatter: Symbol.for('$$scatter'),
   tree: Symbol.for('$$tree'),
-  treemap: Symbol.for('$$treemap')
+  treemap: Symbol.for('$$treemap'),
 };
 
 (symbols as any).components = [
@@ -38,7 +38,7 @@ export const symbols = {
   symbols.tooltip,
   symbols.visualMap,
   symbols.xAxis,
-  symbols.yAxis
+  symbols.yAxis,
 ];
 
 (symbols as any).series = [
@@ -51,5 +51,5 @@ export const symbols = {
   symbols.sankey,
   symbols.scatter,
   symbols.tree,
-  symbols.treemap
+  symbols.treemap,
 ];

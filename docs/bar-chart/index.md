@@ -11,9 +11,7 @@ import React from 'react';
 import { BarChart } from '@rsuite/charts';
 import data from './basic.json';
 
-export default () => (
-  <BarChart name="客户数" data={data} />
-);
+export default () => <BarChart name="客户数" data={data} />;
 ```
 
 ## 多组图柱

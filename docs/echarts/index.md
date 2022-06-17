@@ -35,15 +35,11 @@ export default () => {
       <div>
         <label>
           加载状态：
-          <input
-            type="checkbox"
-            checked={loading}
-            onChange={e => setLoading(e.target.checked)}
-          />
-        {loading? '开启':'关闭'}
+          <input type="checkbox" checked={loading} onChange={(e) => setLoading(e.target.checked)} />
+          {loading ? '开启' : '关闭'}
         </label>
       </div>
     </div>
   );
-}
+};
 ```

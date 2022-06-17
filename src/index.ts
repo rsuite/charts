@@ -50,5 +50,5 @@ export {
   SankeyChart,
   ScatterChart,
   TreeChart,
-  TreemapChart
+  TreemapChart,
 };

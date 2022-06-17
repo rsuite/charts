@@ -88,7 +88,7 @@ import {
   SankeyChart,
   ScatterChart,
   TreeChart,
-  TreemapChart
+  TreemapChart,
 } from '@rsuite/charts';
 ```
 
@@ -118,7 +118,7 @@ import {
 如：
 
 ```jsx | pure
-<XAxis axisLabel={value => `${value}%`} />
+<XAxis axisLabel={(value) => `${value}%`} />
 ```
 
 相当于：
@@ -127,7 +127,7 @@ import {
 <XAxis
   axisLabel={{
     show: true,
-    formatter: value => `${value}%`
+    formatter: (value) => `${value}%`,
   }}
 />
 ```

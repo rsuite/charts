@@ -11,9 +11,7 @@ import React from 'react';
 import { LineChart } from '@rsuite/charts';
 import data from './basic.json';
 
-export default () => (
-  <LineChart name="浏览量(PV)" data={data} />
-);
+export default () => <LineChart name="浏览量(PV)" data={data} />;
 ```
 
 ## 多条图线

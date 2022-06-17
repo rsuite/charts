@@ -12,9 +12,7 @@ import { MapChart } from '@rsuite/charts';
 import 'echarts4/map/js/china';
 import data from './basic.json';
 
-export default () => (
-  <MapChart name="覆盖率" map="china" data={data} />
-);
+export default () => <MapChart name="覆盖率" map="china" data={data} />;
 ```
 
 ## 多语言
