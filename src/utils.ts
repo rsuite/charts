@@ -337,33 +337,6 @@ const createOptions = {
 
     option.series.push(getSeriesOption());
   },
-  [symbols.line](option: any, props: any, _: any) {
-    function getSeriesOption() {
-      const {
-        type,
-
-        stack,
-        area,
-        ...rest
-      } = props;
-
-      return _merge(
-        {
-          type: 'line',
-          symbol: 'none',
-          stack: stack === true ? stackKey : stack,
-          areaStyle: area && { opacity: stack ? 0.6 : 0.2 },
-        },
-        rest
-      );
-    }
-
-    if (!option.series) {
-      option.series = [];
-    }
-
-    option.series.push(getSeriesOption());
-  },
   [symbols.map](option: any, props: any, _: any) {
     function getSeriesOption() {
       const { type, map, name, data, nameMap, ...rest } = props;
