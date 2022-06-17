@@ -2,12 +2,14 @@ import React from 'react';
 import _merge from 'lodash.merge';
 import _omit from 'lodash.omit';
 import flattenChildren from 'react-keyed-flatten-children';
+import type { EChartsOption } from 'echarts';
 import * as echarts from 'echarts/core';
 import { TitleComponent } from 'echarts/components';
 import { symbols } from './constants';
 import { ChartComponentProps } from './ECharts';
 import type { YAxisProps } from './components/YAxis';
 import type { DatasetProps } from './components/Dataset';
+import type { OptionComponent } from './types';
 
 echarts.use([TitleComponent]);
 
@@ -66,7 +68,7 @@ const stackKey = randstr();
 
 const createOptions = {
   // components
-  [symbols.dataset](option: any, props: DatasetProps, _:any) {
+  [symbols.dataset](option: any, props: DatasetProps, _: any) {
     option.dataset = _merge({}, props);
   },
   [symbols.dataZoom](option: any, props: any, _: any) {
@@ -118,10 +120,10 @@ const createOptions = {
   },
   [symbols.legend](option: any, props: any, context: any) {
     function getOption() {
-      const { chartType, } = context;
+      const { chartType } = context;
       const legendOption: any = {
         show: true,
-        bottom: 10,
+        bottom: 10
       };
 
       if (chartType === 'pie') {
@@ -267,10 +269,12 @@ const createOptions = {
             color: '#575757'
           }
         },
-        (name && rest.nameLocation === 'middle' && transposeNameText) ? {
-          nameRotate: 0,
-          name: name.split('').join('\n') 
-        } : {},
+        name && rest.nameLocation === 'middle' && transposeNameText
+          ? {
+              nameRotate: 0,
+              name: name.split('').join('\n')
+            }
+          : {},
         typeof splitLine !== 'undefined'
           ? {
               splitLine: _merge(
@@ -302,69 +306,6 @@ const createOptions = {
   },
 
   // series
-  [symbols.bars](option: any, props: any, context: any) {
-    function getSeriesOption() {
-      const {
-        type,
-
-        stack,
-        color,
-        label,
-        ...rest
-      } = props;
-      const { chartType, horizontal, series } = context;
-
-      const barsSeriesCount = series.filter(
-        (comp: any) => comp.type[symbols.typeKey] === symbols.bars
-      ).length;
-      const stackedBars = stack
-        ? series.filter(
-            (comp: any) => comp.type[symbols.typeKey] === symbols.bars && comp.props.stack === stack
-          )
-        : [];
-      const stacked = stackedBars.length > 1;
-      const stackTop =
-        stackedBars.indexOf(
-          stackedBars.find(
-            (comp: any) =>
-              comp.type[symbols.typeKey] === symbols.bars && comp.props.name === rest.name
-          )
-        ) ===
-        stackedBars.length - 1;
-
-      let borderRadius;
-      if (stacked && !stackTop) {
-        borderRadius = 0;
-      } else {
-        borderRadius = chartType === 'bar' && horizontal ? [0, 5, 5, 0] : [5, 5, 0, 0];
-      }
-
-      return _merge(
-        {
-          type: 'bar',
-          barWidth: (!stack && barsSeriesCount) > 1 ? 6 : 20,
-          stack: (stack as any) === true ? stackKey : stack,
-          itemStyle: {
-            color: Array.isArray(color) ? ({ dataIndex }: any) => color[dataIndex] : color,
-            borderRadius
-          },
-          // 默认 label
-          // 颜色：#575757
-          // 位置：top，水平则 right
-          label: transformTextOption(label, {
-            position: horizontal ? 'right' : 'top'
-          })
-        },
-        rest
-      );
-    }
-
-    if (!option.series) {
-      option.series = [];
-    }
-
-    option.series.push(getSeriesOption());
-  },
   [symbols.funnel](option: any, props: any, _: any) {
     function getSeriesOption() {
       const { type, data, asc, sort = asc ? 'ascending' : 'descending', label, ...rest } = props;
@@ -709,7 +650,7 @@ export function excludeEchartsProps(props: ChartComponentProps) {
   return _omit(props, ['option', 'locale', 'height', 'loading']);
 }
 
-export function createEChartsOptionFromChildren(children: any, _: any) {
+export function createEChartsOptionFromChildren(children: any, _: any): EChartsOption {
   const option = {};
 
   function getValidChildren(): React.ReactElement[] {
@@ -730,6 +671,11 @@ export function createEChartsOptionFromChildren(children: any, _: any) {
   };
 
   validChildren.forEach(child => {
+    (child.type as OptionComponent<any>).tapEChartsOption?.(
+      option,
+      excludeEchartsProps(child.props),
+      context
+    );
     // 处理 child 的 props
     // 根据 child 的 type 上的 symbol
     (createOptions as any)[child.type[symbols.typeKey]]?.(
