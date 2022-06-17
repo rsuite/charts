@@ -1,6 +1,15 @@
 module.exports = {
-  preset: 'ts-jest/presets/js-with-ts',
+  transform: {
+    '^.+\\.(t|j)sx?$': [
+      '@swc-node/jest',
+      {
+        react: {
+          runtime: 'automatic'
+        }
+      }
+    ]
+  },
   testEnvironment: 'jsdom',
   setupFilesAfterEnv: ['./jest.setup.ts'],
-  transformIgnorePatterns: ['/node_modules/(?!echarts|zrender)'],
+  transformIgnorePatterns: ['/node_modules/(?!echarts|zrender)']
 };
