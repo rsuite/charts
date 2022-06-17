@@ -1,6 +1,7 @@
 import React, { useContext, useImperativeHandle, useRef } from 'react';
 import _merge from 'lodash.merge';
 import ReactEchartsCore from 'echarts-for-react/lib/core';
+import type { EChartsReactProps } from 'echarts-for-react';
 import * as echarts from 'echarts/core';
 import type { ECharts as EChartsInstance, EChartsOption, SeriesOption } from 'echarts';
 import { CanvasRenderer } from 'echarts/renderers';
@@ -35,7 +36,7 @@ const defaultOption = {
   },
 };
 
-export interface EChartsProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface EChartsProps extends Omit<EChartsReactProps, 'option'> {
   height?: number;
   loading?: boolean;
   option?: EChartsOption;
