@@ -116,38 +116,6 @@ const createOptions = {
 
     option.visualMap = getComponentOption();
   },
-  [symbols.xAxis](option: any, props: any, context: any) {
-    function getOption() {
-      const { axisLabel, ...rest } = props;
-      const { series } = context;
-
-      return _merge(
-        {
-          boundaryGap: !!series.find((comp: any) => comp.type[symbols.typeKey] === symbols.bars),
-          nameTextStyle: {
-            fontSize: 12,
-            color: '#575757',
-          },
-        },
-        axisLabel
-          ? {
-              axisLabel: transformTextOption(axisLabel),
-            }
-          : {},
-        rest
-      );
-    }
-
-    const xAxisOption = getOption();
-
-    if (!option.xAxis) {
-      option.xAxis = xAxisOption;
-    } else if (!Array.isArray(option.xAxis)) {
-      option.xAxis = [option.xAxis, xAxisOption];
-    } else {
-      option.xAxis.push(xAxisOption);
-    }
-  },
   [symbols.yAxis](option: any, props: YAxisProps, _: any) {
     function getOption() {
       const { name, axisLabel, splitLine, transposeNameText = false, ...rest } = props;
