@@ -65,38 +65,6 @@ export function randstr(length = 16) {
 
 const createOptions = {
   // components
-  [symbols.radar](option: any, props: any, _: any) {
-    function getOption() {
-      const { circle, ...rest } = props;
-
-      return _merge(
-        {
-          axisName: {
-            color: '#575757',
-          },
-          axisNameGap: 10,
-          shape: circle ? 'circle' : 'polygon',
-
-          splitArea: {
-            areaStyle: {
-              color: ['#FFFFFF', '#F7F7FA'],
-            },
-          },
-        },
-        rest
-      );
-    }
-
-    const radarOption = getOption();
-
-    if (!option.radar) {
-      option.radar = radarOption;
-    } else if (!Array.isArray(option.radar)) {
-      option.radar = [option.radar, radarOption];
-    } else {
-      option.radar.push(radarOption);
-    }
-  },
 
   [symbols.visualMap](option: any, props: any, context: any) {
     function getComponentOption() {
