@@ -371,31 +371,6 @@ const createOptions = {
 
     option.series.push(radarSerieOption);
   },
-  [symbols.sankey](option: any, props: any, _: any) {
-    function getSeriesOption() {
-      return {
-        type: 'sankey',
-        name: props.name,
-        data: props.data.nodes,
-        links: props.data.links,
-        nodeWidth: 30,
-        nodeGap: 20,
-        itemStyle: {
-          borderWidth: 0,
-        },
-        lineStyle: {
-          color: '#cfcfcf',
-          curveness: 0.5,
-        },
-      };
-    }
-
-    if (!option.series) {
-      option.series = [];
-    }
-
-    option.series.push(getSeriesOption());
-  },
 };
 
 export function excludeEchartsProps(props: ChartComponentProps) {
