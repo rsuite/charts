@@ -9,7 +9,7 @@ export interface SankeyChartProps extends ChartComponentProps<SankeyProps['data'
 
 function SankeyChart({ name, data = [], children, ...props }: SankeyChartProps, ref: any) {
   function renderDefaultSankey() {
-    return <Sankey name={name} data={data} />;
+    return <Sankey name={name} {...data} />;
   }
 
   const components = Children.toArray(children);

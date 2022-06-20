@@ -112,11 +112,13 @@ function ECharts(
   function isSeriesEmpty(option: { dataset?: any; series?: any }) {
     return (
       !option.series ||
-      option.series.reduce(
-        (empty: any, serie: { data: string | any[] }) =>
-          empty && (!serie.data || serie.data.length < 1),
-        true
-      )
+      (option.series as SeriesOption[]).every((serie) => {
+        if (serie.type === 'sankey') {
+          return (!serie.nodes || serie.nodes.length < 1) && (!serie.data || serie.data.length < 1);
+        }
+
+        return !serie.data || (serie.data as any[]).length < 1;
+      })
     );
   }
 
