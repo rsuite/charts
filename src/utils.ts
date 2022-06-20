@@ -66,33 +66,6 @@ export function randstr(length = 16) {
 
 const createOptions = {
   // components
-  [symbols.tooltip](option: any, props: any, context: any) {
-    function getOption() {
-      const { chartType, series } = context;
-
-      const hasAxis =
-        chartType === 'bar' ||
-        chartType === 'line' ||
-        !!series.find(
-          (comp: any) =>
-            comp.type[symbols.typeKey] === symbols.xAxis ||
-            comp.type[symbols.typeKey] === symbols.yAxis
-        );
-
-      return _merge(
-        {
-          show: true,
-          trigger: hasAxis ? 'axis' : 'item',
-          axisPointer: {
-            type: 'none',
-          },
-        },
-        props
-      );
-    }
-
-    option.tooltip = getOption();
-  },
   [symbols.legend](option: any, props: any, context: any) {
     function getOption() {
       const { chartType } = context;
