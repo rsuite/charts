@@ -335,42 +335,6 @@ const createOptions = {
 
     option.series.push(getSeriesOption());
   },
-  [symbols.radarLine](option: any, props: any, _: any) {
-    function getSeriesOption() {
-      const { name, data, value = data, ...rest } = props;
-
-      return _merge(
-        {
-          name,
-          value,
-        },
-        rest
-      );
-    }
-
-    const radarSerieOption = {
-      type: 'radar',
-      symbol: 'none',
-      lineStyle: {
-        width: 2,
-      },
-      emphasis: {
-        lineStyle: {
-          width: 3,
-        },
-        areaStyle: {
-          opacity: 0.2,
-        },
-      },
-      data: [getSeriesOption()],
-    };
-
-    if (!option.series) {
-      option.series = [];
-    }
-
-    option.series.push(radarSerieOption);
-  },
 };
 
 export function excludeEchartsProps(props: ChartComponentProps) {
