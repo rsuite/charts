@@ -116,53 +116,6 @@ const createOptions = {
 
     option.visualMap = getComponentOption();
   },
-  [symbols.yAxis](option: any, props: YAxisProps, _: any) {
-    function getOption() {
-      const { name, axisLabel, splitLine, transposeNameText = false, ...rest } = props;
-
-      return _merge(
-        {
-          name,
-          nameTextStyle: {
-            fontSize: 12,
-            color: '#575757',
-          },
-        },
-        name && rest.nameLocation === 'middle' && transposeNameText
-          ? {
-              nameRotate: 0,
-              name: name.split('').join('\n'),
-            }
-          : {},
-        typeof splitLine !== 'undefined'
-          ? {
-              splitLine: _merge(
-                {
-                  show: !!splitLine,
-                },
-                typeof splitLine !== 'boolean' && splitLine
-              ),
-            }
-          : {},
-        axisLabel
-          ? {
-              axisLabel: transformTextOption(axisLabel),
-            }
-          : {},
-        rest
-      );
-    }
-
-    const yAxisOption = getOption();
-
-    if (!option.yAxis) {
-      option.yAxis = yAxisOption;
-    } else if (!Array.isArray(option.yAxis)) {
-      option.yAxis = [option.yAxis, yAxisOption];
-    } else {
-      option.yAxis.push(yAxisOption);
-    }
-  },
 };
 
 export function excludeEchartsProps(props: ChartComponentProps) {
