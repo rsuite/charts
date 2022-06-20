@@ -302,39 +302,6 @@ const createOptions = {
       option.yAxis.push(yAxisOption);
     }
   },
-
-  // series
-  [symbols.funnel](option: any, props: any, _: any) {
-    function getSeriesOption() {
-      const { type, data, asc, sort = asc ? 'ascending' : 'descending', label, ...rest } = props;
-
-      return _merge(
-        {
-          type: 'funnel',
-          data: data
-            .map(([name, value]: any) => ({
-              name,
-              value,
-            }))
-            .sort((d1: any, d2: any) => d2.value - d1.value),
-          sort,
-          label: transformTextOption(label, {
-            show: true,
-            position: 'inside',
-            formatter: ({ value }: any) => value,
-            fontSize: 14,
-          }),
-        },
-        rest
-      );
-    }
-
-    if (!option.series) {
-      option.series = [];
-    }
-
-    option.series.push(getSeriesOption());
-  },
 };
 
 export function excludeEchartsProps(props: ChartComponentProps) {
