@@ -66,9 +66,6 @@ export function randstr(length = 16) {
 
 const createOptions = {
   // components
-  [symbols.dataset](option: any, props: DatasetProps, _: any) {
-    option.dataset = _merge({}, props);
-  },
   [symbols.dataZoom](option: any, props: any, _: any) {
     function getOption() {
       return _merge(
