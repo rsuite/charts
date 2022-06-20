@@ -8,7 +8,6 @@ import { TitleComponent } from 'echarts/components';
 import { symbols } from './constants';
 import { ChartComponentProps } from './ECharts';
 import type { YAxisProps } from './components/YAxis';
-import type { DatasetProps } from './components/Dataset';
 import type { OptionComponent } from './types';
 
 echarts.use([TitleComponent]);
@@ -66,30 +65,6 @@ export function randstr(length = 16) {
 
 const createOptions = {
   // components
-  [symbols.legend](option: any, props: any, context: any) {
-    function getOption() {
-      const { chartType } = context;
-      const legendOption: any = {
-        show: true,
-        bottom: 10,
-      };
-
-      if (chartType === 'pie') {
-        legendOption.icon = 'circle';
-      }
-      return _merge(legendOption, props);
-    }
-
-    const legendOption = getOption();
-
-    if (!option.legend) {
-      option.legend = legendOption;
-    } else if (!Array.isArray(option.legend)) {
-      option.legend = [option.legend, legendOption];
-    } else {
-      option.legend.push(legendOption);
-    }
-  },
   [symbols.radar](option: any, props: any, _: any) {
     function getOption() {
       const { circle, ...rest } = props;
