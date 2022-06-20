@@ -7,7 +7,6 @@ import * as echarts from 'echarts/core';
 import { TitleComponent } from 'echarts/components';
 import { symbols } from './constants';
 import { ChartComponentProps } from './ECharts';
-import type { YAxisProps } from './components/YAxis';
 import type { OptionComponent } from './types';
 
 echarts.use([TitleComponent]);
@@ -63,61 +62,6 @@ export function randstr(length = 16) {
   return text;
 }
 
-const createOptions = {
-  // components
-
-  [symbols.visualMap](option: any, props: any, context: any) {
-    function getComponentOption() {
-      const { type = 'continuous', ...rest } = props;
-      const { chartData } = context;
-
-      let inRange: any = {
-        colorHue: [198, 199],
-        colorSaturation: [1, 1],
-        colorLightness: [0.88, 0.451],
-      };
-
-      if (type === 'piecewise') {
-        inRange = {
-          symbol: 'rect',
-        };
-      }
-
-      const visualMapOption = _merge(
-        {
-          type,
-          left: 0,
-          bottom: 0,
-          text: ['最大值', '最小值'],
-          textGap: 5,
-          orient: 'horizontal',
-          inverse: true,
-          min: 0,
-
-          itemGap: 1,
-          symbolSize: [18, 14],
-          textStyle: {
-            color: '#8e8e93',
-          },
-          inRange,
-        },
-        rest
-      );
-
-      if (chartData && !visualMapOption.max) {
-        visualMapOption.max = chartData.reduce(
-          (max: any, d: any) => Math.max(max, d[1]),
-          -Infinity
-        );
-      }
-
-      return visualMapOption;
-    }
-
-    option.visualMap = getComponentOption();
-  },
-};
-
 export function excludeEchartsProps(props: ChartComponentProps) {
   return _omit(props, ['option', 'locale', 'height', 'loading']);
 }
@@ -143,14 +87,9 @@ export function createEChartsOptionFromChildren(children: any, _: any): EChartsO
   };
 
   validChildren.forEach((child) => {
-    (child.type as OptionComponent<any>).tapEChartsOption?.(
-      option,
-      excludeEchartsProps(child.props),
-      context
-    );
     // 处理 child 的 props
     // 根据 child 的 type 上的 symbol
-    (createOptions as any)[child.type[symbols.typeKey]]?.(
+    (child.type as OptionComponent<any>).tapEChartsOption?.(
       option,
       excludeEchartsProps(child.props),
       context
