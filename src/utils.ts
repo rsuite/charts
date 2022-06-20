@@ -396,45 +396,6 @@ const createOptions = {
 
     option.series.push(getSeriesOption());
   },
-  [symbols.tree](option: any, props: any, _: any) {
-    function getSeriesOption() {
-      const { name, data, ...rest } = props;
-
-      return _merge(
-        {
-          type: 'tree',
-          name,
-          data,
-          symbolSize: 8,
-          itemStyle: {
-            color: '#34c3ff',
-            borderColor: '#34c3ff',
-            borderWidth: 2,
-          },
-          label: {
-            position: 'left',
-            verticalAlign: 'middle',
-            align: 'right',
-          },
-
-          leaves: {
-            label: {
-              position: 'right',
-              verticalAlign: 'middle',
-              align: 'left',
-            },
-          },
-        },
-        rest
-      );
-    }
-
-    if (!option.series) {
-      option.series = [];
-    }
-
-    option.series.push(getSeriesOption());
-  },
 
   [symbols.treemap](option: any, props: any, _: any) {
     function transformData(node: any) {
