@@ -64,8 +64,6 @@ export function randstr(length = 16) {
   return text;
 }
 
-const stackKey = randstr();
-
 const createOptions = {
   // components
   [symbols.dataset](option: any, props: DatasetProps, _: any) {
@@ -432,40 +430,6 @@ const createOptions = {
           curveness: 0.5,
         },
       };
-    }
-
-    if (!option.series) {
-      option.series = [];
-    }
-
-    option.series.push(getSeriesOption());
-  },
-  [symbols.scatter](option: any, props: any, context: any) {
-    function getSeriesOption() {
-      const {
-        type,
-
-        ...rest
-      } = props;
-
-      const { chartType } = context;
-
-      return _merge(
-        {
-          type: 'scatter',
-          symbol: chartType === 'bar' ? 'emptyCircle' : 'circle',
-          symbolSize: 9,
-          itemStyle: {
-            opacity: chartType === 'bar' ? 1 : 0.7,
-          },
-          emphasis: {
-            itemStyle: {
-              opacity: 1,
-            },
-          },
-        },
-        rest
-      );
     }
 
     if (!option.series) {
