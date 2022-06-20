@@ -335,48 +335,6 @@ const createOptions = {
 
     option.series.push(getSeriesOption());
   },
-  [symbols.map](option: any, props: any, _: any) {
-    function getSeriesOption() {
-      const { type, map, name, data, nameMap, ...rest } = props;
-
-      return _merge(
-        {
-          type: 'map',
-          map,
-          name,
-          data: data.map(([name, value]: any) => ({
-            name: (nameMap && nameMap[name]) || name,
-            value,
-          })),
-          itemStyle: {
-            areaColor: '#E5E5EA',
-            borderColor: '#ffffff',
-            borderWidth: 1,
-          },
-          label: {
-            fontSize: 10,
-          },
-          emphasis: {
-            label: {
-              color: 'rgb(131, 56, 236)',
-            },
-            itemStyle: {
-              areaColor: 'rgba(131, 56, 236, .3)',
-              borderColor: 'rgb(131, 56, 236)',
-            },
-          },
-          nameMap,
-        },
-        rest
-      );
-    }
-
-    if (!option.series) {
-      option.series = [];
-    }
-
-    option.series.push(getSeriesOption());
-  },
   [symbols.radarLine](option: any, props: any, _: any) {
     function getSeriesOption() {
       const { name, data, value = data, ...rest } = props;
