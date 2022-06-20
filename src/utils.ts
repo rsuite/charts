@@ -66,26 +66,6 @@ export function randstr(length = 16) {
 
 const createOptions = {
   // components
-  [symbols.dataZoom](option: any, props: any, _: any) {
-    function getOption() {
-      return _merge(
-        {
-          type: 'slider',
-        },
-        props
-      );
-    }
-
-    const dataZoomOption = getOption();
-
-    if (!option.dataZoom) {
-      option.dataZoom = dataZoomOption;
-    } else if (!Array.isArray(option.dataZoom)) {
-      option.dataZoom = [option.dataZoom, dataZoomOption];
-    } else {
-      option.dataZoom.push(dataZoomOption);
-    }
-  },
   [symbols.tooltip](option: any, props: any, context: any) {
     function getOption() {
       const { chartType, series } = context;
