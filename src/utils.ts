@@ -11,11 +11,11 @@ import type { OptionComponent } from './types';
 
 echarts.use([TitleComponent]);
 
-export function is(element: any, name: string): boolean {
+export function is(element: React.ReactElement, name: string): boolean {
   return element.type[symbols.typeKey] === Symbol.for(`$$${name}`);
 }
 
-export function isSeries(element: any) {
+export function isSeries(element: React.ReactElement) {
   return (symbols as any).series.includes(element.type[symbols.typeKey]);
 }
 
@@ -66,16 +66,15 @@ export function excludeEchartsProps(props: ChartComponentProps) {
   return _omit(props, ['option', 'locale', 'height', 'loading']);
 }
 
-export function createEChartsOptionFromChildren(children: any, _: any): EChartsOption {
+export function createEChartsOptionFromChildren(
+  children: React.ReactNode,
+  _: Record<string, unknown>
+): EChartsOption {
   const option = {};
 
-  function getValidChildren(): React.ReactElement[] {
-    return flattenChildren(children).filter((child) => {
-      return React.isValidElement(child);
-    }) as any;
-  }
-
-  const validChildren = getValidChildren();
+  const validChildren = flattenChildren(children).filter((child) =>
+    React.isValidElement(child)
+  ) as React.ReactElement[];
 
   const series = validChildren.filter((child) => {
     return (symbols as any).series.includes(child.type[symbols.typeKey]);
@@ -89,7 +88,7 @@ export function createEChartsOptionFromChildren(children: any, _: any): EChartsO
   validChildren.forEach((child) => {
     // 处理 child 的 props
     // 根据 child 的 type 上的 symbol
-    (child.type as OptionComponent<any>).tapEChartsOption?.(
+    (child.type as OptionComponent<unknown>).tapEChartsOption?.(
       option,
       excludeEchartsProps(child.props),
       context
@@ -134,7 +133,7 @@ function isSeriesEmpty(series: EChartsOption['series']) {
         return (!serie.nodes || serie.nodes.length < 1) && (!serie.data || serie.data.length < 1);
       }
 
-      return !serie.data || (serie.data as any[]).length < 1;
+      return !serie.data || (serie.data as unknown[]).length < 1;
     })
   );
 }

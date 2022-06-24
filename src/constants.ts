@@ -1,7 +1,7 @@
 import React from 'react';
 
 interface EChartsContext {
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 export const EChartsContext = React.createContext<EChartsContext>({});

@@ -47,7 +47,7 @@ export interface EChartsProps extends Omit<EChartsReactProps, 'option'> {
   children?: React.ReactNode;
 }
 
-export interface ChartComponentProps<DataType = any[]> extends EChartsProps {
+export interface ChartComponentProps<DataType = unknown[]> extends EChartsProps {
   name?: SeriesOption['name'];
   data?: DataType;
 }
@@ -64,18 +64,18 @@ function ECharts(
     children,
     ...props
   }: EChartsProps,
-  ref: any
+  ref: React.Ref<EChartsInstance>
 ) {
   const echartsRef = useRef<EChartsInstance>();
 
-  useImperativeHandle(ref, () => echartsRef.current);
+  useImperativeHandle(ref, () => echartsRef.current as EChartsInstance);
 
   const context = useContext(EChartsContext);
 
   const renderEmptyMessage = useCallback(() => {
     return (
       <div className="rs-echarts-body-info" style={styles.blockCenter}>
-        {locale!.emptyMessage}
+        {locale.emptyMessage}
       </div>
     );
   }, [locale]);
@@ -86,7 +86,7 @@ function ECharts(
         className="rs-echarts-loader-wrap"
         style={{ ...styles.blockCenter, ...styles.loaderWrap }}
       >
-        {locale!.loading}
+        {locale.loading}
       </div>
     );
   }, [locale]);

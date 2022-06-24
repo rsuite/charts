@@ -10,7 +10,7 @@ export type XAxisProps = Omit<XAXisComponentOption, 'axisLine' | 'axisLabel' | '
   splitLine?: XAXisComponentOption['splitLine'] | boolean;
 };
 
-const XAxis: OptionComponent<XAxisProps> = (_: XAxisProps) => null;
+const XAxis: OptionComponent<XAxisProps> = () => null;
 
 XAxis[symbols.typeKey] = symbols.xAxis;
 
@@ -22,7 +22,7 @@ XAxis.tapEChartsOption = (option, props, context) => {
     return _merge(
       rest.type === 'category'
         ? {
-            boundaryGap: !!series.find((comp: any) => comp.type[symbols.typeKey] === symbols.bars),
+            boundaryGap: !!series.find((comp) => comp.type[symbols.typeKey] === symbols.bars),
           }
         : {},
       {

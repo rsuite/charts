@@ -1,20 +1,23 @@
 import React, { Children, cloneElement } from 'react';
 import _merge from 'lodash.merge';
+import type { ECharts as EChartsInstance } from 'echarts';
 import ECharts, { ChartComponentProps } from '../ECharts';
 import Tooltip from '../components/Tooltip';
 import Legend from '../components/Legend';
 import XAxis from '../components/XAxis';
+import type { XAxisProps } from '../components/XAxis';
 import YAxis from '../components/YAxis';
+import type { YAxisProps } from '../components/YAxis';
 import Scatter, { ScatterProps } from '../series/Scatter';
 import { EChartsContext } from '../constants';
 import { is } from '../utils';
 
-const xAxisProps: any = {
+const xAxisProps: XAxisProps = {
   axisLine: {
     symbol: ['none', 'arrow'],
     symbolSize: [9, 9],
   },
-  nameLocation: 'center',
+  nameLocation: 'middle',
   nameGap: 25,
   nameTextStyle: {
     fontSize: 14,
@@ -22,7 +25,7 @@ const xAxisProps: any = {
   },
 };
 
-const yAxisProps: any = {
+const yAxisProps: YAxisProps = {
   axisLine: {
     show: true,
     symbol: ['none', 'arrow'],
@@ -45,13 +48,13 @@ export interface ScatterChartProps extends ChartComponentProps<ScatterProps['dat
 
 function ScatterChart(
   { name, data = [], tooltip = true, legend = true, children, ...props }: ScatterChartProps,
-  ref: any
+  ref: React.Ref<EChartsInstance>
 ) {
   function renderDefaultScatter() {
     return <Scatter name={name} data={data} />;
   }
 
-  const components = Children.toArray(children);
+  const components = Children.toArray(children) as React.ReactElement[];
 
   return (
     <EChartsContext.Provider value={{ chartType: 'scatter', dataName: name }}>
@@ -61,7 +64,7 @@ function ScatterChart(
         {!components.find((comp) => is(comp, 'scatter')) && renderDefaultScatter()}
         {tooltip && <Tooltip />}
         {legend && <Legend icon="circle" itemHeight={10} itemWidth={10} itemGap={30} />}
-        {components.map((child: any) => {
+        {components.map((child) => {
           if (is(child, 'xAxis')) {
             return cloneElement(child, _merge(xAxisProps, child.props));
           }

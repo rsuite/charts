@@ -8,7 +8,7 @@ echarts.use([TreemapChart]);
 
 export type TreemapProps = TreemapSeriesOption;
 
-const Treemap: OptionComponent<TreemapProps> = (_: TreemapProps) => null;
+const Treemap: OptionComponent<TreemapProps> = () => null;
 
 Treemap.defaultProps = {
   data: [],
@@ -16,7 +16,7 @@ Treemap.defaultProps = {
 Treemap[symbols.typeKey] = symbols.treemap;
 
 Treemap.tapEChartsOption = (option, props) => {
-  function transformData(node: any) {
+  function transformData(node: NonNullable<TreemapSeriesOption['data']>[0]) {
     if (!node) {
       return node;
     }
@@ -51,7 +51,7 @@ Treemap.tapEChartsOption = (option, props) => {
           color: '#ffffff',
           fontSize: 12,
           lineHeight: 17,
-          formatter({ name, value }: any) {
+          formatter({ name, value }) {
             return `{a|${name}\n${value}}`;
           },
           rich: {
