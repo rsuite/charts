@@ -1,11 +1,11 @@
-import React, { useContext, useImperativeHandle, useRef } from 'react';
+import React, { useCallback, useContext, useImperativeHandle, useMemo, useRef } from 'react';
 import _merge from 'lodash.merge';
 import ReactEchartsCore from 'echarts-for-react/lib/core';
 import type { EChartsReactProps } from 'echarts-for-react';
 import * as echarts from 'echarts/core';
 import type { ECharts as EChartsInstance, EChartsOption, SeriesOption } from 'echarts';
 import { CanvasRenderer } from 'echarts/renderers';
-import { createEChartsOptionFromChildren } from './utils';
+import { createEChartsOptionFromChildren, isDataEmpty } from './utils';
 import './theme/rsuite_light';
 import './theme/rsuite_dark';
 import { EChartsContext } from './constants';
@@ -72,65 +72,15 @@ function ECharts(
 
   const context = useContext(EChartsContext);
 
-  /**
-   * option 覆盖优先级
-   * 1. defaultOption 为底
-   * 2. props.option
-   * 3. state.option (components 的 props)
-   */
-  function getEChartsOption() {
-    return _merge({}, defaultOption, option, createEChartsOptionFromChildren(children, context));
-  }
-
-  /**
-   * 判断 option 是否没有数据，
-   * 用于显示数据为空的 placeholder
-   */
-  function isDataEmpty(option: { dataset: any }) {
-    if (option.dataset) {
-      return isDatasetEmpty(option);
-    }
-
-    return isSeriesEmpty(option);
-  }
-
-  /**
-   * 进入此方法时一定存在 option.dataset
-   */
-  function isDatasetEmpty(option: { dataset: any }) {
-    if (!option.dataset.source) {
-      return true;
-    }
-
-    if (Array.isArray(option.dataset.source)) {
-      return option.dataset.source.length < 1;
-    }
-
-    return Object.getOwnPropertyNames(option.dataset.source).length < 1;
-  }
-
-  function isSeriesEmpty(option: { dataset?: any; series?: any }) {
-    return (
-      !option.series ||
-      (option.series as SeriesOption[]).every((serie) => {
-        if (serie.type === 'sankey') {
-          return (!serie.nodes || serie.nodes.length < 1) && (!serie.data || serie.data.length < 1);
-        }
-
-        return !serie.data || (serie.data as any[]).length < 1;
-      })
-    );
-  }
-
-  function renderEmptyMessage() {
+  const renderEmptyMessage = useCallback(() => {
     return (
       <div className="rs-echarts-body-info" style={styles.blockCenter}>
         {locale!.emptyMessage}
       </div>
     );
-  }
+  }, [locale]);
 
-  function renderLoader() {
+  const renderLoader = useCallback(() => {
     return (
       <div
         className="rs-echarts-loader-wrap"
@@ -139,14 +89,26 @@ function ECharts(
         {locale!.loading}
       </div>
     );
-  }
+  }, [locale]);
 
-  function onChartReady(echarts: EChartsInstance) {
+  const onChartReady = useCallback((echarts: EChartsInstance) => {
     echartsRef.current = echarts;
-  }
+  }, []);
 
   const { className, style, loading, ...echartsForReactProps } = props;
-  const echartsOption: any = children ? getEChartsOption() : option;
+
+  const echartsOption = useMemo(() => {
+    /**
+     * option 覆盖优先级
+     * 1. defaultOption 为底
+     * 2. props.option
+     * 3. state.option (components 的 props)
+     */
+    return children
+      ? _merge({}, defaultOption, option, createEChartsOptionFromChildren(children, context))
+      : option;
+  }, [children, context, option]);
+
   const dataEmpty = isDataEmpty(echartsOption);
 
   return (
