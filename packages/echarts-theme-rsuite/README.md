@@ -1,6 +1,6 @@
 # `echarts-theme-rsuite`
 
-**(WIP)** React Suite theme for ECharts.
+React Suite theme for ECharts.
 
     npm i echarts-theme-rsuite
 
