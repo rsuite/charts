@@ -1,6 +1,6 @@
 {
   "name": "echarts-theme-rsuite",
-  "version": "0.0.0-beta.0",
+  "version": "1.0.0",
   "description": "React Suite theme for ECharts",
   "files": [
     "dist"
@@ -18,7 +18,8 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rsuite/charts.git"
+    "url": "git+https://github.com/rsuite/charts.git",
+    "directory": "packages/echarts-theme-rsuite"
   },
   "author": "Doma <leishenghao@126.com>",
   "license": "MIT",
