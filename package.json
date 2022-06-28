@@ -7,16 +7,14 @@
     "build": "turbo run build",
     "format": "prettier --write .",
     "format:check": "prettier --list-different \"{src,test,docs}/**/*.js\"",
-    "dev": "dumi dev",
-    "docs": "dumi build",
+    "dev": "cross-env APP_ROOT=packages/charts dumi dev",
+    "docs": "cross-env APP_ROOT=packages/charts dumi build",
     "publish-docs": "node docs/gh-pages.js",
     "prepages": "npm run docs",
     "pages": "npm run publish-docs",
     "prepublishOnly": "npm run build",
-    "release": "npm publish --access public --tag next",
     "lint": "eslint .",
-    "test": "jest",
-    "semantic-release": "semantic-release"
+    "test": "jest"
   },
   "devDependencies": {
     "@changesets/cli": "^2.23.0",
