@@ -1,6 +1,6 @@
 {
   "name": "echarts-theme-rsuite",
-  "version": "0.0.0-development",
+  "version": "0.0.0-beta.0",
   "description": "React Suite theme for ECharts",
   "files": [
     "dist"

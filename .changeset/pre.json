@@ -1,0 +1,11 @@
+{
+  "mode": "pre",
+  "tag": "beta",
+  "initialVersions": {
+    "@rsuite/charts": "5.1.0-beta.4",
+    "echarts-theme-rsuite": "0.0.0-development"
+  },
+  "changesets": [
+    "bright-fishes-divide"
+  ]
+}
