@@ -21,7 +21,7 @@ export default () => <MapChart name="覆盖率" map="china" data={data} />;
 import React from 'react';
 import { MapChart, VisualMap } from '@rsuite/charts';
 import 'echarts4/map/js/china';
-import chinaProvinces from '@rsuite/charts/locales/en-US/china-provinces';
+import chinaProvinces from '@rsuite/charts/dist/locales/en-US/china-provinces.js';
 import data from './basic.json';
 
 export default () => (

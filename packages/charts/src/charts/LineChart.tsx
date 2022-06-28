@@ -8,7 +8,8 @@ import { is, isSeries } from '../utils';
 import Tooltip from '../components/Tooltip';
 import { EChartsContext } from '../constants';
 
-export interface LineChartProps extends ChartComponentProps {
+export interface LineChartProps
+  extends ChartComponentProps<[category: string, ...values: number[]][]> {
   tooltip?: boolean;
 }
 
@@ -33,7 +34,7 @@ function LineChart(
     return <Line name={name} data={data!.map((d) => d[1])} />;
   }
 
-  const components = Children.toArray(children);
+  const components = Children.toArray(children) as React.ReactElement[];
   const series = components.filter(isSeries);
 
   return (

@@ -17,7 +17,7 @@ const valueAxisProps: any = {
   type: 'value',
 };
 
-interface BarChartProps extends ChartComponentProps {
+interface BarChartProps extends ChartComponentProps<[category: string, ...values: number[]][]> {
   horizontal?: boolean;
   tooltip?: boolean;
   xAxis?: boolean;
@@ -75,7 +75,7 @@ function BarChart(
     return <Bars name={name} data={values} />;
   }
 
-  const components = Children.toArray(children);
+  const components = Children.toArray(children) as React.ReactElement[];
   const series = components.filter(isSeries);
 
   const data = horizontal ? [...inputData!].reverse() : inputData;

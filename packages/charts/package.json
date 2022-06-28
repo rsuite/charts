@@ -1,0 +1,40 @@
+{
+  "name": "@rsuite/charts",
+  "version": "0.0.0-development",
+  "description": "ECharts for React",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/index.js",
+  "module": "./dist/esm/index.js",
+  "exports": {
+    "require": "./dist/index.js",
+    "import": "./dist/esm/index.js"
+  },
+  "types": "./dist/index.d.ts",
+  "dependencies": {
+    "echarts-for-react": "^3.0.2",
+    "lodash.merge": "^4.6.2",
+    "lodash.omit": "^4.5.0",
+    "react-keyed-flatten-children": "^1.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^16.9.6",
+    "echarts": "^5.0.0"
+  },
+  "peerDependencies": {
+    "echarts": "^5.0.0",
+    "react": "^16.8.0 || ^17.0.0"
+  },
+  "author": "Doma <leishenghao@126.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https:git@github.com:rsuite/charts.git"
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --clean --format cjs,esm --legacy-output --dts && npm run build:locales",
+    "build:locales": "tsc src/locales/**/*.ts --outDir dist/locales --skipLibCheck"
+  },
+  "homepage": "https://github.com/rsuite/charts"
+}

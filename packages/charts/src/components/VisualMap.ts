@@ -51,7 +51,10 @@ VisualMap.tapEChartsOption = (option, props, context) => {
     );
 
     if (chartData && !visualMapOption.max) {
-      visualMapOption.max = chartData.reduce((max: any, d: any) => Math.max(max, d[1]), -Infinity);
+      visualMapOption.max = (chartData as number[]).reduce(
+        (max, d) => Math.max(max, d[1]),
+        -Infinity
+      );
     }
 
     return visualMapOption;

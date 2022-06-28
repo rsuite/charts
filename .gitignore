@@ -47,5 +47,4 @@ yarn.lock
 es/
 *.tgz
 
-dist
 .umi

@@ -29,7 +29,7 @@ function MapChart(
     return <Map name={name} data={data} {...props} />;
   }
 
-  const components = Children.toArray(children);
+  const components = Children.toArray(children) as React.ReactElement[];
 
   const compVisualMap = components.find((comp) => is(comp, 'visualMap'));
 

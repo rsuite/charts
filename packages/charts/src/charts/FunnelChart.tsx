@@ -2,14 +2,14 @@ import React, { Children, Fragment, cloneElement } from 'react';
 import _merge from 'lodash.merge';
 import ECharts, { ChartComponentProps } from '../ECharts';
 import Tooltip from '../components/Tooltip';
-import Funnel from '../series/Funnel';
+import Funnel, { FunnelProps } from '../series/Funnel';
 import Legend from '../components/Legend';
 import { EChartsContext } from '../constants';
 import { is } from '../utils';
 
 const funnelDefaultWidth = 40;
 
-export interface FunnelChartProps extends ChartComponentProps {
+export interface FunnelChartProps extends ChartComponentProps<FunnelProps['data']> {
   asc?: boolean;
   tooltip?: boolean;
 }
@@ -18,7 +18,7 @@ function FunnelChart(
   { asc = false, tooltip = true, name, data = [], children, option, ...props }: FunnelChartProps,
   ref: any
 ) {
-  const components = Children.toArray(children);
+  const components = Children.toArray(children) as React.ReactElement[];
   const funnels = components.filter((comp) => is(comp, 'funnel'));
   const legends = components.filter((comp) => is(comp, 'legend'));
   const withoutLegend = legends.length === 0;

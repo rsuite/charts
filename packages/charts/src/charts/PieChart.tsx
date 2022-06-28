@@ -13,7 +13,7 @@ export interface PieChartProps
 }
 
 function PieChart({ data = [], legend = true, children, ...props }: PieChartProps, ref: any) {
-  const components = Children.toArray(children);
+  const components = Children.toArray(children) as React.ReactElement[];
 
   function getPieData() {
     return (data as any).map(([name, value]: any) => ({ name, value }));

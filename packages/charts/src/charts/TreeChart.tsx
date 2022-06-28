@@ -14,7 +14,7 @@ function TreeChart({ data = [], children, ...props }: TreeChartProps, ref: any) 
     return <Tree data={data} />;
   }
 
-  const components = Children.toArray(children);
+  const components = Children.toArray(children) as React.ReactElement[];
 
   const tree = components.find((comp) => is(comp, 'tree'));
 

@@ -32,11 +32,8 @@ Bars.tapEChartsOption = (option, props, context) => {
       : [];
     const stacked = stackedBars.length > 1;
     const stackTop =
-      stackedBars.indexOf(
-        stackedBars.find(
-          (comp: any) =>
-            comp.type[symbols.typeKey] === symbols.bars && comp.props.name === rest.name
-        )
+      stackedBars.findIndex(
+        (comp: any) => comp.type[symbols.typeKey] === symbols.bars && comp.props.name === rest.name
       ) ===
       stackedBars.length - 1;
 
