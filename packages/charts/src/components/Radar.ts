@@ -10,7 +10,7 @@ export type RadarProps = RadarComponentOption & {
   circle?: boolean;
 };
 
-const Radar: OptionComponent<RadarProps> = (_: RadarProps) => null;
+const Radar: OptionComponent<RadarProps> = () => null;
 
 Radar[symbols.typeKey] = symbols.radar;
 

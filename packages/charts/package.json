@@ -34,8 +34,7 @@
     "url": "https:git@github.com:rsuite/charts.git"
   },
   "scripts": {
-    "build": "tsup src/index.ts --clean --format cjs,esm --legacy-output --dts && npm run build:locales",
-    "build:locales": "tsc src/locales/**/*.ts --outDir dist/locales --skipLibCheck"
+    "build": "tsup src/index.ts --clean --format cjs,esm --legacy-output --dts"
   },
   "homepage": "https://github.com/rsuite/charts"
 }
