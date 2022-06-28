@@ -1,0 +1,32 @@
+{
+  "name": "echarts-theme-rsuite",
+  "version": "0.0.0-development",
+  "description": "React Suite theme for ECharts",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/index.js",
+  "module": "./dist/esm/index.js",
+  "exports": {
+    "require": "./dist/index.js",
+    "import": "./dist/esm/index.js"
+  },
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsup src/index.ts --clean --format cjs,esm --legacy-output --dts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rsuite/charts.git"
+  },
+  "author": "Doma <leishenghao@126.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rsuite/charts/issues"
+  },
+  "homepage": "https://github.com/rsuite/charts#readme",
+  "dependencies": {
+    "lodash.merge": "^4.6.2"
+  }
+}

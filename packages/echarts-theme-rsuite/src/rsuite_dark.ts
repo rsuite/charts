@@ -1,16 +1,15 @@
-import * as echarts from 'echarts/core';
 import _merge from 'lodash.merge';
 
 /**
  * DO NOT directly edit this theme object
- * If you need to edit the rsuite_light theme, follow these steps:
+ * If you need to edit the rsuite_dark theme, follow these steps:
  *
  * 1. Visit https://echarts.apache.org/zh/theme-builder.html
- * 2. Import rsuite_light.project.json to the theme builder
+ * 2. Import rsuite_dark.project.json to the theme builder
  * 3. Make changes in the theme builder GUI
  * 4. Download (not export) the edited theme
  * 5. Replace the theme object with the latest theme JSON
- * 6. Export the edited theme and update rsuite_light.project.json
+ * 6. Export the edited theme and update rsuite_dark.project.json
  */
 const theme = {
   color: [
@@ -25,11 +24,11 @@ const theme = {
     '#e6b980',
     '#51E8FF',
   ],
-  backgroundColor: 'rgba(0,0,0,0)',
+  backgroundColor: '#1a1d24',
   textStyle: {},
   title: {
     textStyle: {
-      color: '#333333',
+      color: '#ffffff',
     },
     subtextStyle: {
       color: '#aaaaaa',
@@ -60,49 +59,49 @@ const theme = {
   bar: {
     itemStyle: {
       barBorderWidth: 0,
-      barBorderColor: '#ccc',
+      barBorderColor: '#cccccc',
     },
   },
   pie: {
     itemStyle: {
       borderWidth: 0,
-      borderColor: '#ccc',
+      borderColor: '#cccccc',
     },
   },
   scatter: {
     itemStyle: {
       borderWidth: 0,
-      borderColor: '#ccc',
+      borderColor: '#cccccc',
     },
   },
   boxplot: {
     itemStyle: {
       borderWidth: 0,
-      borderColor: '#ccc',
+      borderColor: '#cccccc',
     },
   },
   parallel: {
     itemStyle: {
       borderWidth: 0,
-      borderColor: '#ccc',
+      borderColor: '#cccccc',
     },
   },
   sankey: {
     itemStyle: {
       borderWidth: 0,
-      borderColor: '#ccc',
+      borderColor: '#cccccc',
     },
   },
   funnel: {
     itemStyle: {
       borderWidth: 0,
-      borderColor: '#ccc',
+      borderColor: '#cccccc',
     },
   },
   gauge: {
     itemStyle: {
       borderWidth: 0,
-      borderColor: '#ccc',
+      borderColor: '#cccccc',
     },
   },
   candlestick: {
@@ -117,7 +116,7 @@ const theme = {
   graph: {
     itemStyle: {
       borderWidth: 0,
-      borderColor: '#ccc',
+      borderColor: '#cccccc',
     },
     lineStyle: {
       width: 1,
@@ -139,7 +138,7 @@ const theme = {
       '#51E8FF',
     ],
     label: {
-      color: '#eeeeee',
+      color: '#e9ebf0',
     },
   },
   map: {
@@ -186,7 +185,7 @@ const theme = {
     axisLine: {
       show: true,
       lineStyle: {
-        color: '#e5e5ea',
+        color: '#3c3f43',
       },
     },
     axisTick: {
@@ -197,7 +196,7 @@ const theme = {
     },
     axisLabel: {
       show: true,
-      color: '#575757',
+      color: '#e9ebf0',
     },
     splitLine: {
       show: false,
@@ -227,12 +226,12 @@ const theme = {
     },
     axisLabel: {
       show: true,
-      color: '#575757',
+      color: '#e9ebf0',
     },
     splitLine: {
       show: true,
       lineStyle: {
-        color: ['#e5e5ea'],
+        color: ['#3c3f43'],
       },
     },
     splitArea: {
@@ -246,7 +245,7 @@ const theme = {
     axisLine: {
       show: true,
       lineStyle: {
-        color: '#e5e5ea',
+        color: '#3c3f43',
       },
     },
     axisTick: {
@@ -257,12 +256,12 @@ const theme = {
     },
     axisLabel: {
       show: true,
-      color: '#575757',
+      color: '#e9ebf0',
     },
     splitLine: {
       show: true,
       lineStyle: {
-        color: ['#e5e5ea'],
+        color: ['#3c3f43'],
       },
     },
     splitArea: {
@@ -276,7 +275,7 @@ const theme = {
     axisLine: {
       show: true,
       lineStyle: {
-        color: '#e5e5ea',
+        color: '#3c3f43',
       },
     },
     axisTick: {
@@ -287,12 +286,12 @@ const theme = {
     },
     axisLabel: {
       show: true,
-      color: '#575757',
+      color: '#e9ebf0',
     },
     splitLine: {
       show: true,
       lineStyle: {
-        color: ['#e5e5ea'],
+        color: ['#3c3f43'],
       },
     },
     splitArea: {
@@ -377,19 +376,22 @@ const theme = {
   },
   markPoint: {
     label: {
-      color: '#eeeeee',
+      color: '#e9ebf0',
     },
     emphasis: {
       label: {
-        color: '#eeeeee',
+        color: '#e9ebf0',
       },
     },
   },
 };
 
+/**
+ * Theme properties that are not supported by the theme builder GUI
+ */
 const additionalSettings = {
   textStyle: {
-    color: '#575757',
+    color: '#e9ebf0',
   },
   legend: {
     textStyle: {
@@ -398,6 +400,4 @@ const additionalSettings = {
   },
 };
 
-echarts.registerTheme('rsuite_light', _merge(additionalSettings, theme));
-
-export default theme;
+export default _merge(theme, additionalSettings);

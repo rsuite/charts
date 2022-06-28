@@ -6,11 +6,13 @@ import * as echarts from 'echarts/core';
 import type { ECharts as EChartsInstance, EChartsOption, SeriesOption } from 'echarts';
 import { CanvasRenderer } from 'echarts/renderers';
 import { createEChartsOptionFromChildren, isDataEmpty } from './utils';
-import './theme/rsuite_light';
-import './theme/rsuite_dark';
+import * as themes from 'echarts-theme-rsuite';
 import { EChartsContext } from './constants';
 
 echarts.use([CanvasRenderer]);
+
+echarts.registerTheme('rsuite_light', themes.light);
+echarts.registerTheme('rsuite_dark', themes.dark);
 
 const styles: {
   [key: string]: React.CSSProperties;
