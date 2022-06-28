@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - master
-      - next
   pull_request:
     branches:
       - master
@@ -18,24 +17,3 @@ jobs:
       - run: npm ci
       - run: npm test -- --coverage
       - uses: codecov/codecov-action@v1
-
-  release:
-    name: Release
-    needs: test
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      - name: Setup Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: 'lts/*'
-      - name: 📦 Install dependencies
-        run: npm ci
-      - name: 🚀 Semantic Release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: npx semantic-release
