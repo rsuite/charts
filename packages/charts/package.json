@@ -1,6 +1,6 @@
 {
   "name": "@rsuite/charts",
-  "version": "0.0.0-development",
+  "version": "5.1.0-beta.4",
   "description": "ECharts for React",
   "files": [
     "dist"
