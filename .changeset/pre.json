@@ -1,0 +1,11 @@
+{
+  "mode": "pre",
+  "tag": "alpha",
+  "initialVersions": {
+    "@rsuite/charts": "5.1.0",
+    "echarts-theme-rsuite": "1.0.0"
+  },
+  "changesets": [
+    "silly-plants-laugh"
+  ]
+}
