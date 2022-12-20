@@ -7,7 +7,7 @@
     "build": "turbo run build",
     "format": "prettier --write .",
     "format:check": "prettier --list-different \"{src,test,docs}/**/*.js\"",
-    "dev": "cross-env APP_ROOT=packages/charts dumi dev",
+    "dev": "turbo run dev --filter=@rsuite/charts",
     "docs": "cross-env APP_ROOT=packages/charts dumi build",
     "publish-docs": "node docs/gh-pages.js",
     "prepages": "npm run docs",
