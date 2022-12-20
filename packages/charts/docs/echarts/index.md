@@ -43,3 +43,39 @@ export default () => {
   );
 };
 ```
+
+## 空数据状态
+
+```jsx
+import React, { useState } from 'react';
+import { LineChart } from '@rsuite/charts';
+
+export default () => {
+  return (
+    <LineChart
+      name="浏览量(PV)"
+      data={[]}
+      locale={{
+        emptyMessage: '没有数据',
+      }}
+    />
+  );
+};
+```
+
+### 自定义空数据占位符
+
+```jsx
+import React, { useState } from 'react';
+import { LineChart } from '@rsuite/charts';
+
+export default () => {
+  return (
+    <LineChart
+      name="浏览量(PV)"
+      data={[]}
+      renderEmptyPlaceholder={() => <div>没有符合筛选条件的数据</div>}
+    />
+  );
+};
+```
