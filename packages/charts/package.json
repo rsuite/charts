@@ -36,7 +36,7 @@
   },
   "scripts": {
     "dev": "cross-env dumi dev",
-    "build": "tsup src/index.ts --clean --format cjs,esm --legacy-output --dts",
+    "build": "tsup src/index.ts",
     "build-docs": "cross-env dumi build"
   },
   "homepage": "https://github.com/rsuite/charts"
