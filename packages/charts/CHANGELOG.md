@@ -1,5 +1,11 @@
 # @rsuite/charts
 
+## 5.2.0
+
+### Minor Changes
+
+- 779aef1: Improve empty placeholder for ECharts and add renderEmptyPlaceholder prop for customization.
+
 ## 5.2.0-alpha.0
 
 ### Minor Changes
