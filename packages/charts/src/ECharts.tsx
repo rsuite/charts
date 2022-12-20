@@ -7,6 +7,7 @@ import type { ECharts as EChartsInstance, EChartsOption, SeriesOption } from 'ec
 import { CanvasRenderer } from 'echarts/renderers';
 import { createEChartsOptionFromChildren, isDataEmpty } from './utils';
 import * as themes from 'echarts-theme-rsuite';
+import { ReactComponent as IconChartNoData } from './assets/chart-nodata.svg';
 import { EChartsContext } from './constants';
 
 echarts.use([CanvasRenderer]);
@@ -21,8 +22,13 @@ const styles: {
     width: '100%',
     height: '100%',
     display: 'flex',
+    flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
+    color: '#8e8e93',
+    fontSize: 14,
+    fontWeight: 'normal',
+    lineHeight: '20px',
   },
   loaderWrap: {
     position: 'absolute',
@@ -46,6 +52,11 @@ export interface EChartsProps extends Omit<EChartsReactProps, 'option'> {
     emptyMessage?: React.ReactNode;
     loading?: React.ReactNode;
   };
+
+  /**
+   * Customize the placeholder when chart data is empty
+   */
+  renderEmptyPlaceholder?: () => React.ReactNode;
   children?: React.ReactNode;
 }
 
@@ -64,6 +75,7 @@ function ECharts(
     },
     option = {},
     children,
+    renderEmptyPlaceholder,
     ...props
   }: EChartsProps,
   ref: React.Ref<EChartsInstance>
@@ -75,12 +87,17 @@ function ECharts(
   const context = useContext(EChartsContext);
 
   const renderEmptyMessage = useCallback(() => {
+    if (typeof renderEmptyPlaceholder !== 'undefined') {
+      return renderEmptyPlaceholder();
+    }
+
     return (
       <div className="rs-echarts-body-info" style={styles.blockCenter}>
+        <IconChartNoData style={{ marginBottom: 10 }} />
         {locale.emptyMessage}
       </div>
     );
-  }, [locale]);
+  }, [renderEmptyPlaceholder, locale]);
 
   const renderLoader = useCallback(() => {
     return (

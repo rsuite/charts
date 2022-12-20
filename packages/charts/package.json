@@ -21,9 +21,7 @@
   },
   "devDependencies": {
     "@types/react": "^16.9.6",
-    "echarts": "^5.0.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "echarts": "^5.0.0"
   },
   "peerDependencies": {
     "echarts": "^5.0.0",
