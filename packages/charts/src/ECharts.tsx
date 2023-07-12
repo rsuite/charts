@@ -124,7 +124,7 @@ function ECharts(
      * 3. state.option (components 的 props)
      */
     return children
-      ? _merge({}, defaultOption, option, createEChartsOptionFromChildren(children, context))
+      ? _merge({}, defaultOption, createEChartsOptionFromChildren(children, context), option)
       : option;
   }, [children, context, option]);
 
