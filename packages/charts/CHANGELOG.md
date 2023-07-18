@@ -1,5 +1,11 @@
 # @rsuite/charts
 
+## 5.2.1
+
+### Patch Changes
+
+- d94baeb: Fix MapChart throwing when data is empty
+
 ## 5.2.0
 
 ### Minor Changes
