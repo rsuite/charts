@@ -15,3 +15,16 @@ test('Transforms into visualMap option', () => {
     )
   ).toHaveProperty('visualMap');
 });
+
+test('Should not tap visualMap.max when chartData is empty', () => {
+  expect(
+    createEChartsOptionFromChildren(
+      (
+        <>
+          <VisualMap />
+        </>
+      ).props.children,
+      { chartData: [] }
+    ).visualMap
+  ).not.toHaveProperty('max');
+});
