@@ -11,10 +11,21 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    container: node:latest
+    strategy:
+      matrix:
+        react-version: [16, 17, 18]
     steps:
-      - uses: actions/checkout@v2
-      - run: npm ci
+      - uses: actions/checkout@v3
+      - name: Use Node.js LTS
+        uses: actions/setup-node@v3
+        with:
+          node-version: 'lts/*'
+      - run: npm ci --force
       - run: npm run build
       - run: npm test -- --coverage
-      - uses: codecov/codecov-action@v1
+        env:
+          REACT: ${{ matrix.react-version }}
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v2
+        with:
+          flags: React ${{ matrix.react-version }}
