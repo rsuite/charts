@@ -28,4 +28,4 @@ jobs:
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v2
         with:
-          flags: React ${{ matrix.react-version }}
+          flags: React-${{ matrix.react-version }}
