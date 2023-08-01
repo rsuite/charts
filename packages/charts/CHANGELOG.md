@@ -1,5 +1,11 @@
 # @rsuite/charts
 
+## 5.2.2
+
+### Patch Changes
+
+- bbd781c: Add React 18 to compatible peerDepedencies
+
 ## 5.2.1
 
 ### Patch Changes
