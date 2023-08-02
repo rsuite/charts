@@ -1,7 +1,6 @@
 {
   "workspaces": [
-    "packages/*",
-    "docs"
+    "packages/*"
   ],
   "scripts": {
     "build": "turbo run build",
