@@ -45,5 +45,3 @@ yarn.lock
 .idea
 es/
 *.tgz
-
-**/.umi*
