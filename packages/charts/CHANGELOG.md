@@ -1,5 +1,11 @@
 # @rsuite/charts
 
+## 5.2.3
+
+### Patch Changes
+
+- 206db7f: Fix wrong package files.
+
 ## 5.2.2
 
 ### Patch Changes
