@@ -26,7 +26,7 @@
     "@typescript-eslint/eslint-plugin": "^5.28.0",
     "@typescript-eslint/parser": "^5.28.0",
     "cross-env": "^7.0.3",
-    "dumi": "^1.1.42",
+    "dumi": "^2.2.12",
     "esbuild-plugin-svgr": "^1.0.1",
     "eslint": "^8.17.0",
     "eslint-config-prettier": "^8.5.0",
