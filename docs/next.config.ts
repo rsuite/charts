@@ -9,10 +9,13 @@ const nextConfig: NextConfig = {
   distDir: 'out',
   turbopack: {
     resolveAlias: {
-      '@rsuite/charts': srcIndexPath,
+      // Turbopack requires a path relative to the project root (docs/),
+      // not an absolute filesystem path.
+      '@rsuite/charts': '../src/index.ts',
     },
   },
   webpack(config) {
+    // webpack accepts absolute paths fine
     config.resolve.alias['@rsuite/charts'] = srcIndexPath;
     return config;
   },
