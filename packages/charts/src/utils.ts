@@ -9,11 +9,14 @@ import {
   Funnel,
 } from 'recharts';
 
-/** recharts series types that support auto color injection */
-const COLOR_FILL_TYPES = [Bar, Funnel, RadialBar] as React.ComponentType<any>[];
-const COLOR_STROKE_TYPES = [Line] as React.ComponentType<any>[];
-const COLOR_BOTH_TYPES = [Area, Scatter] as React.ComponentType<any>[];
-const COLOR_RADAR_TYPES = [Radar] as React.ComponentType<any>[];
+/** recharts series types that accept a `fill` color prop */
+const FILL_COLOR_TYPES = [Bar, Funnel, RadialBar] as React.ComponentType<any>[];
+/** recharts series types that accept a `stroke` color prop */
+const STROKE_COLOR_TYPES = [Line] as React.ComponentType<any>[];
+/** recharts series types that accept both `fill` and `stroke` props */
+const BOTH_COLOR_TYPES = [Area, Scatter] as React.ComponentType<any>[];
+/** recharts radar series type */
+const RADAR_COLOR_TYPES = [Radar] as React.ComponentType<any>[];
 
 /**
  * Iterates over `children` and injects palette colors into recharts
@@ -31,7 +34,7 @@ export function injectSeriesColors(
     const type = child.type as React.ComponentType<any>;
     const props = child.props as Record<string, any>;
 
-    if (COLOR_FILL_TYPES.includes(type)) {
+    if (FILL_COLOR_TYPES.includes(type)) {
       const color = palette[colorIndex % palette.length];
       colorIndex++;
       if (!props.fill) {
@@ -40,7 +43,7 @@ export function injectSeriesColors(
       return child;
     }
 
-    if (COLOR_STROKE_TYPES.includes(type)) {
+    if (STROKE_COLOR_TYPES.includes(type)) {
       const color = palette[colorIndex % palette.length];
       colorIndex++;
       if (!props.stroke) {
@@ -49,7 +52,7 @@ export function injectSeriesColors(
       return child;
     }
 
-    if (COLOR_BOTH_TYPES.includes(type)) {
+    if (BOTH_COLOR_TYPES.includes(type)) {
       const color = palette[colorIndex % palette.length];
       colorIndex++;
       if (!props.stroke && !props.fill) {
@@ -61,7 +64,7 @@ export function injectSeriesColors(
       return child;
     }
 
-    if (COLOR_RADAR_TYPES.includes(type)) {
+    if (RADAR_COLOR_TYPES.includes(type)) {
       const color = palette[colorIndex % palette.length];
       colorIndex++;
       if (!props.stroke) {
