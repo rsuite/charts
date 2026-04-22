@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import '@react-code-view/react/styles/index.css';
 import Sidebar from './components/Sidebar';
 import React from 'react';
 
