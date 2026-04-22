@@ -3,9 +3,12 @@
 import React from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from '@rsuite/charts';
 import DocPage from '../components/DocPage';
-import Demo from '../components/Demo';
+import CodeDemo from '../components/CodeDemo';
 
-const hourlyData = [
+const dependencies = { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend };
+
+const basicCode = `
+const data = [
   { hour: '00:00', pv: 81892 },
   { hour: '03:00', pv: 3355 },
   { hour: '06:00', pv: 9730 },
@@ -16,7 +19,20 @@ const hourlyData = [
   { hour: '21:00', pv: 74292 },
 ];
 
-const multiData = [
+render(
+  <LineChart height={280} data={data}>
+    <CartesianGrid />
+    <XAxis dataKey="hour" />
+    <YAxis />
+    <Tooltip />
+    <Legend />
+    <Line dataKey="pv" name="Page Views" />
+  </LineChart>
+);
+`.trim();
+
+const multipleCode = `
+const data = [
   { date: 'Mon', today: 21000, yesterday: 34000 },
   { date: 'Tue', today: 45000, yesterday: 28000 },
   { date: 'Wed', today: 67000, yesterday: 51000 },
@@ -26,84 +42,60 @@ const multiData = [
   { date: 'Sun', today: 91000, yesterday: 55000 },
 ];
 
+render(
+  <LineChart height={300} data={data}>
+    <CartesianGrid />
+    <XAxis dataKey="date" />
+    <YAxis />
+    <Tooltip />
+    <Legend />
+    <Line dataKey="today" name="Today" />
+    <Line dataKey="yesterday" name="Yesterday" strokeDasharray="5 5" />
+  </LineChart>
+);
+`.trim();
+
+const curvedCode = `
+const data = [
+  { date: 'Mon', today: 21000, yesterday: 34000 },
+  { date: 'Tue', today: 45000, yesterday: 28000 },
+  { date: 'Wed', today: 67000, yesterday: 51000 },
+  { date: 'Thu', today: 52000, yesterday: 62000 },
+  { date: 'Fri', today: 83000, yesterday: 44000 },
+  { date: 'Sat', today: 72000, yesterday: 38000 },
+  { date: 'Sun', today: 91000, yesterday: 55000 },
+];
+
+render(
+  <LineChart height={300} data={data}>
+    <CartesianGrid />
+    <XAxis dataKey="date" />
+    <YAxis />
+    <Tooltip />
+    <Legend />
+    <Line dataKey="today" name="Today" type="monotone" dot={false} />
+    <Line dataKey="yesterday" name="Yesterday" type="monotone" dot={false} />
+  </LineChart>
+);
+`.trim();
+
 export default function LineChartPage() {
   return (
     <DocPage
       title="LineChart"
       description="Line charts for visualizing trends over time or continuous data."
     >
-      <Demo
-        title="Basic Line Chart"
-        code={`import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from '@rsuite/charts';
+      <CodeDemo title="Basic Line Chart" dependencies={dependencies}>
+        {basicCode}
+      </CodeDemo>
 
-<LineChart height={280} data={data}>
-  <CartesianGrid />
-  <XAxis dataKey="hour" />
-  <YAxis />
-  <Tooltip />
-  <Legend />
-  <Line dataKey="pv" name="Page Views" />
-</LineChart>`}
-      >
-        <LineChart height={280} data={hourlyData}>
-          <CartesianGrid />
-          <XAxis dataKey="hour" />
-          <YAxis />
-          <Tooltip />
-          <Legend />
-          <Line dataKey="pv" name="Page Views" />
-        </LineChart>
-      </Demo>
+      <CodeDemo title="Multiple Lines" dependencies={dependencies}>
+        {multipleCode}
+      </CodeDemo>
 
-      <Demo
-        title="Multiple Lines"
-        code={`import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from '@rsuite/charts';
-
-<LineChart height={300} data={multiData}>
-  <CartesianGrid />
-  <XAxis dataKey="date" />
-  <YAxis />
-  <Tooltip />
-  <Legend />
-  <Line dataKey="today" name="Today" />
-  <Line dataKey="yesterday" name="Yesterday" strokeDasharray="5 5" />
-</LineChart>`}
-      >
-        <LineChart height={300} data={multiData}>
-          <CartesianGrid />
-          <XAxis dataKey="date" />
-          <YAxis />
-          <Tooltip />
-          <Legend />
-          <Line dataKey="today" name="Today" />
-          <Line dataKey="yesterday" name="Yesterday" strokeDasharray="5 5" />
-        </LineChart>
-      </Demo>
-
-      <Demo
-        title="Curved Lines"
-        code={`import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from '@rsuite/charts';
-
-<LineChart height={300} data={multiData}>
-  <CartesianGrid />
-  <XAxis dataKey="date" />
-  <YAxis />
-  <Tooltip />
-  <Legend />
-  <Line dataKey="today" name="Today" type="monotone" dot={false} />
-  <Line dataKey="yesterday" name="Yesterday" type="monotone" dot={false} />
-</LineChart>`}
-      >
-        <LineChart height={300} data={multiData}>
-          <CartesianGrid />
-          <XAxis dataKey="date" />
-          <YAxis />
-          <Tooltip />
-          <Legend />
-          <Line dataKey="today" name="Today" type="monotone" dot={false} />
-          <Line dataKey="yesterday" name="Yesterday" type="monotone" dot={false} />
-        </LineChart>
-      </Demo>
+      <CodeDemo title="Curved Lines" dependencies={dependencies}>
+        {curvedCode}
+      </CodeDemo>
 
       <h2>Props</h2>
       <table>
@@ -117,32 +109,20 @@ export default function LineChartPage() {
         </thead>
         <tbody>
           <tr>
-            <td>
-              <code>data</code>
-            </td>
-            <td>
-              <code>object[]</code>
-            </td>
+            <td><code>data</code></td>
+            <td><code>object[]</code></td>
             <td>—</td>
             <td>Array of data objects</td>
           </tr>
           <tr>
-            <td>
-              <code>height</code>
-            </td>
-            <td>
-              <code>number</code>
-            </td>
+            <td><code>height</code></td>
+            <td><code>number</code></td>
             <td>300</td>
             <td>Chart height in pixels</td>
           </tr>
           <tr>
-            <td>
-              <code>loading</code>
-            </td>
-            <td>
-              <code>boolean</code>
-            </td>
+            <td><code>loading</code></td>
+            <td><code>boolean</code></td>
             <td>false</td>
             <td>Show loading overlay</td>
           </tr>
