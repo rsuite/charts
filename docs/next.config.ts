@@ -8,9 +8,12 @@ const nextConfig: NextConfig = {
   output: 'export',
   distDir: 'out',
   turbopack: {
+    // Fix Turbopack mis-detecting its root from a lockfile found in the
+    // user's home directory.  Setting root explicitly to __dirname (docs/)
+    // ensures relative paths in resolveAlias are resolved correctly.
+    root: __dirname,
     resolveAlias: {
-      // Turbopack requires a path relative to the project root (docs/),
-      // not an absolute filesystem path.
+      // Relative to the root above (docs/), so resolves to charts/src/index.ts.
       '@rsuite/charts': '../src/index.ts',
     },
   },
