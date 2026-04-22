@@ -11,7 +11,7 @@ module.exports = {
   },
   testEnvironment: 'jsdom',
   setupFilesAfterEnv: ['./jest.setup.ts'],
-  transformIgnorePatterns: ['/node_modules/(?!echarts|zrender)'],
+  transformIgnorePatterns: ['/node_modules/(?!recharts)'],
   moduleNameMapper: {
     '\\.svg': '<rootDir>/__mocks__/svg.js',
   },

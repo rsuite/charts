@@ -1,20 +1,31 @@
 import React from 'react';
-import { FunnelChart as RechartsFunnelChart } from 'recharts';
-import ChartContainer from '../ChartContainer';
-import type { ChartContainerProps } from '../ChartContainer';
+import { AreaChart as RechartsAreaChart } from 'recharts';
+import ChartContainer, { ChartContainerProps } from '../ChartContainer';
 import { useChartContext } from '../ChartContext';
 import { injectSeriesColors, isDataEmpty } from '../utils';
 
-type RechartsFunnelChartProps = React.ComponentPropsWithoutRef<typeof RechartsFunnelChart>;
+type RechartsAreaChartProps = React.ComponentPropsWithoutRef<typeof RechartsAreaChart>;
 
-export interface FunnelChartProps
-  extends Omit<RechartsFunnelChartProps, 'width' | 'height'>,
+export interface AreaChartProps
+  extends Omit<RechartsAreaChartProps, 'width' | 'height'>,
     Pick<ChartContainerProps, 'height' | 'loading' | 'locale' | 'renderEmptyPlaceholder' | 'className' | 'style'> {}
 
 /**
- * Funnel chart with rsuite styling and responsive container.
+ * Area chart with rsuite styling and responsive container.
+ *
+ * @example
+ * ```tsx
+ * <AreaChart height={300} data={[{ name: 'Jan', value: 100 }]}>
+ *   <Area dataKey="value" />
+ *   <XAxis dataKey="name" />
+ *   <YAxis />
+ *   <Tooltip />
+ *   <Legend />
+ *   <CartesianGrid />
+ * </AreaChart>
+ * ```
  */
-function FunnelChart({
+function AreaChart({
   height = 300,
   loading,
   locale,
@@ -24,7 +35,7 @@ function FunnelChart({
   data,
   children,
   ...props
-}: FunnelChartProps) {
+}: AreaChartProps) {
   const { palette } = useChartContext();
   const coloredChildren = injectSeriesColors(children, palette);
   const empty = isDataEmpty(data as any[]);
@@ -39,19 +50,19 @@ function FunnelChart({
       className={className}
       style={style}
     >
-      <RechartsFunnelChart
+      <RechartsAreaChart
         data={data}
-        margin={{ top: 10, right: 10, bottom: 10, left: 10 }}
+        margin={{ top: 10, right: 10, bottom: 10, left: 0 }}
         {...props}
       >
         {coloredChildren}
-      </RechartsFunnelChart>
+      </RechartsAreaChart>
     </ChartContainer>
   );
 }
 
 if (process.env.NODE_ENV !== 'production') {
-  FunnelChart.displayName = 'FunnelChart';
+  AreaChart.displayName = 'AreaChart';
 }
 
-export default FunnelChart;
+export default AreaChart;

@@ -1,41 +1,50 @@
 import React from 'react';
-import { LineChart as RechartsLineChart } from 'recharts';
+import { ComposedChart as RechartsComposedChart } from 'recharts';
 import ChartContainer, { ChartContainerProps } from '../ChartContainer';
 import { useChartContext } from '../ChartContext';
 import { injectSeriesColors, isDataEmpty } from '../utils';
 
-type RechartsLineChartProps = React.ComponentPropsWithoutRef<typeof RechartsLineChart>;
+type RechartsComposedChartProps = React.ComponentPropsWithoutRef<typeof RechartsComposedChart>;
 
-export interface LineChartProps
-  extends Omit<RechartsLineChartProps, 'width' | 'height'>,
-    Pick<ChartContainerProps, 'height' | 'loading' | 'locale' | 'renderEmptyPlaceholder' | 'className' | 'style'> {}
+export interface ComposedChartProps
+  extends Omit<RechartsComposedChartProps, 'width' | 'height'>,
+    Pick<ChartContainerProps, 'height' | 'loading' | 'locale' | 'renderEmptyPlaceholder' | 'className' | 'style'> {
+  /**
+   * When true, uses a vertical layout.
+   * @default false
+   */
+  vertical?: boolean;
+}
 
 /**
- * Line chart with rsuite styling and responsive container.
+ * Composed chart combining Bar, Line, and Area series with rsuite styling.
  *
  * @example
  * ```tsx
- * <LineChart height={300} data={[{ name: 'Jan', value: 100 }]}>
- *   <Line dataKey="value" />
+ * <ComposedChart height={300} data={data}>
+ *   <Bar dataKey="bar" />
+ *   <Line dataKey="line" />
+ *   <Area dataKey="area" />
  *   <XAxis dataKey="name" />
  *   <YAxis />
  *   <Tooltip />
  *   <Legend />
  *   <CartesianGrid />
- * </LineChart>
+ * </ComposedChart>
  * ```
  */
-function LineChart({
+function ComposedChart({
   height = 300,
   loading,
   locale,
   renderEmptyPlaceholder,
   className,
   style,
+  vertical = false,
   data,
   children,
   ...props
-}: LineChartProps) {
+}: ComposedChartProps) {
   const { palette } = useChartContext();
   const coloredChildren = injectSeriesColors(children, palette);
   const empty = isDataEmpty(data as any[]);
@@ -50,19 +59,20 @@ function LineChart({
       className={className}
       style={style}
     >
-      <RechartsLineChart
+      <RechartsComposedChart
         data={data}
+        layout={vertical ? 'vertical' : 'horizontal'}
         margin={{ top: 10, right: 10, bottom: 10, left: 0 }}
         {...props}
       >
         {coloredChildren}
-      </RechartsLineChart>
+      </RechartsComposedChart>
     </ChartContainer>
   );
 }
 
 if (process.env.NODE_ENV !== 'production') {
-  LineChart.displayName = 'LineChart';
+  ComposedChart.displayName = 'ComposedChart';
 }
 
-export default LineChart;
+export default ComposedChart;

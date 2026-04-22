@@ -1,120 +1,76 @@
-import React, { Children, cloneElement } from 'react';
-import ECharts, { ChartComponentProps } from '../ECharts';
-import XAxis from '../components/XAxis';
-import YAxis from '../components/YAxis';
-import Legend from '../components/Legend';
-import Tooltip from '../components/Tooltip';
-import Bars from '../series/Bars';
-import { is, isSeries } from '../utils';
-import { EChartsContext } from '../constants';
+import React from 'react';
+import { BarChart as RechartsBarChart } from 'recharts';
+import ChartContainer, { ChartContainerProps } from '../ChartContainer';
+import { useChartContext } from '../ChartContext';
+import { injectSeriesColors, isDataEmpty } from '../utils';
 
-const categoryAxisProps: any = {
-  type: 'category',
-  splitLine: false,
-};
+type RechartsBarChartProps = React.ComponentPropsWithoutRef<typeof RechartsBarChart>;
 
-const valueAxisProps: any = {
-  type: 'value',
-};
-
-interface BarChartProps extends ChartComponentProps<[category: string, ...values: number[]][]> {
+export interface BarChartProps
+  extends Omit<RechartsBarChartProps, 'width' | 'height'>,
+    Pick<ChartContainerProps, 'height' | 'loading' | 'locale' | 'renderEmptyPlaceholder' | 'className' | 'style'> {
+  /**
+   * When true, uses a horizontal bar chart layout.
+   * @default false
+   */
   horizontal?: boolean;
-  tooltip?: boolean;
-  xAxis?: boolean;
-  yAxis?: boolean;
-  legend?: boolean;
 }
 
 /**
- * <ECharts>
- *   <XAxis />
+ * Bar chart with rsuite styling and responsive container.
+ *
+ * @example
+ * ```tsx
+ * <BarChart height={300} data={[{ name: 'Jan', value: 100 }]}>
+ *   <Bar dataKey="value" />
+ *   <XAxis dataKey="name" />
  *   <YAxis />
- *   <Bars />
  *   <Tooltip />
  *   <Legend />
- * </ECharts>
+ *   <CartesianGrid />
+ * </BarChart>
+ * ```
  */
-function BarChart(
-  {
-    name,
-    data: inputData = [],
-    tooltip = true,
-    xAxis = true,
-    yAxis = true,
-    horizontal = false,
-    legend = true,
-    children,
-    ...props
-  }: BarChartProps,
-  ref: any
-) {
-  function renderDefaultCategoryAxis() {
-    const data = horizontal ? [...inputData!].reverse() : inputData;
-    const categories = data!.map(([category]) => category);
-
-    return horizontal ? (
-      <YAxis {...categoryAxisProps} data={categories} />
-    ) : (
-      <XAxis {...categoryAxisProps} data={categories} />
-    );
-  }
-
-  function renderDefaultValueAxis() {
-    return horizontal ? (
-      <XAxis {...valueAxisProps} show={xAxis} />
-    ) : (
-      <YAxis {...valueAxisProps} show={yAxis} />
-    );
-  }
-
-  function renderDefaultSeries() {
-    // 水平图表从上往下阅读则需将 data 翻转过来
-    const data = horizontal ? [...inputData!].reverse() : inputData!;
-    const values = data.map((d) => d[1]);
-
-    return <Bars name={name} data={values} />;
-  }
-
-  const components = Children.toArray(children) as React.ReactElement[];
-  const series = components.filter(isSeries);
-
-  const data = horizontal ? [...inputData!].reverse() : inputData;
-
-  const categoryAxis = horizontal
-    ? components.find((comp: any) => is(comp, 'yAxis'))
-    : components.find((comp: any) => is(comp, 'xAxis'));
-
-  const valueAxis = horizontal
-    ? components.find((comp: any) => is(comp, 'xAxis'))
-    : components.find((comp: any) => is(comp, 'yAxis'));
+function BarChart({
+  height = 300,
+  loading,
+  locale,
+  renderEmptyPlaceholder,
+  className,
+  style,
+  horizontal = false,
+  data,
+  children,
+  ...props
+}: BarChartProps) {
+  const { palette } = useChartContext();
+  const coloredChildren = injectSeriesColors(children, palette);
+  const empty = isDataEmpty(data as any[]);
 
   return (
-    <EChartsContext.Provider value={{ chartType: 'bar', horizontal }}>
-      <ECharts ref={ref} {...props}>
-        {!categoryAxis && renderDefaultCategoryAxis()}
-        {!valueAxis && renderDefaultValueAxis()}
-        {!components.find((comp: any) => is(comp, 'bars')) && renderDefaultSeries()}
-        {legend && !components.find((comp: any) => is(comp, 'legend')) && <Legend />}
-        {tooltip && <Tooltip />}
-        {components.map((child: any) => {
-          if (child.type === (horizontal ? YAxis : XAxis)) {
-            return cloneElement(child, {
-              ...categoryAxisProps,
-              data: child.props.data || data!.map(([category]) => category),
-            });
-          }
-          if (child.type === (horizontal ? XAxis : YAxis)) {
-            return cloneElement(child, valueAxisProps);
-          }
-          if (data!.length && isSeries(child) && !child.props.data) {
-            const serieIndex = series.indexOf(child);
-            return cloneElement(child, { data: data!.map((d) => d[serieIndex + 1]) });
-          }
-          return child;
-        })}
-      </ECharts>
-    </EChartsContext.Provider>
+    <ChartContainer
+      height={height}
+      loading={loading}
+      empty={empty}
+      locale={locale}
+      renderEmptyPlaceholder={renderEmptyPlaceholder}
+      className={className}
+      style={style}
+    >
+      <RechartsBarChart
+        data={data}
+        layout={horizontal ? 'vertical' : 'horizontal'}
+        margin={{ top: 10, right: 10, bottom: 10, left: 0 }}
+        {...props}
+      >
+        {coloredChildren}
+      </RechartsBarChart>
+    </ChartContainer>
   );
 }
 
-export default React.forwardRef<echarts.ECharts, BarChartProps>(BarChart);
+if (process.env.NODE_ENV !== 'production') {
+  BarChart.displayName = 'BarChart';
+}
+
+export default BarChart;

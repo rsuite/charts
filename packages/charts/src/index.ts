@@ -1,54 +1,94 @@
-import ECharts from './ECharts';
+// Container
+export { default as ChartContainer } from './ChartContainer';
+export type { ChartContainerProps, ChartContainerLocale } from './ChartContainer';
 
-// Components
-import Dataset from './components/Dataset';
-import DataZoom from './components/DataZoom';
-import Legend from './components/Legend';
-import Radar from './components/Radar';
-import Tooltip from './components/Tooltip';
-import VisualMap from './components/VisualMap';
-import XAxis from './components/XAxis';
-import YAxis from './components/YAxis';
+// Context / theming
+export { ChartContext, useChartContext } from './ChartContext';
+export type { ChartContextValue } from './ChartContext';
+export { palette, colors } from './theme';
 
-// Series
-import Bars from './series/Bars';
-import Funnel from './series/Funnel';
-import Line from './series/Line';
-import Map from './series/Map';
-import Pie from './series/Pie';
-import RadarLine from './series/RadarLine';
-import Sankey from './series/Sankey';
-import Scatter from './series/Scatter';
-import Tree from './series/Tree';
-import Treemap from './series/Treemap';
+// Chart wrappers
+export { default as BarChart } from './charts/BarChart';
+export type { BarChartProps } from './charts/BarChart';
 
-// Chart presets
-import BarChart from './charts/BarChart';
-import FunnelChart from './charts/FunnelChart';
-import LineChart from './charts/LineChart';
-import MapChart from './charts/MapChart';
-import PieChart from './charts/PieChart';
-import RadarChart from './charts/RadarChart';
-import SankeyChart from './charts/SankeyChart';
-import ScatterChart from './charts/ScatterChart';
-import TreeChart from './charts/TreeChart';
-import TreemapChart from './charts/TreemapChart';
+export { default as LineChart } from './charts/LineChart';
+export type { LineChartProps } from './charts/LineChart';
 
-export default ECharts;
+export { default as AreaChart } from './charts/AreaChart';
+export type { AreaChartProps } from './charts/AreaChart';
 
-export { Dataset, DataZoom, Legend, Radar, Tooltip, VisualMap, XAxis, YAxis };
+export { default as ComposedChart } from './charts/ComposedChart';
+export type { ComposedChartProps } from './charts/ComposedChart';
 
-export { Bars, Funnel, Line, Map, Pie, RadarLine, Sankey, Scatter, Tree, Treemap };
+export { default as ScatterChart } from './charts/ScatterChart';
+export type { ScatterChartProps } from './charts/ScatterChart';
 
+export { default as PieChart } from './charts/PieChart';
+export type { PieChartProps } from './charts/PieChart';
+
+export { default as RadarChart } from './charts/RadarChart';
+export type { RadarChartProps } from './charts/RadarChart';
+
+export { default as RadialBarChart } from './charts/RadialBarChart';
+export type { RadialBarChartProps } from './charts/RadialBarChart';
+
+export { default as Treemap } from './charts/Treemap';
+export type { TreemapProps } from './charts/Treemap';
+
+export { default as FunnelChart } from './charts/FunnelChart';
+export type { FunnelChartProps } from './charts/FunnelChart';
+
+// Styled axis / grid components
+export { default as XAxis } from './components/XAxis';
+export type { XAxisProps } from './components/XAxis';
+
+export { default as YAxis } from './components/YAxis';
+export type { YAxisProps } from './components/YAxis';
+
+export { default as CartesianGrid } from './components/CartesianGrid';
+export type { CartesianGridProps } from './components/CartesianGrid';
+
+export { default as Tooltip } from './components/Tooltip';
+
+export { default as Legend } from './components/Legend';
+
+export { default as Brush } from './components/Brush';
+
+// Series components
+export { default as Bar } from './series/Bar';
+export type { BarProps } from './series/Bar';
+
+export { default as Line } from './series/Line';
+export type { LineProps } from './series/Line';
+
+export { default as Area } from './series/Area';
+export type { AreaProps } from './series/Area';
+
+export { default as Scatter } from './series/Scatter';
+export type { ScatterProps } from './series/Scatter';
+
+export { default as Pie, Cell } from './series/Pie';
+export type { PieProps, CellProps } from './series/Pie';
+
+export { default as Radar } from './series/Radar';
+export type { RadarProps } from './series/Radar';
+
+export { default as RadialBar } from './series/RadialBar';
+export type { RadialBarProps } from './series/RadialBar';
+
+export { default as Funnel } from './series/Funnel';
+export type { FunnelProps } from './series/Funnel';
+
+// Useful recharts components re-exported for convenience
 export {
-  BarChart,
-  FunnelChart,
-  LineChart,
-  MapChart,
-  PieChart,
-  RadarChart,
-  SankeyChart,
-  ScatterChart,
-  TreeChart,
-  TreemapChart,
-};
+  ResponsiveContainer,
+  PolarGrid,
+  PolarAngleAxis,
+  PolarRadiusAxis,
+  ZAxis,
+  ReferenceLine,
+  ReferenceArea,
+  ReferenceDot,
+  Label,
+  LabelList,
+} from 'recharts';

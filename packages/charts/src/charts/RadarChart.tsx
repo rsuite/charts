@@ -1,52 +1,53 @@
-import React, { Children, cloneElement } from 'react';
-import type { ECharts as EChartsInstance } from 'echarts';
-import ECharts, { ChartComponentProps } from '../ECharts';
-import Tooltip from '../components/Tooltip';
-import Legend from '../components/Legend';
-import Radar from '../components/Radar';
-import RadarLine from '../series/RadarLine';
-import { is, isSeries } from '../utils';
-import { EChartsContext } from '../constants';
+import React from 'react';
+import { RadarChart as RechartsRadarChart } from 'recharts';
+import ChartContainer from '../ChartContainer';
+import type { ChartContainerProps } from '../ChartContainer';
+import { useChartContext } from '../ChartContext';
+import { injectSeriesColors } from '../utils';
+
+type RechartsRadarChartProps = React.ComponentPropsWithoutRef<typeof RechartsRadarChart>;
 
 export interface RadarChartProps
-  extends ChartComponentProps<[name: string, max: number, ...values: number[]][]> {
-  tooltip?: boolean;
-  legend?: boolean;
-}
+  extends Omit<RechartsRadarChartProps, 'width' | 'height'>,
+    Pick<ChartContainerProps, 'height' | 'loading' | 'locale' | 'renderEmptyPlaceholder' | 'className' | 'style'> {}
 
-function RadarChart(
-  { name, data = [], tooltip = true, legend = true, children, ...props }: RadarChartProps,
-  ref: React.Ref<EChartsInstance>
-) {
-  function renderDefaultRadar() {
-    const indicator = data.map(([name, max]) => ({ name, max }));
-
-    return <Radar indicator={indicator} />;
-  }
-
-  function renderDefaultRadarLine() {
-    return <RadarLine name={name} data={data.map(([, , value]) => value)} />;
-  }
-
-  const components = Children.toArray(children) as React.ReactElement[];
-  const series = components.filter(isSeries);
+/**
+ * Radar / Spider chart with rsuite styling and responsive container.
+ */
+function RadarChart({
+  height = 300,
+  loading,
+  locale,
+  renderEmptyPlaceholder,
+  className,
+  style,
+  data,
+  children,
+  ...props
+}: RadarChartProps) {
+  const { palette } = useChartContext();
+  const coloredChildren = injectSeriesColors(children, palette);
 
   return (
-    <EChartsContext.Provider value={{ chartType: 'radar', dataName: name }}>
-      <ECharts ref={ref} {...props}>
-        {!components.find((comp) => is(comp, 'radar')) && renderDefaultRadar()}
-        {!components.find((comp) => is(comp, 'radarLine')) && renderDefaultRadarLine()}
-        {tooltip && <Tooltip />}
-        {legend && <Legend icon="rect" itemWidth={14} />}
-        {components.map((child) => {
-          if (data.length && isSeries(child) && !child.props.data) {
-            const serieIndex = series.indexOf(child);
-            return cloneElement(child, { data: data.map((d) => d[serieIndex + 2]) });
-          }
-          return child;
-        })}
-      </ECharts>
-    </EChartsContext.Provider>
+    <ChartContainer
+      height={height}
+      loading={loading}
+      empty={!data || data.length === 0}
+      locale={locale}
+      renderEmptyPlaceholder={renderEmptyPlaceholder}
+      className={className}
+      style={style}
+    >
+      <RechartsRadarChart
+        data={data}
+        cx="50%"
+        cy="50%"
+        outerRadius="80%"
+        {...props}
+      >
+        {coloredChildren}
+      </RechartsRadarChart>
+    </ChartContainer>
   );
 }
 
@@ -54,4 +55,4 @@ if (process.env.NODE_ENV !== 'production') {
   RadarChart.displayName = 'RadarChart';
 }
 
-export default React.forwardRef<echarts.ECharts, RadarChartProps>(RadarChart);
+export default RadarChart;

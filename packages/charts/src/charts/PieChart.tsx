@@ -1,34 +1,88 @@
-import React, { Children } from 'react';
-import ECharts, { ChartComponentProps } from '../ECharts';
-import Pie, { PieProps } from '../series/Pie';
-import Tooltip from '../components/Tooltip';
-import Legend from '../components/Legend';
-import { EChartsContext } from '../constants';
-import { is } from '../utils';
+import React from 'react';
+import { PieChart as RechartsPieChart, Cell } from 'recharts';
+import ChartContainer from '../ChartContainer';
+import type { ChartContainerProps } from '../ChartContainer';
+import { useChartContext } from '../ChartContext';
+
+type RechartsPieChartProps = React.ComponentPropsWithoutRef<typeof RechartsPieChart>;
 
 export interface PieChartProps
-  extends ChartComponentProps<PieProps['data']>,
-    Omit<PieProps, 'height' | 'id' | 'color'> {
-  legend?: boolean;
-}
+  extends Omit<RechartsPieChartProps, 'width' | 'height'>,
+    Pick<ChartContainerProps, 'height' | 'loading' | 'locale' | 'renderEmptyPlaceholder' | 'className' | 'style'> {}
 
-function PieChart({ data = [], legend = true, children, ...props }: PieChartProps, ref: any) {
-  const components = Children.toArray(children) as React.ReactElement[];
+/**
+ * Pie / Donut chart with rsuite styling and responsive container.
+ * Cells are automatically colored using the rsuite palette when not given explicit colors.
+ */
+function PieChart({
+  height = 300,
+  loading,
+  locale,
+  renderEmptyPlaceholder,
+  className,
+  style,
+  children,
+  ...props
+}: PieChartProps) {
+  const { palette } = useChartContext();
 
-  function getPieData() {
-    return (data as any).map(([name, value]: any) => ({ name, value }));
-  }
+  // Inject Cell colors into Pie children when Cells aren't already provided
+  const coloredChildren = React.Children.map(children, child => {
+    if (!React.isValidElement(child)) return child;
+    // Check for recharts Pie by displayName
+    const displayName =
+      (child.type as any).displayName || (child.type as any).name || '';
+    if (displayName === 'Pie') {
+      const pieProps = child.props as any;
+      // Only inject Cells when there are no Cell children and there's data
+      const hasCells = React.Children.toArray(pieProps.children).some(c => {
+        if (!React.isValidElement(c)) return false;
+        const name = (c.type as any).displayName || (c.type as any).name || '';
+        return name === 'Cell';
+      });
+
+      if (!hasCells && Array.isArray(pieProps.data)) {
+        const cells = pieProps.data.map((_: any, index: number) => (
+          <Cell key={index} fill={palette[index % palette.length]} />
+        ));
+        return React.cloneElement(child as React.ReactElement<any>, {
+          children: cells,
+        });
+      }
+    }
+    return child;
+  });
+
+  const hasPieData = React.Children.toArray(children).some(child => {
+    if (!React.isValidElement(child)) return false;
+    const displayName =
+      (child.type as any).displayName || (child.type as any).name || '';
+    if (displayName === 'Pie') {
+      const pieProps = child.props as any;
+      return Array.isArray(pieProps.data) && pieProps.data.length > 0;
+    }
+    return false;
+  });
 
   return (
-    <EChartsContext.Provider value={{ chartType: 'pie' }}>
-      <ECharts ref={ref} {...props}>
-        {legend === true && !components.some((comp) => is(comp, 'legend')) && <Legend />}
-        {!components.some((comp) => is(comp, 'tooltip')) && <Tooltip />}
-        {!components.some((comp) => is(comp, 'pie')) && <Pie data={getPieData()} {...props} />}
-        {children}
-      </ECharts>
-    </EChartsContext.Provider>
+    <ChartContainer
+      height={height}
+      loading={loading}
+      empty={!hasPieData}
+      locale={locale}
+      renderEmptyPlaceholder={renderEmptyPlaceholder}
+      className={className}
+      style={style}
+    >
+      <RechartsPieChart {...props}>
+        {coloredChildren}
+      </RechartsPieChart>
+    </ChartContainer>
   );
 }
 
-export default React.forwardRef<echarts.ECharts, PieChartProps>(PieChart);
+if (process.env.NODE_ENV !== 'production') {
+  PieChart.displayName = 'PieChart';
+}
+
+export default PieChart;

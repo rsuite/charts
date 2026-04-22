@@ -1,20 +1,20 @@
 import React from 'react';
-import { FunnelChart as RechartsFunnelChart } from 'recharts';
+import { RadialBarChart as RechartsRadialBarChart } from 'recharts';
 import ChartContainer from '../ChartContainer';
 import type { ChartContainerProps } from '../ChartContainer';
 import { useChartContext } from '../ChartContext';
 import { injectSeriesColors, isDataEmpty } from '../utils';
 
-type RechartsFunnelChartProps = React.ComponentPropsWithoutRef<typeof RechartsFunnelChart>;
+type RechartsRadialBarChartProps = React.ComponentPropsWithoutRef<typeof RechartsRadialBarChart>;
 
-export interface FunnelChartProps
-  extends Omit<RechartsFunnelChartProps, 'width' | 'height'>,
+export interface RadialBarChartProps
+  extends Omit<RechartsRadialBarChartProps, 'width' | 'height'>,
     Pick<ChartContainerProps, 'height' | 'loading' | 'locale' | 'renderEmptyPlaceholder' | 'className' | 'style'> {}
 
 /**
- * Funnel chart with rsuite styling and responsive container.
+ * Radial Bar chart with rsuite styling and responsive container.
  */
-function FunnelChart({
+function RadialBarChart({
   height = 300,
   loading,
   locale,
@@ -24,7 +24,7 @@ function FunnelChart({
   data,
   children,
   ...props
-}: FunnelChartProps) {
+}: RadialBarChartProps) {
   const { palette } = useChartContext();
   const coloredChildren = injectSeriesColors(children, palette);
   const empty = isDataEmpty(data as any[]);
@@ -39,19 +39,22 @@ function FunnelChart({
       className={className}
       style={style}
     >
-      <RechartsFunnelChart
+      <RechartsRadialBarChart
         data={data}
-        margin={{ top: 10, right: 10, bottom: 10, left: 10 }}
+        cx="50%"
+        cy="50%"
+        innerRadius="10%"
+        outerRadius="80%"
         {...props}
       >
         {coloredChildren}
-      </RechartsFunnelChart>
+      </RechartsRadialBarChart>
     </ChartContainer>
   );
 }
 
 if (process.env.NODE_ENV !== 'production') {
-  FunnelChart.displayName = 'FunnelChart';
+  RadialBarChart.displayName = 'RadialBarChart';
 }
 
-export default FunnelChart;
+export default RadialBarChart;
