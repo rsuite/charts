@@ -13,5 +13,6 @@
     "outDir": "dist",
     "jsx": "react",
     "resolveJsonModule": true
-  }
+  },
+  "include": ["src"]
 }
