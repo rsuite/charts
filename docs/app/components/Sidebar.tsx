@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React from 'react';
+import { BarChart2 } from 'lucide-react';
 
 interface NavGroup {
   label: string;
@@ -44,7 +45,7 @@ export default function Sidebar() {
   return (
     <aside style={styles.aside}>
       <div style={styles.logoArea}>
-        <span style={styles.logoIcon}>📊</span>
+        <BarChart2 size={24} color="#009de6" />
         <div>
           <div style={styles.logoTitle}>rsuite/charts</div>
           <div style={styles.logoVersion}>v6</div>
@@ -99,9 +100,6 @@ const styles: Record<string, React.CSSProperties> = {
     padding: '20px 20px 16px',
     borderBottom: '1px solid #e5e5ea',
     marginBottom: 8,
-  },
-  logoIcon: {
-    fontSize: 24,
   },
   logoTitle: {
     fontWeight: 700,

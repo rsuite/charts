@@ -1,34 +1,96 @@
 import React from 'react';
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import {
+  BarChart2,
+  TrendingUp,
+  AreaChart,
+  Layers,
+  ScatterChart,
+  PieChart,
+  Hexagon,
+  Gauge,
+  LayoutDashboard,
+  Filter,
+} from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Introduction',
 };
 
+const ICON_SIZE = 24;
+const ICON_COLOR = '#009de6';
+
 const charts = [
-  { href: '/bar-chart', name: 'BarChart', icon: '📊', desc: 'Vertical and horizontal bar charts' },
-  { href: '/line-chart', name: 'LineChart', icon: '📈', desc: 'Line and area trend charts' },
-  { href: '/area-chart', name: 'AreaChart', icon: '🏔️', desc: 'Filled area charts' },
-  { href: '/composed-chart', name: 'ComposedChart', icon: '🎨', desc: 'Mix Bar, Line and Area' },
-  { href: '/scatter-chart', name: 'ScatterChart', icon: '🔵', desc: 'Scatter / bubble charts' },
-  { href: '/pie-chart', name: 'PieChart', icon: '🥧', desc: 'Pie and donut charts' },
-  { href: '/radar-chart', name: 'RadarChart', icon: '🕸️', desc: 'Radar / spider charts' },
+  {
+    href: '/bar-chart',
+    name: 'BarChart',
+    icon: <BarChart2 size={ICON_SIZE} color={ICON_COLOR} />,
+    desc: 'Vertical and horizontal bar charts',
+  },
+  {
+    href: '/line-chart',
+    name: 'LineChart',
+    icon: <TrendingUp size={ICON_SIZE} color={ICON_COLOR} />,
+    desc: 'Line and area trend charts',
+  },
+  {
+    href: '/area-chart',
+    name: 'AreaChart',
+    icon: <AreaChart size={ICON_SIZE} color={ICON_COLOR} />,
+    desc: 'Filled area charts',
+  },
+  {
+    href: '/composed-chart',
+    name: 'ComposedChart',
+    icon: <Layers size={ICON_SIZE} color={ICON_COLOR} />,
+    desc: 'Mix Bar, Line and Area',
+  },
+  {
+    href: '/scatter-chart',
+    name: 'ScatterChart',
+    icon: <ScatterChart size={ICON_SIZE} color={ICON_COLOR} />,
+    desc: 'Scatter / bubble charts',
+  },
+  {
+    href: '/pie-chart',
+    name: 'PieChart',
+    icon: <PieChart size={ICON_SIZE} color={ICON_COLOR} />,
+    desc: 'Pie and donut charts',
+  },
+  {
+    href: '/radar-chart',
+    name: 'RadarChart',
+    icon: <Hexagon size={ICON_SIZE} color={ICON_COLOR} />,
+    desc: 'Radar / spider charts',
+  },
   {
     href: '/radial-bar-chart',
     name: 'RadialBarChart',
-    icon: '⚙️',
+    icon: <Gauge size={ICON_SIZE} color={ICON_COLOR} />,
     desc: 'Radial / circular bar charts',
   },
-  { href: '/treemap', name: 'Treemap', icon: '🌲', desc: 'Hierarchical treemap charts' },
-  { href: '/funnel-chart', name: 'FunnelChart', icon: '🔻', desc: 'Funnel / pipeline charts' },
+  {
+    href: '/treemap',
+    name: 'Treemap',
+    icon: <LayoutDashboard size={ICON_SIZE} color={ICON_COLOR} />,
+    desc: 'Hierarchical treemap charts',
+  },
+  {
+    href: '/funnel-chart',
+    name: 'FunnelChart',
+    icon: <Filter size={ICON_SIZE} color={ICON_COLOR} />,
+    desc: 'Funnel / pipeline charts',
+  },
 ];
 
 export default function HomePage() {
   return (
     <div>
       <div style={styles.hero}>
-        <span style={styles.heroIcon}>📊</span>
+        <div style={styles.heroIcon}>
+          <BarChart2 size={48} color="#009de6" />
+        </div>
         <h1 style={styles.heroTitle}>@rsuite/charts</h1>
         <p style={styles.heroSubtitle}>
           A recharts-based chart library built for{' '}
@@ -62,7 +124,7 @@ export default function HomePage() {
       <div style={styles.grid}>
         {charts.map(chart => (
           <Link key={chart.href} href={chart.href} style={styles.card}>
-            <span style={styles.cardIcon}>{chart.icon}</span>
+            <div style={styles.cardIcon}>{chart.icon}</div>
             <div style={styles.cardName}>{chart.name}</div>
             <div style={styles.cardDesc}>{chart.desc}</div>
           </Link>
@@ -132,8 +194,8 @@ const styles = {
     marginBottom: 8,
   },
   heroIcon: {
-    fontSize: 48,
-    display: 'block',
+    display: 'flex',
+    justifyContent: 'center',
     marginBottom: 16,
   },
   heroTitle: {
@@ -210,8 +272,7 @@ const styles = {
     background: '#fff',
   },
   cardIcon: {
-    fontSize: 24,
-    display: 'block',
+    display: 'flex',
     marginBottom: 8,
   },
   cardName: {

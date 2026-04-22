@@ -19,6 +19,7 @@
       }
     ],
     "paths": {
+      "@rsuite/charts": ["../src/index.ts"],
       "@/*": ["./*"]
     }
   },
