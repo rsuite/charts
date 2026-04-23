@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import './globals.css';
-import '@react-code-view/react/styles/index.css';
 import Sidebar from './components/Sidebar';
 import React from 'react';
 
@@ -14,7 +13,14 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){var t=localStorage.getItem('theme');if(t==='dark'){document.documentElement.classList.add('rs-theme-dark');}})();`,
+          }}
+        />
+      </head>
       <body>
         <div style={styles.shell}>
           <Sidebar />
@@ -42,4 +48,4 @@ const styles = {
     margin: '0 auto',
     padding: '40px 32px 80px',
   },
-} satisfies Record<string, React.CSSProperties>;
+} as Record<string, React.CSSProperties>;

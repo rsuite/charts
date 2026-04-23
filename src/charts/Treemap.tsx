@@ -1,13 +1,24 @@
 import React from 'react';
-import { Treemap as RechartsTreemap } from 'recharts';
+import { Treemap as RechartsTreemap, Tooltip as RechartsTooltip } from 'recharts';
 import ChartContainer from '../ChartContainer';
 import type { ChartContainerProps } from '../ChartContainer';
-import { useChartContext } from '../ChartContext';
+import { useChartTheme } from '../ChartContext';
+import { injectSeriesColors } from '../utils';
 import type { TreemapProps as RechartsTreemapProps } from 'recharts';
 
 export interface TreemapProps
-  extends Omit<RechartsTreemapProps, 'width' | 'height'>,
-    Pick<ChartContainerProps, 'height' | 'loading' | 'locale' | 'renderEmptyPlaceholder' | 'className' | 'style'> {}
+  extends Omit<RechartsTreemapProps, 'width' | 'height' | 'style'>,
+    Pick<
+      ChartContainerProps,
+      | 'theme'
+      | 'colorPalette'
+      | 'height'
+      | 'loading'
+      | 'locale'
+      | 'renderEmptyPlaceholder'
+      | 'className'
+      | 'style'
+    > {}
 
 /**
  * Treemap chart with rsuite styling and responsive container.
@@ -20,12 +31,15 @@ function Treemap({
   renderEmptyPlaceholder,
   className,
   style,
+  theme,
+  colorPalette,
   data,
   children,
   content,
+  nameKey = 'name',
   ...props
 }: TreemapProps) {
-  const { palette } = useChartContext();
+  const { palette, colors } = useChartTheme(theme, colorPalette);
 
   // Default colorizer using rsuite palette
   const defaultContent =
@@ -58,6 +72,44 @@ function Treemap({
       );
     });
 
+  // Inject a default Tooltip content for Treemap that reads the correct name/value
+  // from payload[0].payload because recharts Treemap's payload[0].name is the dataKey,
+  // not the actual item name.
+  const processedChildren = React.Children.map(children, child => {
+    if (!React.isValidElement(child)) return child;
+    const type = child.type as any;
+    const displayName = type?.displayName || type?.name || '';
+    if (displayName !== 'Tooltip' && type !== RechartsTooltip) return child;
+
+    const tooltipProps = child.props as any;
+    if (tooltipProps.content) return child; // user already provided custom content
+
+    return React.cloneElement(child as React.ReactElement<any>, {
+      content: ({ active, payload }: any) => {
+        if (!active || !payload?.length) return null;
+        const item = payload[0];
+        const d = item?.payload ?? {};
+        const name = d[nameKey as string] ?? item?.name ?? '';
+        const value = item?.value ?? '';
+        const formattedValue = tooltipProps.formatter ? tooltipProps.formatter(value, name, item) : value;
+        return (
+          <div style={{
+            background: 'rgba(255,255,255,0.96)',
+            border: 'none',
+            borderRadius: 8,
+            boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
+            fontSize: 13,
+            padding: '8px 14px',
+          }}>
+            <span style={{ color: '#8A8E99', fontWeight: 500 }}>{name}</span>
+            {name && <span style={{ margin: '0 4px', color: '#8A8E99' }}>:</span>}
+            <span style={{ color: '#1A1D24', fontWeight: 500 }}>{formattedValue}</span>
+          </div>
+        );
+      },
+    });
+  });
+
   return (
     <ChartContainer
       height={height}
@@ -67,9 +119,11 @@ function Treemap({
       renderEmptyPlaceholder={renderEmptyPlaceholder}
       className={className}
       style={style}
+      theme={theme}
+      colorPalette={colorPalette}
     >
-      <RechartsTreemap data={data} content={defaultContent} {...props}>
-        {children}
+      <RechartsTreemap data={data} content={defaultContent as any} nameKey={nameKey} {...props}>
+        {injectSeriesColors(processedChildren, palette, colors)}
       </RechartsTreemap>
     </ChartContainer>
   );

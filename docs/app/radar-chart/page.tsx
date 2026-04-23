@@ -13,7 +13,15 @@ import {
 import DocPage from '../components/DocPage';
 import CodeDemo from '../components/CodeDemo';
 
-const dependencies = { RadarChart, Radar, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Tooltip, Legend };
+const dependencies = {
+  RadarChart,
+  Radar,
+  PolarGrid,
+  PolarAngleAxis,
+  PolarRadiusAxis,
+  Tooltip,
+  Legend,
+};
 
 const basicCode = `
 const data = [

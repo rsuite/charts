@@ -109,20 +109,32 @@ export default function LineChartPage() {
         </thead>
         <tbody>
           <tr>
-            <td><code>data</code></td>
-            <td><code>object[]</code></td>
+            <td>
+              <code>data</code>
+            </td>
+            <td>
+              <code>object[]</code>
+            </td>
             <td>—</td>
             <td>Array of data objects</td>
           </tr>
           <tr>
-            <td><code>height</code></td>
-            <td><code>number</code></td>
+            <td>
+              <code>height</code>
+            </td>
+            <td>
+              <code>number</code>
+            </td>
             <td>300</td>
             <td>Chart height in pixels</td>
           </tr>
           <tr>
-            <td><code>loading</code></td>
-            <td><code>boolean</code></td>
+            <td>
+              <code>loading</code>
+            </td>
+            <td>
+              <code>boolean</code>
+            </td>
             <td>false</td>
             <td>Show loading overlay</td>
           </tr>

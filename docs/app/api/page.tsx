@@ -71,7 +71,12 @@ import { BarChart, Bar, XAxis, YAxis } from 'recharts';
 </ChartContainer>`}</code>
       </pre>
       <PropTable>
-        <PropRow name="height" type="number" defaultValue="300" desc="Container height in pixels." />
+        <PropRow
+          name="height"
+          type="number"
+          defaultValue="300"
+          desc="Container height in pixels."
+        />
         <PropRow
           name="loading"
           type="boolean"
@@ -210,9 +215,7 @@ import { BarChart, Bar, XAxis, YAxis } from 'recharts';
       </pre>
 
       <h2>TypeScript</h2>
-      <p>
-        All components are fully typed. Chart wrapper prop interfaces follow the pattern:
-      </p>
+      <p>All components are fully typed. Chart wrapper prop interfaces follow the pattern:</p>
       <pre>
         <code>{`import type { BarChartProps } from '@rsuite/charts';
 // extends recharts CategoricalChartProps + ChartContainerProps`}</code>

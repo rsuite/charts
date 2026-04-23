@@ -1,6 +1,7 @@
 import React from 'react';
 import type { Metadata } from 'next';
 import DocPage from '../components/DocPage';
+import CodeBlock from '../components/CodeBlock';
 
 export const metadata: Metadata = {
   title: 'Installation',
@@ -17,30 +18,25 @@ export default function InstallationPage() {
         <code>@rsuite/charts</code> requires <strong>React 18+</strong> and{' '}
         <strong>recharts v2</strong> as peer dependencies.
       </p>
-      <pre>
-        <code>npm install @rsuite/charts recharts</code>
-      </pre>
+      <CodeBlock language="bash">{`npm install @rsuite/charts recharts`}</CodeBlock>
 
       <p>Or with yarn / pnpm:</p>
-      <pre>
-        <code>{'yarn add @rsuite/charts recharts\n# or\npnpm add @rsuite/charts recharts'}</code>
-      </pre>
+      <CodeBlock language="bash">{`yarn add @rsuite/charts recharts
+# or
+pnpm add @rsuite/charts recharts`}</CodeBlock>
 
       <h2>Usage</h2>
       <p>Import chart components directly from the package:</p>
-      <pre>
-        <code>{`import {
+      <CodeBlock>{`import {
   BarChart, Bar,
   LineChart, Line,
   AreaChart, Area,
   XAxis, YAxis,
   CartesianGrid, Tooltip, Legend,
-} from '@rsuite/charts';`}</code>
-      </pre>
+} from '@rsuite/charts';`}</CodeBlock>
 
       <h2>Quick Start</h2>
-      <pre>
-        <code>{`import React from 'react';
+      <CodeBlock>{`import React from 'react';
 import {
   LineChart, Line,
   XAxis, YAxis,
@@ -52,7 +48,7 @@ const data = [
   { hour: '10:00', pv: 45000 },
   { hour: '12:00', pv: 67000 },
   { hour: '14:00', pv: 52000 },
-  { hour: '16:00', pv: 83000 },
+  { hour: '16:16', pv: 83000 },
   { hour: '18:00', pv: 72000 },
 ];
 
@@ -67,16 +63,14 @@ export default function App() {
       <Line dataKey="pv" name="Page Views" />
     </LineChart>
   );
-}`}</code>
-      </pre>
+}`}</CodeBlock>
 
       <h2>Next.js / SSR</h2>
       <p>
         Recharts uses browser-only APIs (SVG, ResizeObserver). When using Next.js you must render
         chart components on the client:
       </p>
-      <pre>
-        <code>{`'use client';
+      <CodeBlock>{`'use client';
 
 import { BarChart, Bar, XAxis, YAxis, Tooltip } from '@rsuite/charts';
 
@@ -89,25 +83,21 @@ export default function MyChart({ data }) {
       <Tooltip />
     </BarChart>
   );
-}`}</code>
-      </pre>
+}`}</CodeBlock>
 
       <p>
         Alternatively, use Next.js <code>dynamic</code> with <code>ssr: false</code>:
       </p>
-      <pre>
-        <code>{`import dynamic from 'next/dynamic';
+      <CodeBlock>{`import dynamic from 'next/dynamic';
 
-const MyChart = dynamic(() => import('./MyChart'), { ssr: false });`}</code>
-      </pre>
+const MyChart = dynamic(() => import('./MyChart'), { ssr: false });`}</CodeBlock>
 
       <h2>Theming</h2>
       <p>
-        The default color palette matches the rsuite design system. To override it, wrap your
-        charts with <code>ChartContainer</code> and pass a custom <code>colorPalette</code>:
+        The default color palette matches the rsuite design system. To override it, wrap your charts
+        with <code>ChartContainer</code> and pass a custom <code>colorPalette</code>:
       </p>
-      <pre>
-        <code>{`import { ChartContainer } from '@rsuite/charts';
+      <CodeBlock>{`import { ChartContainer } from '@rsuite/charts';
 import { BarChart, Bar, XAxis, YAxis } from 'recharts';
 
 const myPalette = ['#2575fc', '#34c3ff', '#13ba9e'];
@@ -118,8 +108,7 @@ const myPalette = ['#2575fc', '#34c3ff', '#13ba9e'];
     <XAxis dataKey="name" />
     <YAxis />
   </BarChart>
-</ChartContainer>`}</code>
-      </pre>
+</ChartContainer>`}</CodeBlock>
     </DocPage>
   );
 }

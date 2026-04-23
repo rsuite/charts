@@ -1,14 +1,24 @@
 import React from 'react';
 import { ComposedChart as RechartsComposedChart } from 'recharts';
 import ChartContainer, { ChartContainerProps } from '../ChartContainer';
-import { useChartContext } from '../ChartContext';
+import { useChartTheme } from '../ChartContext';
 import { injectSeriesColors, isDataEmpty } from '../utils';
 
 type RechartsComposedChartProps = React.ComponentPropsWithoutRef<typeof RechartsComposedChart>;
 
 export interface ComposedChartProps
-  extends Omit<RechartsComposedChartProps, 'width' | 'height'>,
-    Pick<ChartContainerProps, 'height' | 'loading' | 'locale' | 'renderEmptyPlaceholder' | 'className' | 'style'> {
+  extends Omit<RechartsComposedChartProps, 'width' | 'height' | 'style'>,
+    Pick<
+      ChartContainerProps,
+      | 'theme'
+      | 'colorPalette'
+      | 'height'
+      | 'loading'
+      | 'locale'
+      | 'renderEmptyPlaceholder'
+      | 'className'
+      | 'style'
+    > {
   /**
    * When true, uses a vertical layout.
    * @default false
@@ -40,14 +50,16 @@ function ComposedChart({
   renderEmptyPlaceholder,
   className,
   style,
+  theme,
+  colorPalette,
   vertical = false,
   data,
   children,
   ...props
 }: ComposedChartProps) {
-  const { palette } = useChartContext();
-  const coloredChildren = injectSeriesColors(children, palette);
-  const empty = isDataEmpty(data as any[]);
+  const { palette, colors } = useChartTheme(theme, colorPalette);
+  const coloredChildren = injectSeriesColors(children, palette, colors);
+  const empty = isDataEmpty(data as any[], children);
 
   return (
     <ChartContainer
@@ -58,6 +70,8 @@ function ComposedChart({
       renderEmptyPlaceholder={renderEmptyPlaceholder}
       className={className}
       style={style}
+      theme={theme}
+      colorPalette={colorPalette}
     >
       <RechartsComposedChart
         data={data}

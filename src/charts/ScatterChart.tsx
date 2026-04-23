@@ -2,14 +2,24 @@ import React from 'react';
 import { ScatterChart as RechartsScatterChart } from 'recharts';
 import ChartContainer from '../ChartContainer';
 import type { ChartContainerProps } from '../ChartContainer';
-import { useChartContext } from '../ChartContext';
+import { useChartTheme } from '../ChartContext';
 import { injectSeriesColors } from '../utils';
 
 type RechartsScatterChartProps = React.ComponentPropsWithoutRef<typeof RechartsScatterChart>;
 
 export interface ScatterChartProps
-  extends Omit<RechartsScatterChartProps, 'width' | 'height'>,
-    Pick<ChartContainerProps, 'height' | 'loading' | 'locale' | 'renderEmptyPlaceholder' | 'className' | 'style'> {}
+  extends Omit<RechartsScatterChartProps, 'width' | 'height' | 'style'>,
+    Pick<
+      ChartContainerProps,
+      | 'theme'
+      | 'colorPalette'
+      | 'height'
+      | 'loading'
+      | 'locale'
+      | 'renderEmptyPlaceholder'
+      | 'className'
+      | 'style'
+    > {}
 
 /**
  * Scatter chart with rsuite styling and responsive container.
@@ -21,11 +31,13 @@ function ScatterChart({
   renderEmptyPlaceholder,
   className,
   style,
+  theme,
+  colorPalette,
   children,
   ...props
 }: ScatterChartProps) {
-  const { palette } = useChartContext();
-  const coloredChildren = injectSeriesColors(children, palette);
+  const { palette, colors } = useChartTheme(theme, colorPalette);
+  const coloredChildren = injectSeriesColors(children, palette, colors);
 
   return (
     <ChartContainer
@@ -35,11 +47,10 @@ function ScatterChart({
       renderEmptyPlaceholder={renderEmptyPlaceholder}
       className={className}
       style={style}
+      theme={theme}
+      colorPalette={colorPalette}
     >
-      <RechartsScatterChart
-        margin={{ top: 10, right: 10, bottom: 10, left: 0 }}
-        {...props}
-      >
+      <RechartsScatterChart margin={{ top: 10, right: 10, bottom: 10, left: 0 }} {...props}>
         {coloredChildren}
       </RechartsScatterChart>
     </ChartContainer>

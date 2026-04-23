@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import CodeBlock from './components/CodeBlock';
 import {
   BarChart2,
   TrendingUp,
@@ -122,7 +123,7 @@ export default function HomePage() {
 
       <h2>Available Charts</h2>
       <div style={styles.grid}>
-        {charts.map(chart => (
+        {charts.map((chart) => (
           <Link key={chart.href} href={chart.href} style={styles.card}>
             <div style={styles.cardIcon}>{chart.icon}</div>
             <div style={styles.cardName}>{chart.name}</div>
@@ -132,8 +133,7 @@ export default function HomePage() {
       </div>
 
       <h2>Quick Example</h2>
-      <pre>
-        <code>{`import {
+      <CodeBlock>{`import {
   BarChart, Bar,
   XAxis, YAxis,
   CartesianGrid, Tooltip, Legend,
@@ -156,8 +156,7 @@ export default function App() {
       <Bar dataKey="revenue" name="Revenue" />
     </BarChart>
   );
-}`}</code>
-      </pre>
+}`}</CodeBlock>
 
       <h2>Features</h2>
       <ul style={styles.features}>
@@ -170,16 +169,16 @@ export default function App() {
           design-system palette. Override with <code>colorPalette</code> prop.
         </li>
         <li>
-          <strong>Responsive by default</strong> — every chart uses{' '}
-          <code>ResponsiveContainer</code>; set a <code>height</code> and you&rsquo;re done.
+          <strong>Responsive by default</strong> — every chart uses <code>ResponsiveContainer</code>
+          ; set a <code>height</code> and you&rsquo;re done.
         </li>
         <li>
           <strong>Empty &amp; loading states</strong> — pass <code>loading</code> or let the chart
           detect an empty <code>data</code> array automatically.
         </li>
         <li>
-          <strong>TypeScript</strong> — complete type definitions, including all recharts
-          prop types.
+          <strong>TypeScript</strong> — complete type definitions, including all recharts prop
+          types.
         </li>
       </ul>
     </div>
@@ -190,7 +189,7 @@ const styles = {
   hero: {
     textAlign: 'center' as const,
     padding: '40px 0 48px',
-    borderBottom: '1px solid #e5e5ea',
+    borderBottom: '1px solid var(--border-color)',
     marginBottom: 8,
   },
   heroIcon: {
@@ -202,11 +201,11 @@ const styles = {
     fontSize: 36,
     fontWeight: 800,
     margin: '0 0 16px',
-    color: '#1a1d24',
+    color: 'var(--text-primary)',
   },
   heroSubtitle: {
     fontSize: 16,
-    color: '#575757',
+    color: 'var(--text-secondary)',
     maxWidth: 520,
     margin: '0 auto 20px',
     lineHeight: 1.6,
@@ -226,12 +225,12 @@ const styles = {
     fontFamily: 'monospace',
   },
   badgeBlue: {
-    background: '#e0f4ff',
-    color: '#009de6',
+    background: 'var(--rs-primary-100)',
+    color: 'var(--rs-primary-600)',
   },
   badgeGray: {
-    background: '#f2f2f5',
-    color: '#575757',
+    background: 'var(--gray-100)',
+    color: 'var(--text-secondary)',
   },
   heroActions: {
     display: 'flex',
@@ -253,8 +252,8 @@ const styles = {
   },
   btnOutline: {
     background: 'transparent',
-    border: '1px solid #e5e5ea',
-    color: '#575757',
+    border: '1px solid var(--border-color)',
+    color: 'var(--text-secondary)',
   },
   grid: {
     display: 'grid',
@@ -264,12 +263,12 @@ const styles = {
   },
   card: {
     display: 'block',
-    border: '1px solid #e5e5ea',
+    border: '1px solid var(--border-color)',
     borderRadius: 10,
     padding: '16px 18px',
     textDecoration: 'none',
     transition: 'border-color 0.15s, box-shadow 0.15s',
-    background: '#fff',
+    background: 'var(--bg-panel)',
   },
   cardIcon: {
     display: 'flex',
@@ -278,18 +277,18 @@ const styles = {
   cardName: {
     fontWeight: 600,
     fontSize: 14,
-    color: '#272c36',
+    color: 'var(--text-primary)',
     marginBottom: 4,
     fontFamily: 'monospace',
   },
   cardDesc: {
     fontSize: 12,
-    color: '#8e8e93',
+    color: 'var(--text-secondary)',
     lineHeight: 1.4,
   },
   features: {
     paddingLeft: 20,
     lineHeight: 1.8,
-    color: '#575757',
+    color: 'var(--text-secondary)',
   },
-} satisfies Record<string, React.CSSProperties | { textAlign: 'center' }>;
+} as Record<string, React.CSSProperties | { textAlign: 'center' }>;

@@ -1,14 +1,25 @@
 import React from 'react';
-import { PieChart as RechartsPieChart, Cell } from 'recharts';
+import { PieChart as RechartsPieChart } from 'recharts';
 import ChartContainer from '../ChartContainer';
 import type { ChartContainerProps } from '../ChartContainer';
-import { useChartContext } from '../ChartContext';
+import { useChartTheme } from '../ChartContext';
+import { injectSeriesColors } from '../utils';
 
 type RechartsPieChartProps = React.ComponentPropsWithoutRef<typeof RechartsPieChart>;
 
 export interface PieChartProps
-  extends Omit<RechartsPieChartProps, 'width' | 'height'>,
-    Pick<ChartContainerProps, 'height' | 'loading' | 'locale' | 'renderEmptyPlaceholder' | 'className' | 'style'> {}
+  extends Omit<RechartsPieChartProps, 'width' | 'height' | 'style'>,
+    Pick<
+      ChartContainerProps,
+      | 'theme'
+      | 'colorPalette'
+      | 'height'
+      | 'loading'
+      | 'locale'
+      | 'renderEmptyPlaceholder'
+      | 'className'
+      | 'style'
+    > {}
 
 /**
  * Pie / Donut chart with rsuite styling and responsive container.
@@ -21,42 +32,18 @@ function PieChart({
   renderEmptyPlaceholder,
   className,
   style,
+  theme,
+  colorPalette,
   children,
   ...props
 }: PieChartProps) {
-  const { palette } = useChartContext();
+  const { palette, colors } = useChartTheme(theme, colorPalette);
 
-  // Inject Cell colors into Pie children when Cells aren't already provided
-  const coloredChildren = React.Children.map(children, child => {
-    if (!React.isValidElement(child)) return child;
-    // Check for recharts Pie by displayName
-    const displayName =
-      (child.type as any).displayName || (child.type as any).name || '';
-    if (displayName === 'Pie') {
-      const pieProps = child.props as any;
-      // Only inject Cells when there are no Cell children and there's data
-      const hasCells = React.Children.toArray(pieProps.children).some(c => {
-        if (!React.isValidElement(c)) return false;
-        const name = (c.type as any).displayName || (c.type as any).name || '';
-        return name === 'Cell';
-      });
+  const coloredChildren = injectSeriesColors(children, palette, colors);
 
-      if (!hasCells && Array.isArray(pieProps.data)) {
-        const cells = pieProps.data.map((_: any, index: number) => (
-          <Cell key={index} fill={palette[index % palette.length]} />
-        ));
-        return React.cloneElement(child as React.ReactElement<any>, {
-          children: cells,
-        });
-      }
-    }
-    return child;
-  });
-
-  const hasPieData = React.Children.toArray(children).some(child => {
+  const hasPieData = React.Children.toArray(children).some((child) => {
     if (!React.isValidElement(child)) return false;
-    const displayName =
-      (child.type as any).displayName || (child.type as any).name || '';
+    const displayName = (child.type as any).displayName || (child.type as any).name || '';
     if (displayName === 'Pie') {
       const pieProps = child.props as any;
       return Array.isArray(pieProps.data) && pieProps.data.length > 0;
@@ -73,10 +60,10 @@ function PieChart({
       renderEmptyPlaceholder={renderEmptyPlaceholder}
       className={className}
       style={style}
+      theme={theme}
+      colorPalette={colorPalette}
     >
-      <RechartsPieChart {...props}>
-        {coloredChildren}
-      </RechartsPieChart>
+      <RechartsPieChart {...props}>{coloredChildren}</RechartsPieChart>
     </ChartContainer>
   );
 }

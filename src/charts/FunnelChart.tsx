@@ -2,14 +2,24 @@ import React from 'react';
 import { FunnelChart as RechartsFunnelChart } from 'recharts';
 import ChartContainer from '../ChartContainer';
 import type { ChartContainerProps } from '../ChartContainer';
-import { useChartContext } from '../ChartContext';
+import { useChartTheme } from '../ChartContext';
 import { injectSeriesColors, isDataEmpty } from '../utils';
 
 type RechartsFunnelChartProps = React.ComponentPropsWithoutRef<typeof RechartsFunnelChart>;
 
 export interface FunnelChartProps
-  extends Omit<RechartsFunnelChartProps, 'width' | 'height'>,
-    Pick<ChartContainerProps, 'height' | 'loading' | 'locale' | 'renderEmptyPlaceholder' | 'className' | 'style'> {}
+  extends Omit<RechartsFunnelChartProps, 'width' | 'height' | 'style'>,
+    Pick<
+      ChartContainerProps,
+      | 'theme'
+      | 'colorPalette'
+      | 'height'
+      | 'loading'
+      | 'locale'
+      | 'renderEmptyPlaceholder'
+      | 'className'
+      | 'style'
+    > {}
 
 /**
  * Funnel chart with rsuite styling and responsive container.
@@ -21,13 +31,15 @@ function FunnelChart({
   renderEmptyPlaceholder,
   className,
   style,
+  theme,
+  colorPalette,
   data,
   children,
   ...props
 }: FunnelChartProps) {
-  const { palette } = useChartContext();
-  const coloredChildren = injectSeriesColors(children, palette);
-  const empty = isDataEmpty(data as any[]);
+  const { palette, colors } = useChartTheme(theme, colorPalette);
+  const coloredChildren = injectSeriesColors(children, palette, colors);
+  const empty = isDataEmpty(data as any[], children);
 
   return (
     <ChartContainer
@@ -38,6 +50,8 @@ function FunnelChart({
       renderEmptyPlaceholder={renderEmptyPlaceholder}
       className={className}
       style={style}
+      theme={theme}
+      colorPalette={colorPalette}
     >
       <RechartsFunnelChart
         data={data}

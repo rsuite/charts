@@ -15,7 +15,17 @@ import {
 import DocPage from '../components/DocPage';
 import CodeDemo from '../components/CodeDemo';
 
-const dependencies = { ComposedChart, Bar, Line, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend };
+const dependencies = {
+  ComposedChart,
+  Bar,
+  Line,
+  Area,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+};
 
 const barLineCode = `
 const data = [

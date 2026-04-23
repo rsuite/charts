@@ -18,15 +18,7 @@ npm i --save @rsuite/charts recharts
 ## Quick Start
 
 ```tsx
-import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  Tooltip,
-  Legend,
-  CartesianGrid,
-} from '@rsuite/charts';
+import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, CartesianGrid } from '@rsuite/charts';
 
 const data = [
   { name: 'Jan', pv: 800, uv: 400 },
@@ -34,7 +26,7 @@ const data = [
   { name: 'Mar', pv: 1098, uv: 448 },
   { name: 'Apr', pv: 1200, uv: 470 },
   { name: 'May', pv: 1108, uv: 540 },
-  { name: 'Jun', pv: 680,  uv: 380 },
+  { name: 'Jun', pv: 680, uv: 380 },
 ];
 
 function App() {
@@ -62,31 +54,31 @@ function App() {
 
 ## Available Charts
 
-| Component | Description |
-|---|---|
-| `<BarChart>` | Bar / horizontal bar chart |
-| `<LineChart>` | Line chart |
-| `<AreaChart>` | Area chart |
-| `<ComposedChart>` | Mix of Bar, Line, and Area |
-| `<ScatterChart>` | Scatter / bubble chart |
-| `<PieChart>` | Pie / donut chart |
-| `<RadarChart>` | Radar / spider chart |
-| `<RadialBarChart>` | Radial bar chart |
-| `<FunnelChart>` | Funnel chart |
-| `<Treemap>` | Treemap chart |
+| Component          | Description                |
+| ------------------ | -------------------------- |
+| `<BarChart>`       | Bar / horizontal bar chart |
+| `<LineChart>`      | Line chart                 |
+| `<AreaChart>`      | Area chart                 |
+| `<ComposedChart>`  | Mix of Bar, Line, and Area |
+| `<ScatterChart>`   | Scatter / bubble chart     |
+| `<PieChart>`       | Pie / donut chart          |
+| `<RadarChart>`     | Radar / spider chart       |
+| `<RadialBarChart>` | Radial bar chart           |
+| `<FunnelChart>`    | Funnel chart               |
+| `<Treemap>`        | Treemap chart              |
 
 ## Styled Components
 
 Components with rsuite defaults pre-applied:
 
-| Component | Description |
-|---|---|
-| `<XAxis>` | X axis (rsuite tick/line style) |
-| `<YAxis>` | Y axis (rsuite tick/line style) |
-| `<CartesianGrid>` | Horizontal grid lines |
-| `<Tooltip>` | Tooltip popup (rsuite card style) |
-| `<Legend>` | Chart legend (rsuite text style) |
-| `<Brush>` | Data range brush |
+| Component         | Description                       |
+| ----------------- | --------------------------------- |
+| `<XAxis>`         | X axis (rsuite tick/line style)   |
+| `<YAxis>`         | Y axis (rsuite tick/line style)   |
+| `<CartesianGrid>` | Horizontal grid lines             |
+| `<Tooltip>`       | Tooltip popup (rsuite card style) |
+| `<Legend>`        | Chart legend (rsuite text style)  |
+| `<Brush>`         | Data range brush                  |
 
 ## Series Components
 
@@ -108,10 +100,9 @@ import { BarChart, Bar, XAxis, YAxis } from 'recharts';
     <XAxis dataKey="name" />
     <YAxis />
   </BarChart>
-</ChartContainer>
+</ChartContainer>;
 ```
 
 ## License
 
 MIT licensed
-

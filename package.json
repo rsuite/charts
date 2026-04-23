@@ -23,6 +23,7 @@
     "format:check": "prettier --list-different \"{src,docs}/**/*.{ts,tsx,js}\""
   },
   "dependencies": {
+    "glob": "^13.0.6",
     "recharts": "^2.15.4"
   },
   "peerDependencies": {
@@ -34,6 +35,7 @@
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^13.4.0",
     "@types/jest": "^27.4.0",
+    "@types/node": "^25.6.0",
     "@types/react": "^18.0.0",
     "@typescript-eslint/eslint-plugin": "^5.28.0",
     "@typescript-eslint/parser": "^5.28.0",
@@ -48,7 +50,7 @@
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "tsup": "^6.1.2",
-    "typescript": "^4.7.3"
+    "typescript": "^5.8.0"
   },
   "repository": {
     "type": "git",

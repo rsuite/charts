@@ -1,7 +1,6 @@
 import React from 'react';
 import { ResponsiveContainer } from 'recharts';
-import { palette as defaultPalette, colors as defaultColors } from './theme';
-import { ChartContext } from './ChartContext';
+import { ChartContext, useChartTheme } from './ChartContext';
 
 export interface ChartContainerLocale {
   emptyMessage?: React.ReactNode;
@@ -26,6 +25,11 @@ export interface ChartContainerProps {
    * Locale strings for empty/loading states.
    */
   locale?: ChartContainerLocale;
+  /**
+   * Theme of the chart
+   * @default 'light'
+   */
+  theme?: 'light' | 'dark' | 'auto';
   /**
    * Custom color palette that overrides the rsuite default palette.
    */
@@ -86,6 +90,7 @@ function ChartContainer({
   loading = false,
   empty = false,
   locale = {},
+  theme = 'auto',
   colorPalette,
   renderEmptyPlaceholder,
   className,
@@ -94,13 +99,7 @@ function ChartContainer({
 }: ChartContainerProps) {
   const { emptyMessage = 'No data found', loading: loadingText = 'Loading...' } = locale;
 
-  const contextValue = React.useMemo(
-    () => ({
-      palette: colorPalette || defaultPalette,
-      colors: defaultColors,
-    }),
-    [colorPalette]
-  );
+  const contextValue = useChartTheme(theme, colorPalette);
 
   function renderEmpty() {
     if (typeof renderEmptyPlaceholder === 'function') {

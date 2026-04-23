@@ -28,7 +28,7 @@ const styles: Record<string, React.CSSProperties> = {
   },
   description: {
     fontSize: 16,
-    color: '#575757',
+    color: 'var(--text-secondary)',
     lineHeight: 1.6,
     margin: '-16px 0 24px',
   },

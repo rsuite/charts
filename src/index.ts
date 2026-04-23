@@ -38,6 +38,9 @@ export type { TreemapProps } from './charts/Treemap';
 export { default as FunnelChart } from './charts/FunnelChart';
 export type { FunnelChartProps } from './charts/FunnelChart';
 
+export { default as Sparkline } from './charts/Sparkline';
+export type { SparklineProps } from './charts/Sparkline';
+
 // Styled axis / grid components
 export { default as XAxis } from './components/XAxis';
 export type { XAxisProps } from './components/XAxis';

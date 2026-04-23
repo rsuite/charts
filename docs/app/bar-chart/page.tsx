@@ -1,16 +1,7 @@
 'use client';
 
 import React from 'react';
-import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  Brush,
-} from '@rsuite/charts';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Brush } from '@rsuite/charts';
 import DocPage from '../components/DocPage';
 import CodeDemo from '../components/CodeDemo';
 
@@ -176,38 +167,62 @@ export default function BarChartPage() {
         </thead>
         <tbody>
           <tr>
-            <td><code>data</code></td>
-            <td><code>object[]</code></td>
+            <td>
+              <code>data</code>
+            </td>
+            <td>
+              <code>object[]</code>
+            </td>
             <td>—</td>
             <td>Array of data objects</td>
           </tr>
           <tr>
-            <td><code>height</code></td>
-            <td><code>number</code></td>
+            <td>
+              <code>height</code>
+            </td>
+            <td>
+              <code>number</code>
+            </td>
             <td>300</td>
             <td>Chart height in pixels</td>
           </tr>
           <tr>
-            <td><code>horizontal</code></td>
-            <td><code>boolean</code></td>
+            <td>
+              <code>horizontal</code>
+            </td>
+            <td>
+              <code>boolean</code>
+            </td>
             <td>false</td>
             <td>Rotate to horizontal bar layout</td>
           </tr>
           <tr>
-            <td><code>loading</code></td>
-            <td><code>boolean</code></td>
+            <td>
+              <code>loading</code>
+            </td>
+            <td>
+              <code>boolean</code>
+            </td>
             <td>false</td>
             <td>Show loading overlay</td>
           </tr>
           <tr>
-            <td><code>locale</code></td>
-            <td><code>{'{ emptyMessage?, loading? }'}</code></td>
+            <td>
+              <code>locale</code>
+            </td>
+            <td>
+              <code>{'{ emptyMessage?, loading? }'}</code>
+            </td>
             <td>—</td>
             <td>Custom empty/loading messages</td>
           </tr>
           <tr>
-            <td><code>colorPalette</code></td>
-            <td><code>string[]</code></td>
+            <td>
+              <code>colorPalette</code>
+            </td>
+            <td>
+              <code>string[]</code>
+            </td>
             <td>rsuite palette</td>
             <td>Override the color palette</td>
           </tr>
