@@ -17,6 +17,7 @@
     "dev": "tsup src/index.ts --watch",
     "docs:dev": "cd docs && npm run dev",
     "docs:build": "cd docs && npm run build",
+    "vercel-build": "npm run build && cd docs && npm ci && npm run build",
     "lint": "eslint .",
     "test": "jest",
     "format": "prettier --write .",
@@ -49,7 +50,7 @@
     "prettier": "^2.7.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "tsup": "^6.1.2",
+    "tsup": "^8.4.0",
     "typescript": "^5.8.0"
   },
   "repository": {
