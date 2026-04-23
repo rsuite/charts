@@ -1,10 +1,10 @@
 module.exports = {
   transform: {
     '^.+\\.(t|j)sx?$': [
-      '@swc-node/jest',
+      'ts-jest',
       {
-        react: {
-          runtime: 'automatic',
+        tsconfig: {
+          jsx: 'react-jsx',
         },
       },
     ],
