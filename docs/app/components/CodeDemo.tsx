@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useState } from 'react';
-import { LiveProvider, LivePreview, LiveError } from 'react-live';
+import React, { useState, useMemo, useEffect } from 'react';
+import { transform } from 'sucrase';
 import { Highlight, themes } from 'prism-react-renderer';
 import { Copy, Check } from 'lucide-react';
 
@@ -11,9 +11,41 @@ interface CodeDemoProps {
   dependencies?: Record<string, unknown>;
 }
 
+function compileAndRender(
+  code: string,
+  scope: Record<string, unknown>
+): { element: React.ReactNode; error: string | null } {
+  try {
+    const transformed = transform(code, {
+      transforms: ['jsx', 'typescript', 'imports'],
+      production: true,
+    }).code;
+
+    let captured: React.ReactNode = null;
+    const render = (node: React.ReactNode) => {
+      captured = node;
+    };
+
+    const argNames = ['React', 'render', ...Object.keys(scope)];
+    const argValues = [React, render, ...Object.values(scope)];
+    // eslint-disable-next-line no-new-func
+    const fn = new Function(...argNames, transformed);
+    fn(...argValues);
+
+    return { element: captured, error: null };
+  } catch (e) {
+    return { element: null, error: (e as Error).message };
+  }
+}
+
 export default function CodeDemo({ title, children, dependencies = {} }: CodeDemoProps) {
   const [showCode, setShowCode] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const [copied, setCopied] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const handleCopy = () => {
     navigator.clipboard.writeText(children.trim());
@@ -21,15 +53,18 @@ export default function CodeDemo({ title, children, dependencies = {} }: CodeDem
     setTimeout(() => setCopied(false), 2000);
   };
 
+  const { element, error } = useMemo(
+    () => (mounted ? compileAndRender(children, dependencies) : { element: null, error: null }),
+    [children, dependencies, mounted]
+  );
+
   return (
     <section style={{ marginBottom: 48 }}>
       {title && <h2 style={{ fontSize: 20, margin: '24px 0 12px' }}>{title}</h2>}
       <div style={styles.container}>
         <div style={styles.previewBox}>
-          <LiveProvider code={children.trim()} scope={{ React, ...dependencies }} noInline>
-            <LivePreview />
-            <LiveError style={styles.error as React.CSSProperties} />
-          </LiveProvider>
+          {mounted ? element : null}
+          {error && <pre style={styles.error}>{error}</pre>}
         </div>
         <div style={showCode ? { ...styles.toolbar, borderRadius: 0 } : styles.toolbar}>
           <div style={{ display: 'flex', gap: 8 }}>
