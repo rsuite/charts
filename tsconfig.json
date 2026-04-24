@@ -7,7 +7,7 @@
     "moduleResolution": "node",
     "ignoreDeprecations": "6.0",
     "skipLibCheck": true,
-    "types": ["jest", "node"],
+    "types": ["vitest/globals", "node"],
     "noUnusedLocals": true,
     "noImplicitAny": false,
     "allowJs": true,
@@ -15,7 +15,7 @@
     "outDir": "dist",
     "rootDir": "src",
     "isolatedModules": true,
-    "jsx": "react",
+    "jsx": "react-jsx",
     "resolveJsonModule": true
   },
   "include": ["src"]

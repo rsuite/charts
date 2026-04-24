@@ -1,4 +1,4 @@
-import '@testing-library/jest-dom';
+import '@testing-library/jest-dom/vitest';
 
 // ResizeObserver is not implemented in jsdom (used by recharts ResponsiveContainer)
 global.ResizeObserver = class ResizeObserver {
