@@ -1,6 +1,5 @@
 import React from 'react';
 import { Cell } from 'recharts';
-import { colors } from './theme';
 
 /** recharts series types (by displayName) that accept a `fill` color prop */
 const FILL_COLOR_TYPES = ['Bar', 'Funnel', 'RadialBar'];

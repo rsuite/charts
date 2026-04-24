@@ -5,7 +5,9 @@ module.exports = {
       {
         tsconfig: {
           jsx: 'react-jsx',
+          noUnusedLocals: false,
         },
+        isolatedModules: true,
       },
     ],
   },
