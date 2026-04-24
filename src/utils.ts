@@ -128,11 +128,13 @@ export function injectSeriesColors(
       }
     }
 
-    // Special logic for Pie Chart: Auto inject colored `<Cell>` babies if not provided
+    // Special logic for Pie Chart: Auto inject colored `<Cell>` children if not provided.
+    // Skip if any data item already has an explicit `fill` to avoid overriding user colors.
     if (
       typeName === 'Pie' &&
       props.data &&
-      (!props.children || React.Children.count(props.children) === 0)
+      (!props.children || React.Children.count(props.children) === 0) &&
+      !(props.data as any[]).some((item: any) => item && item.fill != null)
     ) {
       injectedProps.children = props.data.map((_: any, idx: number) => {
         const color = palette[(colorIndex + idx) % palette.length];

@@ -94,16 +94,16 @@ function Treemap({
         const formattedValue = tooltipProps.formatter ? tooltipProps.formatter(value, name, item) : value;
         return (
           <div style={{
-            background: 'rgba(255,255,255,0.96)',
-            border: 'none',
+            background: colors.tooltipBackground,
+            border: `1px solid ${colors.tooltipBorder}`,
             borderRadius: 8,
             boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
             fontSize: 13,
             padding: '8px 14px',
           }}>
-            <span style={{ color: '#8A8E99', fontWeight: 500 }}>{name}</span>
-            {name && <span style={{ margin: '0 4px', color: '#8A8E99' }}>:</span>}
-            <span style={{ color: '#1A1D24', fontWeight: 500 }}>{formattedValue}</span>
+            <span style={{ color: colors.tooltipLabel, fontWeight: 500 }}>{name}</span>
+            {name && <span style={{ margin: '0 4px', color: colors.tooltipLabel }}>:</span>}
+            <span style={{ color: colors.tooltipText, fontWeight: 500 }}>{formattedValue}</span>
           </div>
         );
       },
