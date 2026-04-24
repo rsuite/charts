@@ -1,6 +1,7 @@
 import React from 'react';
 import { isDataEmpty, injectSeriesColors } from './utils';
 import { colors } from './theme';
+import { Bar as RechartsBar } from 'recharts';
 
 const palette = ['#red', '#green', '#blue'];
 
@@ -25,23 +26,24 @@ describe('isDataEmpty', () => {
 describe('injectSeriesColors', () => {
   it('returns non-element children unchanged', () => {
     const result = injectSeriesColors('plain text', palette, colors);
-    expect(result).toBe('plain text');
+    // React.Children.map wraps even non-element children in an array
+    expect(result).toEqual(['plain text']);
   });
 
   it('injects fill color into Bar elements', () => {
-    const bar = React.createElement('Bar' as any, { dataKey: 'v' });
-    // Simulate displayName
-    (bar.type as any).displayName = 'Bar';
+    const bar = React.createElement(RechartsBar as any, { dataKey: 'v' });
     const result = injectSeriesColors(bar, palette, colors) as any;
     expect(result).toBeTruthy();
+    // fill color should be injected from the palette
+    expect(result[0].props.fill).toBe(palette[0]);
   });
 
   it('does not override explicit fill on Bar', () => {
-    const bar = React.createElement('Bar' as any, { dataKey: 'v', fill: '#custom' });
-    (bar.type as any) = { displayName: 'Bar' };
-    const result = injectSeriesColors(bar, palette, colors);
-    // Should not crash
+    const bar = React.createElement(RechartsBar as any, { dataKey: 'v', fill: '#custom' });
+    const result = injectSeriesColors(bar, palette, colors) as any;
+    // Should not crash, and explicit fill should be preserved
     expect(result).toBeTruthy();
+    expect(result[0].props.fill).toBe('#custom');
   });
 
   it('handles null children gracefully', () => {

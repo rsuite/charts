@@ -1,4 +1,5 @@
 module.exports = {
+  watchman: false,
   transform: {
     '^.+\\.(t|j)sx?$': [
       'ts-jest',
