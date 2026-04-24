@@ -44,7 +44,7 @@ export interface SparklineProps
   strokeWidth?: number;
   /**
    * The opacity of the area chart fill.
-   * @default 0.15
+   * @default 0.2
    */
   fillOpacity?: number;
   /**

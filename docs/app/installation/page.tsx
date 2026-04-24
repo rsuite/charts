@@ -15,7 +15,7 @@ export default function InstallationPage() {
     >
       <h2>Install</h2>
       <p>
-        <code>@rsuite/charts</code> requires <strong>React 18+</strong> and{' '}
+        <code>@rsuite/charts</code> requires <strong>React 16.8+</strong> and{' '}
         <strong>recharts v2</strong> as peer dependencies.
       </p>
       <CodeBlock language="bash">{`npm install @rsuite/charts recharts`}</CodeBlock>

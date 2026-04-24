@@ -80,6 +80,7 @@ export function injectSeriesColors(
   palette: string[],
   colorsProp: any
 ): React.ReactNode {
+  if (!palette || palette.length === 0) return children;
   let colorIndex = 0;
   const COMPONENT_DEFAULTS = getComponentDefaults(colorsProp);
 

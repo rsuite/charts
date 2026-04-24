@@ -27,7 +27,7 @@ export interface ChartContainerProps {
   locale?: ChartContainerLocale;
   /**
    * Theme of the chart
-   * @default 'light'
+   * @default 'auto'
    */
   theme?: 'light' | 'dark' | 'auto';
   /**

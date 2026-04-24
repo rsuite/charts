@@ -3,7 +3,7 @@ import { isDataEmpty, injectSeriesColors } from './utils';
 import { colors } from './theme';
 import { Bar as RechartsBar } from 'recharts';
 
-const palette = ['#red', '#green', '#blue'];
+const palette = ['#ff0000', '#00ff00', '#0000ff'];
 
 describe('isDataEmpty', () => {
   it('returns true for empty array', () => {
