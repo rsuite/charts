@@ -7,7 +7,6 @@ module.exports = {
           jsx: 'react-jsx',
           noUnusedLocals: false,
         },
-        isolatedModules: true,
       },
     ],
   },
