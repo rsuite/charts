@@ -12,6 +12,13 @@
 ## Install
 
 ```bash
+npm i --save @rsuite/charts
+```
+
+Install `recharts` as well if you want to compose raw recharts primitives directly, for example with
+`ChartContainer`:
+
+```bash
 npm i --save @rsuite/charts recharts
 ```
 
@@ -69,7 +76,8 @@ function App() {
 
 ## Styled Components
 
-Components with rsuite defaults pre-applied:
+Convenience re-exports for common recharts primitives. When you use them inside the
+`@rsuite/charts` chart wrappers, rsuite defaults are injected automatically:
 
 | Component         | Description                       |
 | ----------------- | --------------------------------- |
@@ -82,13 +90,16 @@ Components with rsuite defaults pre-applied:
 
 ## Series Components
 
-Re-exported from recharts, colors injected automatically:
+Re-exported from recharts. Colors are injected automatically when they are used inside the
+`@rsuite/charts` chart wrappers:
 
 `Bar` · `Line` · `Area` · `Scatter` · `Pie` · `Cell` · `Radar` · `RadialBar` · `Funnel`
 
 ## ChartContainer
 
-For full control, use `<ChartContainer>` to wrap any recharts chart directly:
+For full control, use `<ChartContainer>` to wrap any recharts chart directly. `ChartContainer`
+handles layout, loading, empty state, and theme context, but it does not mutate raw recharts
+children for you:
 
 ```tsx
 import { ChartContainer } from '@rsuite/charts';

@@ -15,13 +15,22 @@ export default function InstallationPage() {
     >
       <h2>Install</h2>
       <p>
-        <code>@rsuite/charts</code> requires <strong>React 16.8+</strong> and{' '}
-        <strong>recharts v2</strong> as peer dependencies.
+        <code>@rsuite/charts</code> requires <strong>React 16.8+</strong>. Install{' '}
+        <strong>recharts v2</strong> as well only if you want to compose raw recharts primitives
+        directly, for example with <code>ChartContainer</code>.
       </p>
+      <CodeBlock language="bash">{`npm install @rsuite/charts`}</CodeBlock>
+
+      <p>If you want to use raw recharts components directly:</p>
       <CodeBlock language="bash">{`npm install @rsuite/charts recharts`}</CodeBlock>
 
       <p>Or with yarn / pnpm:</p>
-      <CodeBlock language="bash">{`yarn add @rsuite/charts recharts
+      <CodeBlock language="bash">{`yarn add @rsuite/charts
+# or
+pnpm add @rsuite/charts
+
+# add recharts too when using raw recharts primitives
+yarn add @rsuite/charts recharts
 # or
 pnpm add @rsuite/charts recharts`}</CodeBlock>
 
@@ -94,21 +103,18 @@ const MyChart = dynamic(() => import('./MyChart'), { ssr: false });`}</CodeBlock
 
       <h2>Theming</h2>
       <p>
-        The default color palette matches the rsuite design system. To override it, wrap your charts
-        with <code>ChartContainer</code> and pass a custom <code>colorPalette</code>:
+        The default color palette matches the rsuite design system. To override it, pass a custom{' '}
+        <code>colorPalette</code> to an <code>@rsuite/charts</code> chart wrapper:
       </p>
-      <CodeBlock>{`import { ChartContainer } from '@rsuite/charts';
-import { BarChart, Bar, XAxis, YAxis } from 'recharts';
+      <CodeBlock>{`import { BarChart, Bar, XAxis, YAxis } from '@rsuite/charts';
 
 const myPalette = ['#2575fc', '#34c3ff', '#13ba9e'];
 
-<ChartContainer height={300} colorPalette={myPalette}>
-  <BarChart data={data}>
-    <Bar dataKey="value" />
-    <XAxis dataKey="name" />
-    <YAxis />
-  </BarChart>
-</ChartContainer>`}</CodeBlock>
+<BarChart height={300} data={data} colorPalette={myPalette}>
+  <Bar dataKey="value" />
+  <XAxis dataKey="name" />
+  <YAxis />
+</BarChart>`}</CodeBlock>
     </DocPage>
   );
 }

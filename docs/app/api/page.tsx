@@ -56,7 +56,8 @@ export default function ApiPage() {
       <h2>ChartContainer</h2>
       <p>
         The foundational component. Every chart wrapper uses it internally. You can use it directly
-        with any recharts chart for full control.
+        with any recharts chart for full control. It provides layout, loading and empty states, and
+        theme context, but it does not auto-style raw recharts children.
       </p>
       <pre>
         <code>{`import { ChartContainer } from '@rsuite/charts';
@@ -64,7 +65,7 @@ import { BarChart, Bar, XAxis, YAxis } from 'recharts';
 
 <ChartContainer height={300} loading={isLoading} empty={data.length === 0}>
   <BarChart data={data}>
-    <Bar dataKey="value" />
+    <Bar dataKey="value" fill="#34c3ff" />
     <XAxis dataKey="name" />
     <YAxis />
   </BarChart>
@@ -91,7 +92,7 @@ import { BarChart, Bar, XAxis, YAxis } from 'recharts';
         <PropRow
           name="colorPalette"
           type="string[]"
-          desc="Override the default rsuite color palette used for series auto-coloring."
+          desc="Override the default rsuite color palette used by the chart wrappers for series auto-coloring."
         />
         <PropRow
           name="locale"
@@ -128,8 +129,8 @@ import { BarChart, Bar, XAxis, YAxis } from 'recharts';
 
       <h2>Styled Components</h2>
       <p>
-        These components wrap their recharts equivalents with rsuite design defaults pre-applied.
-        All recharts props are forwarded.
+        These are convenience re-exports of common recharts primitives. When you use them inside the
+        chart wrappers, rsuite defaults are injected automatically.
       </p>
       <pre>
         <code>{`import { XAxis, YAxis, CartesianGrid, Tooltip, Legend, Brush } from '@rsuite/charts';`}</code>
