@@ -5,13 +5,18 @@
     "strict": true,
     "esModuleInterop": true,
     "moduleResolution": "node",
+    "ignoreDeprecations": "6.0",
     "skipLibCheck": true,
+    "types": ["vitest/globals", "node"],
     "noUnusedLocals": true,
     "noImplicitAny": false,
     "allowJs": true,
     "noEmit": true,
     "outDir": "dist",
-    "jsx": "react",
+    "rootDir": "src",
+    "isolatedModules": true,
+    "jsx": "react-jsx",
     "resolveJsonModule": true
-  }
+  },
+  "include": ["src"]
 }
